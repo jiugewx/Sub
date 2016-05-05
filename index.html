@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <title>地铁图</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./img/subway/favicon.ico" media="screen">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body class="disable-default-action">
+    <div id="os" class="os">
+        <!-- 地铁页面 -->
+        <div id="subway">
+            <div class="top_bar">
+                <!-- 返回按钮-->
+                <div class="back_btn" id="back_amap"></div>
+                <div class="page-title">轨道客流</div>
+                <!-- 当前城市，点击可以进入城市选择面板-->
+                <a class="city_list_btn city_name" href='javascript:void(0)'></a>
+            </div>
+            <!-- /.top_bar -->
+            <div class="route_bar">
+                <div class="route_line"></div>
+                <div class="route_info"></div>
+                <div class="route_detail">详情></div>
+            </div>
+            <!-- 线路选择盒子 -->
+            <div class="light_box"></div>
+            <div class="filter_btn">线路图</div>
+            <div class="route_close_btn hidden"></div>
+            <div class="filter_content">
+                <div class="flier_close_btn"></div>
+                <ul class="fliter_detail"></ul>
+            </div>
+            <!-- 地铁的操作层-->
+            <div id="drag_handle">
+                <div id="subwaySvg" style="display:none;">
+                    <!--弹出层信息-->
+                    <div class="overlays">
+                        <div class="tip_wrap_out ust">
+                            <div class="tip_wrap">
+                                <div class="tip_body">
+                                    <!-- 弹出框的标题信息 -->
+                                    <div class="tip_title">
+                                        <span class="tip_name" id="tip_name"></span>
+                                        <span class="tip_close"></span>
+                                        <span style="clear: both"></span>
+                                        <div class="tip_detail">
+                                            <div class="tip_detail_error">抱歉，暂无数据</div>
+                                            <div class="tip_detail_success">
+                                                <span class="tip_detail_out">出：37人</span>
+                                                <span class="tip_detail_in">进：79人</span>
+                                                <span class="tip_detail_time">30分钟前发布</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 弹出框的主体信息-->
+                                    <div class="tip_content">
+                                        <div class="tip_detail_line">
+                                            <div class="tip_detail_lineName">5号线</div>
+                                            <div class="tip_detail_lineright">
+                                                <span class="tip_detail_direction">天通苑北方向</span>
+                                                <span class="tip_detail_btn tip_detail_end">末：23:50</span>
+                                                <span class="tip_detail_btn tip_detail_start">首：05:50</span>
+                                            </div>
+                                            <div class="tip_detail_lineleft">
+                                                <span class="tip_detail_direction">宋家庄方向</span>
+                                                <span class="tip_detail_btn tip_detail_end">末：23:08</span>
+                                                <span class="tip_detail_btn tip_detail_start">首：05:20</span>
+                                            </div>
+                                        </div>
+                                        <div class="tip_detail_line">
+                                            <div class="tip_detail_lineName">5号线</div>
+                                            <div class="tip_detail_lineright">
+                                                <span class="tip_detail_direction">天通苑北方向</span>
+                                                <span class="tip_detail_btn tip_detail_end">末：23:50</span>
+                                                <span class="tip_detail_btn tip_detail_start">首：05:50</span>
+                                            </div>
+                                            <div class="tip_detail_lineleft">
+                                                <span class="tip_detail_direction">宋家庄方向</span>
+                                                <span class="tip_detail_btn tip_detail_end">末：23:08</span>
+                                                <span class="tip_detail_btn tip_detail_start">首：05:20</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 弹出框的底部小尖角-->
+                                <div class="tip_footer"></div>
+                            </div>
+                        </div>
+                        <!--<div class="nav_marker" id="nav_start" type="start"></div>-->
+                        <!--<div class="nav_marker" id="nav_end" type="end"></div>-->
+                    </div>
+                    <!-- 地铁的划线部分-->
+                </div>
+            </div>
+            <img id="transfer-img" src="./img/subway/transfer-station.png" style="display:none"/>
+            <!-- 地铁画布Canvas-->
+            <canvas id="subwayCanvas" width="2000" height="2000" style="display:none;"></canvas>
+            <!-- 地铁的内容部分-->
+            <div class="station-out-box subway-content" style="width:2000px;height:2000px;position:absolute;top:0; left:0;display:none;"></div>
+        </div>
+        <!-- 城市切换页面 -->
+        <div id="citypage">
+            <div class="top_bar">
+                <div class="back_btn" id="back_subway"></div>
+                <span class="city_title">切换城市</span>
+            </div>
+            <div class="citylist_wrap">
+                <ul class="citylist" id="citylist"></ul>
+            </div>
+        </div>
+        <!-- 刷新 -->
+        <button class="refresh_btn">刷新</button>
+        <!-- 定位 -->
+        <button class="location_btn">定位</button>
+        <!-- 加载loading -->
+        <div class="loading-bg" id="loading">
+            <div class="loading-outer">
+                <div class="loading">
+                    <img class="loading-img" src="./img/subway/loading.gif">
+                    <div class="loading-txt">正在加载，请稍候...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        /*登陆客户端设备判断*/
+        var userAgent = navigator.userAgent;
+        var os = userAgent.match(/iphone|ipad|ipod/i) ? 'ios' : 'android';
+        var osbody = document.getElementById('os');
+        if (os === 'ios') {
+            osbody.className = 'ios'
+        } else {
+            osbody.className = 'android'
+        }
+    </script>
+    <!-- //build:js js/main.min.js -->
+    <script type="text/javascript" src="./js/lib/zepto.min.js"></script>
+    <script type="text/javascript" src="./js/lib/fastclick.js"></script>
+    <script type="text/javascript" src="./js/lib/hammer.js"></script>
+    <script type="text/javascript" src="./js/subway/amapCache.js"></script>
+    <script type="text/javascript" src="./js/subway/common.js"></script>
+    <script type="text/javascript" src="./js/subway/drw.js"></script>
+    <script type="text/javascript" src="./js/subway/main.js"></script>
+    <!--// /build -->
+    <script type="text/javascript">
+        SW.swInit();
+    </script>
+</body>
+</html>
