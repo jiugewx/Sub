@@ -201,7 +201,7 @@ var tip = {
         $subway.on('touchend', '.tip-near', function() {
             drwSw.clearNearTip();
         });
-        //触击 非站点又不是换乘点 关闭弹窗
+        //触击 非站点又不是换乘点的区域 关闭弹窗
         $subway.on('touchend', function(e) {
             if (!self.touchStatus && !tip.routeState) {
                 var target = e.target;
@@ -291,7 +291,7 @@ var tip = {
             }, 60);
         });
 
-        // // 最后的return false是为了修复Bug https://k3.alibaba-inc.com/issue/8058757?versionId=1323537
+        // 最后的return false是为了修复Bug https://k3.alibaba-inc.com/issue/8058757?versionId=1323537
         $('.tip_route_btn').on('touchend', function() {
             var type = $(this).attr('type'),
                 info = $(this).closest('.tip_wrap'),
@@ -982,6 +982,7 @@ var tip = {
             tip.navDrwData.linesbar.push(navline);
         }
     },
+    //站点排序
     sortStation: function(stationName, navline, lineid) {
         var self = this;
         if (navline) {
@@ -997,6 +998,7 @@ var tip = {
 
         }
     },
+    //设置线路的坐标
     setLineCoords: function(st, navline) {
         var navStPxl = [],
             navStRs = [],
@@ -1060,6 +1062,7 @@ var tip = {
 
         return navCoord;
     },
+    //设置起始点
     setStartEnd: function(id, type, info) {
         var self = this;
         var name = info.name || info.attr('name');
@@ -1095,6 +1098,7 @@ var tip = {
         tip.setStartEndIpt(name, type);
         tip.setStartEndIcon(id, type);
     },
+    //
     setStartEndIpt: function(name, type) {
         var $srh_item = null;
         if (type == 'start') {
@@ -1105,6 +1109,7 @@ var tip = {
         $srh_item.find('.route_startend').html(name).removeClass('route_placeholder');
         $srh_item.find('.route_close').removeClass('hidden');
     },
+    //设置起始点的图标
     setStartEndIcon: function(id, type) {
         var self = this;
         var obj = null;
@@ -1129,6 +1134,7 @@ var tip = {
         self.clearMarker(type);
         self.addMarker(type, pos);
     },
+    //增加标记
     addMarker: function(type, pos) {
         var self = this;
         var marker_wrap = $('#nav_' + type);
@@ -1146,6 +1152,7 @@ var tip = {
 
         tip.fromendState = true;
     },
+    //清楚标记
     clearMarker: function(type) {
         var self = this;
         if (type) {
@@ -1155,6 +1162,7 @@ var tip = {
             }
         }
     },
+    //更新标记
     updateMarker: function() {
         if (tip.fromendState) {
             var start_id = tip.routeId.start,
@@ -1167,6 +1175,7 @@ var tip = {
             }
         }
     },
+    //更新起始点
     updateStartEnd: function(id, type) {
         var self = this;
         if (id) {
@@ -1196,6 +1205,7 @@ var tip = {
             });
         }
     },
+    //更新tip
     updateTip: function() {
         var self = this;
         if (tip.opentip) {
@@ -1219,6 +1229,7 @@ var tip = {
             });
         }
     },
+    //更新最近位置的信息
     updateNear: function() {
         var self = this;
         if (drwSw.nearId) {
@@ -1244,6 +1255,7 @@ var tip = {
             }
         }
     },
+    //显示路线的标题
     showRouteTitle: function() {
         var start_name = tip.routeInfo.start.name,
             end_name = tip.routeInfo.end.name;
@@ -1252,10 +1264,12 @@ var tip = {
         $('.route_title_wrap').css('display', 'inline-block');
         $('.city_name').hide();
     },
+    //隐藏路线的标题
     hideRouteTitle: function() {
         $('.route_title_wrap').hide();
         $('.city_name').show();
     },
+    //显示航线条
     showRouteBar: function(data) {
         var bus = data.buslist[0];
         if (bus) {
@@ -1289,9 +1303,11 @@ var tip = {
 
         return Object.keys(obj)
     },
+    //隐藏航线条
     hideRouteBar: function() {
         $('.route_bar').hide();
     },
+    //格式化时间
     formatTime: function(le) {
         if (!le || le == '0') {
             return '';
@@ -1321,6 +1337,7 @@ var tip = {
             'z-index': '20'
         })
     },
+    //航线
     route: function() {
         var self = this;
         if (tip.routeInfo && tip.routeInfo.start && tip.routeInfo.end) {
@@ -1376,6 +1393,7 @@ var tip = {
         $obj.find('.route_startend').html(placeholder[type]).addClass('route_placeholder');
         $obj.find('.route_close').addClass('hidden');
     },
+    //清除航线
     clearRoute: function() {
         $('#g-nav').remove();
         $('#g-bg').css('display', 'none');
@@ -1384,6 +1402,7 @@ var tip = {
         tip.navDrwData.lines = {};
         tip.navDrwData.stations = {};
     },
+    //关闭航线
     closeRoute: function(typeArr) {
         $('#g-nav').remove();
         $('#g-bg').css('display', 'none');
@@ -1399,6 +1418,7 @@ var tip = {
         $('.route_close_btn').addClass('hidden');
         tip.routeState = false;
     },
+    //获取路线信息数据,用于导航
     getRouteData: function(cbk) {
         var start_info = tip.routeInfo.start,
             end_info = tip.routeInfo.end;
@@ -1429,6 +1449,7 @@ var tip = {
         });
 
     },
+    //获取路线的详细信息
     searchRouteDetail: function() {
         //http://30.28.183.162/navigation/busdetail/saddr=116.401216,39.90778,%E5%A4%A9%E5%AE%89%E9%97%A8%E4%B8%9C(%E5%9C%B0%E9%93%81%E7%AB%99),BV10006499&daddr=116.394193,39.976953,%E5%8C%97%E5%9C%9F%E5%9F%8E(%E5%9C%B0%E9%93%81%E7%AB%99),BV10013465&src=subway
         var detailHost = 'http://m.amap.com',
@@ -1449,6 +1470,7 @@ var tip = {
 
         window.location.href = detailHost + detailPath + 'saddr=' + startPoi.join(',') + '&daddr=' + endPoi.join(',') + '&src=subway';
     },
+    //后退
     goback: function() {
         if (tip.routeState) {
             var type = ['start', 'end'];
@@ -1473,7 +1495,7 @@ var tip = {
                     for (var i = 0; i < keys.length; i++) {
                         var sug_match = keys[i].substr(0, sug_length);
                         if (sug_match == sug) {
-                            new_sug.push(sugArr[key])
+                            new_sug.push(sugArr[key]);
                                 // 否则会出现两份 exp. T2航站楼
                             break
                         }
