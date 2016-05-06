@@ -289,7 +289,7 @@ var drwSw = {
 				var p_a = [], Left = [], Right = [];
 				var p0 = {}, p1 = {};
 				/*打印地铁线名称*/
-				console.log("======##################=======" + drwData[id].ln + "=========############=====");
+				//console.log("======##################=======" + drwData[id].ln + "=========############=====");
 				/*汇集所有点的偏离角度*/
 				for (var id2 in dataset_line_arr) {
 					var point = dataset_line_arr[id2].split(' ').join(',');
@@ -344,10 +344,10 @@ var drwSw = {
 				//console.log(p1);
 				//console.log(dataset_line_arr);
 				//
-				console.log("Right");
-				console.log(Right);
-				console.log("Left");
-				console.log(Left);
+				//console.log("Right");
+				//console.log(Right);
+				//console.log("Left");
+				//console.log(Left);
 
 
 				//var node_first = 'M' + dataset_line_arr[0].split(' ').join(',');
@@ -356,6 +356,7 @@ var drwSw = {
 				//line_path.setAttribute("id", "line-" + drwData[id].ls);
 				//line_path.setAttribute("name", drwData[id].ls);
 				//line_path.setAttribute("stroke", "#" + drwData[id].cl);
+				//line_path.style.strokeWidth=6;
 				//line_path.setAttribute("d", path);
 				//subway_line.appendChild(line_path);
 

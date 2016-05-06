@@ -498,7 +498,7 @@ body.disable-default-action {
     left: 16px;
     box-shadow: 0 0 1px 0 rgba(0, 0, 0, .3);
     border-radius: 5px;
-    z-index: 20;
+    z-index:20;
     font-size: 9px;
     text-align: center;
     background-color: #F8F8F8;
@@ -584,6 +584,7 @@ body.disable-default-action {
 
 .overlays {
     position: absolute;
+    z-index: 101;
 }
 
 /*.tip_wrap_out{display: none; position: absolute;z-index: 23; -webkit-transform-origin: 50% bottom;transform-origin: 50% bottom;}*/
@@ -598,6 +599,8 @@ body.disable-default-action {
     position: absolute;
     left: -142px;/*body-width/2+8*/
     bottom: 0;
+    z-index: 101;
+    /*margin-bottom: 8px;*/
 }
 
 .tip_body {
@@ -605,7 +608,7 @@ body.disable-default-action {
     height: auto;
     padding: 0 16px;
     font-size: 16px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);
     border-radius: 4px;
 }
@@ -632,11 +635,6 @@ body.disable-default-action {
     height: 16px;
     background: url(../img/subway/close_btn.png) center center no-repeat;
     background-size: 16px 16px;
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*right: 0;*/
-    /*z-index: 19;*/
-    /*margin-right: 5px;*/
 }
 .tip_detail{
     width: 100%;
@@ -702,15 +700,10 @@ body.disable-default-action {
 
 /*.tip_footer{position: absolute;left: 50%;bottom: -25px;}*/
 .tip_footer {
-    /*height: 10px;*/
-    /*background: url(../img/subway/footer.png) no-repeat center top;*/
-    /*background-size: 21px 10px;*/
-    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);*/
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     border: 10px solid transparent;
-    border-top: 10px solid rgba(255, 255, 255, 1);
-    position: relative;
+    border-top: 10px solid orangered;
     margin-left: 130px;
 }
 

@@ -3,6 +3,7 @@ var el = document.getElementById('drag_handle');
 el.style.transformOrigin = "top left";
 
 var tip = {
+    toggle:0,
     host: "http://m.amap.com/",
     verify: "/verify/?from=",
     isHighlight: false,
@@ -215,18 +216,18 @@ var tip = {
             $("#srh_ipt").blur();
         });
         //触击站点事件：打开一个#city=city代码&station=站点代码的网址;
-        $subway.on('touchend', '.station_obj', function(e) {
+        $subway.on('touchend', '.station_obj', function (e) {
             e.stopPropagation();
             if (!self.touchStatus && !tip.routeState) {
                 var id = $(this).attr('station_id');
+                //var obj = $("#overlays");
+                //if (drwSw.isNearTip) {
+                //    drwSw.clearNearTip();
+                //}
+                //tip.openTip(obj);
+                //var center = tip.getStCenter(obj);
+                //tip.setCenter(center);
                 window.location.hash = '#city=' + SW.cache.curCity.adcode + '&station=' + id;
-                // var obj = $(this);
-                // if (drwSw.isNearTip) {
-                //     drwSw.clearNearTip();
-                // }
-                // tip.openTip(obj);
-                // var center = tip.getStCenter(obj);
-                // tip.setCenter(center);
             }
         });
         //触击Naval_marker事件
@@ -760,6 +761,12 @@ var tip = {
 
             self.setTipPos(obj);
             self.opentip = true;
+
+            //打开窗口后就以弹窗为中心
+
+            var $tipBodyHeight = $('.tip_body').css("height"),
+                bodyHeight = parseInt($tipBodyHeight) / 2;
+            tip.transformState.translate.y = tip.transformState.translate.y + bodyHeight;
         }
     },
     //设置弹窗的位置属性
@@ -785,7 +792,6 @@ var tip = {
         $('.tip_wrap_out').hide();
         if (!status) {
             tip.opentip = false;
-            // 
         }
         window.location.hash = '#city=' + SW.cache.curCity.adcode;
     },
@@ -804,8 +810,12 @@ var tip = {
         var screen_w = document.documentElement.clientWidth,
             screen_h = document.documentElement.clientHeight;
 
-        var moveX = center_x - screen_w / 2,
-            moveY = center_y - screen_h / 2;
+        //计算弹窗高度的1/2
+        var $tipBodyHeight=$('.tip_body').css("height"),
+            bodyHeight=parseInt($tipBodyHeight)/2;
+
+        var moveX = center_x - screen_w *0.5,
+            moveY = center_y - screen_h *0.5;
 
         translate_x = translate_x - moveX;
         translate_y = translate_y - moveY;
@@ -815,11 +825,12 @@ var tip = {
         tip.transformState.translate.x = translate_x;
         tip.transformState.translate.y = translate_y;
 
+        //console.log(bodyHeight);
         var $overlays = $('.overlays');
         var oldLeft = parseInt($overlays.css('left')) || 0,
             oldTop = parseInt($overlays.css('top')) || 0;
         var newLeft = Number(oldLeft) - Number(moveX),
-            newTop = Number(oldTop) - Number(moveY);
+            newTop = Number(oldTop) - Number(moveY)+bodyHeight;
 
         $overlays.css({
             left: newLeft + 'px',
