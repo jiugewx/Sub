@@ -104,6 +104,7 @@ window.amapCache = window.amapCache || {};
             }, error);
         }
     };
+    //对外暴露的方法接口
     window.amapCache.loadData = _loadData;
     window.amapCache.cacheFileListObj = cacheFileListObj;
     window.amapCache.enabledLocalstorage = enabledLocalstorage;

@@ -228,6 +228,7 @@ var tip = {
                 //var center = tip.getStCenter(obj);
                 //tip.setCenter(center);
                 window.location.hash = '#city=' + SW.cache.curCity.adcode + '&station=' + id;
+                //console.log(SW)
             }
         });
         //触击Naval_marker事件
@@ -742,11 +743,12 @@ var tip = {
         if (obj && !tip.routeState) {
             var self = this;
             self.curopenStation = obj;
+            console.log(obj);
             //设置站点的id和名称及关联线路id
             var station_name = obj.attr("station_name"),
                 station_poiid = obj.attr("station_poiid"),
-                station_lon = obj.attr("station_lon"),
-                station_lat = obj.attr("station_lat"),
+                station_lon = obj.attr("station_lon"),/*经度*/
+                station_lat = obj.attr("station_lat"),/*纬度*/
                 station_id = obj.attr("station_id");
 
             //移除当前打开的info-window
@@ -756,17 +758,17 @@ var tip = {
                 .attr('poiid', station_poiid)
                 .attr('lon', station_lon)
                 .attr('lat', station_lat);
-            $('.tip_name_detail').attr('detail_href', tip.host + 'detail/index/src=subway&poiid=' + station_poiid);
             $('.tip_wrap_out').show();
 
             self.setTipPos(obj);
             self.opentip = true;
 
             //打开窗口后就以弹窗为中心
-
-            var $tipBodyHeight = $('.tip_body').css("height"),
-                bodyHeight = parseInt($tipBodyHeight) / 2;
-            tip.transformState.translate.y = tip.transformState.translate.y + bodyHeight;
+            var topBar=parseInt($(".top_bar").css("height"))/2,
+                $tipBodyHeight = $('.tip_body').css("height"),
+                bodyHeight = parseInt($tipBodyHeight) / 2,
+                Top0ffset=bodyHeight+topBar;
+            tip.transformState.translate.y = tip.transformState.translate.y + Top0ffset;
         }
     },
     //设置弹窗的位置属性
@@ -811,8 +813,10 @@ var tip = {
             screen_h = document.documentElement.clientHeight;
 
         //计算弹窗高度的1/2
-        var $tipBodyHeight=$('.tip_body').css("height"),
-            bodyHeight=parseInt($tipBodyHeight)/2;
+        var topBar=parseInt($(".top_bar").css("height"))/2,
+            $tipBodyHeight = $('.tip_body').css("height"),
+            bodyHeight = parseInt($tipBodyHeight) / 2,
+            Top0ffset=bodyHeight+topBar;
 
         var moveX = center_x - screen_w *0.5,
             moveY = center_y - screen_h *0.5;
@@ -830,7 +834,7 @@ var tip = {
         var oldLeft = parseInt($overlays.css('left')) || 0,
             oldTop = parseInt($overlays.css('top')) || 0;
         var newLeft = Number(oldLeft) - Number(moveX),
-            newTop = Number(oldTop) - Number(moveY)+bodyHeight;
+            newTop = Number(oldTop) - Number(moveY)+Top0ffset;
 
         $overlays.css({
             left: newLeft + 'px',

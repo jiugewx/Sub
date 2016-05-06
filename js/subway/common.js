@@ -1,3 +1,4 @@
+//定义SW
 var SW = {
 	cache: {
 		citylist: [],
@@ -340,6 +341,7 @@ var SW = {
 		var self = this,
 			cache = SW.cache;
 		if (!cache.citylist || cache.citylist.length <= 0) {
+			//请求城市信息的列表
 			var requestUrl = "data/citylist.json";
 			amapCache.loadData(requestUrl, function(data) {
 				cache.citylist = data.citylist;
@@ -361,6 +363,7 @@ var SW = {
 			cache.curCity.offset = cache.offset[city_code];
 			callback(cache.cities[city_code]);
 		} else {
+			//这里是请求数据的地址
 			var requestUrl = "data/" + city_code + "_drw_" + city_name + ".json";
 			amapCache.loadData(requestUrl, function(data) {
 				cache.sug[city_code] = {};
@@ -450,7 +453,7 @@ var SW = {
 			}, function() {
 				alert('数据加载失败！');
 			});
-
+			//请求数据的附加信息
 			requestUrl = "data/" + city_code + "_info_" + city_name + ".json";
 			amapCache.loadData(requestUrl, function(info_data) {
 				for (var k = 0; k < info_data.l.length; k++) {

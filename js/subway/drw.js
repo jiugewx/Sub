@@ -369,8 +369,6 @@ var drwSw = {
 				line_path.setAttribute("d", path);
 				subway_line.appendChild(line_path);
 
-
-
 				var node_first = 'M' + Right[0].split(' ').join(',');
 				var path = node_first + 'L' + Right.join('L');
 				var line_path = document.createElementNS(self.ns_svg, 'path');
@@ -697,7 +695,7 @@ var drwSw = {
 				minDistance = curDistance;
 				minId = curId;
 			}
-		})
+		});
 		if (minDistance < 10000) {
 			return minId;
 		} else {

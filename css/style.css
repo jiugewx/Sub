@@ -600,7 +600,7 @@ body.disable-default-action {
     left: -142px;/*body-width/2+8*/
     bottom: 0;
     z-index: 101;
-    /*margin-bottom: 8px;*/
+    margin-bottom: 3px;
 }
 
 .tip_body {
@@ -608,7 +608,7 @@ body.disable-default-action {
     height: auto;
     padding: 0 16px;
     font-size: 16px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 1);
     box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);
     border-radius: 4px;
 }
@@ -704,7 +704,7 @@ body.disable-default-action {
     height: 0;
     border: 10px solid transparent;
     border-top: 10px solid orangered;
-    margin-left: 130px;
+    margin-left: 131px;
 }
 
 .android .tip_footer {
