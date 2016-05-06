@@ -389,6 +389,7 @@ var drwSw = {
 			line_path.setAttribute("id", "line-" + drwData.ls);
 			line_path.setAttribute("name", drwData.ls);
 			line_path.setAttribute("stroke", "#" + drwData.cl);
+			line_path.style.strokeWidth=6;
 			line_path.setAttribute("d", path);
 			subway_line.appendChild(line_path);
 		} else if (status == 'nav') {
