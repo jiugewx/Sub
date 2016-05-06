@@ -457,7 +457,7 @@ var drwSw = {
 			}
 		}
 	},
-	// 绘制地铁站点
+	// 绘制地铁站点，并设置站点的属性。
 	drwSwStations: function(drwData, status, lightstation) {
 		var self = this;
 		var svg_g = document.getElementById("svg-g");
@@ -523,14 +523,11 @@ var drwSw = {
 				} else {
 					self.clearNearTip();
 				}
-
-
 				var subway_station_out = document.createElementNS(self.ns_svg, 'circle');
 				subway_station_out.setAttribute("id", 'st-' + item.si);
 				subway_station_out.setAttribute("class", 'station_obj');
 				subway_station_out.setAttribute("cx", parseInt(item.p.split(" ")[0]));
 				subway_station_out.setAttribute("cy", parseInt(item.p.split(" ")[1]));
-				subway_station_out.setAttribute("line_id", item.r.split("|")[0]);
 				subway_station_out.setAttribute("station_id", item.si);
 				subway_station_out.setAttribute("station_name", item.n);
 				subway_station_out.setAttribute("station_poiid", item.poiid);
@@ -540,6 +537,12 @@ var drwSw = {
 				subway_station_out.setAttribute("fill", "#FFF");
 				subway_station_out.setAttribute("fill-opacity", "0");
 				subway_circle_g.appendChild(subway_station_out);
+				//遍历换乘点
+				var line_id=[];
+				for(var i=0;i<item.r.split("|").length;i++){
+					line_id.push(item.r.split("|")[i]);
+				}
+				subway_station_out.setAttribute("line_id", line_id);
 			}
 		})
 	},
@@ -601,7 +604,7 @@ var drwSw = {
 			}
 		})
 	},
-	//离我最近TIP
+	//离我最近Tip
 	nearTip: function(id) {
 		var self = this;
 		//生成窗体
@@ -613,7 +616,7 @@ var drwSw = {
 			obj_top = obj.offset().top;
 		var tip_left, tip_top;
 		var type = 't';
-		var tip_content = $('<div class="tip-content" id="tip-content"><div class="tip-near tip-' + type + '"><img class="near-img" width=100 src="./img/subway/near_' + type + '.png"/></div></div>');
+		var tip_content = $('<div class="tip-near-content" id="tip-near-content"><div class="tip-near tip-' + type + '"><img class="near-img" width=100 src="./img/subway/near_' + type + '.png"/></div></div>');
 		subway_box.append(tip_content);
 		var $overlays = $('.overlays');
 		var overlaysLeft = parseInt($overlays.css('left')) || 0,
@@ -622,7 +625,7 @@ var drwSw = {
 		tip_left = obj_left + 28 * tip.allScale / 2 - overlaysLeft,
 			tip_top = obj_top - overlaysTop;
 
-		$('.tip-content').css({
+		$('.tip-near-content').css({
 			top: tip_top + 'px',
 			left: tip_left + 'px'
 		});

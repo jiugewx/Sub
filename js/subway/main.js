@@ -743,13 +743,15 @@ var tip = {
         if (obj && !tip.routeState) {
             var self = this;
             self.curopenStation = obj;
-            console.log(obj);
+
             //设置站点的id和名称及关联线路id
             var station_name = obj.attr("station_name"),
                 station_poiid = obj.attr("station_poiid"),
                 station_lon = obj.attr("station_lon"),/*经度*/
                 station_lat = obj.attr("station_lat"),/*纬度*/
                 station_id = obj.attr("station_id");
+
+            var line_id=obj.attr("line_id").toString();
 
             //移除当前打开的info-window
             $('#tip_name').html(station_name);
@@ -760,9 +762,12 @@ var tip = {
                 .attr('lat', station_lat);
             $('.tip_wrap_out').show();
 
+            for(var i=0;i<line_id.length;i++){
+                console.log(line_id.length);
+            }
+
             self.setTipPos(obj);
             self.opentip = true;
-
             //打开窗口后就以弹窗为中心
             var topBar=parseInt($(".top_bar").css("height"))/2,
                 $tipBodyHeight = $('.tip_body').css("height"),

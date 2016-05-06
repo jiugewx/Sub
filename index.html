@@ -55,47 +55,7 @@
                                         </div>
                                     </div>
                                     <!-- 弹出框的主体信息-->
-                                    <div class="tip_content">
-                                        <div class="tip_detail_line">
-                                            <div class="tip_detail_lineName">5号线</div>
-                                            <div class="tip_detail_lineright">
-                                                <span class="tip_detail_direction">天通苑北方向</span>
-                                                <span class="tip_detail_btn tip_detail_end">末：23:50</span>
-                                                <span class="tip_detail_btn tip_detail_start">首：05:50</span>
-                                            </div>
-                                            <div class="tip_detail_lineleft">
-                                                <span class="tip_detail_direction">宋家庄方向</span>
-                                                <span class="tip_detail_btn tip_detail_end">末：23:08</span>
-                                                <span class="tip_detail_btn tip_detail_start">首：05:20</span>
-                                            </div>
-                                        </div>
-                                        <div class="tip_detail_line">
-                                            <div class="tip_detail_lineName">15号线</div>
-                                            <div class="tip_detail_lineright">
-                                                <span class="tip_detail_direction">天通苑北方向</span>
-                                                <span class="tip_detail_btn tip_detail_end">末：23:50</span>
-                                                <span class="tip_detail_btn tip_detail_start">首：05:50</span>
-                                            </div>
-                                            <div class="tip_detail_lineleft">
-                                                <span class="tip_detail_direction">宋家庄方向</span>
-                                                <span class="tip_detail_btn tip_detail_end">末：23:08</span>
-                                                <span class="tip_detail_btn tip_detail_start">首：05:20</span>
-                                            </div>
-                                        </div>
-                                        <div class="tip_detail_line">
-                                            <div class="tip_detail_lineName">10号线</div>
-                                            <div class="tip_detail_lineright">
-                                                <span class="tip_detail_direction">天通苑北方向</span>
-                                                <span class="tip_detail_btn tip_detail_end">末：23:50</span>
-                                                <span class="tip_detail_btn tip_detail_start">首：05:50</span>
-                                            </div>
-                                            <div class="tip_detail_lineleft">
-                                                <span class="tip_detail_direction">宋家庄方向</span>
-                                                <span class="tip_detail_btn tip_detail_end">末：23:08</span>
-                                                <span class="tip_detail_btn tip_detail_start">首：05:20</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="tip_content" id="tip_content"></div>
                                 </div>
                                 <!-- 弹出框的底部小尖角-->
                                 <div class="tip_footer"></div>
@@ -151,6 +111,9 @@
     <script type="text/javascript" src="./js/lib/zepto.min.js"></script>
     <script type="text/javascript" src="./js/lib/fastclick.js"></script>
     <script type="text/javascript" src="./js/lib/hammer.js"></script>
+    <script type="text/javascript" src="./js/lib/react.js"></script>
+    <script type="text/javascript" src="./js/lib/react-dom.js"></script>
+    <script type="text/javascript" src="./js/lib/JSXTransformer.js"></script>
     <script type="text/javascript" src="./js/subway/amapCache.js"></script>
     <script type="text/javascript" src="./js/subway/common.js"></script>
     <script type="text/javascript" src="./js/subway/drw.js"></script>
@@ -158,6 +121,95 @@
     <!--// /build -->
     <script type="text/javascript">
         SW.swInit();
+    </script>
+    <!--http://map.amap.com/subway/-->
+    <!--<div class="infowindow-content" id="infowindow-content" style="width: 304px; height: 230px; left: 241.406px; top: 379.665px;">-->
+        <!--<div class="info-window">-->
+            <!--<div id="info-title">-->
+                <!--<span id="station-name">平安里</span><a href="javascript:void(0)" class="close_info_btn"></a></div>-->
+            <!--<div id="info-content">-->
+                <!--<div class="info-detail-content">-->
+                    <!--<div class="info-content-item info-time" style="display: block;">-->
+                        <!--<div class="time-item">-->
+                            <!--<div class="time-item-title" style="color:#C99616"><label class="line-label">地铁</label>6号线-->
+                            <!--</div>-->
+                            <!--<ul class="time-item-main">-->
+                                <!--<li class="time-item-detail">-->
+                                    <!--<div class="train-direct fl">-->
+                                        <!--<label class="direct-label">开往</label><span class="direct-name">海淀五路居</span>-->
+                                    <!--</div>-->
+                                    <!--<div class="train-time fl">-->
+                                        <!--<div class="start-time time-box fl">-->
+                                            <!--<label class="time-label">首</label><span class="time">5:50</span></div>-->
+                                        <!--<div class="last-time time-box fl">-->
+                                            <!--<label class="time-label">末</label><span class="time">23:44</span></div>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                                <!--<li class="time-item-detail">-->
+                                    <!--<div class="train-direct fl">-->
+                                        <!--<label class="direct-label">开往</label><span class="direct-name">潞城</span></div>-->
+                                    <!--<div class="train-time fl">-->
+                                        <!--<div class="start-time time-box fl">-->
+                                            <!--<label class="time-label">首</label><span class="time">5:38</span></div>-->
+                                        <!--<div class="last-time time-box fl">-->
+                                            <!--<label class="time-label">末</label><span class="time">22:55</span></div>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                        <!--<div class="time-item">-->
+                            <!--<div class="time-item-title" style="color:#2F8499"><label class="line-label">地铁</label>4号线/大兴线-->
+                            <!--</div>-->
+                            <!--<ul class="time-item-main">-->
+                                <!--<li class="time-item-detail">-->
+                                    <!--<div class="train-direct fl">-->
+                                        <!--<label class="direct-label">开往</label><span class="direct-name">安河桥北</span>-->
+                                    <!--</div>-->
+                                    <!--<div class="train-time fl">-->
+                                        <!--<div class="start-time time-box fl">-->
+                                            <!--<label class="time-label">首</label><span class="time">5:30</span></div>-->
+                                        <!--<div class="last-time time-box fl">-->
+                                            <!--<label class="time-label">末</label><span class="time">23:30</span></div>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                                <!--<li class="time-item-detail">-->
+                                    <!--<div class="train-direct fl">-->
+                                        <!--<label class="direct-label">开往</label><span class="direct-name">天宫院</span></div>-->
+                                    <!--<div class="train-time fl">-->
+                                        <!--<div class="start-time time-box fl">-->
+                                            <!--<label class="time-label">首</label><span class="time">5:28</span></div>-->
+                                        <!--<div class="last-time time-box fl">-->
+                                            <!--<label class="time-label">末</label><span class="time">22:48</span></div>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="info-window-bottom"></div>-->
+    <!--</div>-->
+    <script type="text/jsx">
+        var TipDetailLine = React.createClass({
+            render: function () {
+                return <div className="tip_detail_line">
+                    <div className="tip_detail_lineName">5号线</div>
+                    <div className="tip_detail_lineright">
+                        <span className="tip_detail_direction">天通苑北方向</span>
+                        <span className="tip_detail_btn tip_detail_end">末：23:50</span>
+                        <span className="tip_detail_btn tip_detail_start">首：05:50</span>
+                    </div>
+                    <div className="tip_detail_lineleft">
+                        <span className="tip_detail_direction">宋家庄方向</span>
+                        <span className="tip_detail_btn tip_detail_end">末：23:08</span>
+                        <span className="tip_detail_btn tip_detail_start">首：05:20</span>
+                    </div>
+                </div>
+            }
+        });
+        var tipContent = document.getElementById("tip_content");
+        ReactDOM.render(<TipDetailLine></TipDetailLine>, tipContent);
     </script>
 </body>
 </html>
