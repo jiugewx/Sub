@@ -606,8 +606,8 @@ var tip = {
                             if (first_time.split(':')[0] != '--' || last_time.split(':')[0] != '--') {
                                 infowHtml.push("<li class=\"time-item-detail\">");
                                 infowHtml.push("<div class=\"train-direct fl\"><label class=\"direct-label\">开往</label><span class=\"direct-name\">" + direction.n + "</span></div>"); //下一站名，表示方向
-                                infowHtml.push("<div class=\"train-time fl\">");
-                                infowHtml.push("<div class=\"start-time time-box fl\"><label class=\"time-label-start\">首</label><span class\"time\">" + first_time + "</span></div>"); //首发
+                                infowHtml.push("<div class=\"train-time fr\">");
+                                infowHtml.push("<div class=\"start-time time-box fl\"><label class=\"time-label-start\">首</label><span class=\"time\">" + first_time + "</span></div>"); //首发
                                 infowHtml.push("<div class=\"last-time time-box fl\"><label class=\"time-label-end\">末</label><span class=\"time\">" + last_time + "</span></div>"); //末发
                                 infowHtml.push("</div>");
                                 infowHtml.push("</li>");
