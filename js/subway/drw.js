@@ -216,6 +216,7 @@ var drwSw = {
 			'z-index': '20'
 		});
 	},
+	//画图
 	drawSvg: function(drwData, station, param) {
 		var self = this;
 		var status = 'normal';
@@ -231,8 +232,8 @@ var drwSw = {
 			var center = tip.getStCenter(nearObj);
 			tip.setCenter(center);
 		}
-		SW.showStation(param);
-		SW.showRoute(param);
+		//SW.showStation(param);
+		//SW.showRoute(param);
 	},
 	drawBg: function() {
 		var self = this;

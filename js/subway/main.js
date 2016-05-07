@@ -3,8 +3,8 @@ var el = document.getElementById('drag_handle');
 el.style.transformOrigin = "top left";
 
 var tip = {
-    countdown:20,
-    toggle:0,
+    count:5,
+    timer:{},
     host: "http://m.amap.com/",
     verify: "/verify/?from=",
     isHighlight: false,
@@ -207,7 +207,7 @@ var tip = {
         });
 
         //触击 非站点又不是换乘点的区域 关闭弹窗
-        $subway.on('touchend','#drag_handle',function(e) {
+        $subway.on('touchend','#drag_handle'&&".light_box",function(e) {
             if (!self.touchStatus && !tip.routeState) {
                 var target = e.target;
                 if (target.getAttribute('class') != 'station_obj' || target.getAttribute('class') != 'nav-img') {
@@ -462,20 +462,18 @@ var tip = {
         //});
     },
     refresh: function () {
-        var self = $("#refresh_btn");
-        setTimeout(function () {
-            if (tip.countdown == 0) {
-                //self.attr("disabled",false);
-                //self.attr("value" ,"刷新");
-                tip.countdown = 20;
-            } else {
-                //self.attr("disabled", true);
-                //self.attr("value" ,"重新刷新(" + tip.countdown + ")");
-                tip.countdown--;
-                console.log(tip.countdown);
+        SW.showCity();
+        clearInterval(tip.timer);
+        tip.timer = setInterval(CountDown, 1000);
+        function CountDown() {
+            if(tip.count > 0) {
+                console.log(tip.count);
+                SW.loading();
+            }else if(tip.count == 0) {
+                SW.loadingOver();
             }
-        }, 1000);
-
+            tip.count--;
+        }
     },
     //拖动Svg
     mcdragSvg: function(ev) {

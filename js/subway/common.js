@@ -205,10 +205,11 @@ var SW = {
 		spell: 'nanchang',
 		cityname: '南昌'
 	}],
-
+	//数据初始化!
 	swInit: function() {
 		var self = this;
 		FastClick.attach(document.body);
+		//调用缓存工具中的初始化方法
 		amapCache.init({
 			complete: function() {
 				self.initCity(); //根据缓存加载相应城市
@@ -217,7 +218,7 @@ var SW = {
 			}
 		});
 	},
-
+    //初始化城市信息
 	initCity: function() {
 		var self = this;
 		self.showCity();
@@ -226,6 +227,7 @@ var SW = {
 			self.showCity();
 		});
 	},
+	//显示城市
 	showCity: function() {
 		var self = this,
 			cache = SW.cache;
@@ -243,6 +245,7 @@ var SW = {
 		self.param = param;
 
 		var adcode = param.city && param.city.substr(0, 4);
+
 		if (adcode != '') {
 			if (!self.fileNameData[adcode]) {
 				// 该城市没有对应地铁图
@@ -258,9 +261,11 @@ var SW = {
 		}
 		$('.city_name').html(self.cityname[adcode]);
 		document.title = self.cityname[adcode] + '地铁图';
-		// 此城市有地铁
+
+		// 此城市代码与当前城市的代码不一致
 		// tip.hideCitylist();
 		if(adcode != cache.curCity.adcode){
+			console.log(adcode);
 			$("#subway-svg,#infowindow-content,#tip-content,.line-caption").remove();
 			drwSw.svgReady = false;
 			self.loading();
@@ -270,20 +275,19 @@ var SW = {
 			});
 		}else{
 			SW.showStation(param);
-			SW.showRoute(param);
+			//SW.showRoute(param);
 		}
 		// setTimeout(function () {
 		// 	SW.showStation(param);
 		// },10);
 	},
+	//显示城市的地铁站
 	showStation: function (param) {
 		var stationId = param.station;
 		if(stationId){
 			var station = SW.cache.stations[stationId] || SW.cache.stationspoi[stationId];
 			var sid = 'st-' + station.si;
-
 			var obj = $('#' + sid);
-
             if (drwSw.isNearTip) {
                 drwSw.clearNearTip();
             }
@@ -292,6 +296,7 @@ var SW = {
             tip.setCenter(center);
 		}
 	},
+	//显示起始路线
 	showRoute: function (param) {
 		var startid = param.startid,
 			startname = param.startname,
@@ -391,7 +396,6 @@ var SW = {
 			//这里是请求对应城市的地铁数据的地址
 			var requestUrl = "data/" + city_code + "_drw_" + city_name + ".json";
 			amapCache.loadData(requestUrl, function(data) {
-				console.log("请求数据!");
 				cache.sug[city_code] = {};
 				cache.dataForDrw[data.i] = data;
 				cache.cities[data.i] = cache.cities[data.i] || {};
@@ -488,7 +492,7 @@ var SW = {
 					}
 				}
 			},function() {
-				alert('站点数据加载失败！');
+				alert('地铁站点数据加载失败！');
 			});
 		}
 	},
