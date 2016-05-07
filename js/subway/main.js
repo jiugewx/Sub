@@ -3,6 +3,7 @@ var el = document.getElementById('drag_handle');
 el.style.transformOrigin = "top left";
 
 var tip = {
+    countdown:20,
     toggle:0,
     host: "http://m.amap.com/",
     verify: "/verify/?from=",
@@ -103,6 +104,7 @@ var tip = {
         document.addEventListener('touchstart', function() {});
         var self = this;
         var font_size = 12;
+        var $refresh=$("#refresh_btn");
         var $subway = $('#subway');
         var $citypage = $('#citypage');
         var $overlays = $('#overlays');
@@ -178,6 +180,10 @@ var tip = {
             ev.preventDefault();
         });
 
+        $refresh.on('touchend', function () {
+            tip.refresh();
+        });
+
         $subway.on('touchend', 'g', function() {
             if (!self.touchStatus) {
                 if ($(this).hasClass('line_name')) {
@@ -201,7 +207,7 @@ var tip = {
         });
 
         //触击 非站点又不是换乘点的区域 关闭弹窗
-        $subway.on('touchend', function(e) {
+        $subway.on('touchend','#drag_handle',function(e) {
             if (!self.touchStatus && !tip.routeState) {
                 var target = e.target;
                 if (target.getAttribute('class') != 'station_obj' || target.getAttribute('class') != 'nav-img') {
@@ -209,7 +215,10 @@ var tip = {
                 }
             }
         });
-
+        $(".top_bar").on("touchend", function () {
+            tip.closeTip();
+            tip.closeFilter();
+        });
         //$("#srhlist").on("touchmove", function(e) {
         //    $("#srh_ipt").blur();
         //});
@@ -218,6 +227,7 @@ var tip = {
             e.stopPropagation();
             if (!self.touchStatus && !tip.routeState) {
                 var id = $(this).attr('station_id');
+                self.closeFilter();
                 $('.light_box').css('display', 'block');
                 //var obj = $("#overlays");
                 //if (drwSw.isNearTip) {
@@ -450,6 +460,22 @@ var tip = {
         //    tip.searchRouteDetail();
         //    // }
         //});
+    },
+    refresh: function () {
+        var self = $("#refresh_btn");
+        setTimeout(function () {
+            if (tip.countdown == 0) {
+                //self.attr("disabled",false);
+                //self.attr("value" ,"刷新");
+                tip.countdown = 20;
+            } else {
+                //self.attr("disabled", true);
+                //self.attr("value" ,"重新刷新(" + tip.countdown + ")");
+                tip.countdown--;
+                console.log(tip.countdown);
+            }
+        }, 1000);
+
     },
     //拖动Svg
     mcdragSvg: function(ev) {
@@ -906,10 +932,14 @@ var tip = {
     //打开路线选择器
     openFilter: function() {
         $('.light_box, .filter_content').css('display', 'block');
+        //线路选择器不能与弹窗同时存在
+        $('.tip_wrap_out').hide();
+        $(".refresh_btn").hide();
     },
     //关闭路线选择器
     closeFilter: function() {
         $('.light_box, .filter_content').css('display', 'none');
+        $(".refresh_btn").show();
     },
     //获取选择后的中心
     getFilterCenter: function() {
@@ -1016,16 +1046,16 @@ var tip = {
         // });
     },
     //重设导航数据
-    resetNavData: function(type) {
-        tip.routeInfo[type] = null;
-        tip.routeId[type] = null;
-        tip.navDrwData.linesbar = [];
-        tip.navDrwData.lines = {};
-        tip.navDrwData.stations = {};
-        if (!tip.routeId.start && !tip.routeId.end) {
-            tip.fromendState = false;
-        }
-    },
+    //resetNavData: function(type) {
+    //    tip.routeInfo[type] = null;
+    //    tip.routeId[type] = null;
+    //    tip.navDrwData.linesbar = [];
+    //    tip.navDrwData.lines = {};
+    //    tip.navDrwData.stations = {};
+    //    if (!tip.routeId.start && !tip.routeId.end) {
+    //        tip.fromendState = false;
+    //    }
+    //},
     //创建导航画图数据
     //createNavDrwData: function(param) {
     //    var self = this;
@@ -1480,21 +1510,21 @@ var tip = {
     //    tip.navDrwData.stations = {};
     //},
     //关闭航线
-    closeRoute: function(typeArr) {
-        $('#g-nav').remove();
-        $('#g-bg').css('display', 'none');
-        window.location.hash = '#city=' + SW.cache.curCity.adcode;
-        $.each(typeArr, function(idx, item) {
-            //tip.clearMarker(item);
-            //tip.clearRouteIpt(item);
-            //tip.resetNavData(item);
-        });
-        //tip.hideRouteTitle();
-        //tip.hideRouteBar();
-        tip.ableFilte();
-        $('.route_close_btn').addClass('hidden');
-        tip.routeState = false;
-    },
+    //closeRoute: function(typeArr) {
+    //    $('#g-nav').remove();
+    //    $('#g-bg').css('display', 'none');
+    //    window.location.hash = '#city=' + SW.cache.curCity.adcode;
+    //    $.each(typeArr, function(idx, item) {
+    //        //tip.clearMarker(item);
+    //        //tip.clearRouteIpt(item);
+    //        //tip.resetNavData(item);
+    //    });
+    //    //tip.hideRouteTitle();
+    //    //tip.hideRouteBar();
+    //    tip.ableFilte();
+    //    $('.route_close_btn').addClass('hidden');
+    //    tip.routeState = false;
+    //},
     //获取路线信息数据,用于导航
     //getRouteData: function(cbk) {
     //    var start_info = tip.routeInfo.start,

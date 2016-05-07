@@ -1,3 +1,4 @@
+/*鏁版嵁缂撳瓨*/
 window.amapCache = window.amapCache || {};
 (function(window, undefined) {
     var enabledLocalstorage = false,
@@ -104,7 +105,7 @@ window.amapCache = window.amapCache || {};
             }, error);
         }
     };
-    //对外暴露的方法接口
+
     window.amapCache.loadData = _loadData;
     window.amapCache.cacheFileListObj = cacheFileListObj;
     window.amapCache.enabledLocalstorage = enabledLocalstorage;

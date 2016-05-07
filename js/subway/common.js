@@ -19,7 +19,7 @@ var SW = {
 		navStations: {},
 		navStPixel: {}
 	},
-	subwayFlag: 1, // 0 没有 1 有
+	subwayFlag: 1, // 0 没有 , 1 有
 	param: null,
 	nearlnglat: null,
 	datas: [],
@@ -79,103 +79,128 @@ var SW = {
 		'3702': '\u9752\u5c9b', //青岛
 		'3601': '\u5357\u660c' //南昌
 	},
-	cityListData: [{
+	cityListData: [
+		{
 		adcode: '1100',
 		spell: 'beijing',
 		cityname: '北京'
-	}, {
+	},
+		{
 		adcode: '3100',
 		spell: 'shanghai',
 		cityname: '上海'
-	}, {
+	},
+		{
 		adcode: '4401',
 		spell: 'guangzhou',
 		cityname: '广州'
-	}, {
+	},
+		{
 		adcode: '4403',
 		spell: 'shenzhen',
 		cityname: '深圳'
-	}, {
+	},
+		{
 		adcode: '4201',
 		spell: 'wuhan',
 		cityname: '武汉'
-	}, {
+	},
+		{
 		adcode: '1200',
 		spell: 'tianjin',
 		cityname: '天津'
-	}, {
+	},
+		{
 		adcode: '3201',
 		spell: 'nanjing',
 		cityname: '南京'
-	}, {
+	},
+		{
 		adcode: '8100',
 		spell: 'xianggang',
 		cityname: '香港'
-	}, {
+	},
+		{
 		adcode: '5000',
 		spell: 'chongqing',
 		cityname: '重庆'
-	}, {
+	},
+		{
 		adcode: '3301',
 		spell: 'hangzhou',
 		cityname: '杭州'
-	}, {
+	},
+		{
 		adcode: '2101',
 		spell: 'shenyang',
 		cityname: '沈阳'
-	}, {
+	},
+		{
 		adcode: '2102',
 		spell: 'dalian',
 		cityname: '大连'
-	}, {
+	},
+		{
 		adcode: '5101',
 		spell: 'chengdu',
 		cityname: '成都'
-	}, {
+	},
+		{
 		adcode: '2201',
 		spell: 'changchun',
 		cityname: '长春'
-	}, {
+	},
+		{
 		adcode: '3205',
 		spell: 'suzhou',
 		cityname: '苏州'
-	}, {
+	},
+		{
 		adcode: '4406',
 		spell: 'foshan',
 		cityname: '佛山'
-	}, {
+	},
+		{
 		adcode: '5301',
 		spell: 'kunming',
 		cityname: '昆明'
-	}, {
+	},
+		{
 		adcode: '6101',
 		spell: 'xian',
 		cityname: '西安'
-	}, {
+	},
+		{
 		adcode: '4101',
 		spell: 'zhengzhou',
 		cityname: '郑州'
-	}, {
+	},
+		{
 		adcode: '2301',
 		spell: 'haerbin',
 		cityname: '哈尔滨'
-	}, {
+	},
+		{
 		adcode: '4301',
 		spell: 'changsha',
 		cityname: '长沙'
-	}, {
+	},
+		{
 		adcode: '3302',
 		spell: 'ningbo',
 		cityname: '宁波'
-	}, {
+	},
+		{
 		adcode: '3202',
 		spell: 'wuxi',
 		cityname: '无锡'
-	}, {
+	},
+		{
 		adcode: '3702',
 		spell: 'qingdao',
 		cityname: '青岛'
-	}, {
+	},
+		{
 		adcode: '3601',
 		spell: 'nanchang',
 		cityname: '南昌'
@@ -288,7 +313,7 @@ var SW = {
 				'poiid': dest.poiid,
 				'lon': dest.sl.split(',')[0],
 				'lat': dest.sl.split(',')[1]
-			}
+			};
 			if($('#nav_start .marker-out').length <= 0){
 				tip.setStartEnd(startid, 'start', startInfo);
 			}
@@ -309,8 +334,8 @@ var SW = {
 		var self = this;
 		var param = null;
 		var selfParam = self.param;
-		self.subwayFlag = 1
-		$('#subway').show()
+		self.subwayFlag = 1;
+		$('#subway').show();
 		if (selfParam && selfParam.city && (selfParam.city == adcode || selfParam.city.substr(0, 4) == adcode)) {
 			param = selfParam;
 		} else {
@@ -347,7 +372,7 @@ var SW = {
 				cache.citylist = data.citylist;
 				for (var i = data.citylist.length - 1; i >= 0; i--) {
 					cache.citylistByAdcode[data.citylist[i].adcode] = data.citylist[i];
-				};
+				}
 			});
 		}
 	},
@@ -363,9 +388,10 @@ var SW = {
 			cache.curCity.offset = cache.offset[city_code];
 			callback(cache.cities[city_code]);
 		} else {
-			//这里是请求数据的地址
+			//这里是请求对应城市的地铁数据的地址
 			var requestUrl = "data/" + city_code + "_drw_" + city_name + ".json";
 			amapCache.loadData(requestUrl, function(data) {
+				console.log("请求数据!");
 				cache.sug[city_code] = {};
 				cache.dataForDrw[data.i] = data;
 				cache.cities[data.i] = cache.cities[data.i] || {};
@@ -404,12 +430,12 @@ var SW = {
 							var _p = data.l[i].st[j].p.split(' ');
 							data.l[i].st[j].p = (Number(_p[0]) + _x) + ' ' + (Number(_p[1]) + _y);
 							var rsArr = data.l[i].st[j].rs.split('|');
-							var newRsArr = []
+							var newRsArr = [];
 							for (var h = 0; h < rsArr.length; h++) {
 								var rs = rsArr[h].split(' ');
 								newRsArr.push((Number(rs[0]) + _x) + ' ' + (Number(rs[1]) + _y))
 							}
-							data.l[i].st[j].rs = newRsArr.join('|')
+							data.l[i].st[j].rs = newRsArr.join('|');
 							if (data.l[i].st[j].su == '1') {
 								var cur = data.l[i].st[j];
 								// cache.cities[data.i].stations.push(cur);
@@ -451,9 +477,9 @@ var SW = {
 				cache.curCity.offset = cache.offset[city_code];
 				callback(cache.cities[city_code]);
 			}, function() {
-				alert('数据加载失败！');
+				alert('城市地铁数据加载失败！');
 			});
-			//请求数据的附加信息
+			//请求站点数据信息
 			requestUrl = "data/" + city_code + "_info_" + city_name + ".json";
 			amapCache.loadData(requestUrl, function(info_data) {
 				for (var k = 0; k < info_data.l.length; k++) {
@@ -461,11 +487,12 @@ var SW = {
 						cache.stationsInfo[info_data.l[k].st[l].si] = info_data.l[k].st[l];
 					}
 				}
+			},function() {
+				alert('站点数据加载失败！');
 			});
 		}
 	},
 	loading: function() {
-
 		$('.loading-outer').css('position', 'fixed');
 		$('.loading-bg').css({
 			'position': 'fixed',

@@ -262,13 +262,11 @@ body.disable-default-action {
     display: block;
 }
 
-
 .page-title {
-    margin:10px auto;
+    margin: 10px auto;
     font-size: 20px;
     color: #6a6968;
 }
-
 
 #subwaySvg {
     position: absolute;
@@ -284,8 +282,6 @@ body.disable-default-action {
     left: 0;
     z-index: 10
 }
-
-
 
 /*.subway-content{overflow: visible;}*/
 .light_box {
@@ -443,7 +439,7 @@ body.disable-default-action {
 .tip_wrap {
     /*调整模态框的位置*/
     position: absolute;
-    left: -150px;/*body-width/2+8*/
+    left: -150px; /*body-width/2+8*/
     bottom: 0;
     z-index: 101;
     margin-bottom: 3px;
@@ -458,12 +454,14 @@ body.disable-default-action {
     box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);
     border-radius: 10px;
 }
-.tip_title{
+
+.tip_title {
     /*width: 100%;*/
     height: auto;
     padding: 0 16px 4px 16px;
     border-bottom: solid 1px #6a6a6a;
 }
+
 .tip_name {
     display: block;
     font-size: 18px;
@@ -482,20 +480,23 @@ body.disable-default-action {
     background: url(../img/subway/close_btn.png) center center no-repeat;
     background-size: 16px 16px;
 }
-.tip_detail{
+
+.tip_detail {
     display: block;
     color: red;
     font-size: 9px;
     margin-top: 5px;
 }
-.tip_detail_error,.tip_detail_success{
+
+.tip_detail_error, .tip_detail_success {
     padding-bottom: 4px;
 }
-.tip_detail_time{
+
+.tip_detail_time {
     float: right;
 }
 
-.tip_content{
+.tip_content {
     padding: 4px 16px 0 16px;
     height: auto;
 }
@@ -510,9 +511,10 @@ body.disable-default-action {
     margin-top: 5px;
     line-height: 24px;
 }
-.tip_detail_btn{
+
+.tip_detail_btn {
     padding-left: 16px;
-    padding-right:5px;
+    padding-right: 5px;
 }
 
 .line-label {
@@ -522,11 +524,13 @@ body.disable-default-action {
     font-size: 12px;
     border-radius: 5px;
 }
+
 .line-sub-label {
     padding-left: 5px;
     font-size: 12px;
     color: #000;
 }
+
 .line-sub-label {
     padding-left: 5px;
 }
@@ -575,8 +579,14 @@ body.disable-default-action {
     color: black;
 }
 
-.time-item-detail .train-time .start-time{ color: #EF5D42;}
-.time-item-detail .train-time .last-time{ color: #80B142;}
+.time-item-detail .train-time .start-time {
+    color: #EF5D42;
+}
+
+.time-item-detail .train-time .last-time {
+    color: #80B142;
+}
+
 .time-item-detail .train-time .time-box {
     padding: 0 0 0 15px;
     width: 55px;
@@ -584,27 +594,30 @@ body.disable-default-action {
 }
 
 .time-item-detail .train-time .time-box .time-label-start {
-    color:#fff;
+    color: #fff;
     padding: 2px;
     background-color: #EF5D42;
     margin-right: 5px;
 }
+
 .time-item-detail .train-time .time-box .time-label-end {
-    color:#fff;
+    color: #fff;
     padding: 2px;
     background-color: #80B142;
     margin-right: 5px;
 }
-.time-item-detail .train-time .time{
-    display:block;
+
+.time-item-detail .train-time .time {
+    display: block;
     width: 30px;
     float: right;
 }
+
 .tip_footer {
     width: 0;
     height: 0;
     border: 10px solid transparent;
-    border-top: 10px solid rgba(255,255,255,1);
+    border-top: 10px solid rgba(255, 255, 255, 1);
     margin-left: 140px;
 }
 
@@ -632,7 +645,6 @@ body.disable-default-action {
 .subway-box {
     position: relative;
 }
-
 
 #citypage {
     display: none;
@@ -879,6 +891,7 @@ ul.citylist li a:active {
     overflow: hidden;
     z-index: 10;
 }
+
 /*
 overflow: hidden
 
