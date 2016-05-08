@@ -759,7 +759,7 @@ var tip = {
         }
     },
     //加载信息数据
-    laodinfo: function(lineId, StationId) {
+    loadinfo: function(lineId, StationId) {
         var self = this;
         var select_station_dpt_time = [],
             select_station_name, select_station_ref_line = [],
@@ -826,8 +826,8 @@ var tip = {
             var select_ref_line_id = obj.attr("line_id");
             var select_station_id = obj.attr("station_id");
 
-            //写首发时间数据
-            self.laodinfo(select_ref_line_id, select_station_id);
+            //运行loadinfo(),写首发时间数据
+            self.loadinfo(select_ref_line_id, select_station_id);
 
             //设置站点的id和名称及关联线路id
             var station_name = obj.attr("station_name"),

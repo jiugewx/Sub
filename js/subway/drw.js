@@ -1,5 +1,8 @@
 var drwSw = {
 	currLines: {},
+	stationsInfo: SW.cache.stationsInfo,/*几个数据接口*/
+	stations: SW.cache.stations,
+	lines: SW.cache.lines,
 	w: document.documentElement.clientWidth,
 	h: document.documentElement.clientHeight,
 	t_top: 0,
@@ -33,6 +36,7 @@ var drwSw = {
 		var self = this;
 		var ua = navigator.userAgent.toLowerCase();
 	},
+	//初始化画图数据;
 	initDraw: function(drwData, param) {
 		var self = this;
 		self.t_left = 0;
@@ -103,7 +107,6 @@ var drwSw = {
 			self.svgReady = true;
 		}, 10)
 	},
-
 	drwSwBox: function(drwData) {
 		var self = this;
 		var subway_svg = document.getElementById("subwaySvg");
@@ -275,19 +278,97 @@ var drwSw = {
 		self.drwSwStations(drwData, status);
 		self.drwSwStationsName(drwData, status, 12, 20); //缩小为0.5，第二个参数为24
 	},
-	//画线
-	drwlines: function (parentNode,path,drwDataid,strokeWidth) {
-		var node_first = 'M' + path[0].split(' ').join(',');
-		var path = node_first + 'L' + path.join('L');
+	//画单线:输入:挂载节点,路径的名称,地铁线的id/name数据,输出:单条地铁线
+	drwlines: function (parentNode,pathName,LineId_Data) {
+		var pathinfo=pathName.path;
+		var	direction=pathName.info.sp;
+		var node_first = 'M' + pathinfo[0].split(' ').join(',');
+		var path = node_first + 'L' + pathinfo.join('L');
 		var line_path = document.createElementNS(this.ns_svg, 'path');
-		line_path.setAttribute("id", "line-Left-" + drwDataid.ls);
-		line_path.setAttribute("name", drwDataid.ls);
-		line_path.setAttribute("stroke", "#" + drwDataid.cl);
-		line_path.style.strokeWidth=strokeWidth;
+		line_path.setAttribute("id", "lineTo-"+ direction+ LineId_Data.ls);
+		line_path.setAttribute("name", LineId_Data.ls);
+		line_path.setAttribute("stroke", "#" + pathName.Color);
 		line_path.setAttribute("d", path);
 		parentNode.appendChild(line_path);
 	},
-	// 绘制地铁线路
+	//输入主路的路径点,以及偏移量——输出两条路径的路径点信息
+	doublePathInfo: function (mainPathData,offset) {
+		/*计算主路径的偏离角度*/
+		var p_a = [];
+		var p0 = {}, p1 = {};
+		//遍历mainPathData上所有的路径点
+		for (var Path_id in mainPathData) {
+			var point = mainPathData[Path_id].split(' ').join(',');
+			var p = {};
+			p.x = parseInt(point.split(",")[0]);
+			p.y = parseInt(point.split(",")[1]);
+			/*如果p1不存在,那就定义p为p1*/
+			if (!p1) {
+				p1 = p;
+				return;
+			}
+			p1._a = Math.atan2(p.y - p1.y, p.x - p1.x);
+			if (p0) {
+				p1.angle = Math.atan2(Math.sin(p0._a) + Math.sin(p1._a), Math.cos(p0._a) + Math.cos(p1._a));
+				p1.angle -= Math.PI / 2;
+				var theta = Math.abs(p1._a - p0._a);
+				if (theta > Math.PI) {
+					theta = 2 * Math.PI - theta;
+				}
+				p1.inclinedAngle = Math.PI - theta;
+			} else {
+				p1.angle = p1._a - Math.PI / 2;
+			}
+			p0 = p1;
+			p1 = p;
+			p_a.push(p0._a);
+		}
+		//p1.angle = Math.atan2(p1.y - p0.y, p1.x - p0.x) - Math.PI / 2;
+		p_a[0] = p_a[1];
+
+		//编译Right,Left数组
+		var info={};
+		var LeftPath = [], RightPath=[];
+		info.LeftPath=LeftPath;
+		info.RightPath=RightPath;
+		//遍历mainPathData上所有的路径点
+		for(var Path_id in mainPathData){
+			var point = mainPathData[Path_id].split(' ').join(',');
+			var p = {};
+			p.x = parseInt(point.split(",")[0]);
+			p.y = parseInt(point.split(",")[1]);
+			//计算偏离度
+			var Xoffset=parseInt(offset*Math.cos(Math.PI/2-p_a[Path_id])),
+				Yoffset=parseInt(offset*Math.sin(Math.PI/2+p_a[Path_id]));
+			//左偏移
+			var LeftX=p.x-Xoffset;
+			var LeftY=p.y+Yoffset;
+			LeftPath.push(LeftX+" "+LeftY);
+			//右偏移
+			var RightX= p.x+Xoffset;
+			var RightY=p.y-Yoffset;
+			RightPath.push(RightX+" "+RightY);
+		}
+		return info;
+	},
+	// 编译交通状况信息
+	TrafficInfo: function (trafficData,drwData) {
+		// 思路:从trafficData中获取lineid,stationname,
+		// 依据stationname定义startid,endid,并且获取负载率等信息;
+		// 依据负载率定义color,
+		// 选择lineid,然后根据遍历drwData中lineid的每个路径点数据,确定起始点在lineid数组中的位置,
+		// 根据起始点在数组位置大小关系,确定方向.left or right
+		// 并且从lineid中截取起始点路段的path信息,
+		// 通过doublePathInfo()方法,Mainpath ==> LeftPath and RightPath
+		// 输出info:{LeftPath:[],RightPath:[],LeftColor:"",RightColor:""}
+		var TrafficInfo={};
+		TrafficInfo.LeftPath=[];
+		TrafficInfo.RightPath=[];
+		TrafficInfo.LeftColor={};
+		TrafficInfo.RightColor={};
+		return TrafficInfo;
+	},
+	// 绘制默认的地铁线路
 	drwSwLines: function(drwData, status) {
 		var self = this;
 		var svg_g = document.getElementById("svg-g");
@@ -297,126 +378,63 @@ var drwSw = {
 			svg_g.appendChild(subway_line);
 
 			//for遍历每条地铁数据,drwData[id].c是一个包含锚点坐标的数组.
+			for (var line_id in drwData) {
+				var current_drwData=drwData[line_id];
+				var dataset_line_arr = current_drwData.c;
+				var station=current_drwData.st;
 
-			for (var id in drwData) {
-				var drwDataId=drwData[id];
-				var dataset_line_arr = drwDataId.c;
-				var p_a = [], Left = [], Right = [];
-				var p0 = {}, p1 = {};
 				/*打印地铁线名称*/
 				//console.log("======##################=======" + drwData[id].ln + "=========############=====");
-				/*汇集所有点的偏离角度*/
-				for (var id2 in dataset_line_arr) {
-					var point = dataset_line_arr[id2].split(' ').join(',');
-					var p = {};
-					p.x = parseInt(point.split(",")[0]);
-					p.y = parseInt(point.split(",")[1]);
-					/*如果p1不存在,那就定义p为p1*/
-					if (!p1) {
-						p1 = p;
-						return;
-					}
-					p1._a = Math.atan2(p.y - p1.y, p.x - p1.x);
-					if (p0) {
-						p1.angle = Math.atan2(Math.sin(p0._a) + Math.sin(p1._a), Math.cos(p0._a) + Math.cos(p1._a));
-						p1.angle -= Math.PI / 2;
-						var theta = Math.abs(p1._a - p0._a);
-						if (theta > Math.PI) {
-							theta = 2 * Math.PI - theta;
-						}
-						p1.inclinedAngle = Math.PI - theta;
-					} else {
-						p1.angle = p1._a - Math.PI / 2;
-					}
-					p0 = p1;
-					p1 = p;
-					p_a.push(p0._a);
-				}
-				//p1.angle = Math.atan2(p1.y - p0.y, p1.x - p0.x) - Math.PI / 2;
-				p_a[0] = p_a[1];
+				var start=station[0],
+					end=station[station.length-1];
+				var Left = {}, Right = {};
 
+				//获取到两条路径信息
+				Left.path=self.doublePathInfo(dataset_line_arr,3).LeftPath;
+				Right.path=self.doublePathInfo(dataset_line_arr,3).RightPath;
+				//获取左右两条线的颜色,若是地铁线颜色:current_drwData.cl;
+				Left.Color="009578";/*current_drwData.cl*/
+				Right.Color=current_drwData.cl;
+				//确定两条线的信息
+				Left.info=end;
+				Right.info=start;
 
-				//编译Right,Left数组
-				for(var id3 in dataset_line_arr){
-					var point = dataset_line_arr[id3].split(' ').join(',');
-					var p = {};
-					p.x = parseInt(point.split(",")[0]);
-					p.y = parseInt(point.split(",")[1]);
-					//计算偏离度
-					var Xoffset=parseInt(3*Math.cos(Math.PI/2-p_a[id3])),
-						Yoffset=parseInt(3*Math.sin(Math.PI/2+p_a[id3]));
-					//左偏移
-					var LeftX=p.x-Xoffset;
-					var LeftY=p.y+Yoffset;
-					Left.push(LeftX+" "+LeftY);
-					//右偏移
-					var RightX= p.x+Xoffset;
-					var RightY=p.y-Yoffset;
-					Right.push(RightX+" "+RightY);
-				}
+				//console.log(Left.info.n);
+				//console.log(Right.info.n);
 
-				//console.log("p1");
-				//console.log(p1);
 				//console.log(dataset_line_arr);
-				//
 				//console.log("Right");
 				//console.log(Right);
 				//console.log("Left");
 				//console.log(Left);
 
 				//drwSw.drwlines(subway_line,dataset_line_arr,drwDataId);
-				drwSw.drwlines(subway_line,Left,drwDataId);
-				drwSw.drwlines(subway_line,Right,drwDataId);
-
-				//var node_first = 'M' + dataset_line_arr[0].split(' ').join(',');
-				//var path = node_first + 'L' + dataset_line_arr.join('L');
-				//var line_path = document.createElementNS(self.ns_svg, 'path');
-				//line_path.setAttribute("id", "line-" + drwData[id].ls);
-				//line_path.setAttribute("name", drwData[id].ls);
-				//line_path.setAttribute("stroke", "#" + drwData[id].cl);
-				//line_path.style.strokeWidth=6;
-				//line_path.setAttribute("d", path);
-				//subway_line.appendChild(line_path);
-
-				//var node_first = 'M' + Left[0].split(' ').join(',');
-				//var path = node_first + 'L' + Left.join('L');
-				//var line_path = document.createElementNS(self.ns_svg, 'path');
-				//line_path.setAttribute("id", "line-Left-" + drwData[id].ls);
-				//line_path.setAttribute("name", drwData[id].ls);
-				//line_path.setAttribute("stroke", "#" + drwData[id].cl);
-				//line_path.setAttribute("d", path);
-				//subway_line.appendChild(line_path);
-
-				//var node_first = 'M' + Right[0].split(' ').join(',');
-				//var path = node_first + 'L' + Right.join('L');
-				//var line_path = document.createElementNS(self.ns_svg, 'path');
-				//line_path.setAttribute("id", "line-Right-" + drwData[id].ls);
-				//line_path.setAttribute("name", drwData[id].ls);
-				//line_path.setAttribute("stroke", "#" + drwData[id].cl);
-				//line_path.setAttribute("d", path);
-				//subway_line.appendChild(line_path);
+				drwSw.drwlines(subway_line,Left,current_drwData);
+				drwSw.drwlines(subway_line,Right,current_drwData);
 			}
 		} else if (status == 'select') {
 			var svg_select = document.getElementById("g-select");
 			svg_select.appendChild(subway_line);
 			var dataset_line_arr = drwData.c;
-			drwSw.drwlines(subway_line,dataset_line_arr,drwData,6);
-		} else if (status == 'nav') {
-			var svg_nav = document.getElementById("g-nav");
-			svg_nav.appendChild(subway_line);
-			for (var id in drwData) {
-				var drwDataId=drwData[id];
-				var dataset_line_arr = drwDataId.c;
-				drwSw.drwlines(subway_line,dataset_line_arr,drwData);
-			}
+			var node_first = 'M' + dataset_line_arr[0].split(' ').join(',');
+			var path = node_first + 'L' + dataset_line_arr.join('L');
+			var line_path = document.createElementNS(self.ns_svg, 'path');
+			line_path.setAttribute("id", "line-" + drwData.ls);
+			line_path.setAttribute("name", drwData.ls);
+			line_path.setAttribute("stroke", "#" + drwData.cl);
+			line_path.style.strokeWidth=6;
+			line_path.setAttribute("d", path);
+			subway_line.appendChild(line_path);
 		}
-	},
-	drwTrafficLine: function (trafficData,drwData,status) {
-	//	思路:从trafficData中获取lineid,startid,endid,负载率等信息;
-		// 依据负载率定义color,
-		// 选择lineid,然后根据遍历lineid的每个数据,确定起始点在lineid数组中的位置,
-		// 根据起始点在数组位置大小关系,确定方向.left or right
-		// 并且从lineid中截取起始点路段的path信息,
+		//else if (status == 'nav') {
+		//	var svg_nav = document.getElementById("g-nav");
+		//	svg_nav.appendChild(subway_line);
+		//	for (var id in drwData) {
+		//		var current_drwData=drwData[id];
+		//		var dataset_line_arr = current_drwData.c;
+		//		drwSw.drwlines(subway_line,dataset_line_arr,current_drwData);
+		//	}
+		//}
 	},
 	//绘制地铁线路名
 	drwSwLinesName: function(drwData, status) {
@@ -557,7 +575,6 @@ var drwSw = {
 			}
 		})
 	},
-
 	// 绘制地铁站点名称
 	drwSwStationsName: function(drwData, status, fontSize, h) {
 		var self = this;

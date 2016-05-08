@@ -265,7 +265,6 @@ var SW = {
 		// 此城市代码与当前城市的代码不一致
 		// tip.hideCitylist();
 		if(adcode != cache.curCity.adcode){
-			console.log(adcode);
 			$("#subway-svg,#infowindow-content,#tip-content,.line-caption").remove();
 			drwSw.svgReady = false;
 			self.loading();
