@@ -235,6 +235,7 @@ var drwSw = {
 		//SW.showStation(param);
 		//SW.showRoute(param);
 	},
+	//绘制背景
 	drawBg: function() {
 		var self = this;
 		var svg_g = document.getElementById("svg-g");
@@ -262,7 +263,7 @@ var drwSw = {
 		self.drwSwStationsName(drwData, status, 12, 20); //缩小为0.5，第二个参数为24
 		self.drwSwLinesName(drwData, status);
 	},
-
+	//绘制导航路线
 	drawNavLine: function(drwData) {
 		var self = this;
 		var status = 'nav';
@@ -273,6 +274,18 @@ var drwSw = {
 		self.drwSwLines(drwData.lines, status);
 		self.drwSwStations(drwData, status);
 		self.drwSwStationsName(drwData, status, 12, 20); //缩小为0.5，第二个参数为24
+	},
+	//画线
+	drwlines: function (parentNode,path,drwDataid,strokeWidth) {
+		var node_first = 'M' + path[0].split(' ').join(',');
+		var path = node_first + 'L' + path.join('L');
+		var line_path = document.createElementNS(this.ns_svg, 'path');
+		line_path.setAttribute("id", "line-Left-" + drwDataid.ls);
+		line_path.setAttribute("name", drwDataid.ls);
+		line_path.setAttribute("stroke", "#" + drwDataid.cl);
+		line_path.style.strokeWidth=strokeWidth;
+		line_path.setAttribute("d", path);
+		parentNode.appendChild(line_path);
 	},
 	// 绘制地铁线路
 	drwSwLines: function(drwData, status) {
@@ -286,7 +299,8 @@ var drwSw = {
 			//for遍历每条地铁数据,drwData[id].c是一个包含锚点坐标的数组.
 
 			for (var id in drwData) {
-				var dataset_line_arr = drwData[id].c;
+				var drwDataId=drwData[id];
+				var dataset_line_arr = drwDataId.c;
 				var p_a = [], Left = [], Right = [];
 				var p0 = {}, p1 = {};
 				/*打印地铁线名称*/
@@ -350,6 +364,9 @@ var drwSw = {
 				//console.log("Left");
 				//console.log(Left);
 
+				//drwSw.drwlines(subway_line,dataset_line_arr,drwDataId);
+				drwSw.drwlines(subway_line,Left,drwDataId);
+				drwSw.drwlines(subway_line,Right,drwDataId);
 
 				//var node_first = 'M' + dataset_line_arr[0].split(' ').join(',');
 				//var path = node_first + 'L' + dataset_line_arr.join('L');
@@ -361,52 +378,45 @@ var drwSw = {
 				//line_path.setAttribute("d", path);
 				//subway_line.appendChild(line_path);
 
-				var node_first = 'M' + Left[0].split(' ').join(',');
-				var path = node_first + 'L' + Left.join('L');
-				var line_path = document.createElementNS(self.ns_svg, 'path');
-				line_path.setAttribute("id", "line-Left-" + drwData[id].ls);
-				line_path.setAttribute("name", drwData[id].ls);
-				line_path.setAttribute("stroke", "#" + drwData[id].cl);
-				line_path.setAttribute("d", path);
-				subway_line.appendChild(line_path);
+				//var node_first = 'M' + Left[0].split(' ').join(',');
+				//var path = node_first + 'L' + Left.join('L');
+				//var line_path = document.createElementNS(self.ns_svg, 'path');
+				//line_path.setAttribute("id", "line-Left-" + drwData[id].ls);
+				//line_path.setAttribute("name", drwData[id].ls);
+				//line_path.setAttribute("stroke", "#" + drwData[id].cl);
+				//line_path.setAttribute("d", path);
+				//subway_line.appendChild(line_path);
 
-				var node_first = 'M' + Right[0].split(' ').join(',');
-				var path = node_first + 'L' + Right.join('L');
-				var line_path = document.createElementNS(self.ns_svg, 'path');
-				line_path.setAttribute("id", "line-Right-" + drwData[id].ls);
-				line_path.setAttribute("name", drwData[id].ls);
-				line_path.setAttribute("stroke", "#" + drwData[id].cl);
-				line_path.setAttribute("d", path);
-				subway_line.appendChild(line_path);
+				//var node_first = 'M' + Right[0].split(' ').join(',');
+				//var path = node_first + 'L' + Right.join('L');
+				//var line_path = document.createElementNS(self.ns_svg, 'path');
+				//line_path.setAttribute("id", "line-Right-" + drwData[id].ls);
+				//line_path.setAttribute("name", drwData[id].ls);
+				//line_path.setAttribute("stroke", "#" + drwData[id].cl);
+				//line_path.setAttribute("d", path);
+				//subway_line.appendChild(line_path);
 			}
 		} else if (status == 'select') {
 			var svg_select = document.getElementById("g-select");
 			svg_select.appendChild(subway_line);
 			var dataset_line_arr = drwData.c;
-			var node_first = 'M' + dataset_line_arr[0].split(' ').join(',');
-			var path = node_first + 'L' + dataset_line_arr.join('L');
-			var line_path = document.createElementNS(self.ns_svg, 'path');
-			line_path.setAttribute("id", "line-" + drwData.ls);
-			line_path.setAttribute("name", drwData.ls);
-			line_path.setAttribute("stroke", "#" + drwData.cl);
-			line_path.style.strokeWidth=6;
-			line_path.setAttribute("d", path);
-			subway_line.appendChild(line_path);
+			drwSw.drwlines(subway_line,dataset_line_arr,drwData,6);
 		} else if (status == 'nav') {
 			var svg_nav = document.getElementById("g-nav");
 			svg_nav.appendChild(subway_line);
 			for (var id in drwData) {
-				var dataset_line_arr = drwData[id].c;
-				var node_first = 'M' + dataset_line_arr[0].split(' ').join(',');
-				var path = node_first + 'L' + dataset_line_arr.join('L');
-				var line_path = document.createElementNS(self.ns_svg, 'path');
-				line_path.setAttribute("id", "line-" + drwData[id].ls);
-				line_path.setAttribute("name", drwData[id].ls);
-				line_path.setAttribute("stroke", "#" + drwData[id].cl);
-				line_path.setAttribute("d", path);
-				subway_line.appendChild(line_path);
+				var drwDataId=drwData[id];
+				var dataset_line_arr = drwDataId.c;
+				drwSw.drwlines(subway_line,dataset_line_arr,drwData);
 			}
 		}
+	},
+	drwTrafficLine: function (trafficData,drwData,status) {
+	//	思路:从trafficData中获取lineid,startid,endid,负载率等信息;
+		// 依据负载率定义color,
+		// 选择lineid,然后根据遍历lineid的每个数据,确定起始点在lineid数组中的位置,
+		// 根据起始点在数组位置大小关系,确定方向.left or right
+		// 并且从lineid中截取起始点路段的path信息,
 	},
 	//绘制地铁线路名
 	drwSwLinesName: function(drwData, status) {
