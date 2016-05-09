@@ -1,8 +1,7 @@
 var drwSw = {
 	currLines: {},
-	stationsInfo: SW.cache.stationsInfo,/*几个数据接口*/
-	stations: SW.cache.stations,
-	lines: SW.cache.lines,
+	trafficInfo:SW.cache.trafficInfo,
+	convertData:SW.cache.convertData,
 	w: document.documentElement.clientWidth,
 	h: document.documentElement.clientHeight,
 	t_top: 0,
@@ -287,7 +286,14 @@ var drwSw = {
 		var line_path = document.createElementNS(this.ns_svg, 'path');
 		line_path.setAttribute("id", "lineTo-"+ direction+ LineId_Data.ls);
 		line_path.setAttribute("name", LineId_Data.ls);
-		line_path.setAttribute("stroke", "#" + pathName.Color);
+		var color={};
+		if(pathName.Color){
+			color=pathName.Color;
+		}else{
+			color=LineId_Data.cl;
+		}
+
+		line_path.setAttribute("stroke", "#" + color);
 		line_path.setAttribute("d", path);
 		parentNode.appendChild(line_path);
 	},
@@ -352,8 +358,10 @@ var drwSw = {
 		return info;
 	},
 	// 编译交通状况信息
-	TrafficInfo: function (trafficData,drwData) {
+	TrafficInfo: function (drwData) {
 		// 思路:从trafficData中获取lineid,stationname,
+		var self=this;
+		console.log(self.trafficInfo);
 		// 依据stationname定义startid,endid,并且获取负载率等信息;
 		// 依据负载率定义color,
 		// 选择lineid,然后根据遍历drwData中lineid的每个路径点数据,确定起始点在lineid数组中的位置,
@@ -384,7 +392,7 @@ var drwSw = {
 				var station=current_drwData.st;
 
 				/*打印地铁线名称*/
-				//console.log("======##################=======" + drwData[id].ln + "=========############=====");
+				console.log("======##################=======" + drwData[line_id].ln + "=========############=====");
 				var start=station[0],
 					end=station[station.length-1];
 				var Left = {}, Right = {};
@@ -393,11 +401,28 @@ var drwSw = {
 				Left.path=self.doublePathInfo(dataset_line_arr,3).LeftPath;
 				Right.path=self.doublePathInfo(dataset_line_arr,3).RightPath;
 				//获取左右两条线的颜色,若是地铁线颜色:current_drwData.cl;
+
 				Left.Color="009578";/*current_drwData.cl*/
 				Right.Color=current_drwData.cl;
 				//确定两条线的信息
 				Left.info=end;
 				Right.info=start;
+
+				//依据convert表查询trafficInfo.
+				for (var i in self.convertData) {
+					if (self.convertData[i].line_id == line_id) {
+						var startName={},endName={};
+						for (var j = 0; j < self.convertData[i].stations.length; j++) {
+							var acc = self.convertData[i].stations[j].Acc;
+							var name = self.convertData[i].stations[j].Name;
+							for (var k in self.trafficInfo) {
+								if (self.trafficInfo[k].start == acc) {
+									console.log(self.trafficInfo[k].start+"  to  "+self.trafficInfo[k].end);
+								}
+							}
+						}
+					}
+				}
 
 				//console.log(Left.info.n);
 				//console.log(Right.info.n);

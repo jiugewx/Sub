@@ -1,4 +1,4 @@
-//定义SW
+//定义SW，数据预处理
 var SW = {
 	cache: {
 		citylist: [],
@@ -13,6 +13,8 @@ var SW = {
 		stations: {},
 		sug: {},
 		stationsInfo: {},
+		trafficInfo:[],
+		convertData:{},
 		stationspoi: {},
 		offset: {},
 		navlines: {},
@@ -269,6 +271,8 @@ var SW = {
 			drwSw.svgReady = false;
 			self.loading();
 			self.loadData(adcode, function(drwData) {
+				//drwData是loadData方法中callback的参数。这个参数在loadData中被定义。
+				console.log(drwData);
 				self.loadingOver();
 				drwSw.draw(drwData, param);
 			});
@@ -386,15 +390,18 @@ var SW = {
 		var city_code = adcode;
 		// var city_name = cache.citylistByAdcode[adcode].spell;
 		var city_name = self.fileNameData[adcode];
+		var drwData={};
 		if (cache.cities[city_code]) {
 			cache.curCity.adcode = city_code;
 			cache.curCity.name = cache.cities[city_code].name;
 			cache.curCity.offset = cache.offset[city_code];
+			drwData.city=cache.cities[city_code];
 			callback(cache.cities[city_code]);
-		} else {
-			//这里是请求对应城市的地铁数据的地址
-			var requestUrl = "data/" + city_code + "_drw_" + city_name + ".json";
-			amapCache.loadData(requestUrl, function(data) {
+		}
+		else {
+			//这里是请求对应城市的地铁数据
+			var drwData_Url = "data/" + city_code + "_drw_" + city_name + ".json";
+			amapCache.loadData(drwData_Url, function(data) {
 				cache.sug[city_code] = {};
 				cache.dataForDrw[data.i] = data;
 				cache.cities[data.i] = cache.cities[data.i] || {};
@@ -478,13 +485,15 @@ var SW = {
 				cache.curCity.adcode = city_code;
 				cache.curCity.name = cache.cities[city_code].name;
 				cache.curCity.offset = cache.offset[city_code];
+				drwData=cache.cities[city_code];
 				callback(cache.cities[city_code]);
 			}, function() {
 				alert('城市地铁数据加载失败！');
 			});
+
 			//请求站点数据信息
-			requestUrl = "data/" + city_code + "_info_" + city_name + ".json";
-			amapCache.loadData(requestUrl, function(info_data) {
+			var infoData_Url = "data/" + city_code + "_info_" + city_name + ".json";
+			amapCache.loadData(infoData_Url, function(info_data) {
 				for (var k = 0; k < info_data.l.length; k++) {
 					for (var l = 0; l < info_data.l[k].st.length; l++) {
 						cache.stationsInfo[info_data.l[k].st[l].si] = info_data.l[k].st[l];
@@ -492,6 +501,40 @@ var SW = {
 				}
 			},function() {
 				alert('地铁站点数据加载失败！');
+			});
+
+            //请求交通状况信息
+			var trafficData_Url="data/" + city_code + "_trafficinfo_" + city_name + ".json";
+			amapCache.loadData(trafficData_Url, function(trafficData) {
+				//遍历数据，缓存所有的路况信息到trafficInfo！
+				var len=trafficData.jtlList.length;
+				for (var k = 0; k < len; k++) {
+					var info={};
+					var flashCode=trafficData.jtlList[k].flashCode;
+					var start=flashCode.slice(3).split("_")[0];
+					var end=flashCode.slice(3).split("_")[1].slice(0,9);
+					var loadRate=trafficData.jtlList[k].loadData;
+					var refreshTime=trafficData.jtlList[k].startTime;
+					info.start=start;
+					info.end=end;
+					info.loadRate=loadRate;
+					info.refreshTime=refreshTime;
+					cache.trafficInfo.push(info);
+				}
+			},function() {
+				alert('交通路况数据加载失败！');
+			});
+
+			// 请求数据查询转换接口
+			var trafficData_Url="data/" + city_code + "_conv_" + city_name + ".json";
+			amapCache.loadData(trafficData_Url, function(convertData) {
+				//遍历数据，缓存所有的路况信息到trafficInfo！
+				var len=convertData.length;
+				for(var i=0;i<len;i++){
+					cache.convertData[i]=convertData[i];
+				}
+			},function() {
+				alert('数据转换表加载出错');
 			});
 		}
 	},

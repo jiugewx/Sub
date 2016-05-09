@@ -181,7 +181,7 @@ var tip = {
         });
 
         $refresh.on('touchend', function () {
-            tip.refresh();
+            SW.showCity();
         });
 
         $subway.on('touchend', 'g', function() {
