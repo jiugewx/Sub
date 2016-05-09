@@ -504,6 +504,7 @@ var SW = {
 			});
 
             //请求交通状况信息
+            //http://ac-OnsG2j7w.clouddn.com/42df2acedfd37d9e.json
 			var trafficData_Url="data/" + city_code + "_trafficinfo_" + city_name + ".json";
 			amapCache.loadData(trafficData_Url, function(trafficData) {
 				//遍历数据，缓存所有的路况信息到trafficInfo！

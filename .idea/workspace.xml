@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="18973b9c-5a5a-4fcc-a02b-944705c43344" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/subway/common.js" afterPath="$PROJECT_DIR$/js/subway/common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/subway/drw.js" afterPath="$PROJECT_DIR$/js/subway/drw.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="fff6501d-74f1-4fb3-b1a1-6d0179897558" name="New changelist" comment="" />
+    <list id="d414c9a0-1582-4c3c-b9fd-6257e178ac54" name="Failed commit: Default" comment="增加trafficinfo文件" />
     <ignored path="Subway.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -53,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="common.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/subway/common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.333333">
-              <caret line="520" column="49" selection-start-line="520" selection-start-column="49" selection-end-line="520" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.51903117">
+              <caret line="506" column="66" selection-start-line="506" selection-start-column="66" selection-end-line="506" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -75,10 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="drw.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="drw.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/subway/drw.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.79065746">
+            <state vertical-scroll-proportion="-15.233334">
               <caret line="429" column="42" selection-start-line="429" selection-start-column="42" selection-end-line="429" selection-end-column="42" />
               <folding>
                 <element signature="n#!!block;n#addTrafficInfo#0;n#addTrafficInfo#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
@@ -206,8 +206,8 @@
         <option value="$PROJECT_DIR$/data/1100_drw_beijing.json" />
         <option value="$PROJECT_DIR$/data/1100_trafficinfo_beijing.json" />
         <option value="$PROJECT_DIR$/data/1100_conv_beijing.json" />
-        <option value="$PROJECT_DIR$/js/subway/common.js" />
         <option value="$PROJECT_DIR$/js/subway/drw.js" />
+        <option value="$PROJECT_DIR$/js/subway/common.js" />
       </list>
     </option>
   </component>
@@ -631,7 +631,7 @@
       <updated>1462500643786</updated>
       <workItem from="1462500642261" duration="27992000" />
       <workItem from="1462531001100" duration="150000" />
-      <workItem from="1462756972837" duration="30327000" />
+      <workItem from="1462756972837" duration="30691000" />
     </task>
     <task id="LOCAL-00001" summary="更新画图数据">
       <created>1462501255612</created>
@@ -669,11 +669,17 @@
       <option name="project" value="LOCAL" />
       <updated>1462781149172</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="完善了trafficInfo的信息，下次最好把其写进缓存">
+      <created>1462789200365</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1462789200365</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58469000" />
+    <option name="totallyTimeSpent" value="58833000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1592" y="-8" width="1936" height="1056" extended-state="6" />
@@ -718,12 +724,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
+    <confirmMoveToFailedCommit value="2" />
     <MESSAGE value="更新画图数据" />
     <MESSAGE value="完善了弹窗居中功能" />
     <MESSAGE value="20160506" />
     <MESSAGE value="继续研究trafficinfo" />
     <MESSAGE value="完善了trafficInfo的信息，下次最好把其写进缓存" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善了trafficInfo的信息，下次最好把其写进缓存" />
+    <MESSAGE value="增加trafficinfo文件" />
+    <MESSAGE value="修改了请求地址" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了请求地址" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1028,24 +1037,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/subway/amapCache.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="103" column="21" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/subway/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.333333">
-          <caret line="520" column="49" selection-start-line="520" selection-start-column="49" selection-end-line="520" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/1100_info_beijing.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.9630459">
@@ -1112,13 +1103,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/subway/amapCache.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="103" column="21" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/subway/drw.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.79065746">
+        <state vertical-scroll-proportion="-15.233334">
           <caret line="429" column="42" selection-start-line="429" selection-start-column="42" selection-end-line="429" selection-end-column="42" />
           <folding>
             <element signature="n#!!block;n#addTrafficInfo#0;n#addTrafficInfo#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/subway/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51903117">
+          <caret line="506" column="66" selection-start-line="506" selection-start-column="66" selection-end-line="506" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
