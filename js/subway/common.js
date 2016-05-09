@@ -515,8 +515,8 @@ var SW = {
 					var end=flashCode.slice(3).split("_")[1].slice(0,9);
 					var loadRate=trafficData.jtlList[k].loadData;
 					var refreshTime=trafficData.jtlList[k].startTime;
-					info.start=start;
-					info.end=end;
+					info.startAcc=start;
+					info.endAcc=end;
 					info.loadRate=loadRate;
 					info.refreshTime=refreshTime;
 					cache.trafficInfo.push(info);

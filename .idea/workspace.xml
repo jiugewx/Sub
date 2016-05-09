@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18973b9c-5a5a-4fcc-a02b-944705c43344" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/1100_conv_beijing.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/1100_drw_beijing.json" afterPath="$PROJECT_DIR$/data/1100_drw_beijing.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/subway/amapCache.js" afterPath="$PROJECT_DIR$/js/subway/amapCache.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/subway/common.js" afterPath="$PROJECT_DIR$/js/subway/common.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/subway/drw.js" afterPath="$PROJECT_DIR$/js/subway/drw.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/subway/main.js" afterPath="$PROJECT_DIR$/js/subway/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="fff6501d-74f1-4fb3-b1a1-6d0179897558" name="New changelist" comment="" />
@@ -62,8 +56,8 @@
       <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/subway/common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.0">
-              <caret line="508" column="45" selection-start-line="508" selection-start-column="45" selection-end-line="508" selection-end-column="45" />
+            <state vertical-scroll-proportion="-13.333333">
+              <caret line="520" column="49" selection-start-line="520" selection-start-column="49" selection-end-line="520" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -84,38 +78,10 @@
       <file leaf-file-name="drw.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/subway/drw.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1072664">
-              <caret line="419" column="106" selection-start-line="419" selection-start-column="83" selection-end-line="419" selection-end-column="106" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="1100_info_beijing.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/1100_info_beijing.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="30.714285">
-              <caret line="437" column="13" selection-start-line="437" selection-start-column="13" selection-end-line="437" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.79065746">
+              <caret line="429" column="42" selection-start-line="429" selection-start-column="42" selection-end-line="429" selection-end-column="42" />
               <folding>
-                <element signature="e#30130#46803#0" expanded="false" />
-                <element signature="e#46809#59620#0" expanded="false" />
-                <element signature="e#59626#64335#0" expanded="false" />
-                <element signature="e#64341#71343#0" expanded="false" />
-                <element signature="e#71349#79185#0" expanded="false" />
-                <element signature="e#79191#84982#0" expanded="false" />
-                <element signature="e#84988#98083#0" expanded="false" />
-                <element signature="e#98089#104026#0" expanded="false" />
-                <element signature="e#104032#104095#0" expanded="false" />
-                <element signature="e#104101#117637#0" expanded="false" />
-                <element signature="e#117643#126930#0" expanded="false" />
-                <element signature="e#126936#126999#0" expanded="false" />
-                <element signature="e#127005#136960#0" expanded="false" />
-                <element signature="e#136966#158458#0" expanded="false" />
-                <element signature="e#158464#161136#0" expanded="false" />
-                <element signature="e#161142#171344#0" expanded="false" />
-                <element signature="e#171350#188259#0" expanded="false" />
-                <element signature="e#188265#192562#0" expanded="false" />
-                <element signature="e#192568#202626#0" expanded="false" />
+                <element signature="n#!!block;n#addTrafficInfo#0;n#addTrafficInfo#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -124,16 +90,16 @@
       <file leaf-file-name="1100_drw_beijing.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/1100_drw_beijing.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.7241379">
-              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+            <state vertical-scroll-proportion="-6.8965516">
+              <caret line="1775" column="21" selection-start-line="1775" selection-start-column="12" selection-end-line="1775" selection-end-column="21" />
               <folding>
+                <element signature="e#65#15699#0" expanded="false" />
                 <element signature="e#15705#22421#0" expanded="false" />
                 <element signature="e#22427#28330#0" expanded="false" />
                 <element signature="e#28336#32297#0" expanded="false" />
                 <element signature="e#32303#36633#0" expanded="false" />
                 <element signature="e#36639#41269#0" expanded="false" />
                 <element signature="e#41275#45805#0" expanded="false" />
-                <element signature="e#45811#53829#0" expanded="false" />
                 <element signature="e#46496#46807#0" expanded="false" />
                 <element signature="e#46809#47113#0" expanded="false" />
                 <element signature="e#47115#47434#0" expanded="false" />
@@ -174,8 +140,8 @@
       <file leaf-file-name="1100_conv_beijing.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/1100_conv_beijing.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-56.327587">
-              <caret line="1102" column="25" selection-start-line="1102" selection-start-column="16" selection-end-line="1102" selection-end-column="25" />
+            <state vertical-scroll-proportion="-2.0689654">
+              <caret line="6" column="26" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="26" />
               <folding>
                 <element signature="e#22946#24363#0" expanded="false" />
               </folding>
@@ -665,7 +631,7 @@
       <updated>1462500643786</updated>
       <workItem from="1462500642261" duration="27992000" />
       <workItem from="1462531001100" duration="150000" />
-      <workItem from="1462756972837" duration="22388000" />
+      <workItem from="1462756972837" duration="30327000" />
     </task>
     <task id="LOCAL-00001" summary="更新画图数据">
       <created>1462501255612</created>
@@ -697,26 +663,32 @@
       <option name="project" value="LOCAL" />
       <updated>1462531130317</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="继续研究trafficinfo">
+      <created>1462781149172</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1462781149172</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50530000" />
+    <option name="totallyTimeSpent" value="58469000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1592" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.5021322" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.5021322" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32947367" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32947367" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13006397" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -724,13 +696,13 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -750,7 +722,8 @@
     <MESSAGE value="完善了弹窗居中功能" />
     <MESSAGE value="20160506" />
     <MESSAGE value="继续研究trafficinfo" />
-    <option name="LAST_COMMIT_MESSAGE" value="继续研究trafficinfo" />
+    <MESSAGE value="完善了trafficInfo的信息，下次最好把其写进缓存" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善了trafficInfo的信息，下次最好把其写进缓存" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -850,7 +823,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-          <folding />
+          <folding>
+            <element signature="n#!!block;n#addTrafficInfo#0;n#addTrafficInfo#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -937,7 +912,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-          <folding />
+          <folding>
+            <element signature="n#!!block;n#addTrafficInfo#0;n#addTrafficInfo#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1011,21 +988,29 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/subway/amapCache.js">
+    <entry file="file://$PROJECT_DIR$/js/subway/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="103" column="21" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-7.3333335">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/subway/common.js">
+    <entry file="file://$PROJECT_DIR$/data/1100_trafficinfo_beijing.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.0">
-          <caret line="508" column="45" selection-start-line="508" selection-start-column="45" selection-end-line="508" selection-end-column="45" />
+        <state vertical-scroll-proportion="-4.2586207">
+          <caret line="1441" column="40" selection-start-line="1441" selection-start-column="40" selection-end-line="1441" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/1100_conv_beijing.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0689654">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="26" />
+          <folding>
+            <element signature="e#22946#24363#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1043,35 +1028,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/subway/main.js">
+    <entry file="file://$PROJECT_DIR$/js/subway/amapCache.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.3333335">
-          <caret line="11" column="16" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/1100_conv_beijing.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-56.327587">
-          <caret line="1102" column="25" selection-start-line="1102" selection-start-column="16" selection-end-line="1102" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="103" column="21" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
           <folding>
-            <element signature="e#22946#24363#0" expanded="false" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/1100_trafficinfo_beijing.json">
+    <entry file="file://$PROJECT_DIR$/js/subway/common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.2586207">
-          <caret line="1441" column="40" selection-start-line="1441" selection-start-column="40" selection-end-line="1441" selection-end-column="40" />
+        <state vertical-scroll-proportion="-13.333333">
+          <caret line="520" column="49" selection-start-line="520" selection-start-column="49" selection-end-line="520" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/1100_info_beijing.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="30.714285">
+        <state vertical-scroll-proportion="-0.9630459">
           <caret line="437" column="13" selection-start-line="437" selection-start-column="13" selection-end-line="437" selection-end-column="13" />
           <folding>
             <element signature="e#30130#46803#0" expanded="false" />
@@ -1099,16 +1076,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/1100_drw_beijing.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7241379">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        <state vertical-scroll-proportion="-6.8965516">
+          <caret line="1775" column="21" selection-start-line="1775" selection-start-column="12" selection-end-line="1775" selection-end-column="21" />
           <folding>
+            <element signature="e#65#15699#0" expanded="false" />
             <element signature="e#15705#22421#0" expanded="false" />
             <element signature="e#22427#28330#0" expanded="false" />
             <element signature="e#28336#32297#0" expanded="false" />
             <element signature="e#32303#36633#0" expanded="false" />
             <element signature="e#36639#41269#0" expanded="false" />
             <element signature="e#41275#45805#0" expanded="false" />
-            <element signature="e#45811#53829#0" expanded="false" />
             <element signature="e#46496#46807#0" expanded="false" />
             <element signature="e#46809#47113#0" expanded="false" />
             <element signature="e#47115#47434#0" expanded="false" />
@@ -1137,9 +1114,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/subway/drw.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1072664">
-          <caret line="419" column="106" selection-start-line="419" selection-start-column="83" selection-end-line="419" selection-end-column="106" />
-          <folding />
+        <state vertical-scroll-proportion="0.79065746">
+          <caret line="429" column="42" selection-start-line="429" selection-start-column="42" selection-end-line="429" selection-end-column="42" />
+          <folding>
+            <element signature="n#!!block;n#addTrafficInfo#0;n#addTrafficInfo#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

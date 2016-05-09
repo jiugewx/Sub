@@ -1,6 +1,7 @@
 var drwSw = {
 	currLines: {},
 	trafficInfo:SW.cache.trafficInfo,
+	stations:SW.cache.stations,
 	convertData:SW.cache.convertData,
 	w: document.documentElement.clientWidth,
 	h: document.documentElement.clientHeight,
@@ -102,6 +103,8 @@ var drwSw = {
 		var adcode = drwData.id;
 		self.drwSwBox(drwData);
 		setTimeout(function() {
+			/*这里插播，丰富一下路况信息*/
+			self.addTrafficInfo(self.currLines);
 			self.drawSvg(drwData, station, param);
 			self.svgReady = true;
 		}, 10)
@@ -357,6 +360,68 @@ var drwSw = {
 		}
 		return info;
 	},
+	// 以路线为筛选条件丰富路况信息
+	addTrafficInfo: function (drwData) {
+		//依赖self.convertData,self.trafficInfo,self.stations;
+		var self = this;
+		//加入站点名称信息
+		for (var line_id in drwData) {
+			for (var i in self.convertData) {
+				if (self.convertData[i].line_id == line_id) { /*已经选择了一条地铁*/
+					for (var j = 0; j < self.convertData[i].stations.length; j++) { /*已经选中了单个站点*/
+						var acc = self.convertData[i].stations[j].Acc;
+						/*已经选中了单个车站*/
+						var name = self.convertData[i].stations[j].Name;
+						/*已经是固定值*/
+						for (var k in self.trafficInfo) { /*去遍历所有的路段信息*/
+							if (self.trafficInfo[k].startAcc == acc) { /*查到当前站点为起点的路段*/
+								self.trafficInfo[k].startName = name;
+							}
+						}
+						for (var k in self.trafficInfo) {
+							if (self.trafficInfo[k].endAcc == acc) { /*查到当前站点为起点的路段*/
+								self.trafficInfo[k].endName = name;
+							}
+						}
+					}
+				}
+			}
+		}
+		//加入位置和颜色color信息
+		for (var i in self.stations) {
+			var name = self.stations[i].n;
+			var position = self.stations[i].p;
+			var stationId=self.stations[i].si;
+			for (var k in self.trafficInfo) {
+				//处理颜色color
+				var loadData=self.trafficInfo[k].loadRate;
+				var color={};
+				if(loadData>0 && loadData<=0.25){
+					color="009578";
+				}else if(loadData>0.25 && loadData<=0.5){
+					color="96C61A";
+				}else if(loadData>0.5 && loadData<=0.75){
+					color="C99616";
+				}else{
+					color="AF272B";
+				}
+				self.trafficInfo[k].color=color;
+
+				//加入开始位置信息
+				if (self.trafficInfo[k].startName == name) {
+					self.trafficInfo[k].startPos = position;
+					self.trafficInfo[k].startId = stationId;
+				}
+			}
+			for (var k in self.trafficInfo) {
+				if (self.trafficInfo[k].endName == name) {
+					self.trafficInfo[k].endPos = position;
+					self.trafficInfo[k].endId = stationId;
+				}
+			}
+		}
+		console.log(self.trafficInfo);
+	},
 	// 编译交通状况信息
 	TrafficInfo: function (drwData) {
 		// 思路:从trafficData中获取lineid,stationname,
@@ -382,61 +447,38 @@ var drwSw = {
 		var svg_g = document.getElementById("svg-g");
 		var subway_line = document.createElementNS(self.ns_svg, 'g');
 		subway_line.setAttribute("id", "g-line-" + status);
+
 		if (status == 'normal') {
 			svg_g.appendChild(subway_line);
 
 			//for遍历每条地铁数据,drwData[id].c是一个包含锚点坐标的数组.
 			for (var line_id in drwData) {
-				var current_drwData=drwData[line_id];
+				var current_drwData = drwData[line_id];
 				var dataset_line_arr = current_drwData.c;
-				var station=current_drwData.st;
+				var station = current_drwData.st;
 
 				/*打印地铁线名称*/
-				console.log("======##################=======" + drwData[line_id].ln + "=========############=====");
-				var start=station[0],
-					end=station[station.length-1];
+				//console.log("======##################=======" + drwData[line_id].ln + "=========############=====");
+				var start = station[0],
+					end = station[station.length - 1];
 				var Left = {}, Right = {};
 
 				//获取到两条路径信息
-				Left.path=self.doublePathInfo(dataset_line_arr,3).LeftPath;
-				Right.path=self.doublePathInfo(dataset_line_arr,3).RightPath;
+				Left.path = self.doublePathInfo(dataset_line_arr, 3).LeftPath;
+				Right.path = self.doublePathInfo(dataset_line_arr, 3).RightPath;
 				//获取左右两条线的颜色,若是地铁线颜色:current_drwData.cl;
 
-				Left.Color="009578";/*current_drwData.cl*/
-				Right.Color=current_drwData.cl;
+				Left.Color = "009578";
+				/*current_drwData.cl*/
+				Right.Color = current_drwData.cl;
 				//确定两条线的信息
-				Left.info=end;
-				Right.info=start;
+				Left.info = end;
+				Right.info = start;
 
-				//依据convert表查询trafficInfo.
-				for (var i in self.convertData) {
-					if (self.convertData[i].line_id == line_id) {
-						var startName={},endName={};
-						for (var j = 0; j < self.convertData[i].stations.length; j++) {
-							var acc = self.convertData[i].stations[j].Acc;
-							var name = self.convertData[i].stations[j].Name;
-							for (var k in self.trafficInfo) {
-								if (self.trafficInfo[k].start == acc) {
-									console.log(self.trafficInfo[k].start+"  to  "+self.trafficInfo[k].end);
-								}
-							}
-						}
-					}
-				}
-
-				//console.log(Left.info.n);
-				//console.log(Right.info.n);
-
-				//console.log(dataset_line_arr);
-				//console.log("Right");
-				//console.log(Right);
-				//console.log("Left");
-				//console.log(Left);
-
-				//drwSw.drwlines(subway_line,dataset_line_arr,drwDataId);
-				drwSw.drwlines(subway_line,Left,current_drwData);
-				drwSw.drwlines(subway_line,Right,current_drwData);
+				drwSw.drwlines(subway_line, Left, current_drwData);
+				drwSw.drwlines(subway_line, Right, current_drwData);
 			}
+
 		} else if (status == 'select') {
 			var svg_select = document.getElementById("g-select");
 			svg_select.appendChild(subway_line);
@@ -447,19 +489,10 @@ var drwSw = {
 			line_path.setAttribute("id", "line-" + drwData.ls);
 			line_path.setAttribute("name", drwData.ls);
 			line_path.setAttribute("stroke", "#" + drwData.cl);
-			line_path.style.strokeWidth=6;
+			line_path.style.strokeWidth = 6;
 			line_path.setAttribute("d", path);
 			subway_line.appendChild(line_path);
 		}
-		//else if (status == 'nav') {
-		//	var svg_nav = document.getElementById("g-nav");
-		//	svg_nav.appendChild(subway_line);
-		//	for (var id in drwData) {
-		//		var current_drwData=drwData[id];
-		//		var dataset_line_arr = current_drwData.c;
-		//		drwSw.drwlines(subway_line,dataset_line_arr,current_drwData);
-		//	}
-		//}
 	},
 	//绘制地铁线路名
 	drwSwLinesName: function(drwData, status) {
