@@ -1,6 +1,7 @@
 //定义SW，数据预处理
 var SW = {
 	cache: {
+		currLines:{},
 		citylist: [],
 		citylistByAdcode: null,
 		curCity: {
@@ -21,6 +22,7 @@ var SW = {
 		navStations: {},
 		navStPixel: {}
 	},
+	timer:{},
 	subwayFlag: 1, // 0 没有 , 1 有
 	param: null,
 	nearlnglat: null,
@@ -263,7 +265,6 @@ var SW = {
 		}
 		$('.city_name').html(self.cityname[adcode]);
 		document.title = self.cityname[adcode] + '地铁图';
-
 		// 此城市代码与当前城市的代码不一致
 		// tip.hideCitylist();
 		if(adcode != cache.curCity.adcode){
@@ -271,8 +272,7 @@ var SW = {
 			drwSw.svgReady = false;
 			self.loading();
 			self.loadData(adcode, function(drwData) {
-				//drwData是loadData方法中callback的参数。这个参数在loadData中被定义。
-				console.log(drwData);
+				//这里的drwData是loadData方法中callback的参数。这个参数在loadData中被定义。
 				self.loadingOver();
 				drwSw.draw(drwData, param);
 			});
@@ -280,9 +280,6 @@ var SW = {
 			SW.showStation(param);
 			//SW.showRoute(param);
 		}
-		// setTimeout(function () {
-		// 	SW.showStation(param);
-		// },10);
 	},
 	//显示城市的地铁站
 	showStation: function (param) {
@@ -390,154 +387,252 @@ var SW = {
 		var city_code = adcode;
 		// var city_name = cache.citylistByAdcode[adcode].spell;
 		var city_name = self.fileNameData[adcode];
-		var drwData={};
+		//如果对应的城市信息已经存在,那就直接调用callback.
 		if (cache.cities[city_code]) {
 			cache.curCity.adcode = city_code;
 			cache.curCity.name = cache.cities[city_code].name;
 			cache.curCity.offset = cache.offset[city_code];
-			drwData.city=cache.cities[city_code];
 			callback(cache.cities[city_code]);
 		}
+		//如果对应的城市信息不存在,那就发起请求
 		else {
-			//这里是请求对应城市的地铁数据
-			var drwData_Url = "data/" + city_code + "_drw_" + city_name + ".json";
-			amapCache.loadData(drwData_Url, function(data) {
-				cache.sug[city_code] = {};
-				cache.dataForDrw[data.i] = data;
-				cache.cities[data.i] = cache.cities[data.i] || {};
-				cache.cities[data.i].name = data.s;
-				cache.cities[data.i].id = data.i;
-				cache.cities[data.i].offset = data.o;
-				cache.cities[data.i].lines = [];
-				cache.cities[data.i].linesNamePos = {};
-				// cache.cities[data.i].stations = [];
-				cache.cities[data.i].stations = {};
-				cache.cities[data.i].zolines = {};
-				cache.cities[data.i].zostations = [];
-				var _offset = data.o.split(',');
-				cache.offset[data.i] = cache.offset[data.i] || {};
-				var _x = 0,
-					_y = 0;
-				cache.offset[data.i].x = _offset[0];
-				cache.offset[data.i].y = _offset[1];
-				_x = 1000 - Number(_offset[0]);
-				_y = 1000 - Number(_offset[1]);
-				var sugobj = {};
-				for (var i = 0; i < data.l.length; i++) {
-					if (data.l[i].su == '1') {
-						var _coords = data.l[i].c;
-						for (var q = 0; q < _coords.length; q++) {
-							var _c = _coords[q].split(' ');
-							_coords[q] = (Number(_c[0]) + _x) + ' ' + (Number(_c[1]) + _y);
-						}
-						data.l[i].c = _coords;
-						data.l[i].linesNamePos = {};
-						data.l[i].linesNamePos[data.l[i].ls] = data.l[i].lp;
-						data.l[i].stname = [];
-
-						for (var j = 0; j < data.l[i].st.length; j++) {
-							data.l[i].stname.push(data.l[i].st[j].n);
-							var _p = data.l[i].st[j].p.split(' ');
-							data.l[i].st[j].p = (Number(_p[0]) + _x) + ' ' + (Number(_p[1]) + _y);
-							var rsArr = data.l[i].st[j].rs.split('|');
-							var newRsArr = [];
-							for (var h = 0; h < rsArr.length; h++) {
-								var rs = rsArr[h].split(' ');
-								newRsArr.push((Number(rs[0]) + _x) + ' ' + (Number(rs[1]) + _y))
-							}
-							data.l[i].st[j].rs = newRsArr.join('|');
-							if (data.l[i].st[j].su == '1') {
-								var cur = data.l[i].st[j];
-								// cache.cities[data.i].stations.push(cur);
-								cache.cities[data.i].stations[cur.si] = cur;
-								cache.stations[cur.si] = cur;
-								sugobj[cur.sp.split(' ').join('').toLowerCase() + '|' + cur.n.toLowerCase()] = cur;
-								cache.stationspoi[cur.poiid] = cur;
-								cache.navStations[cur.n] = cur;
-								cache.navStPixel[cur.p] = cur;
-							}
-						}
-
-						var _lpo = data.l[i].lp;
-						if (_lpo) {
-							for (var s = 0; s < _lpo.length; s++) {
-								var _lp = _lpo[s].split(' ');
-								_lpo[s] = (Number(_lp[0]) + _x) + ' ' + (Number(_lp[1]) + _y);
-							}
-							data.l[i].lp = _lpo;
-						}
-						cache.cities[data.i].linesNamePos[data.l[i].ls] = data.l[i].lp;
-						cache.cities[data.i].lines.push(data.l[i]);
-						cache.lines[data.l[i].ls] = data.l[i]; //写入line
-
-						var busid = data.l[i].li && data.l[i].li.split('|');
-						if (busid) {
-							for (var n = 0; n < busid.length; n++) {
-								cache.navlines[busid[n]] = data.l[i]
-
-							}
-						}
-					}
-
-				}
-				// self.toCache(data, info_data);
-				cache.sug[city_code] = sugobj;
-				cache.curCity.adcode = city_code;
-				cache.curCity.name = cache.cities[city_code].name;
-				cache.curCity.offset = cache.offset[city_code];
-				drwData=cache.cities[city_code];
-				callback(cache.cities[city_code]);
-			}, function() {
-				alert('城市地铁数据加载失败！');
-			});
-
-			//请求站点数据信息
-			var infoData_Url = "data/" + city_code + "_info_" + city_name + ".json";
-			amapCache.loadData(infoData_Url, function(info_data) {
-				for (var k = 0; k < info_data.l.length; k++) {
-					for (var l = 0; l < info_data.l[k].st.length; l++) {
-						cache.stationsInfo[info_data.l[k].st[l].si] = info_data.l[k].st[l];
-					}
-				}
-			},function() {
-				alert('地铁站点数据加载失败！');
-			});
-
-            //请求交通状况信息
-            //http://ac-OnsG2j7w.clouddn.com/42df2acedfd37d9e.json
-			var trafficData_Url="data/" + city_code + "_trafficinfo_" + city_name + ".json";
-			amapCache.loadData(trafficData_Url, function(trafficData) {
-				//遍历数据，缓存所有的路况信息到trafficInfo！
-				var len=trafficData.jtlList.length;
-				for (var k = 0; k < len; k++) {
-					var info={};
-					var flashCode=trafficData.jtlList[k].flashCode;
-					var start=flashCode.slice(3).split("_")[0];
-					var end=flashCode.slice(3).split("_")[1].slice(0,9);
-					var loadRate=trafficData.jtlList[k].loadData;
-					var refreshTime=trafficData.jtlList[k].startTime;
-					info.startAcc=start;
-					info.endAcc=end;
-					info.loadRate=loadRate;
-					info.refreshTime=refreshTime;
-					cache.trafficInfo.push(info);
-				}
-			},function() {
-				alert('交通路况数据加载失败！');
-			});
-
-			// 请求数据查询转换接口
-			var trafficData_Url="data/" + city_code + "_conv_" + city_name + ".json";
-			amapCache.loadData(trafficData_Url, function(convertData) {
-				//遍历数据，缓存所有的路况信息到trafficInfo！
-				var len=convertData.length;
-				for(var i=0;i<len;i++){
-					cache.convertData[i]=convertData[i];
-				}
-			},function() {
-				alert('数据转换表加载出错');
-			});
+			//从服务器请求数据
+			self.loadMainData(city_code,city_name,callback);
+			self.loadStInfo(city_code,city_name);
+			self.loadConvert(city_code,city_name);
+			self.loadTraffic(city_code,city_name);
+			//之前的数据请求有一个时间过程,所以这里有个延迟处理
+			self.timeoutHandle(city_code);
 		}
+	},
+	addTrafficInfo: function (drwData) {
+		//依赖self.convertData,self.trafficInfo,self.stations;
+		var self = this;
+		//加入站点名称信息
+		for (var line_id in drwData) {
+			for (var i in self.cache.convertData) {
+				if (self.cache.convertData[i].line_id == line_id) { /*已经选择了一条地铁*/
+					for (var j = 0; j < self.cache.convertData[i].stations.length; j++) { /*已经选中了单个站点*/
+						var acc = self.cache.convertData[i].stations[j].Acc;
+						/*已经选中了单个车站*/
+						var name = self.cache.convertData[i].stations[j].Name;
+						/*已经是固定值*/
+						for (var k in self.trafficInfo) { /*去遍历所有的路段信息*/
+							if (self.cache.trafficInfo[k].startAcc == acc) { /*查到当前站点为起点的路段*/
+								self.cache.trafficInfo[k].startName = name;
+							}
+						}
+						for (var k in self.cache.trafficInfo) {
+							if (self.cache.trafficInfo[k].endAcc == acc) { /*查到当前站点为起点的路段*/
+								self.cache.trafficInfo[k].endName = name;
+							}
+						}
+					}
+				}
+			}
+		}
+		//加入位置和颜色color信息
+		for (var i in self.cache.stations) {
+			var name = self.cache.stations[i].n;
+			var position = self.cache.stations[i].p;
+			var stationId=self.cache.stations[i].si;
+			for (var k in self.cache.trafficInfo) {
+				//处理颜色color
+				var loadData=self.cache.trafficInfo[k].loadRate;
+				var color={};
+				if(loadData>0 && loadData<=0.25){
+					color="009578";
+				}else if(loadData>0.25 && loadData<=0.5){
+					color="96C61A";
+				}else if(loadData>0.5 && loadData<=0.75){
+					color="C99616";
+				}else{
+					color="AF272B";
+				}
+				self.cache.trafficInfo[k].color=color;
+
+				//加入开始位置信息
+				if (self.cache.trafficInfo[k].startName == name) {
+					self.cache.trafficInfo[k].startPos = position;
+					self.cache.trafficInfo[k].startId = stationId;
+				}
+			}
+			for (var k in self.cache.trafficInfo) {
+				if (self.cache.trafficInfo[k].endName == name) {
+					self.cache.trafficInfo[k].endPos = position;
+					self.cache.trafficInfo[k].endId = stationId;
+				}
+			}
+		}
+	},
+	timeoutHandle: function (city_code) {
+		var self=this;
+		clearTimeout(self.timer);
+		self.timer = setTimeout(function () {
+			var drwData=self.cache.cities[city_code];
+			for (var i = 0; i < drwData.lines.length; i++) {
+				if (drwData.lines[i].su != "3") {
+					self.cache.currLines[drwData.lines[i].ls] = drwData.lines[i];
+				}
+			}
+			//增加交通状况信息
+			SW.addTrafficInfo(self.cache.currLines);
+
+			console.log(self.cache.trafficInfo);
+			//console.log("交通状况信息",self.cache.trafficInfo);
+			//console.log("转换接口",self.cache.convertData);
+			//console.log("stations",self.cache.stations);
+		},50);
+		console.log("timer",self.timer);
+	},
+	//这里是请求对应城市的地铁数据
+	loadMainData: function (city_code,city_name,callback) {
+		var self = this,
+			cache = SW.cache;
+		var drwData={};
+		var drwData_Url = "data/" + city_code + "_drw_" + city_name + ".json";
+		amapCache.loadData(drwData_Url, function(data) {
+			cache.sug[city_code] = {};
+			cache.dataForDrw[data.i] = data;
+			cache.cities[data.i] = cache.cities[data.i] || {};
+			cache.cities[data.i].name = data.s;
+			cache.cities[data.i].id = data.i;
+			cache.cities[data.i].offset = data.o;
+			cache.cities[data.i].lines = [];
+			cache.cities[data.i].linesNamePos = {};
+			// cache.cities[data.i].stations = [];
+			cache.cities[data.i].stations = {};
+			cache.cities[data.i].zolines = {};
+			cache.cities[data.i].zostations = [];
+			var _offset = data.o.split(',');
+			cache.offset[data.i] = cache.offset[data.i] || {};
+			var _x = 0,
+				_y = 0;
+			cache.offset[data.i].x = _offset[0];
+			cache.offset[data.i].y = _offset[1];
+			_x = 1000 - Number(_offset[0]);
+			_y = 1000 - Number(_offset[1]);
+			var sugobj = {};
+			for (var i = 0; i < data.l.length; i++) {
+				if (data.l[i].su == '1') {
+					var _coords = data.l[i].c;
+					for (var q = 0; q < _coords.length; q++) {
+						var _c = _coords[q].split(' ');
+						_coords[q] = (Number(_c[0]) + _x) + ' ' + (Number(_c[1]) + _y);
+					}
+					data.l[i].c = _coords;
+					data.l[i].linesNamePos = {};
+					data.l[i].linesNamePos[data.l[i].ls] = data.l[i].lp;
+					data.l[i].stname = [];
+
+					for (var j = 0; j < data.l[i].st.length; j++) {
+						data.l[i].stname.push(data.l[i].st[j].n);
+						var _p = data.l[i].st[j].p.split(' ');
+						data.l[i].st[j].p = (Number(_p[0]) + _x) + ' ' + (Number(_p[1]) + _y);
+						var rsArr = data.l[i].st[j].rs.split('|');
+						var newRsArr = [];
+						for (var h = 0; h < rsArr.length; h++) {
+							var rs = rsArr[h].split(' ');
+							newRsArr.push((Number(rs[0]) + _x) + ' ' + (Number(rs[1]) + _y))
+						}
+						data.l[i].st[j].rs = newRsArr.join('|');
+						if (data.l[i].st[j].su == '1') {
+							var cur = data.l[i].st[j];
+							// cache.cities[data.i].stations.push(cur);
+							cache.cities[data.i].stations[cur.si] = cur;
+							cache.stations[cur.si] = cur;
+							sugobj[cur.sp.split(' ').join('').toLowerCase() + '|' + cur.n.toLowerCase()] = cur;
+							cache.stationspoi[cur.poiid] = cur;
+							cache.navStations[cur.n] = cur;
+							cache.navStPixel[cur.p] = cur;
+						}
+					}
+
+					var _lpo = data.l[i].lp;
+					if (_lpo) {
+						for (var s = 0; s < _lpo.length; s++) {
+							var _lp = _lpo[s].split(' ');
+							_lpo[s] = (Number(_lp[0]) + _x) + ' ' + (Number(_lp[1]) + _y);
+						}
+						data.l[i].lp = _lpo;
+					}
+					cache.cities[data.i].linesNamePos[data.l[i].ls] = data.l[i].lp;
+					cache.cities[data.i].lines.push(data.l[i]);
+					cache.lines[data.l[i].ls] = data.l[i]; //写入line
+
+					var busid = data.l[i].li && data.l[i].li.split('|');
+					if (busid) {
+						for (var n = 0; n < busid.length; n++) {
+							cache.navlines[busid[n]] = data.l[i]
+
+						}
+					}
+				}
+
+			}
+			// self.toCache(data, info_data);
+			cache.sug[city_code] = sugobj;
+			cache.curCity.adcode = city_code;
+			cache.curCity.name = cache.cities[city_code].name;
+			cache.curCity.offset = cache.offset[city_code];
+			drwData=cache.cities[city_code];
+			callback(cache.cities[city_code]);
+		}, function() {
+			alert('城市地铁数据加载失败！');
+		});
+	},
+	//请求站点首末班车信息
+	loadStInfo: function (city_code,city_name){
+		var self=this;
+		var infoData_Url = "data/" + city_code + "_info_" + city_name + ".json";
+		amapCache.loadData(infoData_Url, function(info_data) {
+			for (var k = 0; k < info_data.l.length; k++) {
+				for (var l = 0; l < info_data.l[k].st.length; l++) {
+					self.cache.stationsInfo[info_data.l[k].st[l].si] = info_data.l[k].st[l];
+				}
+			}
+		},function() {
+			alert('地铁站点数据加载失败！');
+		});
+	},
+	// 请求数据查询转换接口
+	loadConvert: function (city_code,city_name) {
+		var self=this;
+		var trafficData_Url="data/" + city_code + "_conv_" + city_name + ".json";
+		amapCache.loadData(trafficData_Url, function(convertData) {
+			//遍历数据，缓存所有的路况信息到trafficInfo！
+			var len=convertData.length;
+			for(var i=0;i<len;i++){
+				self.cache.convertData[i]=convertData[i];
+			}
+		},function() {
+			alert('数据转换表加载出错');
+		});
+	},
+	//请求交通状况信息
+	loadTraffic: function (city_code,city_name) {
+		var self=this;
+		//http://ac-OnsG2j7w.clouddn.com/42df2acedfd37d9e.json
+		var trafficData_Url="data/" + city_code + "_trafficinfo_" + city_name + ".json";
+		amapCache.loadData(trafficData_Url, function(trafficData) {
+			//遍历数据，缓存所有的路况信息到trafficInfo！
+			var len=trafficData.jtlList.length;
+			for (var k = 0; k < len; k++) {
+				var info={};
+				var flashCode=trafficData.jtlList[k].flashCode;
+				var start=flashCode.slice(3).split("_")[0];
+				var end=flashCode.slice(3).split("_")[1].slice(0,9);
+				var loadRate=trafficData.jtlList[k].loadData;
+				var refreshTime=trafficData.jtlList[k].startTime;
+				info.startAcc=start;
+				info.endAcc=end;
+				info.loadRate=loadRate;
+				info.refreshTime=refreshTime;
+				self.cache.trafficInfo.push(info);
+			}
+		},function() {
+			alert('交通路况数据加载失败！');
+		});
 	},
 	loading: function() {
 		$('.loading-outer').css('position', 'fixed');

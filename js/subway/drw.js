@@ -3,6 +3,7 @@ var drwSw = {
 	trafficInfo:SW.cache.trafficInfo,
 	stations:SW.cache.stations,
 	convertData:SW.cache.convertData,
+	stationsInfo: SW.cache.stationsInfo,/*几个数据接口*/
 	w: document.documentElement.clientWidth,
 	h: document.documentElement.clientHeight,
 	t_top: 0,
@@ -62,7 +63,8 @@ var drwSw = {
 				ox = SW.cache.curCity.offset.x;
 				oy = SW.cache.curCity.offset.y;
 			}
-		} else {
+		}
+		else {
 			//'4401':广州
 			//'2102':大连
 			//'3205':苏州
@@ -74,7 +76,8 @@ var drwSw = {
 				var offset = SW.cache.stations[nearStation].p;
 				ox = parseInt(offset.split(' ')[0]);
 				oy = parseInt(offset.split(' ')[1]);
-			} else {
+			}
+			else {
 				ox = SW.cache.curCity.offset.x;
 				oy = SW.cache.curCity.offset.y;
 			}
@@ -85,6 +88,7 @@ var drwSw = {
 		var moveY = Number(screenY) - Number(originY);
 		drwSw.moveX = moveX;
 		drwSw.moveY = moveY;
+
 		self.deletInProgress(drwData);
 		self.drawSvgSubway(drwData, lightStation, param);
 	},
@@ -104,7 +108,7 @@ var drwSw = {
 		self.drwSwBox(drwData);
 		setTimeout(function() {
 			/*这里插播，丰富一下路况信息*/
-			self.addTrafficInfo(self.currLines);
+			console.log(self.currLines);
 			self.drawSvg(drwData, station, param);
 			self.svgReady = true;
 		}, 10)
@@ -155,6 +159,7 @@ var drwSw = {
 			// }
 		}, 0)
 	},
+	//初始化currLines数据
 	deletInProgress: function(drwData) {
 		var self = this;
 		var j = 0;
@@ -361,67 +366,6 @@ var drwSw = {
 		return info;
 	},
 	// 以路线为筛选条件丰富路况信息
-	addTrafficInfo: function (drwData) {
-		//依赖self.convertData,self.trafficInfo,self.stations;
-		var self = this;
-		//加入站点名称信息
-		for (var line_id in drwData) {
-			for (var i in self.convertData) {
-				if (self.convertData[i].line_id == line_id) { /*已经选择了一条地铁*/
-					for (var j = 0; j < self.convertData[i].stations.length; j++) { /*已经选中了单个站点*/
-						var acc = self.convertData[i].stations[j].Acc;
-						/*已经选中了单个车站*/
-						var name = self.convertData[i].stations[j].Name;
-						/*已经是固定值*/
-						for (var k in self.trafficInfo) { /*去遍历所有的路段信息*/
-							if (self.trafficInfo[k].startAcc == acc) { /*查到当前站点为起点的路段*/
-								self.trafficInfo[k].startName = name;
-							}
-						}
-						for (var k in self.trafficInfo) {
-							if (self.trafficInfo[k].endAcc == acc) { /*查到当前站点为起点的路段*/
-								self.trafficInfo[k].endName = name;
-							}
-						}
-					}
-				}
-			}
-		}
-		//加入位置和颜色color信息
-		for (var i in self.stations) {
-			var name = self.stations[i].n;
-			var position = self.stations[i].p;
-			var stationId=self.stations[i].si;
-			for (var k in self.trafficInfo) {
-				//处理颜色color
-				var loadData=self.trafficInfo[k].loadRate;
-				var color={};
-				if(loadData>0 && loadData<=0.25){
-					color="009578";
-				}else if(loadData>0.25 && loadData<=0.5){
-					color="96C61A";
-				}else if(loadData>0.5 && loadData<=0.75){
-					color="C99616";
-				}else{
-					color="AF272B";
-				}
-				self.trafficInfo[k].color=color;
-
-				//加入开始位置信息
-				if (self.trafficInfo[k].startName == name) {
-					self.trafficInfo[k].startPos = position;
-					self.trafficInfo[k].startId = stationId;
-				}
-			}
-			for (var k in self.trafficInfo) {
-				if (self.trafficInfo[k].endName == name) {
-					self.trafficInfo[k].endPos = position;
-					self.trafficInfo[k].endId = stationId;
-				}
-			}
-		}
-		console.log(self.trafficInfo);
-	},
 	// 编译交通状况信息
 	TrafficInfo: function (drwData) {
 		// 思路:从trafficData中获取lineid,stationname,
@@ -478,7 +422,6 @@ var drwSw = {
 				drwSw.drwlines(subway_line, Left, current_drwData);
 				drwSw.drwlines(subway_line, Right, current_drwData);
 			}
-
 		} else if (status == 'select') {
 			var svg_select = document.getElementById("g-select");
 			svg_select.appendChild(subway_line);
