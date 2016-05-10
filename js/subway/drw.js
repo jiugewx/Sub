@@ -371,7 +371,7 @@ var drwSw = {
 		//console.log(self.trafficInfo);
         var Left={},Right={};
         for(var k in self.trafficInfo){
-            console.log(self.trafficInfo[k],k);
+            //console.log(self.trafficInfo[k],k);
             if(self.trafficInfo[k].direction=="right"){
                 var rightmain=self.trafficInfo[k].path;
                 var rightpath=self.doublePathInfo(rightmain,3).RightPath;
@@ -379,6 +379,7 @@ var drwSw = {
                 //console.log("right",rightpath,self.trafficInfo[k].startName+" to "+self.trafficInfo[k].endName);
                 Right.path=rightpath;
                 Right.color="AF272B";
+                Right.color=rightcolor;
                 Right.direction=self.trafficInfo[k].direction;
                 self.drwlines(parentNode,Right,LineId_Data);
             }
@@ -388,6 +389,7 @@ var drwSw = {
                 var leftcolor=self.trafficInfo[k].color;
                 Left.path=leftpath;
                 Left.color= "C99616";
+                Left.color=leftcolor;
                 Left.direction=self.trafficInfo[k].direction;
                 //console.log("Left",leftpath,self.trafficInfo[k].startName+" to "+self.trafficInfo[k].endName);
                 self.drwlines(parentNode,Left,LineId_Data);
@@ -410,7 +412,7 @@ var drwSw = {
 				var dataset_line_arr = current_drwData.c;
 
 				/*打印地铁线名称*/
-				console.log("======##################=======" + drwData[line_id].ln + "=========############=====");
+				//console.log("======##################=======" + drwData[line_id].ln + "=========############=====");
                 //画双线
                 var station = current_drwData.st;
 				var from = station[0].sp,
@@ -433,7 +435,7 @@ var drwSw = {
 				drwSw.drwlines(subway_line, Right, current_drwData);
 
                 //console.log(Right);
-                console.log(current_drwData);
+                //console.log(current_drwData);
                 clearTimeout(timer);
                 timer = setTimeout(function () {
                     self.drwTrafficLines(subway_line,current_drwData);
