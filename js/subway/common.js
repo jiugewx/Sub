@@ -434,7 +434,6 @@ var SW = {
 									//当drw信息中的station的名字与traffic信息中的名字匹配时
 									if (st[x].n == name) {
 										self.cache.trafficInfo[k].startPos = st[x].p;
-										self.cache.trafficInfo[k].startStationIndex =x;
 									}
 								}
 								var startPos = self.cache.trafficInfo[k].startPos;
@@ -444,6 +443,7 @@ var SW = {
 									}
 								}
 							}
+
 						}
 						//获取end信息
 						for (var k in self.cache.trafficInfo) {
@@ -453,7 +453,6 @@ var SW = {
 								for (var x in st) {
 									if (st[x].n == name) {
 										self.cache.trafficInfo[k].endPos = st[x].p;
-										self.cache.trafficInfo[k].endStationIndex =x;
 									}
 								}
 								var endPos = self.cache.trafficInfo[k].endPos;
@@ -462,6 +461,14 @@ var SW = {
 										self.cache.trafficInfo[k].endIndex = y;
 									}
 								}
+							}
+						}
+						//修正环线的的首尾连接问题
+						for (var k in self.cache.trafficInfo) {
+							if (self.cache.trafficInfo[k].endIndex - self.cache.trafficInfo[k].startIndex> 15) {
+								self.cache.trafficInfo[k].endIndex = 0;
+							}else if(self.cache.trafficInfo[k].startIndex - self.cache.trafficInfo[k].endIndex> 15){
+								self.cache.trafficInfo[k].startIndex = 0;
 							}
 						}
 						//增加path和color
