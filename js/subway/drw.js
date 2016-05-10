@@ -290,15 +290,14 @@ var drwSw = {
 		var node_first = 'M' + onepath[0].split(' ').join(',');
 		var path = node_first + 'L' + onepath.join('L');
 		var line_path = document.createElementNS(this.ns_svg, 'path');
-		line_path.setAttribute("id", "line-"+ direction+"-"+ LineId_Data.ls);
-		line_path.setAttribute("name", LineId_Data.ls);
+		//line_path.setAttribute("id", "line-"+ LineId_Data.ls+"-"+ direction);
+		line_path.setAttribute("name", "line-"+ LineId_Data.ln+"-"+ direction);
 		var color={};
 		if(pathName.color){
 			color=pathName.color;
 		}else{
 			color=LineId_Data.cl;
 		}
-
 		line_path.setAttribute("stroke", "#" + color);
 		line_path.setAttribute("d", path);
 		parentNode.appendChild(line_path);
@@ -353,12 +352,12 @@ var drwSw = {
 			var Xoffset=parseInt(offset*Math.cos(Math.PI/2-p_a[Path_id])),
 				Yoffset=parseInt(offset*Math.sin(Math.PI/2+p_a[Path_id]));
 			//左偏移
-			var LeftX=p.x-Xoffset;
-			var LeftY=p.y+Yoffset;
+			var LeftX=p.x+Xoffset;
+			var LeftY=p.y-Yoffset;
 			LeftPath.push(LeftX+" "+LeftY);
 			//右偏移
-			var RightX= p.x+Xoffset;
-			var RightY=p.y-Yoffset;
+			var RightX= p.x-Xoffset;
+			var RightY=p.y+Yoffset;
 			RightPath.push(RightX+" "+RightY);
 		}
 		return info;
@@ -428,14 +427,13 @@ var drwSw = {
 				Right.color ="009578";
 
 				//确定两条线的终点信息
-				Left.direction = start+"to"+end;
-				Right.direction = end+"to"+start;
+				Left.direction = end+"-to-"+start;
+				Right.direction = start+"-to-"+end;
 
 				drwSw.drwlines(subway_line, Left, current_drwData);
 				drwSw.drwlines(subway_line, Right, current_drwData);
 
-                //console.log(Right);
-                //console.log(current_drwData);
+                //一定间隔之后显示路况信息,因为路况信息需要load,要等待数据请求成功才能呈现.(异步)
                 clearTimeout(timer);
                 timer = setTimeout(function () {
                     self.drwTrafficLines(subway_line,current_drwData);

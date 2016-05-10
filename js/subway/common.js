@@ -470,7 +470,7 @@ var SW = {
 							}else if(self.cache.trafficInfo[k].startIndex - self.cache.trafficInfo[k].endIndex> 15){
 								self.cache.trafficInfo[k].startIndex = 0;
 							}
-							self.cache.trafficInfo[k].direction = self.cache.trafficInfo[k].startName+"to"+self.cache.trafficInfo[k].endName;
+							self.cache.trafficInfo[k].direction = self.cache.trafficInfo[k].startName+"-to-"+self.cache.trafficInfo[k].endName;
 						}
 						//增加path和color
 						for (var k in self.cache.trafficInfo) {
@@ -482,10 +482,10 @@ var SW = {
 								var end = Number(self.cache.trafficInfo[k].endIndex);
 								if (start < end) {
 									self.cache.trafficInfo[k].path = dataset_line_arr.slice(start, end + 1);
-									self.cache.trafficInfo[k].ref_direct = "left";
+									self.cache.trafficInfo[k].ref_direct = "right";
 								} else {
 									self.cache.trafficInfo[k].path = dataset_line_arr.slice(end, start + 1);
-									self.cache.trafficInfo[k].ref_direct = "right";
+									self.cache.trafficInfo[k].ref_direct = "left";
 								}
 							}
 							//增加color
