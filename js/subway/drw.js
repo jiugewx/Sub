@@ -291,7 +291,7 @@ var drwSw = {
 		var path = node_first + 'L' + onepath.join('L');
 		var line_path = document.createElementNS(this.ns_svg, 'path');
 		//line_path.setAttribute("id", "line-"+ LineId_Data.ls+"-"+ direction);
-		line_path.setAttribute("name", "line-"+ LineId_Data.ln+"-"+ direction);
+		line_path.setAttribute("name", "line-"+ pathName.reflineName +"-"+ direction);
 		var color={};
 		if(pathName.color){
 			color=pathName.color;
@@ -380,6 +380,7 @@ var drwSw = {
                 Right.color="AF272B";
                 Right.color=rightcolor;
                 Right.direction=self.trafficInfo[k].direction;
+				Right.reflineName=self.trafficInfo[k].reflineName;
                 self.drwlines(parentNode,Right,LineId_Data);
             }
             if(self.trafficInfo[k].ref_direct=="left"){
@@ -390,6 +391,7 @@ var drwSw = {
                 Left.color= "C99616";
                 Left.color=leftcolor;
                 Left.direction=self.trafficInfo[k].direction;
+				Left.reflineName=self.trafficInfo[k].reflineName;
                 //console.log("Left",leftpath,self.trafficInfo[k].startName+" to "+self.trafficInfo[k].endName);
                 self.drwlines(parentNode,Left,LineId_Data);
             }
@@ -400,11 +402,13 @@ var drwSw = {
 		var self = this;
 		var svg_g = document.getElementById("svg-g");
 		var subway_line = document.createElementNS(self.ns_svg, 'g');
+		var traffic_line= document.createElementNS(self.ns_svg, 'g');
 		subway_line.setAttribute("id", "g-line-" + status);
-
+		traffic_line.setAttribute("id", "g-traffic-" + status);
 		if (status == 'normal') {
 			svg_g.appendChild(subway_line);
-            var timer;
+			svg_g.appendChild(traffic_line);
+			var timer;
 			//for遍历每条地铁数据,drwData[id].c是一个包含锚点坐标的数组.
 			for (var line_id in drwData) {
 				var current_drwData = drwData[line_id];
@@ -430,14 +434,19 @@ var drwSw = {
 				Left.direction = end+"-to-"+start;
 				Right.direction = start+"-to-"+end;
 
+				//确定所属线段的line_id
+				Left.reflineName = current_drwData.ln;
+				Right.reflineName = current_drwData.ln;
+
 				drwSw.drwlines(subway_line, Left, current_drwData);
 				drwSw.drwlines(subway_line, Right, current_drwData);
 
-                //一定间隔之后显示路况信息,因为路况信息需要load,要等待数据请求成功才能呈现.(异步)
-                clearTimeout(timer);
-                timer = setTimeout(function () {
-                    self.drwTrafficLines(subway_line,current_drwData);
-                }, 100);
+				//一定间隔之后显示路况信息,因为路况信息需要load,要等待数据请求成功才能呈现.(异步执行)
+				clearTimeout(timer);
+				timer = setTimeout(function () {
+					self.drwTrafficLines(traffic_line, current_drwData);
+
+				}, 200);
 			}
 		} else if (status == 'select') {
 			var svg_select = document.getElementById("g-select");

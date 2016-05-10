@@ -430,6 +430,7 @@ var SW = {
 								/*查到当前站点为起点的路段*/
 								self.cache.trafficInfo[k].startName = name;
 								self.cache.trafficInfo[k].reflineId = line_id;
+								self.cache.trafficInfo[k].reflineName = current_drwData.ln;
 								for (var x in st) {
 									//当drw信息中的station的名字与traffic信息中的名字匹配时
 									if (st[x].n == name) {
