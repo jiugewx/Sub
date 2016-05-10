@@ -520,6 +520,7 @@ var SW = {
 	timeoutHandle: function (city_code) {
 		var self=this;
 		clearTimeout(self.timer);
+		//这里只是要实现一个异步的处理交通路况信息,由于后期使用了异步绘制这个路况信息,这里的异步处理的作用就不那么明显
 		self.timer = setTimeout(function () {
 			var drwData=self.cache.cities[city_code];
 			for (var i = 0; i < drwData.lines.length; i++) {
@@ -530,7 +531,7 @@ var SW = {
 			//增加交通状况信息
 			SW.addTrafficInfo(self.cache.currLines);
 			//console.log("common",self.cache.trafficInfo);
-		},100);/*50ms后修改交通状况信息*/
+		},50);/*50ms后修改交通状况信息*/
 	},
 	//这里是请求对应城市的地铁数据
 	loadMainData: function (city_code,city_name,callback) {
