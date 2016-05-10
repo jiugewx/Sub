@@ -231,7 +231,7 @@ var drwSw = {
 		self.lineSort();
 		self.drwSwLines(self.currLines, status);
 		self.drwSwStations(drwData, status, station);
-		self.drwSwStationsName(drwData, status, 12, 20); //缩小为0.5，第二个参数为24
+		self.drwSwStationsName(drwData, status, 10, 20); //缩小为0.5，第二个参数为24
 		self.drwSwLinesName(drwData, status);
 		self.drawBg(self.currLines);
 		self.addFilter(self.currLines);
@@ -290,7 +290,7 @@ var drwSw = {
 		var node_first = 'M' + onepath[0].split(' ').join(',');
 		var path = node_first + 'L' + onepath.join('L');
 		var line_path = document.createElementNS(this.ns_svg, 'path');
-		line_path.setAttribute("id", "lineTo-"+ direction+ LineId_Data.ls);
+		line_path.setAttribute("id", "line-"+ direction+"-"+ LineId_Data.ls);
 		line_path.setAttribute("name", LineId_Data.ls);
 		var color={};
 		if(pathName.color){
@@ -372,7 +372,7 @@ var drwSw = {
         var Left={},Right={};
         for(var k in self.trafficInfo){
             //console.log(self.trafficInfo[k],k);
-            if(self.trafficInfo[k].direction=="right"){
+            if(self.trafficInfo[k].ref_direct=="right"){
                 var rightmain=self.trafficInfo[k].path;
                 var rightpath=self.doublePathInfo(rightmain,3).RightPath;
                 var rightcolor=self.trafficInfo[k].color;
@@ -383,7 +383,7 @@ var drwSw = {
                 Right.direction=self.trafficInfo[k].direction;
                 self.drwlines(parentNode,Right,LineId_Data);
             }
-            if(self.trafficInfo[k].direction=="left"){
+            if(self.trafficInfo[k].ref_direct=="left"){
                 var leftmain=self.trafficInfo[k].path;
                 var leftpath=self.doublePathInfo(leftmain,3).LeftPath;
                 var leftcolor=self.trafficInfo[k].color;
@@ -415,8 +415,8 @@ var drwSw = {
 				//console.log("======##################=======" + drwData[line_id].ln + "=========############=====");
                 //画双线
                 var station = current_drwData.st;
-				var from = station[0].sp,
-					to = station[station.length - 1].sp;
+				var start = station[0].n,
+					end = station[station.length - 1].n;
 				var Left = {}, Right = {};
 
 				//获取到两条路径信息，分路径信息
@@ -428,8 +428,8 @@ var drwSw = {
 				Right.color ="009578";
 
 				//确定两条线的终点信息
-				Left.direction = to;
-				Right.direction = from;
+				Left.direction = start+"to"+end;
+				Right.direction = end+"to"+start;
 
 				drwSw.drwlines(subway_line, Left, current_drwData);
 				drwSw.drwlines(subway_line, Right, current_drwData);
