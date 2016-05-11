@@ -42,7 +42,7 @@
         <entry file="file://$PROJECT_DIR$/traffic.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.59302324">
-              <caret line="74" column="5" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+              <caret line="78" column="70" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="70" />
               <folding />
             </state>
           </provider>
@@ -598,7 +598,7 @@
       <workItem from="1462756972837" duration="30691000" />
       <workItem from="1462793203096" duration="9093000" />
       <workItem from="1462891493165" duration="6373000" />
-      <workItem from="1462967206917" duration="6733000" />
+      <workItem from="1462967206917" duration="7815000" />
     </task>
     <task id="LOCAL-00001" summary="更新画图数据">
       <created>1462501255612</created>
@@ -672,11 +672,17 @@
       <option name="project" value="LOCAL" />
       <updated>1462898954479</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="写了一个时间格式化的方法">
+      <created>1462974458057</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1462974458057</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81032000" />
+    <option name="totallyTimeSpent" value="82114000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -684,6 +690,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32771084" sideWeight="0.50500715" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -700,7 +707,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947367" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -734,7 +740,8 @@
     <MESSAGE value="修正了doubleline的输出信息" />
     <MESSAGE value="修正路况信息显示的name" />
     <MESSAGE value="修正common" />
-    <option name="LAST_COMMIT_MESSAGE" value="修正common" />
+    <MESSAGE value="写了一个时间格式化的方法" />
+    <option name="LAST_COMMIT_MESSAGE" value="写了一个时间格式化的方法" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1304,7 +1311,7 @@
     <entry file="file://$PROJECT_DIR$/traffic.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.59302324">
-          <caret line="74" column="5" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+          <caret line="78" column="70" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="70" />
           <folding />
         </state>
       </provider>

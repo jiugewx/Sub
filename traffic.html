@@ -37,35 +37,35 @@
         var today=newYear+"/"+newMonth+"/"+newData;
         var todaySeconds=new Date(today).getTime();
         // 计算日期的差值
-        var cha=todaySeconds-oldDataSeconds;
+        var difference=todaySeconds-oldDataSeconds;
         // 获取所给时间的 分时信息如 23:12
         var oldtime =dateTime.split(" ")[1].toString().substr(0,5);
-        var isToday=WhichDay(cha,oldtime,dateTime);
+        var isToday=WhichDay(difference,oldtime,dateTime);
         // 判断
         if(hourC>=8){
-            result="更新于:"+isToday;
+            result="更新于"+isToday;
         }
         else if (hourC >= 1 && hourC<8) {
-            result = "更新于:" + parseInt(hourC) + "小时前";
+            result = "更新于" + parseInt(hourC) + "小时前";
         }
         else if (minC >= 1) {
-            result = "更新于:" + parseInt(minC) + "分钟前";
+            result = "更新于" + parseInt(minC) + "分钟前";
         } else
             result = "刚刚";
         return result;
     }
 
-    var dateTime = '2016-05-09 12:13:15';
+    var dateTime = '2016-05-11 21:13:15';
     var showTime = formatTime(dateTime);
 
     console.log(showTime);
 
-    function WhichDay(cha,oldtime,dateTime) {
-        if(cha < 86400000 && cha>=0){
+    function WhichDay(difference,oldtime,dateTime) {
+        if(difference < 86400000 && difference>=0){
             isToday=" 今天"+oldtime;
-        }else if(cha == 86400000){
+        }else if(difference == 86400000){
             isToday=" 昨天"+oldtime;
-        }else if(cha == 172800000){
+        }else if(difference == 172800000){
             isToday=" 前天"+oldtime;
         }else {
             var dataArr=dateTime.split(" ")[0].toString().split("-");
