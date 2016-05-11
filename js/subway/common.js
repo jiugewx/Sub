@@ -31,7 +31,7 @@ var SW = {
 	// 从adcode前四位读取文件名称
 	fileNameData: {
 		'1100': 'beijing',
-		'3100': 'shanghai',
+		/*'3100': 'shanghai',
 		'4401': 'guangzhou',
 		'4403': 'shenzhen',
 		'4201': 'wuhan',
@@ -54,11 +54,11 @@ var SW = {
 		'3302': 'ningbo',
 		'3202': 'wuxi',
 		'3702': 'qingdao',
-		'3601': 'nanchang'
+		'3601': 'nanchang'*/
 	},
 	cityname: {
 		'1100': '\u5317\u4eac', //北京,
-		'3100': '\u4e0a\u6d77', //上海,
+		/*'3100': '\u4e0a\u6d77', //上海,
 		'4401': '\u5e7f\u5dde', //广州,
 		'4403': '\u6df1\u5733', //深圳,
 		'4201': '\u6b66\u6c49', //武汉,
@@ -81,15 +81,15 @@ var SW = {
 		'3302': '\u5b81\u6ce2', //宁波
 		'3202': '\u65e0\u9521', //无锡
 		'3702': '\u9752\u5c9b', //青岛
-		'3601': '\u5357\u660c' //南昌
+		'3601': '\u5357\u660c' //南昌*/
 	},
 	cityListData: [
 		{
 		adcode: '1100',
 		spell: 'beijing',
 		cityname: '北京'
-	},
-		{
+	}
+		/*{
 		adcode: '3100',
 		spell: 'shanghai',
 		cityname: '上海'
@@ -208,7 +208,8 @@ var SW = {
 		adcode: '3601',
 		spell: 'nanchang',
 		cityname: '南昌'
-	}],
+	}*/
+	],
 	//数据初始化!
 	swInit: function() {
 		var self = this;
@@ -217,68 +218,83 @@ var SW = {
 		amapCache.init({
 			complete: function() {
 				self.initCity(); //根据缓存加载相应城市
-				tip.init();
-				self.loadingOver()
+				tip.init(); //初始化事件绑定信息
+				self.loadingOver();//加载完成
 			}
 		});
 	},
     //初始化城市信息
 	initCity: function() {
 		var self = this;
+		//如果有adcode那就展示城市
 		self.showCity();
-		// 通过监听hashchange来更改城市
+		// 通过监听hashchange事件来更改城市
 		$(window).on('hashchange', function() {
 			self.showCity();
 		});
 	},
-	//显示城市
+	//显示城市：获取hash值，依据hash值匹配对应城市信息，
 	showCity: function() {
 		var self = this,
 			cache = SW.cache;
 		var hash = decodeURIComponent(window.location.hash).replace(/^\#/, '');
-		var param = self.param2json(hash);
+		//decodeURIComponent 对 encodeURIComponent() 函数编码的 URI 进行解码。replace(/^\#/, '')，把#号给去除了。
 
-		if(!param || !param.src || param.src && param.src != 'alipay'){
-			$('#subway, #citypage, #srhpage').addClass('msubway');
+		var param = self.param2json(hash);
+		//self.param2json(hash)就是将hash转为json对象，"city=1100"字符串转换为了object的格式，｛"city":"1100"｝
+
+		if (!param || !param.src || param.src && param.src != 'alipay') {
+			$('#subway, #citypage').addClass('msubway');
 		}
 
+		//如果param不存在，那就打开城市选择列表。
 		if (!param) {
 			self.subwayFlag = 0;
 			return tip.cityChange();
 		}
 		self.param = param;
 
+		//取adcode为param中city的值。
 		var adcode = param.city && param.city.substr(0, 4);
+		//var adcode = "1100";
 
+		//如果城市代码存在，那就判断文件中是否存有对应的地铁图
 		if (adcode != '') {
 			if (!self.fileNameData[adcode]) {
-				// 该城市没有对应地铁图
+				// 该城市没有对应地铁图,那就打开cityChange的列表
 				self.subwayFlag = 0;
 				return tip.cityChange();
 			} else {
+				// 该城市有对应地铁图,那就显示#subway
 				self.subwayFlag = 1;
 				$('#subway').show()
 			}
-		} else {
+		}
+		//如果城市代码不存在
+		else {
 			self.subwayFlag = 0;
 			return tip.cityChange();
 		}
+
 		$('.city_name').html(self.cityname[adcode]);
+		//改变网页的标题
 		document.title = self.cityname[adcode] + '地铁图';
-		// 此城市代码与当前城市的代码不一致
-		// tip.hideCitylist();
-		if(adcode != cache.curCity.adcode){
+
+		// 此城市代码与当前城市的代码不一致，即发生了变化，tip.hideCitylist();
+		if (adcode != cache.curCity.adcode) {
 			$("#subway-svg,#infowindow-content,#tip-content,.line-caption").remove();
 			drwSw.svgReady = false;
+			//开启加载对应城市的数据
 			self.loading();
-			self.loadData(adcode, function(drwData) {
+			self.loadData(adcode, function (drwData) {
 				//这里的drwData是loadData方法中callback的参数。这个参数在loadData中被定义。
 				self.loadingOver();
+				//绘制对应城市的地铁
 				drwSw.draw(drwData, param);
 			});
-		}else{
+		} else {
+			//显示车站
 			SW.showStation(param);
-			//SW.showRoute(param);
 		}
 	},
 	//显示城市的地铁站
@@ -296,91 +312,7 @@ var SW = {
             tip.setCenter(center);
 		}
 	},
-	//显示起始路线
-	showRoute: function (param) {
-		var startid = param.startid,
-			startname = param.startname,
-			destid = param.destid,
-			destname = param.destname;
-		var start = SW.cache.stations[startid] || SW.cache.stationspoi[startid] || SW.cache.navStations[startname],
-			dest = SW.cache.stations[destid] || SW.cache.stationspoi[destid] || SW.cache.navStations[destname];
-		if(start && dest){
-			startid = start.si;
-			var startInfo = {
-				'name': start.n,
-				'poiid': start.poiid,
-				'lon': start.sl.split(',')[0],
-				'lat': start.sl.split(',')[1]
-			};
-			destid = dest.si;
-			var destInfo = {
-				'name': dest.n,
-				'poiid': dest.poiid,
-				'lon': dest.sl.split(',')[0],
-				'lat': dest.sl.split(',')[1]
-			};
-			if($('#nav_start .marker-out').length <= 0){
-				tip.setStartEnd(startid, 'start', startInfo);
-			}
-			if($('#nav_end .marker-out').length <= 0){
-				tip.setStartEnd(destid, 'end', destInfo);
-			}
-
-			document.title = start.n + ' - ' + dest.n;
-
-            tip.route();
-
-            if(param.src && param.src == 'alipay'){
-            	$('.filter_btn, .route_close_btn').hide();
-            }
-		}
-	},
-	changeCity: function(adcode) {
-		var self = this;
-		var param = null;
-		var selfParam = self.param;
-		self.subwayFlag = 1;
-		$('#subway').show();
-		if (selfParam && selfParam.city && (selfParam.city == adcode || selfParam.city.substr(0, 4) == adcode)) {
-			param = selfParam;
-		} else {
-			param = {
-				'city': adcode
-			};
-		}
-
-		$('.city_name').html(self.cityname[adcode]);
-
-
-		if (tip.routeState) {
-			tip.closeRoute();
-		}
-
-		if (tip.fromendState) {
-			tip.clearMarker('start');
-			tip.clearMarker('end');
-		}
-
-		self.loading();
-		self.loadData(adcode, function(drwData) {
-			self.loadingOver();
-			drwSw.draw(drwData, param);
-		});
-	},
-	loadCityList: function() {
-		var self = this,
-			cache = SW.cache;
-		if (!cache.citylist || cache.citylist.length <= 0) {
-			//请求城市信息的列表
-			var requestUrl = "data/citylist.json";
-			amapCache.loadData(requestUrl, function(data) {
-				cache.citylist = data.citylist;
-				for (var i = data.citylist.length - 1; i >= 0; i--) {
-					cache.citylistByAdcode[data.citylist[i].adcode] = data.citylist[i];
-				}
-			});
-		}
-	},
+	//加载数据
 	loadData: function(adcode, callback) {
 		var self = this,
 			cache = SW.cache;
@@ -405,6 +337,7 @@ var SW = {
 			self.timeoutHandle(city_code);/*延迟处理交通路况信息*/
 		}
 	},
+	//转译交通路况信息
 	addTrafficInfo: function (drwData) {
 		//依赖self.cache.convertData,self.cache.trafficInfo,self.cache.stations;
 		var self = this;
@@ -490,7 +423,7 @@ var SW = {
 								}
 							}
 							//增加color
-							if (loadData > 0 && loadData <= 0.25) {
+							if (loadData >= 0 && loadData <= 0.25) {
 								color = "009578";
 							} else if (loadData > 0.25 && loadData <= 0.5) {
 								color = "96C61A";
@@ -517,6 +450,7 @@ var SW = {
 			}
 		}
 	},
+	//延迟处理交通路况信息
 	timeoutHandle: function (city_code) {
 		var self=this;
 		clearTimeout(self.timer);
@@ -627,6 +561,8 @@ var SW = {
 			callback(cache.cities[city_code]);
 		}, function() {
 			alert('城市地铁数据加载失败！');
+			self.subwayFlag = 0;
+			tip.cityChange();
 		});
 	},
 	//请求站点首末班车信息
@@ -654,7 +590,7 @@ var SW = {
 				self.cache.convertData[i]=convertData[i];
 			}
 		},function() {
-			alert('数据转换表加载出错');
+			alert('数据转换表加载出错！');
 		});
 	},
 	//请求交通状况信息
@@ -682,6 +618,7 @@ var SW = {
 			alert('交通路况数据加载失败！');
 		});
 	},
+	//正在加载
 	loading: function() {
 		$('.loading-outer').css('position', 'fixed');
 		$('.loading-bg').css({
@@ -690,9 +627,11 @@ var SW = {
 		});
 		$('.loading-bg .loading').css('top', '-30px');
 	},
+	//加载完成
 	loadingOver: function() {
 		$('.loading-bg').css('display', 'none');
 	},
+	//地址栏里的参数转为一个json对象
 	param2json: function(str) {
 		if (!str || str == '') {
 			return null
@@ -710,5 +649,76 @@ var SW = {
 			}
 			return json
 		}
-	}
+	},
+	//showRoute: function (param) {
+	//	var startid = param.startid,
+	//		startname = param.startname,
+	//		destid = param.destid,
+	//		destname = param.destname;
+	//	var start = SW.cache.stations[startid] || SW.cache.stationspoi[startid] || SW.cache.navStations[startname],
+	//		dest = SW.cache.stations[destid] || SW.cache.stationspoi[destid] || SW.cache.navStations[destname];
+	//	if(start && dest){
+	//		startid = start.si;
+	//		var startInfo = {
+	//			'name': start.n,
+	//			'poiid': start.poiid,
+	//			'lon': start.sl.split(',')[0],
+	//			'lat': start.sl.split(',')[1]
+	//		};
+	//		destid = dest.si;
+	//		var destInfo = {
+	//			'name': dest.n,
+	//			'poiid': dest.poiid,
+	//			'lon': dest.sl.split(',')[0],
+	//			'lat': dest.sl.split(',')[1]
+	//		};
+	//		if($('#nav_start .marker-out').length <= 0){
+	//			tip.setStartEnd(startid, 'start', startInfo);
+	//		}
+	//		if($('#nav_end .marker-out').length <= 0){
+	//			tip.setStartEnd(destid, 'end', destInfo);
+	//		}
+    //
+	//		document.title = start.n + ' - ' + dest.n;
+    //
+	//		tip.route();
+    //
+	//		if(param.src && param.src == 'alipay'){
+	//			$('.filter_btn, .route_close_btn').hide();
+	//		}
+	//	}
+	//},
+	//改变城市
+	/*changeCity: function(adcode) {
+	 var self = this;
+	 var param = null;
+	 var selfParam = self.param;
+	 self.subwayFlag = 1;
+	 $('#subway').show();
+	 if (selfParam && selfParam.city && (selfParam.city == adcode || selfParam.city.substr(0, 4) == adcode)) {
+	 param = selfParam;
+	 } else {
+	 param = {
+	 'city': adcode
+	 };
+	 }
+
+	 $('.city_name').html(self.cityname[adcode]);
+
+
+	 if (tip.routeState) {
+	 tip.closeRoute();
+	 }
+
+	 if (tip.fromendState) {
+	 tip.clearMarker('start');
+	 tip.clearMarker('end');
+	 }
+
+	 self.loading();
+	 self.loadData(adcode, function(drwData) {
+	 self.loadingOver();
+	 drwSw.draw(drwData, param);
+	 });
+	 },*/
 };

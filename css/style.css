@@ -265,7 +265,7 @@ body.disable-default-action {
 .page-title {
     margin: 10px auto;
     font-size: 20px;
-    color: #6a6968;
+    /*color: #6a6968;*/
 }
 
 #subwaySvg {
@@ -339,7 +339,7 @@ body.disable-default-action {
     bottom: 40px;
     left: 16px;
     box-shadow: 0 0 1px 0 rgba(0, 0, 0, .3);
-    border-radius: 5px;
+    border-radius: 3px;
     z-index: 20;
     font-size: 9px;
     text-align: center;

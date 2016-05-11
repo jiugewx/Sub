@@ -108,8 +108,13 @@
     <script type="text/javascript" src="./js/subway/main.js"></script>
     <!--// /build -->
     <script type="text/javascript">
-        /*根据缓存初始化相应城市*/
-        SW.swInit();
+
+        /*建立默认跳转*/
+        window.location.hash = "#city=1100";
+        //延迟访问：根据缓存初始化相应城市
+        setTimeout(function () {
+            SW.swInit();
+        },50);
     </script>
     <!--http://map.amap.com/subway/-->
 </body>

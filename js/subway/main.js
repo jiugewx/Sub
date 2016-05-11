@@ -76,7 +76,7 @@ var tip = {
     routeState: false,
     fromendState: false,
     pathData: null,
-    //初始化信息
+    //初始化事件绑定信息
     init: function() {
         this.bindEvent();
     },
@@ -298,27 +298,6 @@ var tip = {
             }, 60);
         });
 
-        // 最后的return false是为了修复Bug https://k3.alibaba-inc.com/issue/8058757?versionId=1323537
-        //$('.tip_route_btn').on('touchend', function() {
-        //    var type = $(this).attr('type'),
-        //        info = $(this).closest('.tip_wrap'),
-        //        id = info.attr('stid');
-        //    tip.setStartEnd(id, type, info);
-        //    tip.closeTip();
-        //    if (tip.routeInfo && tip.routeInfo.start && tip.routeInfo.end) {
-        //        var param = {
-        //            'city': SW.cache.curCity.adcode,
-        //            'startid': tip.routeInfo.start.poiid,
-        //            'startname': tip.routeInfo.start.name,
-        //            'destid': tip.routeInfo.end.poiid,
-        //            'destname': tip.routeInfo.end.name
-        //        };
-        //        setTimeout(function() {
-        //            window.location.hash = '#' + $.param(param);
-        //        }, 10)
-        //    }
-        //    return false
-        //});
         //导航栏中的城市名的触摸事件
         $('.city_list_btn').on('touchend', function() {
             tip.cityChange();
@@ -347,16 +326,6 @@ var tip = {
             tip.hideCitylist();
             $('#subway').show();
         });
-        //$citypage.on('click', '.cityitem', function() {
-        //    var adcode = $(this).attr('adcode');
-        //    // window.location.hash = "#city=" + adcode;
-        //    // $('#tip-content').remove();
-        //    tip.initCity();
-        //    window.location.hash = "#city=" + adcode;
-        //    // SW.changeCity(adcode);
-        //    tip.hideCitylist();
-        //    $('#subway').show();
-        //});
 
         //$(".route_startend").on('touchend', function() {
         //    var type = $(this).closest('.route_ipt').attr('srhtype');
@@ -451,9 +420,9 @@ var tip = {
             tip.closeTip();/*调用closeTip的方法*/
         });
 
-        //$('#back_amap').on('touchend', function() {
-        //    tip.goback()
-        //});
+        $('#back_amap').on('touchend', function() {
+            tip.goback()
+        });
 
         //$('.route_bar').on('click', function() {
         //    // if(SW.param.src != 'alipay'){
@@ -971,8 +940,6 @@ var tip = {
     },
     //初始化城市信息
     initCity: function() {
-        var type = ['start', 'end'];
-        //tip.closeRoute(type);
         tip.allScale = 1;
     },
     //显示城市列表

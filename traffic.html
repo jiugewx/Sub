@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/lib/zepto.min.js"></script>
+    <script src="js/subway/amapCache.js"></script>
+</head>
+<body>
+    <script>
+            var trafficInfo=[];
+            //http://ac-OnsG2j7w.clouddn.com/42df2acedfd37d9e.json
+            var trafficData_Url="http://223.72.210.20:8388/PublicTripProvide/LoadAfcJtlDataJson?ask=t8ai8t4s3acb1ce";
+            $.ajax({
+                url: trafficData_Url,
+                type: 'get',
+                method: 'get',
+                dataType: 'jsonp',
+                timeout: 3000,
+                success: function (trafficData) {
+                    var len=trafficData.jtlList.length;
+                    for (var k = 0; k < len; k++) {
+                        var info={};
+                        var flashCode=trafficData.jtlList[k].flashCode;
+                        var start=flashCode.slice(3).split("_")[0];
+                        var end=flashCode.slice(3).split("_")[1].slice(0,9);
+                        var loadRate=trafficData.jtlList[k].loadData;
+                        var refreshTime=trafficData.jtlList[k].startTime;
+                        info.startAcc=start;
+                        info.endAcc=end;
+                        info.loadRate=loadRate;
+                        info.refreshTime=refreshTime;
+                        trafficInfo.push(info);
+                    }
+                    console.log(trafficInfo);
+                },
+                error: function() {
+                    alert('交通路况数据加载失败！');
+                }
+            });
+    </script>
+</body>
+</html>

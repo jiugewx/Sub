@@ -55,11 +55,11 @@ window.amapCache = window.amapCache || {};
             callback && callback();
         }, 'json');
     };
-    //初始化数�?,并采用一个complete的方法处理数�?.
+    //初始化数据,并采用一个complete的方法处理数
     var _init = function(option) {
-        //如果浏览器可以缓存数�?
+        //如果浏览器可以缓存数据
         if (enabledLocalstorage) {
-            //定义默认的数据请求地�?
+            //定义默认的数据请求地址
             defaultOption.versionPath = option.versionPath || 'data/version/version.json';
             _loadNewestVersion(option.complete);
         } else {
@@ -78,13 +78,12 @@ window.amapCache = window.amapCache || {};
             timeout: 3000,
             success: callback,
             error: error
-        }) ;
-
+        })
     };
     //加载数据
     var _loadData = function(filePath, callback, error) {
         var fileMD5 = cacheFileListObj[filePath];
-        //如果浏览器可以存储数?
+        //如果浏览器可以存储数据
         if (enabledLocalstorage) {
             var storageKey = filePath + '_' + cacheFileListObj[filePath];
             var subwayData = storage.getItem(storageKey);
@@ -118,7 +117,7 @@ window.amapCache = window.amapCache || {};
             }, error);
         }
     };
-    //对外提供的操作方法接�?
+    //对外提供的操作方法
     window.amapCache.init = _init;
     window.amapCache.loadData = _loadData;
     window.amapCache.cacheFileListObj = cacheFileListObj;
