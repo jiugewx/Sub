@@ -7,37 +7,104 @@
     <script src="js/subway/amapCache.js"></script>
 </head>
 <body>
-    <script>
-            var trafficInfo=[];
-            //http://ac-OnsG2j7w.clouddn.com/42df2acedfd37d9e.json
-            var trafficData_Url="http://223.72.210.20:8388/PublicTripProvide/LoadAfcJtlDataJson?ask=t8ai8t4s3acb1ce";
-            $.ajax({
-                url: trafficData_Url,
-                type: 'get',
-                method: 'get',
-                dataType: 'jsonp',
-                timeout: 3000,
-                success: function (trafficData) {
-                    var len=trafficData.jtlList.length;
-                    for (var k = 0; k < len; k++) {
-                        var info={};
-                        var flashCode=trafficData.jtlList[k].flashCode;
-                        var start=flashCode.slice(3).split("_")[0];
-                        var end=flashCode.slice(3).split("_")[1].slice(0,9);
-                        var loadRate=trafficData.jtlList[k].loadData;
-                        var refreshTime=trafficData.jtlList[k].startTime;
-                        info.startAcc=start;
-                        info.endAcc=end;
-                        info.loadRate=loadRate;
-                        info.refreshTime=refreshTime;
-                        trafficInfo.push(info);
-                    }
-                    console.log(trafficInfo);
-                },
-                error: function() {
-                    alert('交通路况数据加载失败！');
-                }
-            });
+    <script> /*JavaScript函数：*/
+    function formatTime(dateTime) {
+        var thedateTime = dateTime.replace(/-/g,"/");
+        var date = new Date(thedateTime).getTime();
+        var minute = 1000 * 60;
+        var hour = minute * 60;
+//        var day = hour * 24;
+//        var halfamonth = day * 15;
+//        var month = day * 30;
+
+        //   当前时间
+        var now = new Date().getTime();
+        var diffValue = now - date;
+        if (diffValue < 0) {
+            return false;
+        }
+        var hourC = diffValue / hour;
+        var minC = diffValue / minute;
+
+        // 获取所给时间日期的 秒数
+        var oldData=dateTime.substr(0,10).replace(/-/g, "/");
+        var oldDataSeconds=new Date(oldData).getTime();
+        // 获取当前日期的 秒数
+        var newtime=new Date();
+        var newYear=newtime.getFullYear();
+        var newMonth=newtime.getMonth()+1;
+        var newData=newtime.getDate();
+        var today=newYear+"/"+newMonth+"/"+newData;
+        var todaySeconds=new Date(today).getTime();
+        // 计算日期的差值
+        var cha=todaySeconds-oldDataSeconds;
+        // 获取所给时间的 分时信息如 23:12
+        var oldtime =dateTime.split(" ")[1].toString().substr(0,5);
+        var isToday=WhichDay(cha,oldtime,dateTime);
+        // 判断
+        if(hourC>=8){
+            result="更新于:"+isToday;
+        }
+        else if (hourC >= 1 && hourC<8) {
+            result = "更新于:" + parseInt(hourC) + "小时前";
+        }
+        else if (minC >= 1) {
+            result = "更新于:" + parseInt(minC) + "分钟前";
+        } else
+            result = "刚刚";
+        return result;
+    }
+
+    var dateTime = '2016-05-09 12:13:15';
+    var showTime = formatTime(dateTime);
+
+    console.log(showTime);
+
+    function WhichDay(cha,oldtime,dateTime) {
+        if(cha < 86400000 && cha>=0){
+            isToday=" 今天"+oldtime;
+        }else if(cha == 86400000){
+            isToday=" 昨天"+oldtime;
+        }else if(cha == 172800000){
+            isToday=" 前天"+oldtime;
+        }else {
+            var dataArr=dateTime.split(" ")[0].toString().split("-");
+            isToday=dataArr[0]+"年"+dataArr[1]+"月"+dataArr[2]+"日";
+        }
+        return isToday;
+    }
     </script>
+    <!--<script>-->
+            <!--var trafficInfo=[];-->
+            <!--//http://ac-OnsG2j7w.clouddn.com/42df2acedfd37d9e.json-->
+            <!--var trafficData_Url="http://223.72.210.20:8388/PublicTripProvide/LoadAfcJtlDataJson?ask=t8ai8t4s3acb1ce";-->
+            <!--$.ajax({-->
+                <!--url: trafficData_Url,-->
+                <!--type: 'get',-->
+                <!--method: 'get',-->
+                <!--dataType: 'jsonp',-->
+                <!--timeout: 3000,-->
+                <!--success: function (trafficData) {-->
+                    <!--var len=trafficData.jtlList.length;-->
+                    <!--for (var k = 0; k < len; k++) {-->
+                        <!--var info={};-->
+                        <!--var flashCode=trafficData.jtlList[k].flashCode;-->
+                        <!--var start=flashCode.slice(3).split("_")[0];-->
+                        <!--var end=flashCode.slice(3).split("_")[1].slice(0,9);-->
+                        <!--var loadRate=trafficData.jtlList[k].loadData;-->
+                        <!--var refreshTime=trafficData.jtlList[k].startTime;-->
+                        <!--info.startAcc=start;-->
+                        <!--info.endAcc=end;-->
+                        <!--info.loadRate=loadRate;-->
+                        <!--info.refreshTime=refreshTime;-->
+                        <!--trafficInfo.push(info);-->
+                    <!--}-->
+                    <!--console.log(trafficInfo);-->
+                <!--},-->
+                <!--error: function() {-->
+                    <!--alert('交通路况数据加载失败！');-->
+                <!--}-->
+            <!--});-->
+    <!--</script>-->
 </body>
 </html>
