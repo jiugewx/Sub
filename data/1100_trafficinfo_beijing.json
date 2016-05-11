@@ -1065,23 +1065,24 @@
       "flashCode": "ACC150996545_150996543A",
       "loadData": "0.07",
       "startTime": "2016-05-09 09:45:00"
-    },{
-      "flashCode": "ACC150996545_150996549A",
+    },
+    {
+      "flashCode": "ACC150996549_150996551A",
       "loadData": "0.01",
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150996549_150996545",
-      "loadData": "0.04",
+      "flashCode": "ACC150996551_150996549A",
+      "loadData": "0.05",
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150996549_150996553A",
+      "flashCode": "ACC150996551_150996553",
       "loadData": "0.01",
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150996553_150996549",
+      "flashCode": "ACC150996553_150996551",
       "loadData": "0.04",
       "startTime": "2016-05-09 09:45:00"
     },
@@ -1206,12 +1207,22 @@
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150996777_150996781",
+      "flashCode": "ACC150996777_150996779",
       "loadData": "0.06",
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150996781_150996777",
+      "flashCode": "ACC150996779_150996777",
+      "loadData": "0.08",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150996779_150996781",
+      "loadData": "0.06",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150996781_150996779",
       "loadData": "0.08",
       "startTime": "2016-05-09 09:45:00"
     },
@@ -1266,12 +1277,22 @@
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150996791_150996795A",
+      "flashCode": "ACC150996791_150996793A",
       "loadData": "0.01",
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150996795_150996791A",
+      "flashCode": "ACC150996793_150996791A",
+      "loadData": "0.03",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150996793_150996795",
+      "loadData": "0.01",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150996795_150996793",
       "loadData": "0.03",
       "startTime": "2016-05-09 09:45:00"
     },
@@ -1536,13 +1557,23 @@
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150997285_150997289",
+      "flashCode": "ACC150997285_150997287",
       "loadData": "0.09",
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150997289_150997285",
+      "flashCode": "ACC150997287_150997285",
       "loadData": "0.21",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150997287_150997289",
+      "loadData": "0.09",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150997289_150997287",
+      "loadData": "0.19",
       "startTime": "2016-05-09 09:45:00"
     },
     {
@@ -2006,12 +2037,22 @@
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150998573_150998577",
+      "flashCode": "ACC150998573_150998575",
       "loadData": "0.10",
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150998577_150998573",
+      "flashCode": "ACC150998575_150998573",
+      "loadData": "0.12",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150998575_150998577",
+      "loadData": "0.10",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150998577_150998575",
       "loadData": "0.12",
       "startTime": "2016-05-09 09:45:00"
     },
@@ -2066,12 +2107,22 @@
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150998589_150998593A",
+      "flashCode": "ACC150998589_150998591A",
       "loadData": "0.13",
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150998593_150998589A",
+      "flashCode": "ACC150998591_150998589A",
+      "loadData": "0.11",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150998591_150998593",
+      "loadData": "0.13",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150998593_150998591",
       "loadData": "0.11",
       "startTime": "2016-05-09 09:45:00"
     },
@@ -2096,12 +2147,22 @@
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150998599_150998603",
+      "flashCode": "ACC150998599_150998601",
       "loadData": "0.18",
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150998603_150998599",
+      "flashCode": "ACC150998601_150998599",
+      "loadData": "0.15",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150998601_150998603",
+      "loadData": "0.19",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150998603_150998601",
       "loadData": "0.15",
       "startTime": "2016-05-09 09:45:00"
     },
@@ -2126,12 +2187,22 @@
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150998607_150998611A",
+      "flashCode": "ACC150998607_150998609A",
       "loadData": "0.16",
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150998611_150998607A",
+      "flashCode": "ACC150998609_150998607A",
+      "loadData": "0.12",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150998609_150998611A",
+      "loadData": "0.17",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150998611_150998609A",
       "loadData": "0.12",
       "startTime": "2016-05-09 09:45:00"
     },
@@ -2266,12 +2337,22 @@
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150998825_150998829B",
+      "flashCode": "ACC150998825_150998827B",
       "loadData": "0.51",
       "startTime": "2016-05-09 09:45:00"
     },
     {
-      "flashCode": "ACC150998829_150998825A",
+      "flashCode": "ACC150998827_150998825A",
+      "loadData": "0.37",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150998827_150998829",
+      "loadData": "0.51",
+      "startTime": "2016-05-09 09:45:00"
+    },
+    {
+      "flashCode": "ACC150998829_150998827",
       "loadData": "0.37",
       "startTime": "2016-05-09 09:45:00"
     },
@@ -3150,7 +3231,6 @@
       "loadData": "0.07",
       "startTime": "2016-05-09 09:45:00"
     },
-
     {
       "flashCode": "ACC151020053_151020055A",
       "loadData": "0.19",

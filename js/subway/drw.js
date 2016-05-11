@@ -445,7 +445,6 @@ var drwSw = {
 				clearTimeout(timer);
 				timer = setTimeout(function () {
 					self.drwTrafficLines(traffic_line, current_drwData);
-
 				}, 200);
 			}
 		} else if (status == 'select') {

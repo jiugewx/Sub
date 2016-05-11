@@ -15,6 +15,7 @@ var SW = {
 		sug: {},
 		stationsInfo: {},
 		trafficInfo:[],
+		trafficNew:[],
 		convertData:{},
 		stationspoi: {},
 		offset: {},
@@ -370,6 +371,10 @@ var SW = {
 										self.cache.trafficInfo[k].startPos = st[x].p;
 									}
 								}
+								if (!(self.cache.trafficInfo[k].hasOwnProperty("startPos"))) {
+									//self.cache.trafficInfo[k].startPos = self.cache.trafficInfo[k - 1].startPos;
+									console.log(self.cache.trafficInfo[k], k)
+								}
 								var startPos = self.cache.trafficInfo[k].startPos;
 								for (var y in dataset_line_arr) {
 									if (dataset_line_arr[y] == startPos) {
@@ -377,8 +382,8 @@ var SW = {
 									}
 								}
 							}
-
 						}
+
 						//获取end信息
 						for (var k in self.cache.trafficInfo) {
 							if (self.cache.trafficInfo[k].endAcc == acc) {
@@ -390,6 +395,11 @@ var SW = {
 									}
 								}
 								var endPos = self.cache.trafficInfo[k].endPos;
+                                //
+								if (!(self.cache.trafficInfo[k].hasOwnProperty("endPos"))) {
+									//self.cache.trafficInfo[k].endPos = self.cache.trafficInfo[k - 1].endPos;
+									console.log(self.cache.trafficInfo[k], k)
+								}
 								for (var y in dataset_line_arr) {
 									if (dataset_line_arr[y] == endPos) {
 										self.cache.trafficInfo[k].endIndex = y;
@@ -399,16 +409,16 @@ var SW = {
 						}
 						//修正环线的的首尾连接问题
 						for (var k in self.cache.trafficInfo) {
-							if (self.cache.trafficInfo[k].endIndex - self.cache.trafficInfo[k].startIndex> 15) {
+							if (self.cache.trafficInfo[k].endIndex - self.cache.trafficInfo[k].startIndex> 30) {
 								self.cache.trafficInfo[k].endIndex = 0;
-							}else if(self.cache.trafficInfo[k].startIndex - self.cache.trafficInfo[k].endIndex> 15){
+							}else if(self.cache.trafficInfo[k].startIndex - self.cache.trafficInfo[k].endIndex> 30){
 								self.cache.trafficInfo[k].startIndex = 0;
 							}
 							self.cache.trafficInfo[k].direction = self.cache.trafficInfo[k].startName+"-to-"+self.cache.trafficInfo[k].endName;
 						}
-						//增加path和color
+						//增加path和color、direct
 						for (var k in self.cache.trafficInfo) {
-							var loadData=self.cache.trafficInfo[k].loadRate;
+							var loadRate=self.cache.trafficInfo[k].loadRate;
 							var color={};
 							//增加path
 							if (self.cache.trafficInfo[k].reflineId == line_id) {
@@ -423,28 +433,19 @@ var SW = {
 								}
 							}
 							//增加color
-							if (loadData >= 0 && loadData <= 0.25) {
+							if (loadRate >= 0 && loadRate <= 0.25) {
 								color = "009578";
-							} else if (loadData > 0.25 && loadData <= 0.5) {
+							} else if (loadRate > 0.25 && loadRate <= 0.5) {
 								color = "96C61A";
-							} else if (loadData > 0.5 && loadData <= 0.75) {
+							} else if (loadRate > 0.5 && loadRate <= 0.75) {
 								color = "C99616";
-							} else if (loadData > 0.75 && loadData <= 1){
+							} else if (loadRate > 0.75 && loadRate <= 1){
 								color = "AF272B";
 							} else {
 								color = "cccccc";
 							}
 							self.cache.trafficInfo[k].color = color;
 						}
-						////修正站点pos不存在的情况
-						//for (var k in self.cache.trafficInfo) {
-						//	if(self.cache.trafficInfo[k].startPos==false){
-						//		self.cache.trafficInfo[k].startPos=self.cache.trafficInfo[k-1].startPos;
-						//	}
-						//	if(self.cache.trafficInfo[k].endPos==false){
-						//		self.cache.trafficInfo[k].endPos=self.cache.trafficInfo[k+1].endPos;
-						//	}
-						//}
 					}
 				}
 			}
