@@ -433,16 +433,16 @@ var SW = {
 								}
 							}
 							//增加color
-							if (loadRate >= 0 && loadRate <= 0.25) {
-								color = "009578";
-							} else if (loadRate > 0.25 && loadRate <= 0.5) {
-								color = "96C61A";
-							} else if (loadRate > 0.5 && loadRate <= 0.75) {
-								color = "C99616";
-							} else if (loadRate > 0.75 && loadRate <= 1){
-								color = "AF272B";
+							if (loadRate >= 0 && loadRate <= 0.6) {
+								color = "51B45A";
+							} else if (loadRate > 0.6 && loadRate <= 0.9) {
+								color = "EFEA3A";
+							} else if (loadRate > 0.9 && loadRate <= 1.1) {
+								color = "E71F1A";
+							} else if (loadRate > 1.1){
+								color = "1D1D1D";
 							} else {
-								color = "cccccc";
+								color = "CCCCCC";
 							}
 							self.cache.trafficInfo[k].color = color;
 						}

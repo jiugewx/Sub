@@ -427,8 +427,8 @@ var drwSw = {
 				Right.path = self.doublePathInfo(dataset_line_arr, 3).RightPath;
 
                 //获取左右两条线的颜色,若是地铁线颜色:current_drwData.cl;
-				Left.color = "009578";
-				Right.color ="009578";
+				Left.color = "51B45A";
+				Right.color ="51B45A";
 
 				//确定两条线的终点信息
 				Left.direction = end+"-to-"+start;
