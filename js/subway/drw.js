@@ -13,6 +13,7 @@ var drwSw = {
 	font_size: 12,
 	nearHightLight: 14,
 	isNearTip: false,
+	/*站点名称的位置*/
 	label_angle: {
 		'0': [0, -1],
 		'1': [1, -1],
@@ -362,8 +363,7 @@ var drwSw = {
 		}
 		return info;
 	},
-	// 以路线为筛选条件丰富路况信息
-	// 编译交通状况信息
+	// 编译交通状况信息以路线为筛选条件丰富路况信息
 	drwTrafficLines: function (parentNode,LineId_Data) {
 		// 思路:从trafficData中获取lineid,stationname,
 		var self=this;
