@@ -298,20 +298,21 @@ body.disable-default-action {
 .filter_btn {
     display: none;
     position: fixed;
-    width: 40px;
-    height: 16px;
+    width: 45px;
+    height: 18px;
     line-height: 16px;
-    top: 56px;
+    top: 58px;
     right: 10px;
-    box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0,.3);
     border-radius: 2px;
     z-index: 20;
-    background: #666666 url(../img/subway/filter.png) no-repeat;
-    background-size: 18px 18px;
+    background: rgba(102,102,102,0.75) url(../img/subway/route.png) no-repeat;
+    background-size: 28px 18px;
     background-position: 9px 4px;
+    -webkit-text-size-adjust:none;
     font-size: 9px;
     text-align: center;
-    padding-top: 22px;
+    padding-top: 24px;
     color: #fff;
 }
 
@@ -334,20 +335,39 @@ body.disable-default-action {
 
 .refresh_btn {
     position: fixed;
-    width: 42px;
-    height: 32px;
-    bottom: 40px;
+    width: 40px;
+    height: 40px;
+    bottom: 30px;
     left: 16px;
     box-shadow: 0 0 1px 0 rgba(0, 0, 0, .3);
-    border-radius: 3px;
+    border-radius: 5px;
     z-index: 20;
-    font-size: 9px;
-    text-align: center;
-    background-color: #F8F8F8;
-    color: #6a6968;
     border: solid #c8c8c8 1px;
+    background-color:  #fff;
+}
+.refresh{
+    display: block;
+    margin: 0 auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: url(../img/subway/refresh.png) center center no-repeat;
+    background-size: 22px 22px;
 }
 
+.refresh_active{
+    animation: updata 2s;
+    -webkit-animation:updata 2s;
+}
+
+@-webkit-keyframes updata {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
 /*.ios .route_close_btn{top: 76px;}*/
 .nav_btn {
     position: absolute;
@@ -368,7 +388,7 @@ body.disable-default-action {
 .filter_content {
     display: none;
     position: fixed;
-    top: 92px;
+    top: 98px;
     right: 10px;
     z-index: 21;
     background: #fff;
@@ -379,13 +399,13 @@ body.disable-default-action {
 /*.ios .filter_content{top: 112px;}*/
 .flier_close_btn {
     position: absolute;
-    top: -34px;
+    top: -40px;
     right: 0;
-    width: 40px;
-    height: 36px;
+    width: 45px;
+    height: 42px;
     background: #fff url(../img/subway/close_btn.png) no-repeat;
     background-size: 16px 16px;
-    background-position: 10px 10px;
+    background-position: 14px 14px;
     border-radius: 2px;
     z-index: 22;
 }

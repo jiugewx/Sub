@@ -330,12 +330,11 @@ var SW = {
 		//如果对应的城市信息不存在,那就发起请求
 		else {
 			//从服务器请求数据
-			self.loadMainData(city_code,city_name,callback);
 			self.loadStInfo(city_code,city_name);
 			self.loadConvert(city_code,city_name);
 			self.loadTraffic(city_code,city_name);
-			//之前的数据请求有一个时间过程,所以这里有个延迟处理
-			self.timeoutHandle(city_code);/*延迟处理交通路况信息*/
+			self.loadMainData(city_code,city_name,callback);
+			console.log("所有信息已经加载完成");
 		}
 	},
 	//转译交通路况信息
@@ -452,21 +451,18 @@ var SW = {
 		}
 	},
 	//延迟处理交通路况信息
-	timeoutHandle: function (city_code) {
-		var self=this;
-		clearTimeout(self.timer);
-		//这里只是要实现一个异步的处理交通路况信息,由于后期使用了异步绘制这个路况信息,这里的异步处理的作用就不那么明显
-		self.timer = setTimeout(function () {
-			var drwData=self.cache.cities[city_code];
-			for (var i = 0; i < drwData.lines.length; i++) {
-				if (drwData.lines[i].su != "3") {
-					self.cache.currLines[drwData.lines[i].ls] = drwData.lines[i];
-				}
+	handleCurLines: function (city_code,callback) {
+		var self = this;
+		var drwData = self.cache.cities[city_code];
+		for (var i = 0; i < drwData.lines.length; i++) {
+			if (drwData.lines[i].su != "3") {
+				self.cache.currLines[drwData.lines[i].ls] = drwData.lines[i];
 			}
-			//增加交通状况信息
-			SW.addTrafficInfo(self.cache.currLines);
-			//console.log("common",self.cache.trafficInfo);
-		},50);/*50ms后修改交通状况信息*/
+		}
+		//增加交通状况信息
+		SW.addTrafficInfo(self.cache.currLines);
+		callback(self.cache.cities[city_code]);
+		console.log("路况信息整理完毕！");
 	},
 	//这里是请求对应城市的地铁数据
 	loadMainData: function (city_code,city_name,callback) {
@@ -559,7 +555,9 @@ var SW = {
 			cache.curCity.name = cache.cities[city_code].name;
 			cache.curCity.offset = cache.offset[city_code];
 			drwData=cache.cities[city_code];
-			callback(cache.cities[city_code]);
+			console.log("主信息已经完成！");
+			self.handleCurLines(city_code,callback);
+
 		}, function() {
 			alert('城市地铁数据加载失败！');
 			self.subwayFlag = 0;

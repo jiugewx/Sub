@@ -104,7 +104,7 @@ var tip = {
         document.addEventListener('touchstart', function() {});
         var self = this;
         var font_size = 12;
-        var $refresh=$("#refresh_btn");
+        var $refresh=$(".refresh");
         var $subway = $('#subway');
         var $citypage = $('#citypage');
         var $overlays = $('#overlays');
@@ -130,7 +130,6 @@ var tip = {
             self.mcdragSvg(ev);
         });
 
-        var pinchTimer;
         mc.on("pinchstart pinchmove", function(ev) {
 
             if (!enableGesture) return;
@@ -180,7 +179,13 @@ var tip = {
             ev.preventDefault();
         });
 
+        var refreshTimer;
         $refresh.on('touchend', function () {
+            $refresh.addClass("refresh_active");
+            clearTimeout(refreshTimer);
+            refreshTimer=setTimeout(function () {
+                $refresh.removeClass("refresh_active");
+            },2000);
             SW.showCity();
         });
 
@@ -202,6 +207,7 @@ var tip = {
                 if (!self.touchStatus) {
                     $('#g-select').remove();
                     $('#g-bg').css('display', 'none');
+                    $(".filter_btn").html("线路图");
                 }
             }
         });
@@ -229,13 +235,15 @@ var tip = {
                 var id = $(this).attr('station_id');
                 self.closeFilter();
                 $('.light_box').css('display', 'block');
-                //var obj = $("#overlays");
+                //$(".filter_btn").html("线路图");
+                var obj = $("#overlays");
                 //if (drwSw.isNearTip) {
                 //    drwSw.clearNearTip();
                 //}
                 //tip.openTip(obj);
                 //var center = tip.getStCenter(obj);
                 //tip.setCenter(center);
+                //console.log(obj,center);
                 window.location.hash = '#city=' + SW.cache.curCity.adcode + '&station=' + id;
             }
         });
@@ -279,14 +287,36 @@ var tip = {
         $('.fliter_detail').on('touchend', '.fliter_item', function() {
             if (lockfd) return;
             var line_id = $(this).attr('lineid');
-            self.closeFilter();
-            self.showFilterLine(line_id);
-            var select_obj = $('#g-select');
-            tip.setFitview(select_obj);
-            var center = self.getFilterCenter();
-            self.setCenter(center);
+            var line_name=$(this).attr('name');
+            if (line_id == "caption-allLines") {
+                self.closeFilter();
+                $(".filter_btn").html(line_name);
+                $('#g-bg').css('display','none');
+                //self.showFilterLine(line_id);
+                var center={};
+                var $Svg=$('#svg-g');
+                var $Svg_offset = $Svg.offset();
+                var $Svg_h = document.getElementById('svg-g').getBBox().height * self.allScale,
+                    $Svg_w = document.getElementById('svg-g').getBBox().width * self.allScale;
+                center.x = $Svg_offset.left + $Svg_w/2;
+                center.y = $Svg_offset.top + $Svg_h/2;
+                var center2=self.getStCenter($Svg);
+                console.log($Svg_offset,center,center2,$Svg_w,$Svg_h);
+                console.log(tip.realCenter);
+                tip.setCenter(center);
+
+            } else {
+                self.closeFilter();
+                $(".filter_btn").html(line_name);
+                self.showFilterLine(line_id);
+                var select_obj = $('#g-select');
+                tip.setFitview(select_obj);
+                var center = self.getFilterCenter();
+                self.setCenter(center);
+            }
         });
-        //阻止选择器中的移动事件
+
+        //处理选择器中的移动事件
         var fdTimer;
         var lockfd = false;
         $('.fliter_detail').on('touchmove', function(e) {
@@ -868,12 +898,6 @@ var tip = {
         var screen_w = document.documentElement.clientWidth,
             screen_h = document.documentElement.clientHeight;
 
-        //计算弹窗高度的1/2
-        var topBar=parseInt($(".top_bar").css("height"))/2,
-            $tipBodyHeight = $('.tip_body').css("height"),
-            bodyHeight = parseInt($tipBodyHeight) / 2,
-            Top0ffset=bodyHeight+topBar;
-
         var moveX = center_x - screen_w *0.5,
             moveY = center_y - screen_h *0.5;
 
@@ -885,12 +909,17 @@ var tip = {
         tip.transformState.translate.x = translate_x;
         tip.transformState.translate.y = translate_y;
 
+        //计算弹窗高度的1/2
+        var topBar=parseInt($(".top_bar").css("height"))/2,
+            $tipBodyHeight = $('.tip_body').css("height"),
+            bodyHeight = parseInt($tipBodyHeight) / 2,
+            Top0ffset=bodyHeight+topBar;
+
         var $overlays = $('.overlays');
         var oldLeft = parseInt($overlays.css('left')) || 0,
             oldTop = parseInt($overlays.css('top')) || 0;
         var newLeft = Number(oldLeft) - Number(moveX),
             newTop = Number(oldTop) - Number(moveY)+Top0ffset;
-
         $overlays.css({
             left: newLeft + 'px',
             top: newTop + 'px'
@@ -972,7 +1001,7 @@ var tip = {
     //    $srhpage.hide();
     //    $('#subway').show();
     //},
-    //获得中心位置
+    //获得对象中心位置
     getStCenter: function(obj) {
         if (obj) {
             var st_offset = obj.offset();
