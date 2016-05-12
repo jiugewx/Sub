@@ -306,13 +306,13 @@ body.disable-default-action {
     box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);
     border-radius: 2px;
     z-index: 20;
-    background: #fff url(../img/subway/filter.png) no-repeat;
+    background: #666666 url(../img/subway/filter.png) no-repeat;
     background-size: 18px 18px;
     background-position: 9px 4px;
     font-size: 9px;
     text-align: center;
     padding-top: 22px;
-    color: #6a6968;
+    color: #fff;
 }
 
 /*.ios .filter_btn{top: 76px;}*/

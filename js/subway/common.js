@@ -434,7 +434,7 @@ var SW = {
 							}
 							//增加color
 							if (loadRate >= 0 && loadRate <= 0.6) {
-								color = "51B45A";
+								color = "00cc33";
 							} else if (loadRate > 0.6 && loadRate <= 0.9) {
 								color = "EFEA3A";
 							} else if (loadRate > 0.9 && loadRate <= 1.1) {

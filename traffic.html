@@ -48,11 +48,15 @@
         else if (hourC >= 1 && hourC<8) {
             result = "更新于" + parseInt(hourC) + "小时前";
         }
-        else if (minC >= 1) {
+        else if (minC >= 30) {
             result = "更新于" + parseInt(minC) + "分钟前";
-        } else
+        }else if(minC<30 && minC>0){
+            result = "更新于" + parseInt(minC) + "分钟前";
+        }
+        else
             result = "刚刚";
         return result;
+
     }
 
     var dateTime = '2016-05-11 21:13:15';

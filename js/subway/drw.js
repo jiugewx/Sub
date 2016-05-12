@@ -269,7 +269,7 @@ var drwSw = {
 		svg_g.appendChild(subway_select_g);
 		self.drwSwLines(drwData, status);
 		self.drwSwStations(drwData, status);
-		self.drwSwStationsName(drwData, status, 12, 20); //缩小为0.5，第二个参数为24
+		self.drwSwStationsName(drwData, status, 10, 20); //缩小为0.5，第二个参数为24
 		self.drwSwLinesName(drwData, status);
 	},
 	//绘制导航路线
@@ -427,8 +427,8 @@ var drwSw = {
 				Right.path = self.doublePathInfo(dataset_line_arr, 3).RightPath;
 
                 //获取左右两条线的颜色,若是地铁线颜色:current_drwData.cl;
-				Left.color = "51B45A";
-				Right.color ="51B45A";
+				Left.color = "00cc33";
+				Right.color ="00cc33";
 
 				//确定两条线的终点信息
 				Left.direction = end+"-to-"+start;
@@ -450,6 +450,7 @@ var drwSw = {
 		} else if (status == 'select') {
 			var svg_select = document.getElementById("g-select");
 			svg_select.appendChild(subway_line);
+			console.log(drwData);
 			var dataset_line_arr = drwData.c;
 			var node_first = 'M' + dataset_line_arr[0].split(' ').join(',');
 			var path = node_first + 'L' + dataset_line_arr.join('L');
