@@ -467,19 +467,15 @@ var drwSw = {
 				self.drwTrafficLines(traffic_line, current_drwData);
 				//console.log("路况信息已展示！");
 			}
+			$("#refresh_content").show();
+			$(".filter_btn").show();
 			console.log("主路画完！");
 		} else if (status == 'select') {
 			var svg_select = document.getElementById("g-select");
 			svg_select.appendChild(subway_line);
 			svg_select.appendChild(traffic_line);
-			self.drwDouble(subway_line,drwData);
-			//一定间隔之后显示路况信息,因为之前的路况信息再处理需要一段时间,要等待数据请求成功才能呈现.(异步执行)
-			clearTimeout(timer);
-			timer = setTimeout(function () {
-					//console.log("======##################=======" + drwData.ln + "=========############=====")
-					var current_drwData = drwData;
-					self.drwTrafficLines(traffic_line, current_drwData);
-			}, 30);
+			self.drwDouble(subway_line, drwData);
+			self.drwTrafficLines(traffic_line, drwData);
 		}
 	},
 	//绘制地铁线路名
@@ -549,11 +545,7 @@ var drwSw = {
 		}
 
 		var station = drwData.stations || drwData.st;
-		var lines=drwData.lines;
-			//console.log("drw",drwData.stations);
-			//for()
 
-		//console.log(station);
 		$.each(station, function (idx, item) {
 			//如果是可以显示的车站
 			if (item.su == "1") {
@@ -570,7 +562,7 @@ var drwSw = {
 					subway_station.setAttribute("r", 7);
 					subway_station.setAttribute("fill", "#FFF");
 					subway_station.setAttribute("stroke-width", 2);
-					subway_station.setAttribute("stroke", "#000");
+					subway_station.setAttribute("stroke", "#"+item.cl);/*画对应地铁线的颜色*/
 					subway_circle_g.appendChild(subway_station);
 				}
 				//如果是换乘车站

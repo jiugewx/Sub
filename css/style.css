@@ -301,7 +301,7 @@ body.disable-default-action {
     width: 45px;
     height: 18px;
     line-height: 16px;
-    top: 58px;
+    top: 18px;
     right: 10px;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0,.3);
     border-radius: 2px;
@@ -331,6 +331,10 @@ body.disable-default-action {
     background: #fff url(../img/subway/close_btn.png) center center no-repeat;
     background-size: 16px 16px;
     box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);
+}
+
+#refresh_content{
+    display:none;
 }
 
 .refresh_btn {
@@ -406,7 +410,7 @@ body.disable-default-action {
 .filter_content {
     display: none;
     position: fixed;
-    top: 98px;
+    top: 58px;
     right: 10px;
     z-index: 21;
     background: #fff;

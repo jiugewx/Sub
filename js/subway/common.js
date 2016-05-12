@@ -333,136 +333,9 @@ var SW = {
 			self.loadStInfo(city_code,city_name);
 			self.loadConvert(city_code,city_name);
 			self.loadTraffic(city_code,city_name);
-			self.loadMainData(city_code,city_name,callback);
 			console.log("所有信息已经加载完成");
+			self.loadMainData(city_code,city_name,callback);
 		}
-	},
-	//转译交通路况信息
-	addTrafficInfo: function (drwData) {
-		//依赖self.cache.convertData,self.cache.trafficInfo,self.cache.stations;
-		var self = this;
-		//加入站点名称信息
-		for (var line_id in drwData) {
-			//console.log(drwData[line_id]);
-			for (var i in self.cache.convertData) {
-				if (self.cache.convertData[i].line_id == line_id) {
-					/*已经选择了一条地铁*/
-					var length=self.cache.convertData[i].stations.length;
-					//遍历转换器中的stations
-					for (var j = 0; j < length; j++) {
-						var acc = self.cache.convertData[i].stations[j].Acc;
-						/*已经选中了单个车站*/
-						var name = self.cache.convertData[i].stations[j].Name;
-						var current_drwData = drwData[line_id];
-						var st = current_drwData.st;
-						var dataset_line_arr = current_drwData.c;
-						//以下获取start信息
-						for (var k in self.cache.trafficInfo) {
-							/*去遍历所有的路段信息*/
-							if (self.cache.trafficInfo[k].startAcc == acc) {
-								/*查到当前站点为起点的路段*/
-								self.cache.trafficInfo[k].startName = name;
-								self.cache.trafficInfo[k].reflineId = line_id;
-								self.cache.trafficInfo[k].reflineName = current_drwData.ln;
-								for (var x in st) {
-									//当drw信息中的station的名字与traffic信息中的名字匹配时
-									if (st[x].n == name) {
-										self.cache.trafficInfo[k].startPos = st[x].p;
-									}
-								}
-								if (!(self.cache.trafficInfo[k].hasOwnProperty("startPos"))) {
-									//self.cache.trafficInfo[k].startPos = self.cache.trafficInfo[k - 1].startPos;
-									console.log(self.cache.trafficInfo[k], k)
-								}
-								var startPos = self.cache.trafficInfo[k].startPos;
-								for (var y in dataset_line_arr) {
-									if (dataset_line_arr[y] == startPos) {
-										self.cache.trafficInfo[k].startIndex = y;
-									}
-								}
-							}
-						}
-
-						//获取end信息
-						for (var k in self.cache.trafficInfo) {
-							if (self.cache.trafficInfo[k].endAcc == acc) {
-								/*查到当前站点为起点的路段*/
-								self.cache.trafficInfo[k].endName = name;
-								for (var x in st) {
-									if (st[x].n == name) {
-										self.cache.trafficInfo[k].endPos = st[x].p;
-									}
-								}
-								var endPos = self.cache.trafficInfo[k].endPos;
-                                //
-								if (!(self.cache.trafficInfo[k].hasOwnProperty("endPos"))) {
-									//self.cache.trafficInfo[k].endPos = self.cache.trafficInfo[k - 1].endPos;
-									console.log(self.cache.trafficInfo[k], k)
-								}
-								for (var y in dataset_line_arr) {
-									if (dataset_line_arr[y] == endPos) {
-										self.cache.trafficInfo[k].endIndex = y;
-									}
-								}
-							}
-						}
-						//修正环线的的首尾连接问题
-						for (var k in self.cache.trafficInfo) {
-							if (self.cache.trafficInfo[k].endIndex - self.cache.trafficInfo[k].startIndex> 30) {
-								self.cache.trafficInfo[k].endIndex = 0;
-							}else if(self.cache.trafficInfo[k].startIndex - self.cache.trafficInfo[k].endIndex> 30){
-								self.cache.trafficInfo[k].startIndex = 0;
-							}
-							self.cache.trafficInfo[k].direction = self.cache.trafficInfo[k].startName+"-to-"+self.cache.trafficInfo[k].endName;
-						}
-						//增加path和color、direct
-						for (var k in self.cache.trafficInfo) {
-							var loadRate=self.cache.trafficInfo[k].loadRate;
-							var color={};
-							//增加path
-							if (self.cache.trafficInfo[k].reflineId == line_id) {
-								var start = Number(self.cache.trafficInfo[k].startIndex);
-								var end = Number(self.cache.trafficInfo[k].endIndex);
-								if (start < end) {
-									self.cache.trafficInfo[k].path = dataset_line_arr.slice(start, end + 1);
-									self.cache.trafficInfo[k].ref_direct = "right";
-								} else {
-									self.cache.trafficInfo[k].path = dataset_line_arr.slice(end, start + 1);
-									self.cache.trafficInfo[k].ref_direct = "left";
-								}
-							}
-							//增加color
-							if (loadRate >= 0 && loadRate <= 0.6) {
-								color = "00cc33";
-							} else if (loadRate > 0.6 && loadRate <= 0.9) {
-								color = "EFEA3A";
-							} else if (loadRate > 0.9 && loadRate <= 1.1) {
-								color = "E71F1A";
-							} else if (loadRate > 1.1){
-								color = "1D1D1D";
-							} else {
-								color = "CCCCCC";
-							}
-							self.cache.trafficInfo[k].color = color;
-						}
-					}
-				}
-			}
-		}
-	},
-	//延迟处理交通路况信息
-	handleCurLines: function (city_code,callback) {
-		var self = this;
-		var drwData = self.cache.cities[city_code];
-		for (var i = 0; i < drwData.lines.length; i++) {
-			if (drwData.lines[i].su != "3") {
-				self.cache.currLines[drwData.lines[i].ls] = drwData.lines[i];
-			}
-		}
-		//增加交通状况信息
-		SW.addTrafficInfo(self.cache.currLines);
-		callback(self.cache.cities[city_code]);
-		console.log("路况信息整理完毕！");
 	},
 	//这里是请求对应城市的地铁数据
 	loadMainData: function (city_code,city_name,callback) {
@@ -492,6 +365,7 @@ var SW = {
 			_x = 1000 - Number(_offset[0]);
 			_y = 1000 - Number(_offset[1]);
 			var sugobj = {};
+			//遍历每条地铁线
 			for (var i = 0; i < data.l.length; i++) {
 				if (data.l[i].su == '1') {
 					var _coords = data.l[i].c;
@@ -503,8 +377,9 @@ var SW = {
 					data.l[i].linesNamePos = {};
 					data.l[i].linesNamePos[data.l[i].ls] = data.l[i].lp;
 					data.l[i].stname = [];
-
+                    //遍历每天地铁线里的地铁站
 					for (var j = 0; j < data.l[i].st.length; j++) {
+
 						data.l[i].stname.push(data.l[i].st[j].n);
 						var _p = data.l[i].st[j].p.split(' ');
 						data.l[i].st[j].p = (Number(_p[0]) + _x) + ' ' + (Number(_p[1]) + _y);
@@ -515,11 +390,14 @@ var SW = {
 							newRsArr.push((Number(rs[0]) + _x) + ' ' + (Number(rs[1]) + _y))
 						}
 						data.l[i].st[j].rs = newRsArr.join('|');
+						//当该地铁站属于开通状态时,将该地铁站信息缓存进stations
 						if (data.l[i].st[j].su == '1') {
 							var cur = data.l[i].st[j];
 							// cache.cities[data.i].stations.push(cur);
 							cache.cities[data.i].stations[cur.si] = cur;
+							cache.cities[data.i].stations[cur.si].cl =data.l[i].cl;
 							cache.stations[cur.si] = cur;
+							cache.stations[cur.si].cl = data.l[i].cl;
 							sugobj[cur.sp.split(' ').join('').toLowerCase() + '|' + cur.n.toLowerCase()] = cur;
 							cache.stationspoi[cur.poiid] = cur;
 							cache.navStations[cur.n] = cur;
@@ -555,9 +433,8 @@ var SW = {
 			cache.curCity.name = cache.cities[city_code].name;
 			cache.curCity.offset = cache.offset[city_code];
 			drwData=cache.cities[city_code];
-			console.log("主信息已经完成！");
+			console.log("主信息已经完成!",cache.stations);
 			self.handleCurLines(city_code,callback);
-
 		}, function() {
 			alert('城市地铁数据加载失败！');
 			self.subwayFlag = 0;
@@ -616,6 +493,133 @@ var SW = {
 		},function() {
 			alert('交通路况数据加载失败！');
 		});
+	},
+	//转译交通路况信息
+	addTrafficInfo: function (drwData) {
+		//依赖self.cache.convertData,self.cache.trafficInfo,self.cache.stations;
+		var self = this;
+		//加入站点名称信息
+		for (var line_id in drwData) {
+			//console.log(drwData[line_id]);
+			for (var i in self.cache.convertData) {
+				if (self.cache.convertData[i].line_id == line_id) {
+					/*已经选择了一条地铁*/
+					var length=self.cache.convertData[i].stations.length;
+					//遍历转换器中的stations
+					for (var j = 0; j < length; j++) {
+						var acc = self.cache.convertData[i].stations[j].Acc;
+						/*已经选中了单个车站*/
+						var name = self.cache.convertData[i].stations[j].Name;
+						var current_drwData = drwData[line_id];
+						var st = current_drwData.st;
+						var dataset_line_arr = current_drwData.c;
+						//以下获取start信息
+						for (var k in self.cache.trafficInfo) {
+							/*去遍历所有的路段信息*/
+							if (self.cache.trafficInfo[k].startAcc == acc) {
+								/*查到当前站点为起点的路段*/
+								self.cache.trafficInfo[k].startName = name;
+								self.cache.trafficInfo[k].reflineId = line_id;
+								self.cache.trafficInfo[k].reflineName = current_drwData.ln;
+								for (var x in st) {
+									//当drw信息中的station的名字与traffic信息中的名字匹配时
+									if (st[x].n == name) {
+										self.cache.trafficInfo[k].startPos = st[x].p;
+									}
+								}
+								if (!(self.cache.trafficInfo[k].hasOwnProperty("startPos"))) {
+									//self.cache.trafficInfo[k].startPos = self.cache.trafficInfo[k - 1].startPos;
+									console.log(self.cache.trafficInfo[k], k)
+								}
+								var startPos = self.cache.trafficInfo[k].startPos;
+								for (var y in dataset_line_arr) {
+									if (dataset_line_arr[y] == startPos) {
+										self.cache.trafficInfo[k].startIndex = y;
+									}
+								}
+							}
+						}
+
+						//获取end信息
+						for (var k in self.cache.trafficInfo) {
+							if (self.cache.trafficInfo[k].endAcc == acc) {
+								/*查到当前站点为起点的路段*/
+								self.cache.trafficInfo[k].endName = name;
+								for (var x in st) {
+									if (st[x].n == name) {
+										self.cache.trafficInfo[k].endPos = st[x].p;
+									}
+								}
+								var endPos = self.cache.trafficInfo[k].endPos;
+								//
+								if (!(self.cache.trafficInfo[k].hasOwnProperty("endPos"))) {
+									//self.cache.trafficInfo[k].endPos = self.cache.trafficInfo[k - 1].endPos;
+									console.log(self.cache.trafficInfo[k], k)
+								}
+								for (var y in dataset_line_arr) {
+									if (dataset_line_arr[y] == endPos) {
+										self.cache.trafficInfo[k].endIndex = y;
+									}
+								}
+							}
+						}
+						//修正环线的的首尾连接问题
+						for (var k in self.cache.trafficInfo) {
+							if (self.cache.trafficInfo[k].endIndex - self.cache.trafficInfo[k].startIndex> 30) {
+								self.cache.trafficInfo[k].endIndex = 0;
+							}else if(self.cache.trafficInfo[k].startIndex - self.cache.trafficInfo[k].endIndex> 30){
+								self.cache.trafficInfo[k].startIndex = 0;
+							}
+							self.cache.trafficInfo[k].direction = self.cache.trafficInfo[k].startName+"-to-"+self.cache.trafficInfo[k].endName;
+						}
+						//增加path和color、direct
+						for (var k in self.cache.trafficInfo) {
+							var loadRate=self.cache.trafficInfo[k].loadRate;
+							var color={};
+							//增加path
+							if (self.cache.trafficInfo[k].reflineId == line_id) {
+								var start = Number(self.cache.trafficInfo[k].startIndex);
+								var end = Number(self.cache.trafficInfo[k].endIndex);
+								if (start < end) {
+									self.cache.trafficInfo[k].path = dataset_line_arr.slice(start, end + 1);
+									self.cache.trafficInfo[k].ref_direct = "right";
+								} else {
+									self.cache.trafficInfo[k].path = dataset_line_arr.slice(end, start + 1);
+									self.cache.trafficInfo[k].ref_direct = "left";
+								}
+							}
+							//增加color
+							if (loadRate >= 0 && loadRate <= 0.6) {
+								color = "00cc33";
+							} else if (loadRate > 0.6 && loadRate <= 0.9) {
+								color = "EFEA3A";
+							} else if (loadRate > 0.9 && loadRate <= 1.1) {
+								color = "E71F1A";
+							} else if (loadRate > 1.1){
+								color = "1D1D1D";
+							} else {
+								color = "CCCCCC";
+							}
+							self.cache.trafficInfo[k].color = color;
+						}
+					}
+				}
+			}
+		}
+		console.log("路况信息整理完毕！");
+	},
+	//延迟处理交通路况信息
+	handleCurLines: function (city_code,callback) {
+		var self = this;
+		var drwData = self.cache.cities[city_code];
+		for (var i = 0; i < drwData.lines.length; i++) {
+			if (drwData.lines[i].su != "3") {
+				self.cache.currLines[drwData.lines[i].ls] = drwData.lines[i];
+			}
+		}
+		//增加交通状况信息
+		SW.addTrafficInfo(self.cache.currLines);
+		callback(self.cache.cities[city_code]);
 	},
 	//正在加载
 	loading: function() {

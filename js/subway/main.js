@@ -104,7 +104,7 @@ var tip = {
         document.addEventListener('touchstart', function() {});
         var self = this;
         var font_size = 12;
-        var $refresh=$(".refresh");
+        var $refresh=$(".refresh_btn");
         var $subway = $('#subway');
         var $citypage = $('#citypage');
         var $overlays = $('#overlays');
@@ -249,19 +249,6 @@ var tip = {
                 window.location.hash = '#city=' + SW.cache.curCity.adcode + '&station=' + id;
             }
         });
-        //触击Naval_marker事件
-        //$subway.on('touchend', '.nav_marker', function() {
-        //    var type = $(this).attr('type');
-        //    var id = self.routeId[type];
-        //    if (!self.touchStatus) {
-        //        if (id) {
-        //            var obj = $('#st-' + id);
-        //            var center = tip.getStCenter(obj);
-        //            tip.setCenter(center);
-        //            tip.openTip(obj);
-        //        }
-        //    }
-        //});
 
         //点击弹出层事件：阻止冒泡,接受事件,但是无动作
         $overlays.on('touchend', '.tip_wrap', function(e) {
@@ -302,9 +289,9 @@ var tip = {
                     $Svg_w = document.getElementById('svg-g').getBBox().width * self.allScale;
                 center.x = $Svg_offset.left + $Svg_w/2;
                 center.y = $Svg_offset.top + $Svg_h/2;
-                var center2=self.getStCenter($Svg);
-                console.log($Svg_offset,center,center2,$Svg_w,$Svg_h);
-                console.log(tip.realCenter);
+                //var center2=self.getStCenter($Svg);
+                //console.log($Svg_offset,center,center2,$Svg_w,$Svg_h);
+                //console.log(tip.realCenter);
                 tip.setCenter(center);
 
             } else {
@@ -850,13 +837,16 @@ var tip = {
 
             self.setTipPos(obj);
             self.opentip = true;
-            //打开窗口后就以弹窗为中心
-            var topBar=parseInt($(".top_bar").css("height"))/2,
-                $tipBodyHeight = $('.tip_body').css("height"),
-                bodyHeight = parseInt($tipBodyHeight) / 2,
-                Top0ffset=bodyHeight+topBar;
+            //打开窗口后就以弹窗的1/3为中心
+            var Top0ffset=self.topOffset(0);
             tip.transformState.translate.y = tip.transformState.translate.y + Top0ffset;
         }
+    },
+    topOffset: function (offset) {
+        var topBar=parseInt($(".top_bar").css("height"))/2,
+            $tipBodyHeight = $('.tip_body').css("height"),
+            bodyHeight = parseInt($tipBodyHeight)*offset;
+            return bodyHeight+topBar
     },
     //设置弹窗的位置属性
     setTipPos: function(obj) {
@@ -911,11 +901,8 @@ var tip = {
         tip.transformState.translate.x = translate_x;
         tip.transformState.translate.y = translate_y;
 
-        //计算弹窗高度的1/2
-        var topBar=parseInt($(".top_bar").css("height"))/2,
-            $tipBodyHeight = $('.tip_body').css("height"),
-            bodyHeight = parseInt($tipBodyHeight) / 2,
-            Top0ffset=bodyHeight+topBar;
+        //选取偏移量
+        var Top0ffset=self.topOffset(0);
 
         var $overlays = $('.overlays');
         var oldLeft = parseInt($overlays.css('left')) || 0,

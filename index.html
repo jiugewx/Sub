@@ -11,13 +11,13 @@
     <div id="os" class="os">
         <!-- 地铁页面 -->
         <div id="subway">
-            <div class="top_bar">
-                <!-- 返回按钮-->
-                <div class="back_btn" id="back_amap"></div>
-                <div class="page-title">轨道客流</div>
-                <!-- 当前城市，点击可以进入城市选择面板-->
-                <!--<a class="city_list_btn city_name" href='javascript:void(0)'></a>-->
-            </div>
+            <!--<div class="top_bar">-->
+                <!--&lt;!&ndash; 返回按钮&ndash;&gt;-->
+                <!--<div class="back_btn" id="back_amap"></div>-->
+                <!--<div class="page-title">轨道客流</div>-->
+                <!--&lt;!&ndash; 当前城市，点击可以进入城市选择面板&ndash;&gt;-->
+                <!--&lt;!&ndash;<a class="city_list_btn city_name" href='javascript:void(0)'></a>&ndash;&gt;-->
+            <!--</div>-->
             <!-- 线路选择盒子 -->
             <div class="light_box"></div><!--实现背景变暗-->
             <div class="filter_btn">线路图</div>
@@ -76,7 +76,7 @@
             </div>
         </div>
         <!-- 刷新 -->
-        <div id="refresh_btn">
+        <div id="refresh_content">
             <div class="refresh_btn">
                 <span class="refresh"></span>
             </div>
@@ -117,9 +117,9 @@
         /*建立默认跳转*/
         window.location.hash = "#city=1100";
         //延迟访问：根据缓存初始化相应城市
-        setTimeout(function () {
+//        setTimeout(function () {
             SW.swInit();
-        },50);
+//        },50);
     </script>
     <!--http://map.amap.com/subway/-->
 </body>
