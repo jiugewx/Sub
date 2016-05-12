@@ -333,7 +333,6 @@ var SW = {
 			self.loadStInfo(city_code,city_name);
 			self.loadConvert(city_code,city_name);
 			self.loadTraffic(city_code,city_name);
-			console.log("所有信息已经加载完成");
 			self.loadMainData(city_code,city_name,callback);
 		}
 	},
@@ -433,7 +432,7 @@ var SW = {
 			cache.curCity.name = cache.cities[city_code].name;
 			cache.curCity.offset = cache.offset[city_code];
 			drwData=cache.cities[city_code];
-			console.log("主信息已经完成!",cache.stations);
+			console.log("主信息已经完成!");
 			self.handleCurLines(city_code,callback);
 		}, function() {
 			alert('城市地铁数据加载失败！');
@@ -451,6 +450,7 @@ var SW = {
 					self.cache.stationsInfo[info_data.l[k].st[l].si] = info_data.l[k].st[l];
 				}
 			}
+			console.log("站点首末车时间请求完成!");
 		},function() {
 			alert('地铁站点数据加载失败！');
 		});
@@ -490,11 +490,12 @@ var SW = {
 				info.refreshTime=refreshTime;
 				self.cache.trafficInfo.push(info);
 			}
+			console.log("路况信息请求完成!")
 		},function() {
 			alert('交通路况数据加载失败！');
 		});
 	},
-	//转译交通路况信息
+	//拼合交通路况信息
 	addTrafficInfo: function (drwData) {
 		//依赖self.cache.convertData,self.cache.trafficInfo,self.cache.stations;
 		var self = this;

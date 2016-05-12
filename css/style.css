@@ -306,7 +306,7 @@ body.disable-default-action {
     box-shadow: 0 0 6px 0 rgba(0, 0, 0,.3);
     border-radius: 2px;
     z-index: 20;
-    background: rgba(102,102,102,0.75) url(../img/subway/route.png) no-repeat;
+    background: rgba(102,102,102,1) url(../img/subway/route.png) no-repeat;
     background-size: 28px 18px;
     background-position: 9px 4px;
     -webkit-text-size-adjust:none;
@@ -359,15 +359,27 @@ body.disable-default-action {
 }
 
 .refresh_active{
-    animation: updata 2s;
-    -webkit-animation:updata 2s;
+    animation: updata 5s;
+    -webkit-animation:updata 5s;
 }
 
 @-webkit-keyframes updata {
-    from {
+    0% {
         -webkit-transform: rotate(0deg);
     }
-    to {
+    20% {
+        -webkit-transform: rotate(360deg);
+    }
+    93% {
+        background-color: rgba(102,102,102,1);
+        -webkit-transform: rotate(360deg);
+    }
+    97%{
+        background-color: #3B95C9;
+        -webkit-transform: rotate(360deg);
+    }
+    100%{
+        background-color: rgba(102,102,102,1);
         -webkit-transform: rotate(360deg);
     }
 }
@@ -379,16 +391,71 @@ body.disable-default-action {
     border: solid #ffffff 1px;
     display: none;
     height: 20px;
-    width: 120px;
-    padding: 5px 0 5px 25px;
+    line-height: 20px;
+    width: 0;
+    padding: 5px 0 5px 0;
     font-size: 12px;
     color:#fff;
     background-color: rgba(102,102,102,0.8);
     border-radius: 20px;
     z-index: 15;
 }
+.refresh_time_show{
+    animation: showBox 5s;
+    -webkit-animation:showBox 5s;
+}
 
-
+@-webkit-keyframes showBox {
+    0% {
+        width: 0;
+    }
+    10% {
+        width: 150px;
+    }
+    93% {
+        width: 150px;
+    }
+    98% {
+        width: 0;
+    }
+    100% {
+        width: 0;
+    }
+}
+.refresh_time_text{
+    display: none;
+    opacity: 0;
+    margin-left: 30px;
+    width: 115px;
+    font-weight: bold;
+}
+.refresh_time_text_show{
+    animation: showText 5s;
+    -webkit-animation:showText 5s;
+}
+@-webkit-keyframes showText {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 0;
+    }
+    20%{
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    95%{
+        opacity: 0;
+    }
+    98% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
 
 /*.ios .route_close_btn{top: 76px;}*/
 .nav_btn {

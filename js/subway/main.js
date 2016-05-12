@@ -3,6 +3,7 @@ var el = document.getElementById('drag_handle');
 el.style.transformOrigin = "top left";
 
 var tip = {
+    refreshTimer:{},
     count:5,
     timer:{},
     host: "http://m.amap.com/",
@@ -181,13 +182,7 @@ var tip = {
 
         var refreshTimer;
         $refresh.on('touchend', function () {
-            $refresh.addClass("refresh_active");
-            $(".refresh_time").css("display","block");
-            clearTimeout(refreshTimer);
-            refreshTimer=setTimeout(function () {
-                $refresh.removeClass("refresh_active");
-                $(".refresh_time").hide();
-            },4000);
+            self.refreshAnimate();
             SW.showCity();
         });
 
@@ -449,19 +444,18 @@ var tip = {
         //    // }
         //});
     },
-    refresh: function () {
-        SW.showCity();
-        clearInterval(tip.timer);
-        tip.timer = setInterval(CountDown, 1000);
-        function CountDown() {
-            if(tip.count > 0) {
-                console.log(tip.count);
-                SW.loading();
-            }else if(tip.count == 0) {
-                SW.loadingOver();
-            }
-            tip.count--;
-        }
+    refreshAnimate: function () {
+        var $refresh=$(".refresh_btn");
+        $refresh.addClass("refresh_active");
+        $(".refresh_time").css("display","block").addClass("refresh_time_show");
+        $(".refresh_time_text").css("display","block").addClass("refresh_time_text_show");
+        //5秒后隐藏信息
+        clearTimeout(tip.refreshTimer);
+        tip.refreshTimer=setTimeout(function () {
+                $(".refresh_time_text").removeClass("refresh_time_text_show").css("display","none");
+                $(".refresh_time").removeClass("refresh_time_show").css("display","none");
+                $refresh.removeClass("refresh_active");
+        },5000);
     },
     //拖动Svg
     mcdragSvg: function(ev) {
@@ -838,7 +832,7 @@ var tip = {
             self.setTipPos(obj);
             self.opentip = true;
             //打开窗口后就以弹窗的1/3为中心
-            var Top0ffset=self.topOffset(0);
+            var Top0ffset=self.topOffset(0.4);
             tip.transformState.translate.y = tip.transformState.translate.y + Top0ffset;
         }
     },
@@ -902,7 +896,7 @@ var tip = {
         tip.transformState.translate.y = translate_y;
 
         //选取偏移量
-        var Top0ffset=self.topOffset(0);
+        var Top0ffset=self.topOffset(0.4);
 
         var $overlays = $('.overlays');
         var oldLeft = parseInt($overlays.css('left')) || 0,
@@ -920,11 +914,13 @@ var tip = {
         //线路选择器不能与弹窗同时存在
         $('.tip_wrap_out').hide();
         $(".refresh_btn").hide();
+        $(".refresh_time").hide();
     },
     //关闭路线选择器
     closeFilter: function() {
         $('.light_box, .filter_content').css('display', 'none');
         $(".refresh_btn").show();
+        $(".refresh_time").show();
     },
     //获取选择后的中心
     getFilterCenter: function() {
