@@ -339,11 +339,10 @@ body.disable-default-action {
     height: 40px;
     bottom: 30px;
     left: 16px;
-    box-shadow: 0 0 1px 0 rgba(0, 0, 0, .3);
-    border-radius: 5px;
+    border-radius: 50%;
     z-index: 20;
-    border: solid #c8c8c8 1px;
-    background-color:  #fff;
+    border: solid #ffffff 1px;
+    background-color: rgba(102,102,102,1);
 }
 .refresh{
     display: block;
@@ -352,7 +351,7 @@ body.disable-default-action {
     height: 40px;
     border-radius: 50%;
     background: url(../img/subway/refresh.png) center center no-repeat;
-    background-size: 22px 22px;
+    background-size: 26px 24px;
 }
 
 .refresh_active{
@@ -368,6 +367,25 @@ body.disable-default-action {
         -webkit-transform: rotate(360deg);
     }
 }
+
+.refresh_time{
+    position: fixed;
+    bottom: 34px;
+    left: 36px;
+    border: solid #ffffff 1px;
+    display: none;
+    height: 20px;
+    width: 120px;
+    padding: 5px 0 5px 25px;
+    font-size: 12px;
+    color:#fff;
+    background-color: rgba(102,102,102,0.8);
+    border-radius: 20px;
+    z-index: 15;
+}
+
+
+
 /*.ios .route_close_btn{top: 76px;}*/
 .nav_btn {
     position: absolute;
@@ -412,6 +430,7 @@ body.disable-default-action {
 
 .fliter_detail {
     max-height: 286px;
+    min-width : 130px;
     padding: 0 11px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;

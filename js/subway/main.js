@@ -182,10 +182,12 @@ var tip = {
         var refreshTimer;
         $refresh.on('touchend', function () {
             $refresh.addClass("refresh_active");
+            $(".refresh_time").css("display","block");
             clearTimeout(refreshTimer);
             refreshTimer=setTimeout(function () {
                 $refresh.removeClass("refresh_active");
-            },2000);
+                $(".refresh_time").hide();
+            },4000);
             SW.showCity();
         });
 
@@ -290,7 +292,7 @@ var tip = {
             var line_name=$(this).attr('name');
             if (line_id == "caption-allLines") {
                 self.closeFilter();
-                $(".filter_btn").html(line_name);
+                $(".filter_btn").html("线路图");
                 $('#g-bg').css('display','none');
                 //self.showFilterLine(line_id);
                 var center={};
