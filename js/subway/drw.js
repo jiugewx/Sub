@@ -312,10 +312,12 @@ var drwSw = {
 		//line_path.setAttribute("id", "line-"+ LineId_Data.ls+"-"+ direction);
 		line_path.setAttribute("name", "line-"+ pathName.reflineName +"-"+ direction);
 		var color={};
+		//如果提供了强制的数据颜色,那就使用提供的颜色,否则就画定义好的颜色
 		if(pathName.color){
 			color=pathName.color;
 		}else{
-			color=LineId_Data.cl;
+			color="cccccc";
+			//color=LineId_Data.cl;
 		}
 		line_path.setAttribute("stroke", "#" + color);
 		line_path.setAttribute("d", path);
@@ -382,8 +384,8 @@ var drwSw = {
 		}
 		return info;
 	},
-	//使用浏览器自行加工数据的方法
-	drwTrafficLines: function (parentNode,LineId_Data) {
+	//使用浏览器自行加工数据的方法,需在SW.handleCurLines()中打开SW.addTrafficInfo(drwData);
+	drwTrafficByUser: function (parentNode,LineId_Data) {
 		// 思路:从trafficData中获取lineid,stationname,
 		var self=this;
         var Left={},Right={};
@@ -420,9 +422,9 @@ var drwSw = {
         }
 
 	},
-	//使用drw数据
-	drwTrafficLines2: function (parentNode,LineId_Data) {
-		// 思路:从trafficData中获取lineid,stationname,
+	//使用drw数据,需要提前编译好1100_drw_beijing.json文件(要在地铁全部在运营时,否则会缺数据)
+	drwTrafficFromSever: function (parentNode,LineId_Data) {
+		// 注意:当该线路已经停运,那么该线路将不会画出颜色来,就会显示出底色.
 		var self=this;
 		var Left={},Right={};
 		var line_id=LineId_Data.ls;
@@ -436,7 +438,7 @@ var drwSw = {
 				var rightcolor = LineId_Data.st2st[k].rateColor;
 				Right.path = rightpath;
 				Right.color = "AF272B";
-				Right.color = rightcolor;
+				Right.color = rightcolor;/*注意停运时的颜色使用,停运时没有颜色值,没有颜色值就会在drwlines()中,使用line本身的颜色*/
 				Right.direction = LineId_Data.st2st[k].directionName;
 				Right.reflineName = LineId_Data.st2st[k].reflineName;
 				self.drwlines(parentNode, Right, LineId_Data);
@@ -448,7 +450,7 @@ var drwSw = {
 				var leftcolor = LineId_Data.st2st[k].rateColor;
 				Left.path = leftpath;
 				Left.color = "C99616";
-				Left.color = leftcolor;
+				Left.color = leftcolor;/*注意停运时的颜色使用,停运时没有颜色值,没有颜色值就会在drwlines()中,使用line本身的颜色*/
 				Left.direction = LineId_Data.st2st[k].directionName;
 				Left.reflineName = LineId_Data.st2st[k].reflineName;
 				self.drwlines(parentNode, Left, LineId_Data);
@@ -504,8 +506,8 @@ var drwSw = {
                 //画双线
 				self.drwDouble(subway_line,current_drwData);
 				//console.log("开始画路况！");
-				self.drwTrafficLines(traffic_line, current_drwData);
-				//self.drwTrafficLines2(traffic_line, current_drwData);
+				//self.drwTrafficLines(traffic_line, current_drwData);
+				self.drwTrafficFromSever(traffic_line, current_drwData);
 				//console.log("路况信息已展示！");
 			}
 			$("#refresh_content").show();
@@ -516,7 +518,7 @@ var drwSw = {
 			svg_select.appendChild(subway_line);
 			svg_select.appendChild(traffic_line);
 			self.drwDouble(subway_line, drwData);
-			self.drwTrafficLines(traffic_line, drwData);
+			self.drwTrafficFromSever(traffic_line, drwData);
 		}
 	},
 	//绘制地铁线路名
