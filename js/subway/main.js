@@ -180,8 +180,8 @@ var tip = {
             ev.preventDefault();
         });
 
-        var refreshTimer;
-        $refresh.on('touchend', function () {
+        $refresh.on('touchend', function (ev) {
+            ev.stopPropagation();
             self.refreshAnimate();
             SW.showCity();
         });
@@ -447,13 +447,13 @@ var tip = {
     refreshAnimate: function () {
         var $refresh=$(".refresh_btn");
         $refresh.addClass("refresh_active");
-        $(".refresh_time").css("display","block").addClass("refresh_time_show");
+        $(".refresh_box").css("display","block").addClass("refresh_box_show");
         $(".refresh_time_text").css("display","block").addClass("refresh_time_text_show");
         //5秒后隐藏信息
         clearTimeout(tip.refreshTimer);
         tip.refreshTimer=setTimeout(function () {
                 $(".refresh_time_text").removeClass("refresh_time_text_show").css("display","none");
-                $(".refresh_time").removeClass("refresh_time_show").css("display","none");
+                $(".refresh_box").removeClass("refresh_box_show").css("display","none");
                 $refresh.removeClass("refresh_active");
         },5000);
     },

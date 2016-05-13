@@ -384,7 +384,7 @@ body.disable-default-action {
     }
 }
 
-.refresh_time{
+.refresh_box{
     position: fixed;
     bottom: 34px;
     left: 36px;
@@ -400,7 +400,7 @@ body.disable-default-action {
     border-radius: 20px;
     z-index: 15;
 }
-.refresh_time_show{
+.refresh_box_show{
     animation: showBox 5s;
     -webkit-animation:showBox 5s;
 }

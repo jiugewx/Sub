@@ -1,4 +1,6 @@
 var drwSw = {
+	json:[],
+	drwAdd:[],
 	currLines: {},
 	trafficInfo:SW.cache.trafficInfo,
 	stations:SW.cache.stations,
@@ -380,15 +382,16 @@ var drwSw = {
 		}
 		return info;
 	},
-	// 编译交通状况信息以路线为筛选条件丰富路况信息
+	//使用浏览器自行加工数据的方法
 	drwTrafficLines: function (parentNode,LineId_Data) {
 		// 思路:从trafficData中获取lineid,stationname,
 		var self=this;
         var Left={},Right={};
 		var line_id=LineId_Data.ls;
+		//console.log(self.trafficInfo);
         for(var k in self.trafficInfo){
 			if (self.trafficInfo[k].reflineId == line_id) {
-				//console.log(self.trafficInfo[k],k);
+				//console.log(self.trafficInfo[k],k);/*用来查看出问题的节点*/
 				if (self.trafficInfo[k].ref_direct == "right") {
 					var rightmain = self.trafficInfo[k].path;
 					var rightpath = self.doublePathInfo(rightmain, 3).RightPath;
@@ -415,6 +418,42 @@ var drwSw = {
 				}
 			}
         }
+
+	},
+	//使用drw数据
+	drwTrafficLines2: function (parentNode,LineId_Data) {
+		// 思路:从trafficData中获取lineid,stationname,
+		var self=this;
+		var Left={},Right={};
+		var line_id=LineId_Data.ls;
+		//console.log(LineId_Data);
+		for(var k in LineId_Data.st2st){
+			//console.log(LineId_Data.st2st[k],k);
+			if (LineId_Data.st2st[k].ref_direct == "right") {
+				//console.log(LineId_Data.st2st[k],LineId_Data.st2st[k].directionName,k);
+				var rightmain = LineId_Data.st2st[k].path;
+				var rightpath = self.doublePathInfo(rightmain, 3).RightPath;
+				var rightcolor = LineId_Data.st2st[k].rateColor;
+				Right.path = rightpath;
+				Right.color = "AF272B";
+				Right.color = rightcolor;
+				Right.direction = LineId_Data.st2st[k].directionName;
+				Right.reflineName = LineId_Data.st2st[k].reflineName;
+				self.drwlines(parentNode, Right, LineId_Data);
+			}
+			if (LineId_Data.st2st[k].ref_direct == "left") {
+				//console.log(LineId_Data.st2st[k],LineId_Data.st2st[k].directionName,k);
+				var leftmain = LineId_Data.st2st[k].path;
+				var leftpath = self.doublePathInfo(leftmain, 3).LeftPath;
+				var leftcolor = LineId_Data.st2st[k].rateColor;
+				Left.path = leftpath;
+				Left.color = "C99616";
+				Left.color = leftcolor;
+				Left.direction = LineId_Data.st2st[k].directionName;
+				Left.reflineName = LineId_Data.st2st[k].reflineName;
+				self.drwlines(parentNode, Left, LineId_Data);
+			}
+		}
 
 	},
 	drwDouble: function (parentNode,drwData) {
@@ -457,6 +496,7 @@ var drwSw = {
 			svg_g.appendChild(traffic_line);
 			var timer;
 			console.log("开始画主路");
+			//console.log(self.currLines);
 			for (var line_id in drwData) {
 				var current_drwData = drwData[line_id];
 				/*打印地铁线名称*/
@@ -465,6 +505,7 @@ var drwSw = {
 				self.drwDouble(subway_line,current_drwData);
 				//console.log("开始画路况！");
 				self.drwTrafficLines(traffic_line, current_drwData);
+				//self.drwTrafficLines2(traffic_line, current_drwData);
 				//console.log("路况信息已展示！");
 			}
 			$("#refresh_content").show();
