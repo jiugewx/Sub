@@ -343,118 +343,107 @@ var SW = {
 		var drwData_Url = "data/" + city_code + "_drw_" + city_name + ".json";
 		amapCache.loadData(drwData_Url, function(loaddata) {
 			console.log(loaddata);
-			SW.addTrafficInfo(loaddata.l);
-
 			var data=loaddata;
 
 
+			cache.sug[city_code] = {};
+			cache.dataForDrw[data.i] = data;
+			cache.cities[data.i] = cache.cities[data.i] || {};
+			cache.cities[data.i].name = data.s;
+			cache.cities[data.i].id = data.i;
+			cache.cities[data.i].offset = data.o;
+			cache.cities[data.i].lines = [];
+			cache.cities[data.i].linesNamePos = {};
+			// cache.cities[data.i].stations = [];
+			cache.cities[data.i].stations = {};
+			cache.cities[data.i].zolines = {};
+			cache.cities[data.i].zostations = [];
+			//data.o其实是人为的设定的一个地图中心，其他的数据就以这个做出偏移。
+			var _offset = data.o.split(',');
+			cache.offset[data.i] = cache.offset[data.i] || {};
+			var _x = 0,
+				_y = 0;
+			cache.offset[data.i].x = _offset[0];
+			cache.offset[data.i].y = _offset[1];
+			//相对于（1000，1000）做偏移。
+			_x = 1000 - Number(_offset[0]);
+			_y = 1000 - Number(_offset[1]);
+			var sugobj = {};
+			//遍历每条地铁线
+			for (var i = 0; i < data.l.length; i++) {
+				//修改了地铁path的偏移
+				if (data.l[i].su == '1') {
+					//使path数据按照x,y数据偏移
+					var _coords = data.l[i].c;
+					for (var q = 0; q < _coords.length; q++) {
+						var _c = _coords[q].split(' ');
+						_coords[q] = (Number(_c[0]) + _x) + ' ' + (Number(_c[1]) + _y);
+					}
+					data.l[i].c = _coords;
+					data.l[i].linesNamePos = {};
+					data.l[i].linesNamePos[data.l[i].ls] = data.l[i].lp;
+					data.l[i].stname = [];
+                    //遍历每天地铁线里的地铁站
+					for (var j = 0; j < data.l[i].st.length; j++) {
 
+						data.l[i].stname.push(data.l[i].st[j].n);
 
+						//使站点中的信息按照x,y数据偏移
+						var _p = data.l[i].st[j].p.split(' ');
+						data.l[i].st[j].p = (Number(_p[0]) + _x) + ' ' + (Number(_p[1]) + _y);
+						var rsArr = data.l[i].st[j].rs.split('|');
+						var newRsArr = [];
+						for (var h = 0; h < rsArr.length; h++) {
+							var rs = rsArr[h].split(' ');
+							newRsArr.push((Number(rs[0]) + _x) + ' ' + (Number(rs[1]) + _y))
+						}
+						data.l[i].st[j].rs = newRsArr.join('|');
+						//当该地铁站属于开通状态时,将该地铁站信息缓存进stations
+						if (data.l[i].st[j].su == '1') {
+							var cur = data.l[i].st[j];
+							// cache.cities[data.i].stations.push(cur);
+							cache.cities[data.i].stations[cur.si] = cur;
+							cache.cities[data.i].stations[cur.si].cl =data.l[i].cl;
+							cache.stations[cur.si] = cur;
+							cache.stations[cur.si].cl = data.l[i].cl;
+							sugobj[cur.sp.split(' ').join('').toLowerCase() + '|' + cur.n.toLowerCase()] = cur;
+							cache.stationspoi[cur.poiid] = cur;
+							cache.navStations[cur.n] = cur;
+							cache.navStPixel[cur.p] = cur;
+						}
+					}
 
+					var _lpo = data.l[i].lp;
+					if (_lpo) {
+						for (var s = 0; s < _lpo.length; s++) {
+							var _lp = _lpo[s].split(' ');
+							_lpo[s] = (Number(_lp[0]) + _x) + ' ' + (Number(_lp[1]) + _y);
+						}
+						data.l[i].lp = _lpo;
+					}
+					cache.cities[data.i].linesNamePos[data.l[i].ls] = data.l[i].lp;
+					cache.cities[data.i].lines.push(data.l[i]);
+					cache.lines[data.l[i].ls] = data.l[i]; //写入line
 
+					var busid = data.l[i].li && data.l[i].li.split('|');
+					if (busid) {
+						for (var n = 0; n < busid.length; n++) {
+							cache.navlines[busid[n]] = data.l[i]
 
+						}
+					}
+				}
 
-
-
-
-
-
-
-
-
-            //
-			//cache.sug[city_code] = {};
-			//cache.dataForDrw[data.i] = data;
-			//cache.cities[data.i] = cache.cities[data.i] || {};
-			//cache.cities[data.i].name = data.s;
-			//cache.cities[data.i].id = data.i;
-			//cache.cities[data.i].offset = data.o;
-			//cache.cities[data.i].lines = [];
-			//cache.cities[data.i].linesNamePos = {};
-			//// cache.cities[data.i].stations = [];
-			//cache.cities[data.i].stations = {};
-			//cache.cities[data.i].zolines = {};
-			//cache.cities[data.i].zostations = [];
-			//var _offset = data.o.split(',');
-			//cache.offset[data.i] = cache.offset[data.i] || {};
-			//var _x = 0,
-			//	_y = 0;
-			//cache.offset[data.i].x = _offset[0];
-			//cache.offset[data.i].y = _offset[1];
-			//_x = 1000 - Number(_offset[0]);
-			//_y = 1000 - Number(_offset[1]);
-			//var sugobj = {};
-			////遍历每条地铁线
-			//for (var i = 0; i < data.l.length; i++) {
-			//	if (data.l[i].su == '1') {
-			//		var _coords = data.l[i].c;
-			//		for (var q = 0; q < _coords.length; q++) {
-			//			var _c = _coords[q].split(' ');
-			//			_coords[q] = (Number(_c[0]) + _x) + ' ' + (Number(_c[1]) + _y);
-			//		}
-			//		data.l[i].c = _coords;
-			//		data.l[i].linesNamePos = {};
-			//		data.l[i].linesNamePos[data.l[i].ls] = data.l[i].lp;
-			//		data.l[i].stname = [];
-             //       //遍历每天地铁线里的地铁站
-			//		for (var j = 0; j < data.l[i].st.length; j++) {
-            //
-			//			data.l[i].stname.push(data.l[i].st[j].n);
-			//			var _p = data.l[i].st[j].p.split(' ');
-			//			data.l[i].st[j].p = (Number(_p[0]) + _x) + ' ' + (Number(_p[1]) + _y);
-			//			var rsArr = data.l[i].st[j].rs.split('|');
-			//			var newRsArr = [];
-			//			for (var h = 0; h < rsArr.length; h++) {
-			//				var rs = rsArr[h].split(' ');
-			//				newRsArr.push((Number(rs[0]) + _x) + ' ' + (Number(rs[1]) + _y))
-			//			}
-			//			data.l[i].st[j].rs = newRsArr.join('|');
-			//			//当该地铁站属于开通状态时,将该地铁站信息缓存进stations
-			//			if (data.l[i].st[j].su == '1') {
-			//				var cur = data.l[i].st[j];
-			//				// cache.cities[data.i].stations.push(cur);
-			//				cache.cities[data.i].stations[cur.si] = cur;
-			//				cache.cities[data.i].stations[cur.si].cl =data.l[i].cl;
-			//				cache.stations[cur.si] = cur;
-			//				cache.stations[cur.si].cl = data.l[i].cl;
-			//				sugobj[cur.sp.split(' ').join('').toLowerCase() + '|' + cur.n.toLowerCase()] = cur;
-			//				cache.stationspoi[cur.poiid] = cur;
-			//				cache.navStations[cur.n] = cur;
-			//				cache.navStPixel[cur.p] = cur;
-			//			}
-			//		}
-            //
-			//		var _lpo = data.l[i].lp;
-			//		if (_lpo) {
-			//			for (var s = 0; s < _lpo.length; s++) {
-			//				var _lp = _lpo[s].split(' ');
-			//				_lpo[s] = (Number(_lp[0]) + _x) + ' ' + (Number(_lp[1]) + _y);
-			//			}
-			//			data.l[i].lp = _lpo;
-			//		}
-			//		cache.cities[data.i].linesNamePos[data.l[i].ls] = data.l[i].lp;
-			//		cache.cities[data.i].lines.push(data.l[i]);
-			//		cache.lines[data.l[i].ls] = data.l[i]; //写入line
-            //
-			//		var busid = data.l[i].li && data.l[i].li.split('|');
-			//		if (busid) {
-			//			for (var n = 0; n < busid.length; n++) {
-			//				cache.navlines[busid[n]] = data.l[i]
-            //
-			//			}
-			//		}
-			//	}
-            //
-			//}
-			//// self.toCache(data, info_data);
-			//cache.sug[city_code] = sugobj;
-			//cache.curCity.adcode = city_code;
-			//cache.curCity.name = cache.cities[city_code].name;
-			//cache.curCity.offset = cache.offset[city_code];
+			}
+			// self.toCache(data, info_data);
+			cache.sug[city_code] = sugobj;
+			cache.curCity.adcode = city_code;
+			cache.curCity.name = cache.cities[city_code].name;
+			cache.curCity.offset = cache.offset[city_code];
 			drwData=cache.cities[city_code];
 			console.log("主信息已经完成!");
 			console.log(drwData);
-			//self.handleCurLines(city_code,callback);
+			self.handleCurLines(city_code,callback);
 		}, function() {
 			alert('城市地铁数据加载失败！');
 			self.subwayFlag = 0;
@@ -557,7 +546,7 @@ var SW = {
 							if (self.cache.trafficInfo[k].startAcc == acc) {
 								/*查到当前站点为起点的路段*/
 								self.cache.trafficInfo[k].startName = name;
-								self.cache.trafficInfo[k].reflineId = line_id;
+								self.cache.trafficInfo[k].reflineId = current_drwData.ls;
 								self.cache.trafficInfo[k].reflineName = current_drwData.ln;
 								for (var x in st) {
 									//当drw信息中的station的名字与traffic信息中的名字匹配时
@@ -644,7 +633,7 @@ var SW = {
 			}
 		}
 		console.log("路况信息整理完毕！");
-		console.log(self.cache.trafficInfo);
+		console.log("self.cache.trafficInfo",self.cache.trafficInfo);
 		//整理信息2json
 		for(var i in drwData){
 			var current_drwData = drwData[i];
@@ -669,7 +658,7 @@ var SW = {
 					obj.sections.push(section);
 				}
 			}
-
+			console.log(obj);
 			current_drwData.st2st=obj.sections;
 			//console.log(current_drwData);
 			self.cache.trafficNew.push(current_drwData);
@@ -708,14 +697,14 @@ var SW = {
 			}
 		}
 		//console.log("前",self.cache.currLines);
-
+		SW.addTrafficInfo(self.cache.currLines);
 		console.log("处理中",drwData);
 		//console.log("后",self.cache.currLines);
 		//console.log(self.cache.trafficInfo);
 		//增加交通状况信息
 		//SW.handleTrafficInfo(drwData);
 		//console.log(drwData);
-		//callback(self.cache.cities[city_code]);
+		callback(self.cache.cities[city_code]);
 	},
 	//正在加载
 	loading: function() {

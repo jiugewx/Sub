@@ -182,6 +182,7 @@ var tip = {
 
         $refresh.on('touchend', function (ev) {
             ev.stopPropagation();
+            //$('.refresh_time_text').html();
             self.refreshAnimate();
             SW.showCity();
         });
