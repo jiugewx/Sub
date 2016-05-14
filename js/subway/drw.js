@@ -386,7 +386,7 @@ var drwSw = {
 		}
 		return info;
 	},
-	//使用浏览器自行加工数据的方法,需在SW.handleCurLines()中打开SW.addTrafficInfo(drwData);
+	//使用浏览器自行加工数据的方法,需打开SW.addTrafficInfo(city_code);
 	drwTrafficByUser: function (parentNode,LineId_Data) {
 		// 思路:从trafficData中获取lineid,stationname,
 		var self=this;
