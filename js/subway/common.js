@@ -1,5 +1,6 @@
 //定义SW，数据预处理
 var SW = {
+	refreshStatus:{},
 	cache: {
 		currLines:{},
 		citylist: [],
@@ -24,6 +25,7 @@ var SW = {
 		navStPixel: {}
 	},
 	timer:{},
+	defaultColor:'00cc33',
 	subwayFlag: 1, // 0 没有 , 1 有
 	param: null,
 	nearlnglat: null,
@@ -240,21 +242,17 @@ var SW = {
 			cache = SW.cache;
 		var hash = decodeURIComponent(window.location.hash).replace(/^\#/, '');
 		//decodeURIComponent 对 encodeURIComponent() 函数编码的 URI 进行解码。replace(/^\#/, '')，把#号给去除了。
-
 		var param = self.param2json(hash);
 		//self.param2json(hash)就是将hash转为json对象，"city=1100"字符串转换为了object的格式，｛"city":"1100"｝
-
 		if (!param || !param.src || param.src && param.src != 'alipay') {
 			$('#subway, #citypage').addClass('msubway');
 		}
-
 		//如果param不存在，那就打开城市选择列表。
 		if (!param) {
 			self.subwayFlag = 0;
 			return tip.cityChange();
 		}
 		self.param = param;
-
 		//取adcode为param中city的值。
 		var adcode = param.city && param.city.substr(0, 4);
 		//var adcode = "1100";
@@ -330,7 +328,7 @@ var SW = {
 		//如果对应的城市信息不存在,那就发起请求
 		else {
 			//从服务器请求数据
-			self.loadConvert(city_code,city_name);
+			//self.loadConvert(city_code,city_name);
 			self.loadStInfo(city_code,city_name);
 			self.loadTraffic(city_code,city_name,callback);
 		}
@@ -389,6 +387,8 @@ var SW = {
 		var trafficData_Url="http://223.72.210.20:8388/PublicTripProvide/LoadAfcJtlDataJson?ask=t8ai8t4s3acb1ce";
 		//var trafficData_Url="data/" + city_code + "_trafficinfo_" + city_name + ".json";
 		amapCache.loadData(trafficData_Url, function(trafficData) {
+			self.loadMainData(city_code,city_name,callback);
+			//编译最原始的trafficInfo
 			//遍历数据，缓存所有的路况信息到trafficInfo！
 			//console.log(trafficData);
 			var len=trafficData.jtlList.length;
@@ -419,10 +419,18 @@ var SW = {
 				self.cache.trafficInfo.push(info);
 			}
 			console.log("路况信息请求完成!");
+			self.refreshStatus=self.formatTime(self.cache.trafficInfo[1].refreshTime).trafficLoad;
+			//console.log(self.refreshStatus);
 			//console.log(self.cache.trafficInfo);
-			self.loadMainData(city_code,city_name,callback)
 		},function() {
-			alert('交通路况数据加载失败！');
+			self.refreshStatus="路况数据加载失败";
+			self.loadMainData(city_code,city_name,callback);
+			//延迟弹窗
+			clearTimeout(SW.timer);
+			SW.timer=setTimeout(function () {
+				//console.log('路况数据加载失败,将不会显示路况');
+				alert('路况数据加载失败,将不会显示路况');
+			},200);
 		});
 	},
 	//初步编译地铁的基础信息
@@ -543,7 +551,7 @@ var SW = {
 		cache.curCity.name = cache.cities[city_code].name;
 		cache.curCity.offset = cache.offset[city_code];
 		var drwData = cache.cities[city_code];
-		console.log("主信息编译完成!");
+		console.log("纯地铁信息编译完成!");
 		//console.log(drwData);
 	},
 	/*给初始化的drwData增加st2st信息的开关,之后打印成JSON文本*/
@@ -754,6 +762,72 @@ var SW = {
 			}
 			return json
 		}
+	},
+	formatTime:function(dateTime){
+		var timeInfo={};
+		var thedateTime = dateTime.replace(/-/g, "/");
+		var date = new Date(thedateTime).getTime();
+		var minute = 1000 * 60;
+		var hour = minute * 60;
+		//var day = hour * 24;
+		//var halfamonth = day * 15;
+		//var month = day * 30;
+
+   		//当前时间
+		var now = new Date().getTime();
+		var diffValue = now - date;
+		if (diffValue < 0) {
+			return false;
+		}
+		var hourC = diffValue / hour;
+		var minC = diffValue / minute;
+
+		// 获取所给时间日期的 秒数
+		var oldData = dateTime.substr(0, 10).replace(/-/g, "/");
+		var oldDataSeconds = new Date(oldData).getTime();
+		// 获取当前日期的 秒数
+		var newtime = new Date();
+		var newYear = newtime.getFullYear();
+		var newMonth = newtime.getMonth() + 1;
+		var newData = newtime.getDate();
+		var today = newYear + "/" + newMonth + "/" + newData;
+		var todaySeconds = new Date(today).getTime();
+		// 计算日期的差值
+		var difference = todaySeconds - oldDataSeconds;
+		// 获取所给时间的 分时信息如 23:12
+		var TrafficInfoTime = dateTime.split(" ")[1].toString().substr(0, 8);
+
+		//判断哪一天
+		var isToday = {};
+		if (difference < 86400000 && difference >= 0) {
+			isToday = " 今天" + TrafficInfoTime;
+		} else if (difference == 86400000) {
+			isToday = " 昨天" + TrafficInfoTime;
+		} else if (difference == 172800000) {
+			isToday = " 前天" + TrafficInfoTime;
+		} else {
+			var dataArr = dateTime.split(" ")[0].toString().split("-");
+			isToday = dataArr[0] + "年" + dataArr[1] + "月" + dataArr[2] + "日";
+		}
+
+		timeInfo.trafficLoad=isToday;
+		// 判断显示时间
+		if (hourC >= 8) {
+			result = "更新于" + isToday;
+		}
+		else if (hourC >= 1 && hourC < 8) {
+			result = "更新于" + parseInt(hourC) + "小时前";
+		}
+		else if (minC >= 30) {
+			result = "更新于" + parseInt(minC) + "分钟前";
+		} else if (minC < 30 && minC > 0) {
+			result = "更新于" + parseInt(minC) + "分钟前";
+		}
+		else
+			result = "刚刚";
+
+		timeInfo.trafficTemp=result;
+		return timeInfo;
 	},
 	//showRoute: function (param) {
 	//	var startid = param.startid,

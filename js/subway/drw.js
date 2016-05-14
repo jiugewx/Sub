@@ -1,4 +1,5 @@
 var drwSw = {
+	defaultColor:SW.defaultColor,
 	json:[],
 	drwAdd:[],
 	currLines: {},
@@ -316,7 +317,7 @@ var drwSw = {
 		if(pathName.color){
 			color=pathName.color;
 		}else{
-			color="cccccc";
+			color=drwSw.defaultColor;/*如果感应器没有数据,就画默认颜色*/
 			//color=LineId_Data.cl;
 		}
 		line_path.setAttribute("stroke", "#" + color);
@@ -471,8 +472,8 @@ var drwSw = {
 		Right.path = self.doublePathInfo(dataset_line_arr, 3).RightPath;
 
 		//获取左右两条线的颜色,若是地铁线颜色:current_drwData.cl;
-		Left.color = "00cc33";
-		Right.color ="00cc33";
+		Left.color = drwSw.defaultColor;
+		Right.color = drwSw.defaultColor;
 
 		//确定两条线的终点信息
 		Left.direction = end+"-to-"+start;

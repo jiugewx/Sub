@@ -123,9 +123,7 @@ var tip = {
         var hasPenchend = false;
 
         mc.on("panmove", function(ev) {
-
             if (!enableGesture) return;
-
             self.touchStatus = 'pan';
             lastAction = "pan";
             self.mcdragSvg(ev);
@@ -182,9 +180,9 @@ var tip = {
 
         $refresh.on('touchend', function (ev) {
             ev.stopPropagation();
-            //$('.refresh_time_text').html();
             self.refreshAnimate();
             SW.showCity();
+            $('.refresh_time_text').html("更新于"+SW.refreshStatus);
         });
 
         $subway.on('touchend', 'g', function() {
