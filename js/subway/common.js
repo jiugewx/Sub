@@ -1,5 +1,9 @@
 //定义SW，数据预处理
 var SW = {
+	status:{
+		currLinesInfo:0,
+		trafficInfo:0
+	},
 	refreshStatus:{},
 	cache: {
 		currLines:{},
@@ -285,6 +289,7 @@ var SW = {
 			drwSw.svgReady = false;
 			//开启加载对应城市的数据
 			self.loading();
+			$(".filter_btn").hide();
 			self.loadData(adcode, function (drwData) {
 				//这里的drwData是loadData方法中callback的参数。这个参数在loadData中被定义。
 				self.loadingOver();
@@ -328,9 +333,10 @@ var SW = {
 		//如果对应的城市信息不存在,那就发起请求
 		else {
 			//从服务器请求数据
-			//self.loadConvert(city_code,city_name);
 			self.loadStInfo(city_code,city_name);
-			self.loadTraffic(city_code,city_name,callback);
+			self.loadTraffic(city_code,city_name);
+			self.loadMainData(city_code,city_name,callback);
+			self.addTrafficInfo(city_code);
 		}
 	},
 	//这里是请求对应城市的地铁数据
@@ -338,16 +344,21 @@ var SW = {
 		var self = this;
 		var drwData_Url = "data/" + city_code + "_drw_" + city_name + ".json";
 		amapCache.loadData(drwData_Url, function(loaddata) {
-			var data=loaddata;
-			//console.log("load",data);
-			//SW.Traffic2JSON(loaddata);/*drwData增加st2st信息的开关*/
+			//-------------JSON编译功能-------------
+			//console.log("数据请求成功!",data);
+			//给2秒钟的延迟去加载路况信息
+			//self.loadConvert(city_code,city_name);
+			//setTimeout(function () {
+			//	SW.Traffic2JSON(loaddata);/*drwData增加st2st信息的开关*/
+			//},2000);
+			//————————————JSON编译结束——————————
 			self.buildCurLinesData(city_code,loaddata);
-			//————————————下面使开启回调功能,以上部分是处理数据!——————————
-			self.handleCurLines(city_code,callback);
+			callback(self.cache.cities[city_code]);
 		}, function() {
+			self.status.currLinesInfo=2;
 			alert('城市地铁数据加载失败！');
 			self.subwayFlag = 0;
-			tip.cityChange();
+			//tip.cityChange();
 		});
 	},
 	//请求站点首末班车信息
@@ -381,13 +392,12 @@ var SW = {
 		});
 	},
 	//请求交通状况信息
-	loadTraffic: function (city_code,city_name,callback){
+	loadTraffic: function (city_code,city_name){
 		var self=this;
 		//http://ac-OnsG2j7w.clouddn.com/42df2acedfd37d9e.json
 		var trafficData_Url="http://223.72.210.20:8388/PublicTripProvide/LoadAfcJtlDataJson?ask=t8ai8t4s3acb1ce";
 		//var trafficData_Url="data/" + city_code + "_trafficinfo_" + city_name + ".json";
 		amapCache.loadData(trafficData_Url, function(trafficData) {
-			self.loadMainData(city_code,city_name,callback);
 			//编译最原始的trafficInfo
 			//遍历数据，缓存所有的路况信息到trafficInfo！
 			//console.log(trafficData);
@@ -418,23 +428,21 @@ var SW = {
 				}
 				self.cache.trafficInfo.push(info);
 			}
+			self.status.trafficInfo=1;
 			console.log("路况信息请求完成!");
 			self.refreshStatus=self.formatTime(self.cache.trafficInfo[1].refreshTime).trafficLoad;
 			//console.log(self.refreshStatus);
 			//console.log(self.cache.trafficInfo);
 		},function() {
 			self.refreshStatus="路况数据加载失败";
-			self.loadMainData(city_code,city_name,callback);
+			self.status.trafficInfo=2;
+			//self.loadMainData(city_code,city_name,callback);
 			//延迟弹窗
-			clearTimeout(SW.timer);
-			SW.timer=setTimeout(function () {
-				//console.log('路况数据加载失败,将不会显示路况');
-				alert('路况数据加载失败,将不会显示路况');
-			},200);
 		});
 	},
 	//初步编译地铁的基础信息
 	buildCurLinesData: function (city_code,data) {
+		var self=this;
 		var cache = SW.cache;
 		cache.sug[city_code] = {};
 		cache.dataForDrw[data.i] = data;
@@ -550,13 +558,15 @@ var SW = {
 		cache.curCity.adcode = city_code;
 		cache.curCity.name = cache.cities[city_code].name;
 		cache.curCity.offset = cache.offset[city_code];
+		self.status.currLinesInfo=1;
 		var drwData = cache.cities[city_code];
 		console.log("纯地铁信息编译完成!");
 		//console.log(drwData);
 	},
 	/*给初始化的drwData增加st2st信息的开关,之后打印成JSON文本*/
 	Traffic2JSON: function (drwData) {
-		//依赖self.cache.convertData,self.cache.trafficInfo,self.cache.stations;
+		/*依赖self.cache.convertData,self.cache.trafficInfo,self.cache.stations;
+		要在buildCurLinesData()之前运行,所以要先加载loadTraffic(),再loadMainData(),阻塞buildCurLinesData*/
 		var self = this;
 		var current_City_lines=drwData.l /*|| drwData.lines*/;
 		//加入站点名称
@@ -705,31 +715,36 @@ var SW = {
 		console.log("正在转译成Json...");
 		console.log(JSON.stringify(self.cache.trafficNew));
 	},
-	addTrafficInfo: function (drwData) {
-		var self=this;
-		for(var line_id in drwData.lines){
-			for(var j in drwData.lines[line_id].st2st){
-				for(var k in self.cache.trafficInfo){
-					if(self.cache.trafficInfo[k].Acc2Acc==drwData.lines[line_id].st2st[j].directionAcc.slice(3)){
-						drwData.lines[line_id].st2st[j].loadRate=self.cache.trafficInfo[k].loadRate;
-						drwData.lines[line_id].st2st[j].refreshTime=self.cache.trafficInfo[k].refreshTime;
-						drwData.lines[line_id].st2st[j].rateColor=self.cache.trafficInfo[k].rateColor;
+	//路况信息编译到draData
+	addTrafficInfo: function (city_code) {
+		//这里依赖加载路况信息以及画图信息的加载状态
+		var self = this;
+		//console.log(SW.timer);
+		clearTimeout(SW.timer);
+		SW.timer=setTimeout(function () {
+			if(self.status.trafficInfo==1 && self.status.currLinesInfo==1){
+				console.log("请求到了路况信息,开始编译...");
+				var drwData = self.cache.cities[city_code];
+				for(var line_id in drwData.lines){
+					for(var j in drwData.lines[line_id].st2st){
+						for(var k in self.cache.trafficInfo){
+							if(self.cache.trafficInfo[k].Acc2Acc==drwData.lines[line_id].st2st[j].directionAcc.slice(3)){
+								drwData.lines[line_id].st2st[j].loadRate=self.cache.trafficInfo[k].loadRate;
+								drwData.lines[line_id].st2st[j].refreshTime=self.cache.trafficInfo[k].refreshTime;
+								drwData.lines[line_id].st2st[j].rateColor=self.cache.trafficInfo[k].rateColor;
+							}
+						}
 					}
 				}
+				console.log("增加交通状况信息成功！");
+			}else if(self.status.trafficInfo==2 || self.status.currLinesInfo==2){
+				console.log("路况数据请求失败!");
+				clearTimeout(SW.timer);
+			}else{
+				//console.log("路况信息加工失败","traffic",self.status.trafficInfo,"currLines",self.status.currLinesInfo);
+				SW.addTrafficInfo(city_code);
 			}
-		}
-		console.log("增加交通状况信息成功！")
-	},
-	//延迟处理交通路况信息
-	handleCurLines: function (city_code,callback) {
-		var self = this;
-		var drwData = self.cache.cities[city_code];
-		//console.log("handler",drwData);
-		//SW.Traffic2JSON(drwData);
-		//console.log(self.cache.trafficInfo);
-		//增加交通状况信息
-		SW.addTrafficInfo(drwData);
-		callback(self.cache.cities[city_code]);
+		},10);
 	},
 	//正在加载
 	loading: function() {

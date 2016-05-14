@@ -1,5 +1,6 @@
 var drwSw = {
 	defaultColor:SW.defaultColor,
+	timer:{},
 	json:[],
 	drwAdd:[],
 	currLines: {},
@@ -459,6 +460,27 @@ var drwSw = {
 		}
 
 	},
+	drwTrafficTimeout: function (parentNode,drwData) {
+		var self=this;
+		clearTimeout(drwSw.timer);
+		drwSw.timer=setTimeout(function () {
+			if (SW.status.trafficInfo == 1 && SW.status.currLinesInfo == 1) {
+				//console.log("开始画路况！");
+				for (var line_id in drwData) {
+					var current_drwData = drwData[line_id];
+					self.drwTrafficFromSever(parentNode, current_drwData);
+					//self.drwTrafficLines(parentNode, current_drwData);
+				}
+				console.log("路况信息已展示！");
+			}else if(SW.status.trafficInfo==2 || SW.status.currLinesInfo==2){
+				clearTimeout(drwSw.timer);
+			}
+			else{
+				//console.log("路况信息显示错误!","traffic",SW.status.trafficInfo,"currLines",SW.status.currLinesInfo);
+				drwSw.drwTrafficTimeout(parentNode,drwData);
+			}
+		}, 10)
+	},
 	drwDouble: function (parentNode,drwData) {
 		//画双线
 		var self=this;
@@ -497,8 +519,7 @@ var drwSw = {
 		if (status == 'normal') {
 			svg_g.appendChild(subway_line);
 			svg_g.appendChild(traffic_line);
-			var timer;
-			console.log("开始画主路");
+			//console.log("开始画主路");
 			//console.log(self.currLines);
 			for (var line_id in drwData) {
 				var current_drwData = drwData[line_id];
@@ -506,14 +527,11 @@ var drwSw = {
 				//console.log("======##################=======" + drwData[line_id].ln + "=========############=====");
                 //画双线
 				self.drwDouble(subway_line,current_drwData);
-				//console.log("开始画路况！");
-				//self.drwTrafficLines(traffic_line, current_drwData);
-				self.drwTrafficFromSever(traffic_line, current_drwData);
-				//console.log("路况信息已展示！");
 			}
 			$("#refresh_content").show();
 			$(".filter_btn").show();
 			console.log("主路画完！");
+			self.drwTrafficTimeout(traffic_line,drwData);
 		} else if (status == 'select') {
 			var svg_select = document.getElementById("g-select");
 			svg_select.appendChild(subway_line);
