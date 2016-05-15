@@ -737,7 +737,7 @@ var SW = {
 						}
 					}
 				}
-				console.log("增加交通状况信息成功！");
+				console.log("路况信息编译成功！");
 			}else if(self.status.trafficInfo==2 || self.status.currLinesInfo==2){
 				console.log("路况数据请求失败!");
 				clearTimeout(SW.timer);

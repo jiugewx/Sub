@@ -505,8 +505,14 @@ var drwSw = {
 		Left.reflineName = drwData.ln;
 		Right.reflineName = drwData.ln;
 
-		drwSw.drwlines(parentNode, Left, drwData);
-		drwSw.drwlines(parentNode, Right, drwData);
+		var lineId=drwData.ls;
+		//区分机场线
+		if(lineId=="110005"){
+			drwSw.drwlines(parentNode, Right, drwData);
+		}else{
+			drwSw.drwlines(parentNode, Left, drwData);
+			drwSw.drwlines(parentNode, Right, drwData);
+		}
 	},
 	// 绘制默认的地铁线路
 	drwSwLines: function(drwData, status) {
