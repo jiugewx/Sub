@@ -13,6 +13,7 @@ var tip = {
     stationsInfo: SW.cache.stationsInfo,/*几个数据接口*/
     stations: SW.cache.stations,
     lines: SW.cache.lines,
+    tempTrafficinfo:SW.cache.tempTrafficinfo,
     station_w: 26,
     dragObjXY: {}, //拖拽div时的实时xy
     dragX: null,
@@ -214,9 +215,12 @@ var tip = {
                 var target = e.target;
                 if (target.getAttribute('class') != 'station_obj' || target.getAttribute('class') != 'nav-img') {
                     tip.closeTip();
+                    tip.closehelpBox();
                 }
             }
         });
+
+
         $(".top_bar").on("touchend", function () {
             tip.closeTip();
             tip.closeFilter();
@@ -254,17 +258,15 @@ var tip = {
         });
         //点击线路图选择器，打开选择器
         $('.filter_btn').on('touchend', function() {
+            self.closehelpBox();
             if (!tip.routeState) {
                 self.openFilter();
             }
         });
-        //关闭线路选择器
-        $('.flier_close_btn').on('touchend', function() {
-            self.closeFilter();
-        });
-        //关闭线路选择器
+        //关闭背景暗箱
         $('.light_box').on('touchend', function() {
             self.closeFilter();
+            self.closehelpBox()
         });
         //点击选择器中的路线：关闭选择器，显示地铁，设置屏幕中心点为地铁的中心
         $('.fliter_detail').on('touchend', '.fliter_item', function() {
@@ -298,6 +300,18 @@ var tip = {
                 self.setCenter(center);
             }
         });
+
+        $(".help_btn").on("touchend", function (e) {
+            e.stopPropagation();
+            self.closeFilter();
+            tip.openhelpBox();
+        });
+        $(".help_close").on("touchend", function (e) {
+            e.stopPropagation();
+            tip.closehelpBox();
+        });
+
+
 
         //处理选择器中的移动事件
         var fdTimer;
@@ -454,7 +468,18 @@ var tip = {
                 $(".refresh_time_text").removeClass("refresh_time_text_show").css("display","none");
                 $(".refresh_box").removeClass("refresh_box_show").css("display","none");
                 $refresh.removeClass("refresh_active");
-        },5000);
+        },4000);
+    },
+    openhelpBox: function () {
+        $('.light_box').css('display', 'block');
+        $('.tip_wrap_out').hide();
+        $(".refresh_btn").hide();
+        $(".refresh_time").hide();
+        $(".help_content").css("display","block");
+    },
+    closehelpBox: function () {
+        $('.light_box').css('display', 'none');
+        $(".help_content").css("display","none");
     },
     //拖动Svg
     mcdragSvg: function(ev) {
@@ -742,12 +767,10 @@ var tip = {
     //加载信息数据
     loadinfo: function(lineId, StationId) {
         var self = this;
-        var select_station_dpt_time = [],
-            select_station_name, select_station_ref_line = [],
-            infowHtml = [];
+        var select_station_name,
+            infowHtml = [],
         select_station_dpt_time = self.stationsInfo[StationId].d;
         select_station_name = self.stations[StationId].n;
-        select_station_ref_line = self.stations[StationId].r.split("|");
         // var current_station = [];
         var current_station = {};
         for (var i = 0, len = select_station_dpt_time.length; i < len; i++) {
@@ -758,9 +781,9 @@ var tip = {
             current_station[item.ls].push(item);
         }
         $("#tip_name").html(select_station_name);
+        console.log(current_station);
         // 输出地铁站点信息
-        var lineid = '';
-        for (lineid in current_station) {
+        for (var lineid in current_station) {
             if (current_station.hasOwnProperty(lineid)) {
                 if (self.lines[lineid]) {
                     var line_sub_name = self.lines[lineid].la;
@@ -770,7 +793,8 @@ var tip = {
                         line_sub_name = '(' + line_sub_name + ')';
                     }
                     infowHtml.push("<div class=\"tip_detail_line\">");
-                    infowHtml.push("<label class=\"line-label\" style=\"background-color:#"+self.lines[lineid].cl+"\">地铁" + self.lines[lineid].ln + line_sub_name +"</label>");
+                    //infowHtml.push("<label class=\"line-label\" style=\"background-color:#"+self.lines[lineid].cl+"\">地铁" + self.lines[lineid].ln + line_sub_name +"</label>");
+                    infowHtml.push("<label class=\"line-label\">地铁" + self.lines[lineid].ln + line_sub_name +"</label>");
                     infowHtml.push("<label class='line-sub-label'></label>");
                     infowHtml.push("<ul class=\"time-item-main\">");
                     for (var j = 0; j < 2; j++) {
@@ -780,7 +804,7 @@ var tip = {
                             var direction = self.stations[current_station[lineid][j].n];
                             if (first_time.split(':')[0] != '--' || last_time.split(':')[0] != '--') {
                                 infowHtml.push("<li class=\"time-item-detail\">");
-                                infowHtml.push("<div class=\"train-direct fl\"><label class=\"direct-label\">开往</label><span class=\"direct-name\">" + direction.n + "</span></div>"); //下一站名，表示方向
+                                infowHtml.push("<div class=\"train-direct fl\"><span class=\"direct-name\">" + direction.n + "</span><label class=\"direct-label\">方向</label></div>"); //下一站名，表示方向
                                 infowHtml.push("<div class=\"train-time fr\">");
                                 infowHtml.push("<div class=\"start-time time-box fl\"><label class=\"time-label-start\">首</label><span class=\"time\">" + first_time + "</span></div>"); //首发
                                 infowHtml.push("<div class=\"last-time time-box fl\"><label class=\"time-label-end\">末</label><span class=\"time\">" + last_time + "</span></div>"); //末发
@@ -794,7 +818,13 @@ var tip = {
                 }
 
             }
+            //for(var k in self.tempTrafficinfo.stInfo){
+            //    if(self.tempTrafficinfo.stInfo[k].timeInside==true){
+            //        $("#tip_detail_error").html("由于现在客流量较大，现在该站采取限流措施。")
+            //    }
+            //}
         }
+
         $("#tip_content").html(infowHtml.join(""));
     },
     //打开Tip弹窗

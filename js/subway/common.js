@@ -1,9 +1,27 @@
 //定义SW，数据预处理
 var SW = {
 	status:{
-		currLinesInfo:0,
-		trafficInfo:0
+		trafficTemp:0,/*精确到分*/
+		trafficLoad:0/*精确到秒*/
 	},
+	statusColor: [
+		{
+			"color": "00cc33",
+			"instruction": "舒适"
+		},
+		{
+			"color": "EFEA3A",
+			"instruction": "较拥挤"
+		},
+		{
+			"color": "E71F1A",
+			"instruction": "拥挤"
+		},
+		{
+			"color": "1D1D1D",
+			"instruction": "极拥挤"
+		}
+	],
 	refreshStatus:{},
 	cache: {
 		currLines:{},
@@ -22,6 +40,7 @@ var SW = {
 		trafficNew:[],
 		trafficInfo:[],
 		convertData:{},
+		tempTrafficinfo:[],
 		stationspoi: {},
 		offset: {},
 		navlines: {},
@@ -29,7 +48,6 @@ var SW = {
 		navStPixel: {}
 	},
 	timer:{},
-	defaultColor:'00cc33',
 	subwayFlag: 1, // 0 没有 , 1 有
 	param: null,
 	nearlnglat: null,
@@ -337,6 +355,7 @@ var SW = {
 			self.loadTraffic(city_code,city_name);
 			self.loadMainData(city_code,city_name,callback);
 			self.addTrafficInfo(city_code);
+			self.loadTempTraffic();
 		}
 	},
 	//这里是请求对应城市的地铁数据
@@ -547,7 +566,6 @@ var SW = {
 	//请求交通状况信息
 	loadTraffic: function (city_code,city_name){
 		var self=this;
-		//http://ac-OnsG2j7w.clouddn.com/42df2acedfd37d9e.json
 		var trafficData_Url="http://223.72.210.20:8388/PublicTripProvide/LoadAfcJtlDataJson?ask=t8ai8t4s3acb1ce";
 		//var trafficData_Url="data/" + city_code + "_trafficinfo_" + city_name + ".json";
 		amapCache.loadData(trafficData_Url, function(trafficData) {
@@ -569,13 +587,13 @@ var SW = {
 				info.Acc2Acc=flashCode.slice(3,22);
 
 				if (loadRate >= 0 && loadRate <= 0.6) {
-					info.rateColor = "00cc33";
+					info.rateColor = self.statusColor[0].color;
 				} else if (loadRate > 0.6 && loadRate <= 0.9) {
-					info.rateColor = "EFEA3A";
+					info.rateColor = self.statusColor[1].color;
 				} else if (loadRate > 0.9 && loadRate <= 1.1) {
-					info.rateColor = "E71F1A";
+					info.rateColor = self.statusColor[2].color;
 				} else if (loadRate > 1.1){
-					info.rateColor = "1D1D1D";
+					info.rateColor = self.statusColor[3].color;
 				} else {
 					info.rateColor = "CCCCCC";
 				}
@@ -587,10 +605,60 @@ var SW = {
 			//console.log(self.refreshStatus);
 			//console.log(self.cache.trafficInfo);
 		},function() {
-			self.refreshStatus="路况数据加载失败";
 			self.status.trafficInfo=2;
 			//self.loadMainData(city_code,city_name,callback);
 			//延迟弹窗
+			setTimeout(function () {
+				alert("路况数据加载失败!");
+			},1000);
+		});
+	},
+	//请求临时交通限流信息
+	loadTempTraffic: function () {
+		var self=this;
+		var trafficData_Url="http://223.72.210.20:8388/PublicTripProvide/LoadAfcZdxlDataJson?ask=t8ai8t4s3acb1ce";
+		amapCache.loadData(trafficData_Url, function(Temptraffic) {
+			//编译最原始的trafficInfo
+			//遍历数据，缓存所有的路况信息到trafficInfo！
+			//console.log(trafficData);
+			var tempInfo=[];
+			var len=Temptraffic.zdxlList.length;
+			for (var k = 0; k < len; k++) {
+				var info={};
+				var statCode=Temptraffic.zdxlList[k].statCode;
+				info.stationAcc=statCode.slice(3).split("_")[0];
+				info.stationName=Temptraffic.zdxlList[k].statName;
+				info.endTime=Temptraffic.zdxlList[k].endTime;
+				info.lineId=Temptraffic.zdxlList[k].lineId;
+				info.startTime=Temptraffic.zdxlList[k].startTime;
+				tempInfo.push(info);
+				if(self.compTime(info.startTime,info.endTime)==1){
+					info.timeInside=true;
+				}else{
+					info.timeInside=false;
+				}
+			}
+			var publishTime=[];
+			publishTime[0]=Temptraffic.publishTime.slice(0,4);
+			publishTime[1]=Temptraffic.publishTime.slice(4,6);
+			publishTime[2]=Temptraffic.publishTime.slice(6,8);
+			publishTime[3]=Temptraffic.publishTime.slice(8,10);
+			publishTime[4]=Temptraffic.publishTime.slice(10,12);
+			publishTime[5]=Temptraffic.publishTime.slice(12,14);
+			var pubTime=publishTime[0]+"-"+publishTime[1]+"-"+publishTime[2]+' '+publishTime[3]+":"+publishTime[4]+":"+publishTime[5];
+			self.cache.tempTrafficinfo.pubTime=self.formatTime(pubTime).trafficTemp;
+			self.cache.tempTrafficinfo.stInfo=tempInfo;
+			self.status.tempTrafficinfo=1;
+			console.log("限流管制信息请求完成!");
+			console.log(self.cache.tempTrafficinfo);
+			//console.log(self.refreshStatus);
+		},function() {
+			self.status.tempTrafficinfo=2;
+			//self.loadMainData(city_code,city_name,callback);
+			//延迟弹窗
+			setTimeout(function () {
+				alert("限流管制信息加载失败!");
+			},1000);
 		});
 	},
 	//初步编译地铁的基础信息
@@ -785,7 +853,7 @@ var SW = {
 		var date = new Date(thedateTime).getTime();
 		var minute = 1000 * 60;
 		var hour = minute * 60;
-		//var day = hour * 24;
+		var day = hour * 24;
 		//var halfamonth = day * 15;
 		//var month = day * 30;
 
@@ -795,6 +863,7 @@ var SW = {
 		if (diffValue < 0) {
 			return false;
 		}
+		var dayC=diffValue/day;
 		var hourC = diffValue / hour;
 		var minC = diffValue / minute;
 
@@ -812,37 +881,82 @@ var SW = {
 		var difference = todaySeconds - oldDataSeconds;
 		// 获取所给时间的 分时信息如 23:12
 		var TrafficInfoTime = dateTime.split(" ")[1].toString().substr(0, 8);
+		var TrafficTempTime = dateTime.split(" ")[1].toString().substr(0, 5);
 
 		//判断哪一天
-		var isToday = {};
+		var isToday1 = {},isToday2;
 		if (difference < 86400000 && difference >= 0) {
-			isToday = " 今天" + TrafficInfoTime;
+			isToday1 = " 今天" + TrafficInfoTime;
+			isToday2 = TrafficTempTime;
 		} else if (difference == 86400000) {
-			isToday = " 昨天" + TrafficInfoTime;
+			isToday1 = " 昨天" + TrafficInfoTime;
+			isToday2 = " 昨天" + TrafficTempTime;
 		} else if (difference == 172800000) {
-			isToday = " 前天" + TrafficInfoTime;
+			isToday1 = " 前天" + TrafficInfoTime;
+			isToday2 = " 前天" + TrafficTempTime;
 		} else {
 			var dataArr = dateTime.split(" ")[0].toString().split("-");
-			isToday = dataArr[0] + "年" + dataArr[1] + "月" + dataArr[2] + "日";
+			isToday1 = dataArr[0] + "年" + dataArr[1] + "月" + dataArr[2] + "日";
+			isToday2 = dataArr[0] + "年" + dataArr[1] + "月" + dataArr[2] + "日";
 		}
 
-		timeInfo.trafficLoad=isToday;
+		timeInfo.trafficLoad=isToday1;
 		// 判断显示时间
-		if (hourC >= 8) {
-			result = "更新于" + isToday;
+		if (dayC >= 1) {
+			result = "更新于" + parseInt(dayC) + "天前发布";
 		}
-		else if (hourC >= 1 && hourC < 8) {
-			result = "更新于" + parseInt(hourC) + "小时前";
+		else if (hourC >= 1 && hourC < 24) {
+			result = "更新于" + parseInt(hourC) + "小时前发布";
 		}
-		else if (minC >= 30) {
-			result = "更新于" + parseInt(minC) + "分钟前";
+		else if (minC >= 30 && minC < 60) {
+			result = "更新于" + parseInt(minC) + "分钟前发布";
 		} else if (minC < 30 && minC > 0) {
-			result = "更新于" + parseInt(minC) + "分钟前";
+			result = "更新于"  + isToday2;
 		}
 		else
 			result = "刚刚";
 
 		timeInfo.trafficTemp=result;
+		return timeInfo;
+	},
+	compTime: function (startTime,endTime) {
+		var newtime = new Date();
+		var newYear = newtime.getFullYear();
+		var newMonth = newtime.getMonth() + 1;
+		var newData = newtime.getDate();
+		var newHours = newtime.getHours();
+		var newMinutes = newtime.getMinutes();
+		var newSeconds = newtime.getSeconds();
+
+		if(newHours<10){
+			newHours="0"+newHours;
+		}
+		if(newMinutes<10){
+			newMinutes="0"+newMinutes;
+		}
+		if(newSeconds<10){
+			newSeconds="0"+newSeconds;
+		}
+		if(newMonth<10){
+			newMonth="0"+newMonth;
+		}
+		if(newData<10){
+			newData="0"+newData;
+		}
+
+		var today = newYear + "-" + newMonth + "-" + newData;
+		var now =today+newHours + ":" + newMinutes + ":" + newSeconds;
+		var _now=newtime.getTime();
+		var beginTime =today+" "+startTime;
+		var endTime =today+" "+endTime;
+		var _endTime=Date.parse(endTime);
+		var _beginTime=Date.parse(beginTime);
+		var timeInfo="";
+		if(_beginTime<_now && _now<_endTime){
+			timeInfo=1;
+		}else{
+			timeInfo=0;
+		}
 		return timeInfo;
 	},
 	//showRoute: function (param) {

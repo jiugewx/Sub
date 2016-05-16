@@ -298,22 +298,156 @@ body.disable-default-action {
 .filter_btn {
     display: none;
     position: fixed;
-    width: 45px;
-    height: 18px;
-    line-height: 16px;
-    top: 18px;
-    right: 10px;
+    width: 32px;
+    height: 12px;
+    line-height: 9px;
+    top: 14px;
+    right: 8px;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0,.3);
     border-radius: 2px;
     z-index: 20;
     background: rgba(102,102,102,1) url(../img/subway/route.png) no-repeat;
-    background-size: 28px 18px;
-    background-position: 9px 4px;
+    background-size: 22px 14px;
+    background-position: 5px 4px;
     -webkit-text-size-adjust:none;
     font-size: 9px;
     text-align: center;
-    padding-top: 24px;
+    padding-top: 20px;
     color: #fff;
+}
+
+.filter_content {
+    display: none;
+    position: absolute;
+    top: 20%;
+    right: 70px;
+    left: 70px;
+    z-index: 21;
+    background: #fff;
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);
+    border-radius: 5px;
+}
+
+/*.ios .filter_content{top: 112px;}*/
+
+.fliter_detail {
+    max-height: 286px;
+    min-width : 130px;
+    padding: 0 11px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.fliter_item {
+    font-size: 12px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px #eaeaea solid;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.help_btn{
+    display: block;
+    position: fixed;
+    width: 32px;
+    height: 12px;
+    line-height: 9px;
+    top: 54px;
+    right: 8px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0,.3);
+    border-radius: 2px;
+    z-index: 20;
+    background: rgba(102,102,102,1) url(../img/subway/flow.png) center center no-repeat;
+    background-size: 22px 14px;
+    background-position: 5px 4px;
+    -webkit-text-size-adjust:none;
+    font-size: 9px;
+    text-align: center;
+    padding-top: 20px;
+    color: #fff;
+}
+
+
+.help_content{
+    display:none;
+    position: absolute;
+    top: 35%;
+    left: 20%;
+    right: 20%;
+    z-index: 20;
+    background: #fff;
+    height: auto;
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    /*padding-top: 20px;*/
+    border: solid #6a6968 1px;
+    padding-bottom: 5px;
+}
+
+.help_title{
+    display: block;
+    margin: 0 auto;
+    height: 16px;
+    width: 100%;
+    font-size: 16px;
+    line-height: 16px;
+    padding:8px 14px;
+    border-bottom: 1px solid #cccccc;
+}
+.help_name{
+    float: left;
+}
+
+
+.help_close{
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    width: 22px;
+    height: 22px;
+    background:url(../img/subway/close2_btn.png) center center no-repeat;
+    background-size: 22px 22px;
+}
+
+.help_item{
+    width: 200px;
+    height: 20px;
+    margin: 5px auto;
+    text-decoration: none;
+}
+.help_color{
+    display:block;
+    float: left;
+    height: 8px;
+    width: 30px;
+    margin: 6px 3px 6px 40px;
+}
+.help_color_warning{
+    display:block;
+    float: left;
+    height: 20px;
+    width: 30px;
+    margin: 0 3px  0 40px;
+    background:url(../img/subway/limit.png) no-repeat;
+    background-position: 5px 0;
+    background-size: 20px 20px;
+}
+.help_text{
+    float: right;
+    display: block;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: left;
+    margin:3px 40px 3px 13px;
+    height: 14px;
+    width: 70px;
 }
 
 /*.ios .filter_btn{top: 76px;}*/
@@ -359,8 +493,8 @@ body.disable-default-action {
 }
 
 .refresh_active{
-    animation: updata 5s;
-    -webkit-animation:updata 5s;
+    animation: updata 4s;
+    -webkit-animation:updata 4s;
 }
 
 @-webkit-keyframes updata {
@@ -401,8 +535,8 @@ body.disable-default-action {
     z-index: 15;
 }
 .refresh_box_show{
-    animation: showBox 5s;
-    -webkit-animation:showBox 5s;
+    animation: showBox 4s;
+    -webkit-animation:showBox 4s;
 }
 
 @-webkit-keyframes showBox {
@@ -430,8 +564,8 @@ body.disable-default-action {
     font-weight: bold;
 }
 .refresh_time_text_show{
-    animation: showText 5s;
-    -webkit-animation:showText 5s;
+    animation: showText 4s;
+    -webkit-animation:showText 4s;
 }
 @-webkit-keyframes showText {
     0% {
@@ -458,73 +592,12 @@ body.disable-default-action {
 }
 
 /*.ios .route_close_btn{top: 76px;}*/
-.nav_btn {
-    position: absolute;
-    width: 36px;
-    height: 16px;
-    top: 56px;
-    left: 10px;
-    box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);
-    border-radius: 2px;
-    z-index: 20;
-    background: #fff;
-    font-size: 9px;
-    text-align: center;
-    padding-top: 20px;
-    color: #6a6968;
-}
-
-.filter_content {
-    display: none;
-    position: fixed;
-    top: 58px;
-    right: 10px;
-    z-index: 21;
-    background: #fff;
-    box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);
-    border-radius: 2px;
-}
-
-/*.ios .filter_content{top: 112px;}*/
-.flier_close_btn {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    width: 45px;
-    height: 42px;
-    background: #fff url(../img/subway/close_btn.png) no-repeat;
-    background-size: 16px 16px;
-    background-position: 14px 14px;
-    border-radius: 2px;
-    z-index: 22;
-}
-
-.fliter_detail {
-    max-height: 286px;
-    min-width : 130px;
-    padding: 0 11px;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-.fliter_item {
-    font-size: 12px;
-    height: 40px;
-    line-height: 40px;
-    border-bottom: 1px #eaeaea solid;
-    overflow: hidden;
-    zoom: 1;
-}
 
 /*.fliter_item_last{margin-bottom: 30px;}*/
 .line_color {
     display: block;
     height: 8px;
-    width: 30px;
+    width: 60px;
     float: left;
     margin-top: 16px;
     margin-right: 10px;
@@ -533,6 +606,7 @@ body.disable-default-action {
 .line_name {
     display: block;
     float: left;
+    margin-left: 20px;
 }
 
 .overlays {
@@ -573,12 +647,21 @@ body.disable-default-action {
 }
 
 .tip_name {
-    display: block;
-    font-size: 18px;
+    display: inline-block;
+    font-size: 16px;
     font-weight: 600;
-    color: #6a6a6a;
+    color: black;
     padding: 10px 0;
     height: 20px;
+    /*background-color: rosybrown;*/
+}
+
+.tip_detail_time {
+    display: inline-block;
+    font-size: 12px;
+    padding: 10px 0;
+    height: 12px;
+    color:#848484;
 }
 
 .tip_close {
@@ -600,10 +683,6 @@ body.disable-default-action {
 
 .tip_detail_error, .tip_detail_success {
     padding-bottom: 4px;
-}
-
-.tip_detail_time {
-    float: right;
 }
 
 .tip_content {
@@ -628,11 +707,12 @@ body.disable-default-action {
 }
 
 .line-label {
-    color: #FFF;
+    color:black;
     display: inline-block;
-    padding: 0 5px;
-    font-size: 12px;
-    border-radius: 5px;
+    /*padding: 0 5px;*/
+    font-size: 14px;
+    font-weight: bold;
+    /*border-radius: 5px;*/
 }
 
 .line-sub-label {
@@ -680,9 +760,9 @@ body.disable-default-action {
 .time-item-detail .train-direct .direct-name {
     display: block;
     float: left;
-    width: 80px;
+    width:auto;
     color: black;
-    font-weight: bold;
+    margin-right: 5px;
 }
 
 .time-item-detail .train-time {
@@ -690,31 +770,43 @@ body.disable-default-action {
 }
 
 .time-item-detail .train-time .start-time {
-    color: #EF5D42;
+    /*color: #EF5D42;*/
 }
 
 .time-item-detail .train-time .last-time {
-    color: #80B142;
+    /*color: #80B142;*/
 }
 
 .time-item-detail .train-time .time-box {
-    padding: 0 0 0 15px;
-    width: 55px;
+    padding: 0 0 5px 15px;
+    width: 65px;
     overflow: hidden;
 }
 
-.time-item-detail .train-time .time-box .time-label-start {
-    color: #fff;
-    padding: 2px;
-    background-color: #EF5D42;
-    margin-right: 5px;
+.time-item-detail .train-time .time-box .time-label-start{
+    display: block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    float: left;
+    margin: 2px 0 0 8px;
+    border-radius: 50%;
+    text-align: center;
+    color: #1774ff;
+    border: solid 1px #1774ff;
 }
 
 .time-item-detail .train-time .time-box .time-label-end {
-    color: #fff;
-    padding: 2px;
-    background-color: #80B142;
-    margin-right: 5px;
+    display: block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    float: left;
+    margin: 2px 0 0 8px;
+    border-radius: 50%;
+    text-align: center;
+    color: #ff0033;
+    border: solid 1px #ff0033;
 }
 
 .time-item-detail .train-time .time {

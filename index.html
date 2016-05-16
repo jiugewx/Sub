@@ -21,10 +21,16 @@
             <!-- 线路选择盒子 -->
             <div class="light_box"></div><!--实现背景变暗-->
             <div class="filter_btn">线路图</div>
-            <div class="route_close_btn hidden"></div>
             <div class="filter_content">
-                <div class="flier_close_btn"></div>
                 <ul class="fliter_detail"></ul>
+            </div>
+            <!-- 客流量-->
+            <div class="help_btn">客流量</div>
+            <div class="help_content">
+                <span class="help_title">
+                    <span class="help_name" >图例提示</span>
+                </span>
+                <span class="help_close"></span>
             </div>
             <!--弹出层信息-->
             <div class="overlays" id="overlays">
@@ -34,15 +40,15 @@
                             <!-- 弹出框的标题信息 -->
                             <div class="tip_title">
                                 <span class="tip_name" id="tip_name"></span>
+                                <!--<span class="tip_detail_time">（30分钟前发布）</span>-->
                                 <span class="tip_close"></span>
                                 <span style="clear: both"></span>
                                 <div class="tip_detail">
-                                    <div class="tip_detail_error">抱歉，暂无数据</div>
-                                    <div class="tip_detail_success">
-                                        <span class="tip_detail_out">出：37人</span>
-                                        <span class="tip_detail_in">进：79人</span>
-                                        <span class="tip_detail_time">30分钟前发布</span>
-                                    </div>
+                                    <!--<div class="tip_detail_error">抱歉，暂无数据</div>-->
+                                    <!--<div class="tip_detail_success">-->
+                                        <!--<span class="tip_detail_out">出：37人</span>-->
+                                        <!--<span class="tip_detail_in">进：79人</span>-->
+                                    <!--</div>-->
                                 </div>
                             </div>
                             <!-- 弹出框的主体信息-->
@@ -81,7 +87,7 @@
                 <span class="refresh"></span>
             </div>
             <div class="refresh_box">
-                <span class="refresh_time_text">更新于 13:54:12</span>
+                <span class="refresh_time_text"></span>
             </div>
         </div>
         <!-- 加载loading -->

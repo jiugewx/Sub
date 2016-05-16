@@ -1,5 +1,6 @@
 var drwSw = {
-	defaultColor:SW.defaultColor,
+	statusColor:SW.statusColor,
+	defaultColor:SW.statusColor[0].color,
 	timer:{},
 	json:[],
 	drwAdd:[],
@@ -245,6 +246,22 @@ var drwSw = {
 			'z-index': '20'
 		});
 	},
+	addHelp: function () {
+		var self = this;
+		var help_content = $('.help_content');
+		//添加地铁
+		for (var i = 0; i < self.statusColor.length; i++) {
+			var help_item=$("<div class='help_item'></div>");
+			var html='';
+			html = '<span class="help_color" style="background:#'+self.statusColor[i].color+'"></span><span class="help_text"><span style="float: left">'+self.statusColor[i].instruction+'</span></span>';
+			help_item.html(html);
+			help_content.append(help_item);
+		}
+		var html_warning_item=$('<div class="help_item help_warning"></div>')
+		var html_warning='<span class="help_color_warning"></span> <span class="help_text"> <span style="float: left">限流站点</span> </span>';
+		html_warning_item.html(html_warning);
+		help_content.append(html_warning_item);
+	},
 	//画图
 	drawSvg: function(drwData, station, param) {
 		var self = this;
@@ -256,6 +273,7 @@ var drwSw = {
 		self.drwSwLinesName(drwData, status);
 		self.drawBg(self.currLines);
 		self.addFilter(self.currLines);
+		self.addHelp();
 		var nearObj = $('.near-station');
 		if (nearObj.length > 0) {
 			var center = tip.getStCenter(nearObj);
