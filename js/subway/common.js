@@ -651,6 +651,7 @@ var SW = {
 			self.status.tempTrafficinfo=1;
 			console.log("限流管制信息请求完成!");
 			console.log(self.cache.tempTrafficinfo);
+			console.log(self.cache.stationsInfo);
 			//console.log(self.refreshStatus);
 		},function() {
 			self.status.tempTrafficinfo=2;

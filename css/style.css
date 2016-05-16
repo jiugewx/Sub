@@ -298,8 +298,8 @@ body.disable-default-action {
 .filter_btn {
     display: none;
     position: fixed;
-    width: 32px;
-    height: 12px;
+    width: 36px;
+    height: 14px;
     line-height: 9px;
     top: 14px;
     right: 8px;
@@ -308,11 +308,11 @@ body.disable-default-action {
     z-index: 20;
     background: rgba(102,102,102,1) url(../img/subway/route.png) no-repeat;
     background-size: 22px 14px;
-    background-position: 5px 4px;
+    background-position: 7px 4px;
     -webkit-text-size-adjust:none;
     font-size: 9px;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 22px;
     color: #fff;
 }
 
@@ -354,10 +354,10 @@ body.disable-default-action {
 .help_btn{
     display: block;
     position: fixed;
-    width: 32px;
-    height: 12px;
+    width: 36px;
+    height: 14px;
     line-height: 9px;
-    top: 54px;
+    top: 58px;
     right: 8px;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0,.3);
     border-radius: 2px;
@@ -368,7 +368,7 @@ body.disable-default-action {
     -webkit-text-size-adjust:none;
     font-size: 9px;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 22px;
     color: #fff;
 }
 
@@ -387,7 +387,7 @@ body.disable-default-action {
     font-size: 16px;
     text-align: center;
     /*padding-top: 20px;*/
-    border: solid #6a6968 1px;
+    /*border: solid #6a6968 1px;*/
     padding-bottom: 5px;
 }
 
@@ -666,12 +666,14 @@ body.disable-default-action {
 
 .tip_close {
     position: absolute;
-    top: 0;
-    right: 10px;
-    width: 40px;
-    height: 40px;
+    top: 8px;
+    right: 8px;
+    width: 22px;
+    height: 22px;
     background: url(../img/subway/close_btn.png) center center no-repeat;
     background-size: 16px 16px;
+    border-radius: 50%;
+    border: solid 2px #848484;
 }
 
 .tip_detail {
@@ -717,7 +719,7 @@ body.disable-default-action {
 
 .line-sub-label {
     padding-left: 5px;
-    font-size: 12px;
+    font-size: 14px;
     color: #000;
 }
 
@@ -747,12 +749,13 @@ body.disable-default-action {
 }
 
 .time-item-detail .train-direct {
+    font-size: 12px;
 }
 
 .time-item-detail .train-direct .direct-label {
     display: block;
     float: left;
-    width: 24px;
+    width: 26px;
     margin-right: 5px;
     color: #6a6968;
 }
@@ -766,7 +769,8 @@ body.disable-default-action {
 }
 
 .time-item-detail .train-time {
-    color: black;
+    color: #848484;
+    font-size: 12px;
 }
 
 .time-item-detail .train-time .start-time {

@@ -257,7 +257,7 @@ var drwSw = {
 			help_item.html(html);
 			help_content.append(help_item);
 		}
-		var html_warning_item=$('<div class="help_item help_warning"></div>')
+		var html_warning_item=$('<div class="help_item help_warning"></div>');
 		var html_warning='<span class="help_color_warning"></span> <span class="help_text"> <span style="float: left">限流站点</span> </span>';
 		html_warning_item.html(html_warning);
 		help_content.append(html_warning_item);
