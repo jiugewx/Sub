@@ -352,7 +352,7 @@ body.disable-default-action {
 }
 
 .help_btn{
-    display: block;
+    display: none;
     position: fixed;
     width: 36px;
     height: 14px;

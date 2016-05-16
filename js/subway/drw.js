@@ -554,6 +554,7 @@ var drwSw = {
 			}
 			$("#refresh_content").show();
 			$(".filter_btn").show();
+			$(".help_btn").show();
 			console.log("主路画完！");
 			self.drwTrafficTimeout(traffic_line,drwData);
 		} else if (status == 'select') {
