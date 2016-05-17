@@ -247,8 +247,7 @@ var tip = {
                 var id = $(this).attr('station_id');
                 self.closeFilter();
                 $('.light_box').css('display', 'block');
-                //$(".filter_btn").html("线路图");
-                var obj = $("#overlays");
+                //var obj = $("#overlays");
                 //if (drwSw.isNearTip) {
                 //    drwSw.clearNearTip();
                 //}
@@ -971,12 +970,15 @@ var tip = {
         //线路选择器不能与弹窗同时存在
         $('.tip_wrap_out').hide();
         $(".refresh_btn").hide();
+        $(".refresh_time_text").removeClass("refresh_time_text_show").css("display", "none");
+        $(".refresh_box").hide().removeClass("refresh_box_show").css("display", "none");
         $(".refresh_time").hide();
     },
     //关闭路线选择器
     closeFilter: function() {
         $('.light_box, .filter_content').css('display', 'none');
         $(".refresh_btn").show();
+        $(".refresh_box").show();
         $(".refresh_time").show();
     },
     //获取选择后的中心

@@ -470,6 +470,10 @@ body.disable-default-action {
 #refresh_content{
     display:none;
 }
+.refresh_content{
+    display: block;
+}
+
 
 .refresh_btn {
     position: fixed;
@@ -536,7 +540,7 @@ body.disable-default-action {
     color:#fff;
     background-color: rgba(102,102,102,0.8);
     border-radius: 20px;
-    z-index: 15;
+    z-index: 11;
 }
 .refresh_box_show{
     animation: showBox 4s;

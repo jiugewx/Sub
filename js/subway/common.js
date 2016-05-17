@@ -722,17 +722,18 @@ var SW = {
 				}
 				self.cache.trafficInfo.push(info);
 			}
-			var publishTime=[];
-			publishTime[0]=trafficData.publishTime.slice(0,4);
-			publishTime[1]=trafficData.publishTime.slice(4,6);
-			publishTime[2]=trafficData.publishTime.slice(6,8);
-			publishTime[3]=trafficData.publishTime.slice(8,10);
-			publishTime[4]=trafficData.publishTime.slice(10,12);
-			publishTime[5]=trafficData.publishTime.slice(12,14);
-			var pubTime=publishTime[0]+"-"+publishTime[1]+"-"+publishTime[2]+' '+publishTime[3]+":"+publishTime[4]+":"+publishTime[5];
+			//显示为publishTime
+			//var publishTime=[];
+			//publishTime[0]=trafficData.publishTime.slice(0,4);
+			//publishTime[1]=trafficData.publishTime.slice(4,6);
+			//publishTime[2]=trafficData.publishTime.slice(6,8);
+			//publishTime[3]=trafficData.publishTime.slice(8,10);
+			//publishTime[4]=trafficData.publishTime.slice(10,12);
+			//publishTime[5]=trafficData.publishTime.slice(12,14);
+			//var pubTime=publishTime[0]+"-"+publishTime[1]+"-"+publishTime[2]+' '+publishTime[3]+":"+publishTime[4]+":"+publishTime[5];
 			self.status.trafficInfo=1;
 			console.log("路况信息请求完成!");
-			self.refreshStatus=self.formatTime(pubTime).trafficLoad;
+			self.refreshStatus=self.formatTime(self.cache.trafficInfo[0].refreshTime).trafficLoad;
 			//callback();
 			//console.log(self.refreshStatus);
 			//console.log("self.cache.trafficInfo",self.cache.trafficInfo);
@@ -740,10 +741,9 @@ var SW = {
 			self.status.trafficInfo=2;
 			//self.loadMainData(city_code,city_name,callback);
 			//延迟弹窗
-			tip.refreshError();
 			SW.loadingOver();
 			setTimeout(function () {
-				alert("路况数据加载失败!");
+				tip.refreshError();
 			},1000);
 		});
 	},

@@ -214,7 +214,7 @@ var drwSw = {
 		var firstHtml=[];
 		firstHtml.push("<li class='fliter_item' id='caption-allLines' lineid='caption-allLines' name='全部地铁'>");
 		//firstHtml.push("<span class='line_color' style='background:#000'></span>");
-		firstHtml.push("<span class='line_name'>全部地铁</span>");
+		firstHtml.push("<span class='line_name'>全部地铁线路</span>");
 		firstHtml.push("</li>");
 		subway_caption.html(firstHtml.join(""));
 		//添加地铁
