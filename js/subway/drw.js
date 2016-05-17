@@ -43,6 +43,13 @@ var drwSw = {
 		var self = this;
 		var ua = navigator.userAgent.toLowerCase();
 	},
+	draw: function(drwData, param) {
+		$('#subway-svg').remove();
+		this.currLines = {};
+		if(!this.svgReady){
+			this.initDraw(drwData, param);
+		}
+	},
 	//初始化画图数据;
 	initDraw: function(drwData, param) {
 		var self = this;
@@ -98,11 +105,14 @@ var drwSw = {
 		self.deletInProgress(drwData);
 		self.drawSvgSubway(drwData, lightStation, param);
 	},
-	draw: function(drwData, param) {
-		$('#subway-svg').remove();
-		this.currLines = {};
-		if(!this.svgReady){
-			this.initDraw(drwData, param);
+	//初始化currLines数据
+	deletInProgress: function(drwData) {
+		var self = this;
+		var j = 0;
+		for (var i = 0; i < drwData.lines.length; i++) {
+			if (drwData.lines[i].su != "3") {
+				self.currLines[drwData.lines[i].ls] = drwData.lines[i];
+			}
 		}
 	},
 	drawSvgSubway: function(drwData, station, param) {
@@ -114,7 +124,6 @@ var drwSw = {
 		self.drwSwBox(drwData);
 		setTimeout(function() {
 			self.drawSvg(drwData, station, param);
-
 			self.svgReady = true;
 		}, 10)
 	},
@@ -164,16 +173,7 @@ var drwSw = {
 			// }
 		}, 0)
 	},
-	//初始化currLines数据
-	deletInProgress: function(drwData) {
-		var self = this;
-		var j = 0;
-		for (var i = 0; i < drwData.lines.length; i++) {
-			if (drwData.lines[i].su != "3") {
-				self.currLines[drwData.lines[i].ls] = drwData.lines[i];
-			}
-		}
-	},
+
 	//地铁线按顺序排序
 	lineSort: function() {
 		var self = this;
@@ -268,6 +268,7 @@ var drwSw = {
 		var status = 'normal';
 		self.lineSort();
 		self.drwSwLines(self.currLines, status);
+		self.drwTrafficLinesDefer(self.currLines, status);
 		self.drwSwStations(drwData, status, station);
 		self.drwSwStationsName(drwData, status, 10, 20); //缩小为0.5，第二个参数为24
 		self.drwSwLinesName(drwData, status);
@@ -309,6 +310,7 @@ var drwSw = {
 		self.drwSwStations(drwData, status);
 		self.drwSwStationsName(drwData, status, 10, 20); //缩小为0.5，第二个参数为24
 		self.drwSwLinesName(drwData, status);
+		self.drwTrafficLinesDefer(drwData, status);
 	},
 	//绘制导航路线
 	drawNavLine: function(drwData) {
@@ -478,27 +480,6 @@ var drwSw = {
 		}
 
 	},
-	drwTrafficTimeout: function (parentNode,drwData) {
-		var self=this;
-		clearTimeout(drwSw.timer);
-		drwSw.timer=setTimeout(function () {
-			if (SW.status.trafficInfo == 1 && SW.status.currLinesInfo == 1) {
-				//console.log("开始画路况！");
-				for (var line_id in drwData) {
-					var current_drwData = drwData[line_id];
-					self.drwTrafficFromSever(parentNode, current_drwData);
-					//self.drwTrafficLines(parentNode, current_drwData);
-				}
-				console.log("路况信息已展示！");
-			}else if(SW.status.trafficInfo==2 || SW.status.currLinesInfo==2){
-				clearTimeout(drwSw.timer);
-			}
-			else{
-				//console.log("路况信息显示错误!","traffic",SW.status.trafficInfo,"currLines",SW.status.currLinesInfo);
-				drwSw.drwTrafficTimeout(parentNode,drwData);
-			}
-		}, 10)
-	},
 	drwDouble: function (parentNode,drwData) {
 		//画双线
 		var self=this;
@@ -537,14 +518,10 @@ var drwSw = {
 		var self = this;
 		var svg_g = document.getElementById("svg-g");
 		var subway_line = document.createElementNS(self.ns_svg, 'g');
-		var traffic_line= document.createElementNS(self.ns_svg, 'g');
 		subway_line.setAttribute("id", "g-line-" + status);
-		traffic_line.setAttribute("id", "g-traffic-" + status);
 		if (status == 'normal') {
 			svg_g.appendChild(subway_line);
-			svg_g.appendChild(traffic_line);
 			//console.log("开始画主路");
-			//console.log(self.currLines);
 			for (var line_id in drwData) {
 				var current_drwData = drwData[line_id];
 				/*打印地铁线名称*/
@@ -556,12 +533,48 @@ var drwSw = {
 			$(".filter_btn").show();
 			$(".help_btn").show();
 			console.log("主路画完！");
-			self.drwTrafficTimeout(traffic_line,drwData);
 		} else if (status == 'select') {
 			var svg_select = document.getElementById("g-select");
 			svg_select.appendChild(subway_line);
-			svg_select.appendChild(traffic_line);
 			self.drwDouble(subway_line, drwData);
+		}
+	},
+	drwTrafficLinesDefer: function (drwData, status) {
+		var self = this;
+		if (status == 'normal') {
+			clearTimeout(drwSw.timer);
+			//开一个定时器，检测画图和路况信息的加载状态
+			drwSw.timer = setTimeout(function () {
+				if (SW.status.trafficInfo == 1 && SW.status.currLinesInfo == 1) {
+					//编译路况信息
+					var city_code = SW.cache.curCity.adcode;
+					SW.addTrafficInfo(city_code);
+					//console.log("add后",drwData);
+					//开始画路况
+					var svg_g = document.getElementById("svg-g");
+					var st_normal = document.getElementById("g-station-normal");
+					var traffic_line = document.createElementNS(self.ns_svg, 'g');
+					traffic_line.setAttribute("id", "g-traffic-" + status);
+					svg_g.insertBefore(traffic_line, st_normal);
+					for (var line_id in drwData) {
+						var current_drwData = drwData[line_id];
+						self.drwTrafficFromSever(traffic_line, current_drwData);
+					}
+					console.log("路况信息已展示！");
+					SW.status.trafficInfo = 0;
+				} else if (SW.status.trafficInfo == 2 || SW.status.currLinesInfo == 2) {
+					clearTimeout(drwSw.timer);
+				} else {
+					console.log("路况信息错误!", "traffic", SW.status.trafficInfo, "currLines", SW.status.currLinesInfo);
+					drwSw.drwTrafficLinesDefer(drwData, status);
+				}
+			}, 10)
+		}else if (status == 'select') {
+			var st_select = document.getElementById("g-station-select");
+			var svg_select = document.getElementById("g-select");
+			var traffic_line = document.createElementNS(self.ns_svg, 'g');
+			traffic_line.setAttribute("id", "g-traffic-" + status);
+			svg_select.insertBefore(traffic_line, st_select);
 			self.drwTrafficFromSever(traffic_line, drwData);
 		}
 	},

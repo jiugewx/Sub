@@ -6,6 +6,7 @@ var tip = {
     refreshTimer:{},
     count:5,
     timer:{},
+    curCity:SW.cache.curCity,
     host: "http://m.amap.com/",
     verify: "/verify/?from=",
     isHighlight: false,
@@ -182,8 +183,14 @@ var tip = {
         $refresh.on('touchend', function (ev) {
             ev.stopPropagation();
             self.refreshAnimate();
-            SW.showCity();
-            $('.refresh_time_text').html("更新于"+SW.refreshStatus);
+            setTimeout(function () {
+                var city_code=SW.cache.curCity.adcode;
+                var city_name=SW.fileNameData[SW.cache.curCity.adcode];
+                var status = 'normal';
+                SW.loadTraffic(city_code,city_name);
+                drwSw.drwTrafficLinesDefer(drwSw.currLines,status);
+                $('.refresh_time_text').html("更新于"+SW.refreshStatus);
+            },200);
         });
 
         $subway.on('touchend', 'g', function() {
