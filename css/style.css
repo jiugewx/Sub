@@ -493,30 +493,34 @@ body.disable-default-action {
 }
 
 .refresh_active{
-    animation: updata 4s;
-    -webkit-animation:updata 4s;
+    animation: updata 1.5s infinite linear;
+    -webkit-animation:updata 1.5s infinite linear;
 }
 
 @-webkit-keyframes updata {
-    0% {
+    from {
         -webkit-transform: rotate(0deg);
     }
-    20% {
-        -webkit-transform: rotate(360deg);
-    }
-    93% {
-        background-color: rgba(102,102,102,1);
-        -webkit-transform: rotate(360deg);
-    }
-    97%{
-        background-color: #3B95C9;
-        -webkit-transform: rotate(360deg);
-    }
-    100%{
-        background-color: rgba(102,102,102,1);
-        -webkit-transform: rotate(360deg);
+    to {
+        -webkit-transform: rotate(720deg);
     }
 }
+
+@-webkit-keyframes updata2 {
+    80% {
+        -webkit-transform: rotate(1080deg);
+    }
+    93% {
+        background-color: rgba(102, 102, 102, 1);
+        -webkit-transform: rotate(1080deg);
+    }
+    97% {
+        background-color: #3B95C9;
+        -webkit-transform: rotate(1080deg);
+    }
+}
+
+
 
 .refresh_box{
     position: fixed;
@@ -544,10 +548,10 @@ body.disable-default-action {
         width: 0;
     }
     10% {
-        width: 160px;
+        width: 180px;
     }
     93% {
-        width: 160px;
+        width: 180px;
     }
     98% {
         width: 0;
@@ -560,7 +564,8 @@ body.disable-default-action {
     display: none;
     opacity: 0;
     margin-left: 30px;
-    width: 115px;
+    text-align: center;
+    width: 135px;
     font-weight: bold;
 }
 .refresh_time_text_show{
@@ -590,6 +595,30 @@ body.disable-default-action {
         opacity: 0;
     }
 }
+
+.refresh_error{
+    display: none;
+    position: absolute;
+    top:40%;
+    left: 30px;
+    right: 30px;
+    background-color: rgba(102,102,102,0.8);
+    border-radius:10px;
+    width:auto;
+    height: 50px;
+}
+.refresh_error_text{
+    color:#fff;
+    display: block;
+    width: 200px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    margin:14px auto;
+    font-size: 14px;
+}
+
+
 
 /*.ios .route_close_btn{top: 76px;}*/
 

@@ -4,7 +4,7 @@ el.style.transformOrigin = "top left";
 
 var tip = {
     refreshTimer:{},
-    count:5,
+    refreshstate:0,
     timer:{},
     curCity:SW.cache.curCity,
     host: "http://m.amap.com/",
@@ -182,15 +182,20 @@ var tip = {
 
         $refresh.on('touchend', function (ev) {
             ev.stopPropagation();
-            self.refreshAnimate();
-            setTimeout(function () {
-                var city_code=SW.cache.curCity.adcode;
-                var city_name=SW.fileNameData[SW.cache.curCity.adcode];
+            if(self.refreshstate==0){
+                self.refreshstate=1;
+                var $refresh = $(".refresh_btn");
+                $refresh.addClass("refresh_active");
+                SW.loading();
+                var city_code = SW.cache.curCity.adcode;
+                var city_name = SW.fileNameData[SW.cache.curCity.adcode];
                 var status = 'normal';
-                SW.loadTraffic(city_code,city_name);
-                drwSw.drwTrafficLinesDefer(drwSw.currLines,status);
-                $('.refresh_time_text').html("更新于"+SW.refreshStatus);
-            },200);
+                SW.loadTraffic(city_code, city_name);
+                //console.log("add前",drwSw.currLines);
+                drwSw.drwTrafficLinesDefer(drwSw.currLines, status);
+            }else {
+                ev.stopPropagation();
+            }
         });
 
         $subway.on('touchend', 'g', function() {
@@ -464,18 +469,34 @@ var tip = {
         //    // }
         //});
     },
-    refreshAnimate: function () {
-        var $refresh=$(".refresh_btn");
-        $refresh.addClass("refresh_active");
-        $(".refresh_box").css("display","block").addClass("refresh_box_show");
-        $(".refresh_time_text").css("display","block").addClass("refresh_time_text_show");
-        //5秒后隐藏信息
+    refreshAnimation: function () {
+        $(".refresh_box").css("display", "block").addClass("refresh_box_show");
+        $(".refresh_time_text").css("display", "block").addClass("refresh_time_text_show");
+        SW.loadingOver();
+        //4秒后隐藏信息
         clearTimeout(tip.refreshTimer);
-        tip.refreshTimer=setTimeout(function () {
-                $(".refresh_time_text").removeClass("refresh_time_text_show").css("display","none");
-                $(".refresh_box").removeClass("refresh_box_show").css("display","none");
-                $refresh.removeClass("refresh_active");
-        },4000);
+        tip.refreshTimer = setTimeout(function () {
+            $(".refresh_time_text").removeClass("refresh_time_text_show").css("display", "none");
+            $(".refresh_box").removeClass("refresh_box_show").css("display", "none");
+            tip.refreshstate = 0;
+        }, 4000);
+    },
+    refreshSuccess: function () {
+        $('.refresh_time_text').html("更新于"+SW.refreshStatus);
+        //去除加载状态
+        var $refresh=$(".refresh_btn");
+        $refresh.removeClass("refresh_active");
+        tip.refreshstate = 1;
+        tip.refreshAnimation();
+    },
+    refreshError: function () {
+        var $refresh=$(".refresh_btn");
+        $refresh.removeClass("refresh_active");
+        $(".refresh_error").css("display","block");
+        setTimeout(function () {
+            $(".refresh_error").css("display","none");
+            tip.refreshstate = 0;
+        },1500);
     },
     openhelpBox: function () {
         $('.light_box').css('display', 'block');

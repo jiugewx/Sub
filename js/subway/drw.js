@@ -562,6 +562,7 @@ var drwSw = {
 					}
 					console.log("路况信息已展示！");
 					SW.status.trafficInfo = 0;
+					tip.refreshSuccess();
 				} else if (SW.status.trafficInfo == 2 || SW.status.currLinesInfo == 2) {
 					clearTimeout(drwSw.timer);
 				} else {
