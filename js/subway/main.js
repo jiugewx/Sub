@@ -172,32 +172,6 @@ var tip = {
             }
         });
 
-        $('.light_box').on('touchmove', function(ev) {
-            ev.preventDefault();
-        });
-
-        $('#loading').on('touchmove', function(ev) {
-            ev.preventDefault();
-        });
-
-        $refresh.on('touchend', function (ev) {
-            ev.stopPropagation();
-            if(self.refreshstate==0){
-                self.refreshstate=1;
-                var $refresh = $(".refresh_btn");
-                $refresh.addClass("refresh_active");
-                SW.loading();
-                var city_code = SW.cache.curCity.adcode;
-                var city_name = SW.fileNameData[SW.cache.curCity.adcode];
-                var status = 'normal';
-                SW.loadTraffic(city_code, city_name);
-                //console.log("add前",drwSw.currLines);
-                drwSw.drwTrafficLinesDefer(drwSw.currLines, status);
-            }else {
-                ev.stopPropagation();
-            }
-        });
-
         $subway.on('touchend', 'g', function() {
             if (!self.touchStatus) {
                 if ($(this).hasClass('line_name')) {
@@ -233,10 +207,7 @@ var tip = {
         });
 
 
-        $(".top_bar").on("touchend", function () {
-            tip.closeTip();
-            tip.closeFilter();
-        });
+
         //$("#srhlist").on("touchmove", function(e) {
         //    $("#srh_ipt").blur();
         //});
@@ -267,17 +238,48 @@ var tip = {
         $overlays.on('touchstart', '.tip_wrap', function(e) {
             e.stopPropagation();
         });
-        //点击线路图选择器，打开选择器
-        $('.filter_btn').on('touchend', function() {
-            self.closehelpBox();
-            if (!tip.routeState) {
-                self.openFilter();
+
+        $(".top_bar").on("touchend", function () {
+            tip.closeTip();
+            tip.closeFilter();
+        });
+
+        $('.light_box').on('touchmove', function(ev) {
+            ev.preventDefault();
+        });
+
+        $('#loading').on('touchmove', function(ev) {
+            ev.preventDefault();
+        });
+
+        $refresh.on('touchend', function (ev) {
+            ev.stopPropagation();
+            if(self.refreshstate==0){
+                self.refreshstate=1;
+                var $refresh = $(".refresh_btn");
+                $refresh.addClass("refresh_active");
+                SW.loading();
+                var city_code = SW.cache.curCity.adcode;
+                var city_name = SW.fileNameData[SW.cache.curCity.adcode];
+                var status = 'normal';
+                SW.loadTraffic(city_code, city_name);
+                //console.log("add前",drwSw.currLines);
+                drwSw.drwTrafficLinesDefer(drwSw.currLines, status);
+            }else {
+                ev.stopPropagation();
             }
         });
         //关闭背景暗箱
         $('.light_box').on('touchend', function() {
             self.closeFilter();
             self.closehelpBox()
+        });
+        //点击线路图选择器，打开选择器
+        $('.filter_btn').on('touchend', function() {
+            self.closehelpBox();
+            if (!tip.routeState) {
+                self.openFilter();
+            }
         });
         //点击选择器中的路线：关闭选择器，显示地铁，设置屏幕中心点为地铁的中心
         $('.fliter_detail').on('touchend', '.fliter_item', function() {
@@ -315,6 +317,8 @@ var tip = {
         $(".help_btn").on("touchend", function (e) {
             e.stopPropagation();
             self.closeFilter();
+            $(".refresh_time_text").removeClass("refresh_time_text_show").css("display", "none");
+            $(".refresh_box").hide().removeClass("refresh_box_show").css("display", "none");
             tip.openhelpBox();
         });
         $(".help_close").on("touchend", function (e) {
@@ -334,6 +338,15 @@ var tip = {
             fdTimer = setTimeout(function() {
                 lockfd = false;
             }, 60);
+        });
+
+        $('.tip_close').on('touchend', function(e) {
+            e.stopPropagation();
+            tip.closeTip();/*调用closeTip的方法*/
+        });
+
+        $('#back_amap').on('touchend', function() {
+            tip.goback()
         });
 
         //导航栏中的城市名的触摸事件
@@ -453,14 +466,7 @@ var tip = {
         //    }
         //});
 
-        $('.tip_close').on('touchend', function(e) {
-            e.stopPropagation();
-            tip.closeTip();/*调用closeTip的方法*/
-        });
 
-        $('#back_amap').on('touchend', function() {
-            tip.goback()
-        });
 
         //$('.route_bar').on('click', function() {
         //    // if(SW.param.src != 'alipay'){
@@ -496,6 +502,11 @@ var tip = {
             $(".refresh_error").css("display","none");
             tip.refreshstate = 0;
         },1500);
+    },
+    stoprefresh:function (){
+        $(".refresh_btn").hide();
+        $(".refresh_time_text").removeClass("refresh_time_text_show").css("display", "none");
+        $(".refresh_box").hide().removeClass("refresh_box_show").css("display", "none");
     },
     openhelpBox: function () {
         $('.light_box').css('display', 'block');
@@ -969,10 +980,7 @@ var tip = {
         $('.light_box, .filter_content').css('display', 'block');
         //线路选择器不能与弹窗同时存在
         $('.tip_wrap_out').hide();
-        $(".refresh_btn").hide();
-        $(".refresh_time_text").removeClass("refresh_time_text_show").css("display", "none");
-        $(".refresh_box").hide().removeClass("refresh_box_show").css("display", "none");
-        $(".refresh_time").hide();
+        tip.stoprefresh();
     },
     //关闭路线选择器
     closeFilter: function() {
