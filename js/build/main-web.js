@@ -1,3 +1,6 @@
+
+
+
 var getstureState = 0;
 var el = document.getElementById('drag_handle');
 el.style.transformOrigin = "top left";

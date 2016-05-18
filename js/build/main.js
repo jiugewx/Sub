@@ -176,9 +176,6 @@ var tip = {
             if (!self.touchStatus) {
                 if ($(this).hasClass('line_name')) {
                     var line_id = $(this).attr('lineid');
-                    var SW_line_name = SW.cache.lines[line_id].ln;
-                    var line_name=SW_line_name.split("/")[0].toString().substr(0,4);
-                    $(".filter_btn").html(line_name);
                     self.showFilterLine(line_id);
                     var select_obj = $('#g-select');
                     tip.setFitview(select_obj);
@@ -261,6 +258,7 @@ var tip = {
                 self.refreshstate=1;
                 var $refresh = $(".refresh_btn");
                 $refresh.addClass("refresh_active");
+                SW.loading();
                 var city_code = SW.cache.curCity.adcode;
                 var city_name = SW.fileNameData[SW.cache.curCity.adcode];
                 var status = 'normal';
@@ -834,7 +832,7 @@ var tip = {
                     }
                     infowHtml.push("<div class=\"tip_detail_line\">");
                     //infowHtml.push("<label class=\"line-label\" style=\"background-color:#"+self.lines[lineid].cl+"\">地铁" + self.lines[lineid].ln + line_sub_name +"</label>");
-                    infowHtml.push("<label class=\"line-label\">" + self.lines[lineid].ln + line_sub_name +"</label>");
+                    infowHtml.push("<label class=\"line-label\">地铁" + self.lines[lineid].ln + line_sub_name +"</label>");
                     infowHtml.push("<label class='line-sub-label'></label>");
                     infowHtml.push("<ul class=\"time-item-main\">");
                     for (var j = 0; j < 2; j++) {
