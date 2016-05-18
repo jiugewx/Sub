@@ -687,6 +687,7 @@ var SW = {
 	},
 	//请求交通状况信息
 	loadTraffic: function (city_code,city_name,callback){
+		SW.status.trafficInfo = 0;
 		var self=this;
 		var trafficData_Url="http://223.72.210.20:8388/PublicTripProvide/LoadAfcJtlDataJson?ask=t8ai8t4s3acb1ce";
 		//var trafficData_Url="data/" + city_code + "_trafficinfo_" + city_name + ".json";
@@ -962,75 +963,4 @@ var SW = {
 		}
 		return timeInfo;
 	},
-	//showRoute: function (param) {
-	//	var startid = param.startid,
-	//		startname = param.startname,
-	//		destid = param.destid,
-	//		destname = param.destname;
-	//	var start = SW.cache.stations[startid] || SW.cache.stationspoi[startid] || SW.cache.navStations[startname],
-	//		dest = SW.cache.stations[destid] || SW.cache.stationspoi[destid] || SW.cache.navStations[destname];
-	//	if(start && dest){
-	//		startid = start.si;
-	//		var startInfo = {
-	//			'name': start.n,
-	//			'poiid': start.poiid,
-	//			'lon': start.sl.split(',')[0],
-	//			'lat': start.sl.split(',')[1]
-	//		};
-	//		destid = dest.si;
-	//		var destInfo = {
-	//			'name': dest.n,
-	//			'poiid': dest.poiid,
-	//			'lon': dest.sl.split(',')[0],
-	//			'lat': dest.sl.split(',')[1]
-	//		};
-	//		if($('#nav_start .marker-out').length <= 0){
-	//			tip.setStartEnd(startid, 'start', startInfo);
-	//		}
-	//		if($('#nav_end .marker-out').length <= 0){
-	//			tip.setStartEnd(destid, 'end', destInfo);
-	//		}
-    //
-	//		document.title = start.n + ' - ' + dest.n;
-    //
-	//		tip.route();
-    //
-	//		if(param.src && param.src == 'alipay'){
-	//			$('.filter_btn, .route_close_btn').hide();
-	//		}
-	//	}
-	//},
-	//改变城市
-	/*changeCity: function(adcode) {
-	 var self = this;
-	 var param = null;
-	 var selfParam = self.param;
-	 self.subwayFlag = 1;
-	 $('#subway').show();
-	 if (selfParam && selfParam.city && (selfParam.city == adcode || selfParam.city.substr(0, 4) == adcode)) {
-	 param = selfParam;
-	 } else {
-	 param = {
-	 'city': adcode
-	 };
-	 }
-
-	 $('.city_name').html(self.cityname[adcode]);
-
-
-	 if (tip.routeState) {
-	 tip.closeRoute();
-	 }
-
-	 if (tip.fromendState) {
-	 tip.clearMarker('start');
-	 tip.clearMarker('end');
-	 }
-
-	 self.loading();
-	 self.loadData(adcode, function(drwData) {
-	 self.loadingOver();
-	 drwSw.draw(drwData, param);
-	 });
-	 },*/
 };

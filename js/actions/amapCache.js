@@ -1,5 +1,3 @@
-
-
 /*数据缓存*/
 window.amapCache = window.amapCache || {};
 (function(window, undefined) {
@@ -125,6 +123,3 @@ window.amapCache = window.amapCache || {};
     window.amapCache.cacheFileListObj = cacheFileListObj;
     window.amapCache.enabledLocalstorage = enabledLocalstorage;
 }(window));
-
-
-module.exports=amapCache;

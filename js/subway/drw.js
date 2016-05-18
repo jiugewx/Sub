@@ -2,8 +2,6 @@ var drwSw = {
 	statusColor:SW.statusColor,
 	defaultColor:SW.statusColor[0].color,
 	timer:{},
-	json:[],
-	drwAdd:[],
 	currLines: {},
 	trafficInfo:SW.cache.trafficInfo,
 	stations:SW.cache.stations,
@@ -460,7 +458,7 @@ var drwSw = {
 				var rightcolor = LineId_Data.st2st[k].rateColor;
 				Right.path = rightpath;
 				Right.color = "AF272B";
-				Right.color = rightcolor;/*注意停运时的颜色使用,停运时没有颜色值,没有颜色值就会在drwlines()中,使用line本身的颜色*/
+				//Right.color = rightcolor;/*注意停运时的颜色使用,停运时没有颜色值,没有颜色值就会在drwlines()中,使用line本身的颜色*/
 				Right.direction = LineId_Data.st2st[k].directionName;
 				Right.reflineName = LineId_Data.st2st[k].reflineName;
 				self.drwlines(parentNode, Right, LineId_Data);
@@ -472,7 +470,7 @@ var drwSw = {
 				var leftcolor = LineId_Data.st2st[k].rateColor;
 				Left.path = leftpath;
 				Left.color = "C99616";
-				Left.color = leftcolor;/*注意停运时的颜色使用,停运时没有颜色值,没有颜色值就会在drwlines()中,使用line本身的颜色*/
+				//Left.color = leftcolor;/*注意停运时的颜色使用,停运时没有颜色值,没有颜色值就会在drwlines()中,使用line本身的颜色*/
 				Left.direction = LineId_Data.st2st[k].directionName;
 				Left.reflineName = LineId_Data.st2st[k].reflineName;
 				self.drwlines(parentNode, Left, LineId_Data);
@@ -561,7 +559,6 @@ var drwSw = {
 						self.drwTrafficFromSever(traffic_line, current_drwData);
 					}
 					console.log("路况信息已展示！");
-					SW.status.trafficInfo = 0;
 					tip.refreshSuccess();
 				} else if (SW.status.trafficInfo == 2 || SW.status.currLinesInfo == 2) {
 					clearTimeout(drwSw.timer);

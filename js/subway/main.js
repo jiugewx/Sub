@@ -254,6 +254,11 @@ var tip = {
         $('#loading').on('touchmove', function(ev) {
             ev.preventDefault();
         });
+        //关闭背景暗箱
+        $('.light_box').on('touchend', function() {
+            self.closeFilter();
+            self.closehelpBox()
+        });
 
         $refresh.on('touchend', function (ev) {
             ev.stopPropagation();
@@ -271,11 +276,7 @@ var tip = {
                 ev.stopPropagation();
             }
         });
-        //关闭背景暗箱
-        $('.light_box').on('touchend', function() {
-            self.closeFilter();
-            self.closehelpBox()
-        });
+
         //点击线路图选择器，打开选择器
         $('.filter_btn').on('touchend', function() {
             self.closehelpBox();
@@ -316,6 +317,18 @@ var tip = {
             }
         });
 
+        //处理选择器中的移动事件
+        var fdTimer;
+        var lockfd = false;
+        $('.fliter_detail').on('touchmove', function(e) {
+            e.stopPropagation();
+            lockfd = true;
+            fdTimer && clearTimeout(fdTimer);
+            fdTimer = setTimeout(function() {
+                lockfd = false;
+            }, 60);
+        });
+
         $(".help_btn").on("touchend", function (e) {
             e.stopPropagation();
             self.closeFilter();
@@ -328,19 +341,6 @@ var tip = {
             tip.closehelpBox();
         });
 
-
-
-        //处理选择器中的移动事件
-        var fdTimer;
-        var lockfd = false;
-        $('.fliter_detail').on('touchmove', function(e) {
-            e.stopPropagation();
-            lockfd = true;
-            fdTimer && clearTimeout(fdTimer);
-            fdTimer = setTimeout(function() {
-                lockfd = false;
-            }, 60);
-        });
 
         $('.tip_close').on('touchend', function(e) {
             e.stopPropagation();
@@ -476,7 +476,7 @@ var tip = {
         //    // }
         //});
     },
-    refreshAnimation: function () {
+    refreshShow: function () {
         $(".refresh_box").css("display", "block").addClass("refresh_box_show");
         $(".refresh_time_text").css("display", "block").addClass("refresh_time_text_show");
         SW.loadingOver();
@@ -494,7 +494,7 @@ var tip = {
         var $refresh=$(".refresh_btn");
         $refresh.removeClass("refresh_active");
         tip.refreshstate = 1;
-        tip.refreshAnimation();
+        tip.refreshShow();
     },
     refreshError: function () {
         var $refresh=$(".refresh_btn");
