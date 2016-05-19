@@ -12,7 +12,8 @@ new WebpackDevServer(webpack(config), {
     color:true,/*命令行中显示颜色！*/
     historyApiFallback: true,
     inline: true,
-    progress: true/*显示合并代码进度*/
+    progress: true,/*显示合并代码进度*/
+    devtool: eval
 }).listen(3000, 'localhost', function (err, result) {
         if (err) {
             console.log(err);

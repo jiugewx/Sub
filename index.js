@@ -22,5 +22,6 @@ require("./css/style.css");
 //require("./js/actions/common");
 
 var Common=require("./js/actions/common");
+
 Common.swInit();
 

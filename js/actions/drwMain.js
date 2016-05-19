@@ -2,7 +2,7 @@
  * Created by xinye on 16/5/18.
  */
 
-var $=require("../lib/zepto.min");
+var $=require("../lib/zepto");
 var Drw2lines=require("./drwDoublelines");
 var TraF=require("./drwtrafficlines");
 var Cache=require("./Cache");
@@ -546,6 +546,20 @@ var DrwMain={
         var html_warning='<span class="help_color_warning"></span> <span class="help_text"> <span style="float: left">限流站点</span> </span>';
         html_warning_item.html(html_warning);
         help_content.append(html_warning_item);
+    },
+    toLnglat: function(param) {
+        var self = this;
+        if (!param) {
+            return false;
+        }
+        var tmp = param.split(',');
+        var lng = tmp[0];
+        var lat = tmp[1];
+
+        return {
+            lng: lng,
+            lat: lat
+        }
     },
     getDetailStation: function(drwData, param) {
         var self = this,

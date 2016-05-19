@@ -6,7 +6,7 @@ var Cache=require("./Cache");
 var Drw2lines=require("./drwDoublelines");
 var DrwMain=require("./drwMain");
 var Common=require("./common");
-
+require("./amapCache");
 
 var TraF = {
     timer:null,

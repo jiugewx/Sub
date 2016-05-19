@@ -5,7 +5,6 @@ var webpack = require('webpack');
 var path = require('path');
 
 var ROOT_PATH = path.resolve(__dirname);
-var APP_PATH = path.resolve(ROOT_PATH, 'app');
 var DIST_PATH = path.resolve(ROOT_PATH, 'dist');
 
 module.exports = {
@@ -18,12 +17,13 @@ module.exports = {
     ],
     output: {
         path:path.join(__dirname, 'dist/'),
-        filename: 'bunble.js',
+        filename: 'main.js',
         publicPath: '/dist/'
     },
     module: {
         loaders: [
-            {test: /\.css$/, loaders: ['style', 'css'],include:/css/,exclude: /node_modules/}
+            {test: /\.css$/, loaders: ['style', 'css'],exclude: /node_modules/},
+            {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}
         ]
     },
     resolve: {
@@ -36,7 +36,7 @@ module.exports = {
         new webpack.NoErrorsPlugin()
     ],
     devServer: {
-        contentBase: './dist',
+        //contentBase: './dist',/*所有的文件都在这个下面包括html、jpg、js等*/
         historyApiFallback: true,
         devtool: eval,
         progress: true,

@@ -1,7 +1,7 @@
 /**
  * Created by xinye on 16/5/18.
  */
-var $ = require("../lib/zepto.min");
+var $=require("../lib/zepto");
 require('../lib/fastclick.js');
 require("../lib/hammer.js");
 
@@ -69,7 +69,7 @@ var tip = {
     fromendState: false,
     //初始化事件绑定信息
     init: function() {
-        this.bindEvent();
+        tip.bindEvent();
     },
     preventScrollBounce: function(eles) {
         if (!eles.length && !eles.unshift) {

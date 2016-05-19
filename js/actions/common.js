@@ -2,12 +2,18 @@
  * Created by Wangxin on 2016/5/19.
  */
 
-var $=require("../lib/zepto.min");
+require("./amapCache");
+
+var $=require("../lib/zepto");
 var attachFastClick = require('../lib/fastclick');
+
+var tip=require("./tip");
 var Cache=require("./Cache");
 var DrwMain=require("./drwMain");
 var loadTraffic=require("./drwtrafficlines");
 var Data=require("./Data");
+
+
 
 var Common={
     subwayFlag:0,
@@ -16,16 +22,18 @@ var Common={
     //数据初始化!
     swInit: function() {
         var self = this;
-        attachFastClick(document.body);
+        //attachFastClick(document.body);
         //调用缓存工具中的初始化方法
         amapCache.init({
             complete: function() {
                 self.initCity(); //根据缓存加载相应城市
-                tip.init(); //初始化事件绑定信息
+                tip.bindEvent(); //初始化事件绑定信息
                 self.loadingOver();//加载完成
             }
         });
+
     },
+
     //初始化城市信息
     initCity: function() {
         var self = this;
@@ -44,14 +52,12 @@ var Common={
         //decodeURIComponent 对 encodeURIComponent() 函数编码的 URI 进行解码。replace(/^\#/, '')，把#号给去除了。
         var param = self.param2json(hash);
         //self.param2json(hash)就是将hash转为json对象，"city=1100"字符串转换为了object的格式，｛"city":"1100"｝
-        if (!param || !param.src || param.src && param.src != 'alipay') {
-            $('#subway, #citypage').addClass('msubway');
-        }
         //如果param不存在，那就打开城市选择列表。
         if (!param) {
             self.subwayFlag = 0;
             return tip.cityChange();
         }
+
         self.param = param;
         //取adcode为param中city的值。
         var adcode = param.city && param.city.substr(0, 4);
@@ -66,7 +72,7 @@ var Common={
             } else {
                 // 该城市有对应地铁图,那就显示#subway
                 self.subwayFlag = 1;
-                $('#subway').show()
+                $('#subway').show();
             }
         }
         //如果城市代码不存在
@@ -91,7 +97,7 @@ var Common={
                 self.loadingOver();
                 console.log(Cache);
                 //绘制对应城市的地铁
-                //DrwMain.draw(drwData, param);
+                DrwMain.draw(drwData, param);
             });
         } else {
             //显示车站
