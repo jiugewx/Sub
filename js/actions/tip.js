@@ -1,9 +1,16 @@
 /**
  * Created by xinye on 16/5/18.
  */
+var $ = require("../lib/zepto.min");
+require('../lib/fastclick.js');
+require("../lib/hammer.js");
+
 
 var Cache = require("./Cache");
-var $ = require("../lib/zepto.min");
+var DataAll=require("./Data");
+var DrwMain=require("./drwMain");
+var TraF=require("./drwtrafficlines");
+var Common=require("./common");
 
 var getstureState = 0;
 var el = document.getElementById('drag_handle');
@@ -14,28 +21,16 @@ var tip = {
     refreshstate:0,
     timer:{},
     curCity:Cache.curCity,
-    host: "http://m.amap.com/",
-    verify: "/verify/?from=",
-    isHighlight: false,
-    isInfoShow: false,
+    w: document.documentElement.clientWidth,
+    h: document.documentElement.clientHeight,
     stationsInfo: Cache.stationsInfo,/*几个数据接口*/
     stations: Cache.stations,
     lines: Cache.lines,
     tempTrafficinfo:Cache.tempTrafficinfo,
     station_w: 26,
-    dragObjXY: {}, //拖拽div时的实时xy
-    dragX: null,
-    dragY: null,
-    onePoint: {}, //单手touch时的初始xy
-    twoPoint1: {}, //双手touch时的初始x1y1
-    twoPoint2: {}, //双手touch时的初始x2y2
-    twoOriginPointDis: null, //双手touch时的两手指的初始距离
     touchStatus: null, //当前touch状态：drag, scale
     curScale: 1, //当前缩放级别
     allScale: 1,
-    zoomCenter: null, //搜索初始中心点
-    dragHandle: $("#drag_handle"), //touch对象
-    dragObj: $("#subwaySvg"), //
     svgOffset: {
         left: 0,
         top: 0
@@ -51,22 +46,9 @@ var tip = {
     },
     opentip: false,
     curopenStation: null,
-    routeInfo: { //路线规划起始点信息
-        start: null,
-        end: null
-    },
-    routeDtailInfo: {
-        start: null,
-        end: null
-    },
     routeId: {
         start: null,
         end: null
-    },
-    navDrwData: {
-        linesbar: [],
-        lines: {},
-        stations: []
     },
     transform: {
         translate: {
@@ -85,7 +67,6 @@ var tip = {
     transformOrigin: null,
     routeState: false,
     fromendState: false,
-    pathData: null,
     //初始化事件绑定信息
     init: function() {
         this.bindEvent();
@@ -113,7 +94,6 @@ var tip = {
     bindEvent: function() {
         document.addEventListener('touchstart', function() {});
         var self = this;
-        var font_size = 12;
         var $refresh=$(".refresh_btn");
         var $subway = $('#subway');
         var $citypage = $('#citypage');
@@ -145,7 +125,7 @@ var tip = {
             self.touchStatus = 'pinch';
             lastAction = "pinch";
             if (ev.type == 'pinchstart') {
-                self.svgOffset = drwSw.svgOffset || tip.svgOffset;
+                self.svgOffset = DrwMain.svgOffset || tip.svgOffset;
                 hasPenchend = false;
             }
             self.mcScaleSvg(ev);
@@ -183,7 +163,7 @@ var tip = {
             if (!self.touchStatus) {
                 if ($(this).hasClass('line_name')) {
                     var line_id = $(this).attr('lineid');
-                    var SW_line_name = SW.cache.lines[line_id].ln;
+                    var SW_line_name = Cache.lines[line_id].ln;
                     var line_name=SW_line_name.split("/")[0].toString().substr(0,4);
                     $(".filter_btn").html(line_name);
                     self.showFilterLine(line_id);
@@ -223,7 +203,7 @@ var tip = {
                 var id = $(this).attr('station_id');
                 self.closeFilter();
                 $('.light_box').css('display', 'block');
-                window.location.hash = '#city=' + SW.cache.curCity.adcode + '&station=' + id;
+                window.location.hash = '#city=' + Cache.curCity.adcode + '&station=' + id;
             }
         });
 
@@ -260,12 +240,12 @@ var tip = {
                 self.refreshstate=1;
                 var $refresh = $(".refresh_btn");
                 $refresh.addClass("refresh_active");
-                var city_code = SW.cache.curCity.adcode;
-                var city_name = SW.fileNameData[SW.cache.curCity.adcode];
+                var city_code = Cache.curCity.adcode;
+                var city_name = DataAll.fileNameData[Cache.curCity.adcode];
                 var status = 'normal';
                 SW.loadTraffic(city_code, city_name);
                 //console.log("add前",drwSw.currLines);
-                drwSw.drwTrafficLinesDefer(drwSw.currLines, status);
+                TraF.drwTrafficLinesDefer(DrwMain.currLines, status);
             }else {
                 ev.stopPropagation();
             }
@@ -364,7 +344,7 @@ var tip = {
     refreshShow: function () {
         $(".refresh_box").css("display", "block").addClass("refresh_box_show");
         $(".refresh_time_text").css("display", "block").addClass("refresh_time_text_show");
-        SW.loadingOver();
+        Common.loadingOver();
         //4秒后隐藏信息
         clearTimeout(tip.refreshTimer);
         tip.refreshTimer = setTimeout(function () {
@@ -397,10 +377,14 @@ var tip = {
     },
     openhelpBox: function () {
         $('.light_box').css('display', 'block');
+        var $helpContent=$(".help_content");
+        var width=parseInt($helpContent.css("width"));
+        var left=(tip.w-width)/2+"px";
+        $helpContent.css({"left":left});
+        $helpContent.css("display","block");
         $('.tip_wrap_out').hide();
         $(".refresh_btn").hide();
         $(".refresh_time").hide();
-        $(".help_content").css("display","block");
     },
     closehelpBox: function () {
         $('.light_box').css('display', 'none');
@@ -501,21 +485,21 @@ var tip = {
             svg_g_h = svg_g_offset.height;
 
         var canUpdate = true;
-        if (svg_g_w > drwSw.w) {
-            if (Number(svg_g_l) > Number(drwSw.w) / 2 || Math.abs(Number(svg_g_l)) > (Number(svg_g_w - Number(drwSw.w) / 2))) {
+        if (svg_g_w > DrwMain.w) {
+            if (Number(svg_g_l) > Number(DrwMain.w) / 2 || Math.abs(Number(svg_g_l)) > (Number(svg_g_w - Number(DrwMain.w) / 2))) {
                 canUpdate = false;
             }
         } else {
-            if (svg_g_l + svg_g_w / 2 < 0 || svg_g_l + svg_g_w / 2 > drwSw.w) {
+            if (svg_g_l + svg_g_w / 2 < 0 || svg_g_l + svg_g_w / 2 > DrwMain.w) {
                 canUpdate = false;
             }
         }
-        if (svg_g_h > drwSw.h) {
-            if (Number(svg_g_t) > Number(drwSw.h) / 2 || Math.abs(Number(svg_g_t)) > (Number(svg_g_h - Number(drwSw.h) / 2))) {
+        if (svg_g_h > DrwMain.h) {
+            if (Number(svg_g_t) > Number(DrwMain.h) / 2 || Math.abs(Number(svg_g_t)) > (Number(svg_g_h - Number(DrwMain.h) / 2))) {
                 canUpdate = false;
             }
         } else {
-            if (svg_g_t + svg_g_h / 2 < 0 || svg_g_t + svg_g_h / 2 > drwSw.h) {
+            if (svg_g_t + svg_g_h / 2 < 0 || svg_g_t + svg_g_h / 2 > DrwMain.h) {
                 canUpdate = false;
             }
         }
@@ -652,7 +636,7 @@ var tip = {
     closeNearTip: function() {
         var self = this;
         var obj = $(".tip-content");
-        if (drwSw.isNearTip) {
+        if (DrwMain.isNearTip) {
             if (obj.hasClass('open')) {
                 obj.css("display", "none").removeClass("open");
             }
@@ -1006,8 +990,8 @@ var tip = {
     //更新最近位置的信息
     updateNear: function() {
         var self = this;
-        if (drwSw.nearId) {
-            var obj = $('#near-' + drwSw.nearId);
+        if (DrwMain.nearId) {
+            var obj = $('#near-' + DrwMain.nearId);
 
             if (obj) {
                 var obj_left = obj.offset().left,

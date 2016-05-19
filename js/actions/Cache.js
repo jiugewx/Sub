@@ -4,7 +4,10 @@
 
 //定义一个缓存机
 var Cache={
-    cities:{},
+    loadStatus:{
+        currLines:0,
+        trafficInfo:0
+    },
     currLines:{},
     citylist: [],
     citylistByAdcode: null,
@@ -18,12 +21,15 @@ var Cache={
     stations: {},
     sug: {},
     stationsInfo: {},
+    stationspoi: {},
+    offset: {},
+    navStations:{},
+    navStPixel:{},
+    navlines:{},
     trafficNew:[],
     trafficInfo:[],
     convertData:{},
-    tempTrafficinfo:[],
-    stationspoi: {},
-    offset: {},
+    tempTrafficinfo:[]
 };
 
 module.exports=Cache;

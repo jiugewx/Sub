@@ -6,7 +6,6 @@ var $=require("../lib/zepto.min");
 var Drw2lines=require("./drwDoublelines");
 var TraF=require("./drwtrafficlines");
 var Cache=require("./Cache");
-var drwSw=require("./drwSw");
 
 var DrwMain={
     defaultColor:TraF.statusColor[0].color,
@@ -28,6 +27,25 @@ var DrwMain={
         left: 0,
         top: 0
     },
+    timer: {},
+    trafficInfo: Cache.trafficInfo,
+    stations: Cache.stations,
+    convertData: Cache.convertData,
+    stationsInfo: Cache.stationsInfo, /*几个数据接口*/
+    nearHightLight: 14,
+    /*站点名称的位置*/
+    label_angle: {
+        '0': [0, -1],
+        '1': [1, -1],
+        '2': [1, 0],
+        '3': [1, 1],
+        '4': [0, 1],
+        '5': [-1, 1],
+        '6': [-1, 0],
+        '7': [-1, -1]
+    },
+    specailPhone: false,
+    curOffset: {},
 
     draw: function(drwData, param) {
         $('#subway-svg').remove();

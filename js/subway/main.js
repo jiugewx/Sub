@@ -266,8 +266,6 @@ var tip = {
 
         $refresh.on('touchend', function (ev) {
             ev.stopPropagation();
-            var svgAll=$(".svg-g");
-            tip.setFitview(svgAll);
             if(self.refreshstate==0){
                 self.refreshstate=1;
                 var $refresh = $(".refresh_btn");

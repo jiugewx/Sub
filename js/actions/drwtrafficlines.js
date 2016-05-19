@@ -5,9 +5,10 @@
 var Cache=require("./Cache");
 var Drw2lines=require("./drwDoublelines");
 var DrwMain=require("./drwMain");
+var Common=require("./common");
+
 
 var TraF = {
-    trafficloadStatus: 0,
     timer:null,
     trafficInfo:[],
     refreshStatus:"",
@@ -31,7 +32,7 @@ var TraF = {
     ],
     loadTraffic: function (city_code, city_name) {
         var self = this;
-        self.trafficloadStatus = 0;
+        Cache.loadStatus.trafficInfo = 0;
         var trafficData_Url = "http://223.72.210.20:8388/PublicTripProvide/LoadAfcJtlDataJson?ask=t8ai8t4s3acb1ce";
         //var trafficData_Url="data/" + city_code + "_trafficinfo_" + city_name + ".json";
         amapCache.loadData(trafficData_Url, function (trafficData) {
@@ -75,14 +76,14 @@ var TraF = {
             //publishTime[4]=trafficData.publishTime.slice(10,12);
             //publishTime[5]=trafficData.publishTime.slice(12,14);
             //var pubTime=publishTime[0]+"-"+publishTime[1]+"-"+publishTime[2]+' '+publishTime[3]+":"+publishTime[4]+":"+publishTime[5];
-            self.trafficloadStatus = 1;
+            Cache.loadStatus.trafficInfo = 1;
             console.log("路况信息请求完成!");
-            self.refreshStatus = self.formatTime(self.trafficInfo[0].refreshTime).trafficLoad;
+            self.refreshStatus = Common.formatTime(self.trafficInfo[0].refreshTime).trafficLoad;
             //callback();
             //console.log(self.refreshStatus);
             //console.log("self.cache.trafficInfo",self.cache.trafficInfo);
         }, function () {
-            self.trafficloadStatus = 2;
+            Cache.loadStatus.trafficInfo = 2;
             //self.loadMainData(city_code,city_name,callback);
             //延迟弹窗
             setTimeout(function () {
@@ -117,7 +118,7 @@ var TraF = {
             clearTimeout(TraF.timer);
             //开一个定时器，检测画图和路况信息的加载状态
             TraF.timer = setTimeout(function () {
-                if (TraF.trafficloadStatus == 1) {
+                if (Cache.loadStatus.trafficInfo == 1&& Cache.loadStatus.currLines==1) {
                     //编译路况信息
                     var city_code = Cache.curCity.adcode;
                     TraF.addTrafficInfo(city_code);
@@ -134,10 +135,10 @@ var TraF = {
                     }
                     console.log("路况信息已展示！");
                     tip.refreshSuccess();
-                } else if (TraF.trafficloadStatus == 2) {
+                } else if (Cache.loadStatus.trafficInfo == 2|| Cache.loadStatus.currLines==2) {
                     clearTimeout(TraF.timer);
                 } else {
-                    console.log("路况信息错误!", "traffic", TraF.trafficloadStatus);
+                    console.log("路况信息错误!", "traffic", Cache.loadStatus.trafficInfo);
                     TraF.drwTrafficLinesDefer(drwData, status);
                 }
             }, 10)
@@ -184,78 +185,6 @@ var TraF = {
         }
 
     },
-    formatTime:function(dateTime){
-        var timeInfo={};
-        var thedateTime = dateTime.replace(/-/g, "/");
-        var date = new Date(thedateTime).getTime();
-        var minute = 1000 * 60;
-        var hour = minute * 60;
-        var day = hour * 24;
-        //var halfamonth = day * 15;
-        //var month = day * 30;
-
-        //当前时间
-        var now = new Date().getTime();
-        var diffValue = now - date;
-        if (diffValue < 0) {
-            return false;
-        }
-        var dayC=diffValue/day;
-        var hourC = diffValue / hour;
-        var minC = diffValue / minute;
-
-        // 获取所给时间日期的 秒数
-        var oldData = dateTime.substr(0, 10).replace(/-/g, "/");
-        var oldDataSeconds = new Date(oldData).getTime();
-        // 获取当前日期的 秒数
-        var newtime = new Date();
-        var newYear = newtime.getFullYear();
-        var newMonth = newtime.getMonth() + 1;
-        var newData = newtime.getDate();
-        var today = newYear + "/" + newMonth + "/" + newData;
-        var todaySeconds = new Date(today).getTime();
-        // 计算日期的差值
-        var difference = todaySeconds - oldDataSeconds;
-        // 获取所给时间的 分时信息如 23:12
-        var TrafficInfoTime = dateTime.split(" ")[1].toString().substr(0, 8);
-        var TrafficTempTime = dateTime.split(" ")[1].toString().substr(0, 5);
-
-        //判断哪一天
-        var isToday1 = {},isToday2;
-        if (difference < 86400000 && difference >= 0) {
-            isToday1 = " 今天" + TrafficInfoTime;
-            isToday2 = TrafficTempTime;
-        } else if (difference == 86400000) {
-            isToday1 = " 昨天" + TrafficInfoTime;
-            isToday2 = " 昨天" + TrafficTempTime;
-        } else if (difference == 172800000) {
-            isToday1 = " 前天" + TrafficInfoTime;
-            isToday2 = " 前天" + TrafficTempTime;
-        } else {
-            var dataArr = dateTime.split(" ")[0].toString().split("-");
-            isToday1 = dataArr[0] + "年" + dataArr[1] + "月" + dataArr[2] + "日";
-            isToday2 = dataArr[0] + "年" + dataArr[1] + "月" + dataArr[2] + "日";
-        }
-
-        timeInfo.trafficLoad=isToday1;
-        // 判断显示时间
-        if (dayC >= 1) {
-            result = "更新于" + parseInt(dayC) + "天前发布";
-        }
-        else if (hourC >= 1 && hourC < 24) {
-            result = "更新于" + parseInt(hourC) + "小时前发布";
-        }
-        else if (minC >= 30 && minC < 60) {
-            result = "更新于" + parseInt(minC) + "分钟前发布";
-        } else if (minC < 30 && minC > 0) {
-            result = "更新于"  + isToday2;
-        }
-        else
-            result = "刚刚";
-
-        timeInfo.trafficTemp=result;
-        return timeInfo;
-    }
 };
 
 module.exports=TraF;
