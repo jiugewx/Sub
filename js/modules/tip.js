@@ -394,7 +394,7 @@ var tip = {
         self.scaleSvgUpdate(1 / self.transformState.scale, true);
         var obj_width = obj.width(),
             obj_height = obj.height();
-        var topbar_height = SW.cache.param && SW.cache.param.src == 'alipay' ? 0 : $('.top_bar').height(),
+        var topbar_height = AllData.cache.param && AllData.cache.param.src == 'alipay' ? 0 : $('.top_bar').height(),
             bottombar_height = $('.route_bar').height();
         var full_width = $(window).width(),
             full_height = $(window).height() - topbar_height - bottombar_height;
@@ -642,7 +642,7 @@ var tip = {
     },
     //创建城市列表
     creatCitylist: function() {
-        var city = SW.cityListData;
+        var city = AllData.cityListData;
         if (city) {
             var citylist = $('#citylist');
             var cityListHtm = '';
