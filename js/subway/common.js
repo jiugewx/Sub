@@ -890,17 +890,17 @@ var SW = {
 		//判断哪一天
 		var isToday1 = {},isToday2;
 		if (difference < 86400000 && difference >= 0) {
-			isToday1 = " 今天" + TrafficInfoTime;
+			isToday1 = TrafficInfoTime;
 			isToday2 = TrafficTempTime;
 		} else if (difference == 86400000) {
-			isToday1 = " 昨天" + TrafficInfoTime;
-			isToday2 = " 昨天" + TrafficTempTime;
+			isToday1 = TrafficInfoTime;
+			isToday2 = "昨天" + TrafficTempTime;
 		} else if (difference == 172800000) {
-			isToday1 = " 前天" + TrafficInfoTime;
-			isToday2 = " 前天" + TrafficTempTime;
+			isToday1 = TrafficInfoTime;
+			isToday2 = "前天" + TrafficTempTime;
 		} else {
 			var dataArr = dateTime.split(" ")[0].toString().split("-");
-			isToday1 = dataArr[0] + "年" + dataArr[1] + "月" + dataArr[2] + "日";
+			isToday1 = dataArr[1] + "月" + dataArr[2] + "日";
 			isToday2 = dataArr[0] + "年" + dataArr[1] + "月" + dataArr[2] + "日";
 		}
 

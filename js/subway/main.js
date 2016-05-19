@@ -6,6 +6,8 @@ var tip = {
     refreshTimer:{},
     refreshstate:0,
     timer:{},
+    w: document.documentElement.clientWidth,
+    h: document.documentElement.clientHeight,
     curCity:SW.cache.curCity,
     host: "http://m.amap.com/",
     verify: "/verify/?from=",
@@ -175,11 +177,13 @@ var tip = {
         $subway.on('touchend', 'g', function() {
             if (!self.touchStatus) {
                 if ($(this).hasClass('line_name')) {
+                    //线路选择器显示线路名
                     var line_id = $(this).attr('lineid');
                     var SW_line_name = SW.cache.lines[line_id].ln;
                     var line_name=SW_line_name.split("/")[0].toString().substr(0,4);
                     $(".filter_btn").html(line_name);
                     self.showFilterLine(line_id);
+
                     var select_obj = $('#g-select');
                     tip.setFitview(select_obj);
                     var center = self.getFilterCenter();
@@ -262,6 +266,8 @@ var tip = {
 
         $refresh.on('touchend', function (ev) {
             ev.stopPropagation();
+            var svgAll=$(".svg-g");
+            tip.setFitview(svgAll);
             if(self.refreshstate==0){
                 self.refreshstate=1;
                 var $refresh = $(".refresh_btn");
@@ -279,6 +285,7 @@ var tip = {
 
         //点击线路图选择器，打开选择器
         $('.filter_btn').on('touchend', function() {
+            console.log(tip.curScale);
             self.closehelpBox();
             if (!tip.routeState) {
                 self.openFilter();
@@ -512,10 +519,14 @@ var tip = {
     },
     openhelpBox: function () {
         $('.light_box').css('display', 'block');
+        var $helpContent=$(".help_content");
+        var width=parseInt($helpContent.css("width"));
+        var left=(tip.w-width)/2+"px";
+        $helpContent.css({"left":left});
+        $helpContent.css("display","block");
         $('.tip_wrap_out').hide();
         $(".refresh_btn").hide();
         $(".refresh_time").hide();
-        $(".help_content").css("display","block");
     },
     closehelpBox: function () {
         $('.light_box').css('display', 'none');
@@ -524,15 +535,12 @@ var tip = {
     //拖动Svg
     mcdragSvg: function(ev) {
         var self = this;
-
         // 降低渲染频率
         if (self.transform.translate.x == ev.deltaX && self.transform.translate.y == ev.deltaY) {
             return
         }
-
         self.transform.translate.x = ev.deltaX;
         self.transform.translate.y = ev.deltaY;
-
         self.handleUpdate();
     },
     //缩放
@@ -545,7 +553,6 @@ var tip = {
         if (ev.type == 'pinchstart') {
             initScale = self.transform.scale || 1;
         }
-
         // $('#transform').html(self.svgOffset.left + ',' + self.svgOffset.top);
         self.realCenter = {
             'x': Number(center.x) - Number(self.svgOffset.left),
@@ -821,7 +828,7 @@ var tip = {
             current_station[item.ls].push(item);
         }
         $("#tip_name").html(select_station_name);
-        console.log(current_station);
+        //console.log(current_station);
         // 输出地铁站点信息
         for (var lineid in current_station) {
             if (current_station.hasOwnProperty(lineid)) {
@@ -979,7 +986,13 @@ var tip = {
     },
     //打开路线选择器
     openFilter: function() {
+        var $filterContent=$(".filter_content");
         $('.light_box, .filter_content').css('display', 'block');
+        var width=parseInt($filterContent.css("width")),
+            height=parseInt($filterContent.css("height"));
+        var left=(tip.w-width)/2+"px",
+            top=(tip.h-height)/2+"px";
+        $filterContent.css({"top":top,"left":left});
         //线路选择器不能与弹窗同时存在
         $('.tip_wrap_out').hide();
         tip.stoprefresh();
