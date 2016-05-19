@@ -59,9 +59,7 @@ var bindEv={
             }, 0)
         });
         mc.on("hammer.input", function(ev) {
-
             if (ev.isFinal) {
-
                 if (lastAction == "pinch") {
                     tip.scaleSvgUpdate(tip.transform.scale);
                     hasPenchend = true;
