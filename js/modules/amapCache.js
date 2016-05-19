@@ -1,5 +1,6 @@
 /*数据缓存*/
 window.amapCache = window.amapCache || {};
+
 (function(window, undefined) {
     var enabledLocalstorage = false,
         defaultOption = {},

@@ -1,4 +1,10 @@
 
+----------------
+npm install
 
+webpack
+webpack-dev-server要--save的方式安装,其他的都会出错!
 
-traficInfo:http://223.72.210.20:8388/PublicTripProvide/LoadAfcJtlDataJson?ask=t8ai8t4s3acb1ce
+npm run dev  这个可以热加载,开启8080端口
+
+npm start  开启3000端口

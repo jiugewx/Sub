@@ -13,15 +13,15 @@ require("./css/style.css");
 //
 ///*加载js*/
 //require("./js/actions/amapCache");
-//require("./js/actions/Cache");
-//require("./js/actions/drwDoublelines");
+//require("./js/actions/common");
+//require("./js/actions/Data");
+//require("./js/actions/drwLines");
 //require("./js/actions/drwMain");
+//require("./js/actions/drwSelect");
 //require("./js/actions/drwtrafficlines");
 //require("./js/actions/tip");
-//require("./js/actions/Data");
-//require("./js/actions/common");
 
-var Common=require("./js/actions/common");
+var SW=require("./js/modules/SW");
 
-Common.swInit();
+SW.swInit();
 

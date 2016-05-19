@@ -2,15 +2,14 @@
  * Created by xinye on 16/5/18.
  */
 var $=require("../lib/zepto");
-require('../lib/fastclick.js');
 require("../lib/hammer.js");
 
+var DrwTraf=require("./drwtraffic");
+var drwSw=require("./drwMain");
+var SW=require("./SW");
+var AllData=require("./AllData");
+var drwSec=require("./drwSelect");
 
-var Cache = require("./Cache");
-var DataAll=require("./Data");
-var DrwMain=require("./drwMain");
-var TraF=require("./drwtrafficlines");
-var Common=require("./common");
 
 var getstureState = 0;
 var el = document.getElementById('drag_handle');
@@ -20,17 +19,31 @@ var tip = {
     refreshTimer:{},
     refreshstate:0,
     timer:{},
-    curCity:Cache.curCity,
     w: document.documentElement.clientWidth,
     h: document.documentElement.clientHeight,
-    stationsInfo: Cache.stationsInfo,/*几个数据接口*/
-    stations: Cache.stations,
-    lines: Cache.lines,
-    tempTrafficinfo:Cache.tempTrafficinfo,
+    curCity:AllData.cache.curCity,
+    host: "http://m.amap.com/",
+    verify: "/verify/?from=",
+    isHighlight: false,
+    isInfoShow: false,
+    stationsInfo: AllData.cache.stationsInfo,/*几个数据接口*/
+    stations: AllData.cache.stations,
+    lines: AllData.cache.lines,
+    tempTrafficinfo:AllData.cache.tempTrafficinfo,
     station_w: 26,
+    dragObjXY: {}, //拖拽div时的实时xy
+    dragX: null,
+    dragY: null,
+    onePoint: {}, //单手touch时的初始xy
+    twoPoint1: {}, //双手touch时的初始x1y1
+    twoPoint2: {}, //双手touch时的初始x2y2
+    twoOriginPointDis: null, //双手touch时的两手指的初始距离
     touchStatus: null, //当前touch状态：drag, scale
     curScale: 1, //当前缩放级别
     allScale: 1,
+    zoomCenter: null, //搜索初始中心点
+    dragHandle: $("#drag_handle"), //touch对象
+    dragObj: $("#subwaySvg"), //
     svgOffset: {
         left: 0,
         top: 0
@@ -46,9 +59,22 @@ var tip = {
     },
     opentip: false,
     curopenStation: null,
+    routeInfo: { //路线规划起始点信息
+        start: null,
+        end: null
+    },
+    routeDtailInfo: {
+        start: null,
+        end: null
+    },
     routeId: {
         start: null,
         end: null
+    },
+    navDrwData: {
+        linesbar: [],
+        lines: {},
+        stations: []
     },
     transform: {
         translate: {
@@ -67,10 +93,8 @@ var tip = {
     transformOrigin: null,
     routeState: false,
     fromendState: false,
-    //初始化事件绑定信息
-    init: function() {
-        tip.bindEvent();
-    },
+    pathData: null,
+
     preventScrollBounce: function(eles) {
         if (!eles.length && !eles.unshift) {
             eles = [eles]
@@ -91,260 +115,10 @@ var tip = {
 
     },
     //绑定事件
-    bindEvent: function() {
-        document.addEventListener('touchstart', function() {});
-        var self = this;
-        var $refresh=$(".refresh_btn");
-        var $subway = $('#subway');
-        var $citypage = $('#citypage');
-        var $overlays = $('#overlays');
-        //var $srh = $('#srhpage');
-        var el = document.getElementById('drag_handle');
-        var mc = new Hammer.Manager(el, {
-            domEvents: true
-        });
-
-        mc.add(new Hammer.Pan());
-        mc.add(new Hammer.Pinch());
-
-        var enableGesture = true;
-        var lastAction = "";
-        var hasPenchend = false;
-
-        mc.on("panmove", function(ev) {
-            if (!enableGesture) return;
-            self.touchStatus = 'pan';
-            lastAction = "pan";
-            self.mcdragSvg(ev);
-        });
-
-        mc.on("pinchstart pinchmove", function(ev) {
-
-            if (!enableGesture) return;
-
-            self.touchStatus = 'pinch';
-            lastAction = "pinch";
-            if (ev.type == 'pinchstart') {
-                self.svgOffset = DrwMain.svgOffset || tip.svgOffset;
-                hasPenchend = false;
-            }
-            self.mcScaleSvg(ev);
-
-        });
-
-        mc.on("pinchend", function(ev) {
-            setTimeout(function() {
-                if (!hasPenchend) {
-                    self.scaleSvgUpdate(self.transform.scale);
-                }
-            }, 0)
-        });
-        mc.on("hammer.input", function(ev) {
-
-            if (ev.isFinal) {
-
-                if (lastAction == "pinch") {
-                    self.scaleSvgUpdate(self.transform.scale);
-                    hasPenchend = true;
-                }
-
-                if (lastAction == "pan") {
-                    self.svgUpdate(ev);
-                }
-
-                enableGesture = false;
-                setTimeout(function() {
-                    enableGesture = true;
-                }, 50);
-            }
-        });
-
-        $subway.on('touchend', 'g', function() {
-            if (!self.touchStatus) {
-                if ($(this).hasClass('line_name')) {
-                    var line_id = $(this).attr('lineid');
-                    var SW_line_name = Cache.lines[line_id].ln;
-                    var line_name=SW_line_name.split("/")[0].toString().substr(0,4);
-                    $(".filter_btn").html(line_name);
-                    self.showFilterLine(line_id);
-                    var select_obj = $('#g-select');
-                    tip.setFitview(select_obj);
-                    var center = self.getFilterCenter();
-                    self.setCenter(center);
-                }
-            }
-        });
-
-        $subway.on('touchend', '#g-bg', function() {
-            if (!tip.routeState) {
-                if (!self.touchStatus) {
-                    $('#g-select').remove();
-                    $('#g-bg').css('display', 'none');
-                    $(".filter_btn").html("线路图");
-                }
-            }
-        });
-
-        //触击 非站点又不是换乘点的区域 关闭弹窗
-        $subway.on('touchend','#drag_handle'&&".light_box",function(e) {
-            if (!self.touchStatus && !tip.routeState) {
-                var target = e.target;
-                if (target.getAttribute('class') != 'station_obj' || target.getAttribute('class') != 'nav-img') {
-                    tip.closeTip();
-                    tip.closehelpBox();
-                }
-            }
-        });
-
-        //触击站点事件：打开一个#city=city代码&station=站点代码的网址;
-        $subway.on('touchend', '.station_obj', function (e) {
-            e.stopPropagation();
-            if (!self.touchStatus && !tip.routeState) {
-                var id = $(this).attr('station_id');
-                self.closeFilter();
-                $('.light_box').css('display', 'block');
-                window.location.hash = '#city=' + Cache.curCity.adcode + '&station=' + id;
-            }
-        });
-
-        //点击弹出层事件：阻止冒泡,接受事件,但是无动作
-        $overlays.on('touchend', '.tip_wrap', function(e) {
-            e.stopPropagation();
-        });
-        //点击弹出层事件：阻止冒泡
-        $overlays.on('touchstart', '.tip_wrap', function(e) {
-            e.stopPropagation();
-        });
-
-        $(".top_bar").on("touchend", function () {
-            tip.closeTip();
-            tip.closeFilter();
-        });
-
-        $('.light_box').on('touchmove', function(ev) {
-            ev.preventDefault();
-        });
-
-        $('#loading').on('touchmove', function(ev) {
-            ev.preventDefault();
-        });
-        //关闭背景暗箱
-        $('.light_box').on('touchend', function() {
-            self.closeFilter();
-            self.closehelpBox()
-        });
-
-        $refresh.on('touchend', function (ev) {
-            ev.stopPropagation();
-            if(self.refreshstate==0){
-                self.refreshstate=1;
-                var $refresh = $(".refresh_btn");
-                $refresh.addClass("refresh_active");
-                var city_code = Cache.curCity.adcode;
-                var city_name = DataAll.fileNameData[Cache.curCity.adcode];
-                var status = 'normal';
-                SW.loadTraffic(city_code, city_name);
-                //console.log("add前",drwSw.currLines);
-                TraF.drwTrafficLinesDefer(DrwMain.currLines, status);
-            }else {
-                ev.stopPropagation();
-            }
-        });
-
-        //点击线路图选择器，打开选择器
-        $('.filter_btn').on('touchend', function() {
-            self.closehelpBox();
-            if (!tip.routeState) {
-                self.openFilter();
-            }
-        });
-        //点击选择器中的路线：关闭选择器，显示地铁，设置屏幕中心点为地铁的中心
-        $('.fliter_detail').on('touchend', '.fliter_item', function() {
-            if (lockfd) return;
-            var line_id = $(this).attr('lineid');
-            var line_name=$(this).attr('name');
-            if (line_id == "caption-allLines") {
-                self.closeFilter();
-                $(".filter_btn").html("线路图");
-                $('#g-bg').css('display','none');
-                //self.showFilterLine(line_id);
-                var center={};
-                var $Svg=$('#svg-g');
-                var $Svg_offset = $Svg.offset();
-                var $Svg_h = document.getElementById('svg-g').getBBox().height * self.allScale,
-                    $Svg_w = document.getElementById('svg-g').getBBox().width * self.allScale;
-                center.x = $Svg_offset.left + $Svg_w/2;
-                center.y = $Svg_offset.top + $Svg_h/2;
-                //var center2=self.getStCenter($Svg);
-                //console.log($Svg_offset,center,center2,$Svg_w,$Svg_h);
-                //console.log(tip.realCenter);
-                tip.setCenter(center);
-
-            } else {
-                self.closeFilter();
-                $(".filter_btn").html(line_name);
-                self.showFilterLine(line_id);
-                var select_obj = $('#g-select');
-                tip.setFitview(select_obj);
-                var center = self.getFilterCenter();
-                self.setCenter(center);
-            }
-        });
-
-        //处理选择器中的移动事件
-        var fdTimer;
-        var lockfd = false;
-        $('.fliter_detail').on('touchmove', function(e) {
-            e.stopPropagation();
-            lockfd = true;
-            fdTimer && clearTimeout(fdTimer);
-            fdTimer = setTimeout(function() {
-                lockfd = false;
-            }, 60);
-        });
-
-        $(".help_btn").on("touchend", function (e) {
-            e.stopPropagation();
-            self.closeFilter();
-            $(".refresh_time_text").removeClass("refresh_time_text_show").css("display", "none");
-            $(".refresh_box").hide().removeClass("refresh_box_show").css("display", "none");
-            tip.openhelpBox();
-        });
-        $(".help_close").on("touchend", function (e) {
-            e.stopPropagation();
-            tip.closehelpBox();
-        });
-
-
-        $('.tip_close').on('touchend', function(e) {
-            e.stopPropagation();
-            tip.closeTip();/*调用closeTip的方法*/
-        });
-
-        $('#back_amap').on('touchend', function() {
-            tip.goback()
-        });
-
-        //导航栏中的城市名的触摸事件
-        $('.city_list_btn').on('touchend', function() {
-            tip.cityChange();
-        });
-
-        $citypage.on('touchend', '.cityitem', function() {
-            var adcode = $(this).attr('adcode');
-            // window.location.hash = "#city=" + adcode;
-            // $('#tip-content').remove();
-            tip.initCity();
-            window.location.hash = "#city=" + adcode;
-            // SW.changeCity(adcode);
-            tip.hideCitylist();
-            $('#subway').show();
-        });
-    },
     refreshShow: function () {
         $(".refresh_box").css("display", "block").addClass("refresh_box_show");
         $(".refresh_time_text").css("display", "block").addClass("refresh_time_text_show");
-        Common.loadingOver();
+        tip.loadingOver();
         //4秒后隐藏信息
         clearTimeout(tip.refreshTimer);
         tip.refreshTimer = setTimeout(function () {
@@ -354,7 +128,7 @@ var tip = {
         }, 4000);
     },
     refreshSuccess: function () {
-        $('.refresh_time_text').html("更新于"+SW.refreshStatus);
+        $('.refresh_time_text').html("更新于"+AllData.refreshStatus);
         //去除加载状态
         var $refresh=$(".refresh_btn");
         $refresh.removeClass("refresh_active");
@@ -393,15 +167,12 @@ var tip = {
     //拖动Svg
     mcdragSvg: function(ev) {
         var self = this;
-
         // 降低渲染频率
         if (self.transform.translate.x == ev.deltaX && self.transform.translate.y == ev.deltaY) {
             return
         }
-
         self.transform.translate.x = ev.deltaX;
         self.transform.translate.y = ev.deltaY;
-
         self.handleUpdate();
     },
     //缩放
@@ -414,7 +185,6 @@ var tip = {
         if (ev.type == 'pinchstart') {
             initScale = self.transform.scale || 1;
         }
-
         // $('#transform').html(self.svgOffset.left + ',' + self.svgOffset.top);
         self.realCenter = {
             'x': Number(center.x) - Number(self.svgOffset.left),
@@ -485,21 +255,21 @@ var tip = {
             svg_g_h = svg_g_offset.height;
 
         var canUpdate = true;
-        if (svg_g_w > DrwMain.w) {
-            if (Number(svg_g_l) > Number(DrwMain.w) / 2 || Math.abs(Number(svg_g_l)) > (Number(svg_g_w - Number(DrwMain.w) / 2))) {
+        if (svg_g_w > drwSw.w) {
+            if (Number(svg_g_l) > Number(drwSw.w) / 2 || Math.abs(Number(svg_g_l)) > (Number(svg_g_w - Number(drwSw.w) / 2))) {
                 canUpdate = false;
             }
         } else {
-            if (svg_g_l + svg_g_w / 2 < 0 || svg_g_l + svg_g_w / 2 > DrwMain.w) {
+            if (svg_g_l + svg_g_w / 2 < 0 || svg_g_l + svg_g_w / 2 > drwSw.w) {
                 canUpdate = false;
             }
         }
-        if (svg_g_h > DrwMain.h) {
-            if (Number(svg_g_t) > Number(DrwMain.h) / 2 || Math.abs(Number(svg_g_t)) > (Number(svg_g_h - Number(DrwMain.h) / 2))) {
+        if (svg_g_h > drwSw.h) {
+            if (Number(svg_g_t) > Number(drwSw.h) / 2 || Math.abs(Number(svg_g_t)) > (Number(svg_g_h - Number(drwSw.h) / 2))) {
                 canUpdate = false;
             }
         } else {
-            if (svg_g_t + svg_g_h / 2 < 0 || svg_g_t + svg_g_h / 2 > DrwMain.h) {
+            if (svg_g_t + svg_g_h / 2 < 0 || svg_g_t + svg_g_h / 2 > drwSw.h) {
                 canUpdate = false;
             }
         }
@@ -618,7 +388,24 @@ var tip = {
         }, 100);
 
     },
-
+    //设置合适的屏幕视图大小
+    setFitview: function(obj) {
+        var self = this;
+        self.scaleSvgUpdate(1 / self.transformState.scale, true);
+        var obj_width = obj.width(),
+            obj_height = obj.height();
+        var topbar_height = SW.cache.param && SW.cache.param.src == 'alipay' ? 0 : $('.top_bar').height(),
+            bottombar_height = $('.route_bar').height();
+        var full_width = $(window).width(),
+            full_height = $(window).height() - topbar_height - bottombar_height;
+        var w_rate = full_width / obj_width,
+            h_rate = full_height / obj_height,
+            scale = 1;
+        if (w_rate < 1 || h_rate < 1) {
+            scale = w_rate < h_rate ? (w_rate - 0.05) : (h_rate - 0.06);
+            self.scaleSvgUpdate(scale, true);
+        }
+    },
     //获取缩放中心
     getScaleCenter: function(xy1, xy2) {
         var center = {};
@@ -636,7 +423,7 @@ var tip = {
     closeNearTip: function() {
         var self = this;
         var obj = $(".tip-content");
-        if (DrwMain.isNearTip) {
+        if (drwSw.isNearTip) {
             if (obj.hasClass('open')) {
                 obj.css("display", "none").removeClass("open");
             }
@@ -659,7 +446,7 @@ var tip = {
             current_station[item.ls].push(item);
         }
         $("#tip_name").html(select_station_name);
-        console.log(current_station);
+        //console.log(current_station);
         // 输出地铁站点信息
         for (var lineid in current_station) {
             if (current_station.hasOwnProperty(lineid)) {
@@ -774,7 +561,7 @@ var tip = {
             tip.opentip = false;
         }
         $('.light_box').css('display', 'none');
-        window.location.hash = '#city=' + SW.cache.curCity.adcode;
+        window.location.hash = '#city=' + AllData.cache.curCity.adcode;
     },
     //设置中心信息
     setCenter: function(center) {
@@ -817,7 +604,13 @@ var tip = {
     },
     //打开路线选择器
     openFilter: function() {
+        var $filterContent=$(".filter_content");
         $('.light_box, .filter_content').css('display', 'block');
+        var width=parseInt($filterContent.css("width")),
+            height=parseInt($filterContent.css("height"));
+        var left=(tip.w-width)/2+"px",
+            top=(tip.h-height)/2+"px";
+        $filterContent.css({"top":top,"left":left});
         //线路选择器不能与弹窗同时存在
         $('.tip_wrap_out').hide();
         tip.stoprefresh();
@@ -828,30 +621,6 @@ var tip = {
         $(".refresh_btn").show();
         $(".refresh_box").show();
         $(".refresh_time").show();
-    },
-    //设置合适的屏幕视图大小
-    setFitview: function(obj) {
-        var self = this;
-        self.scaleSvgUpdate(1 / self.transformState.scale, true);
-        var obj_width = obj.width(),
-            obj_height = obj.height();
-        var topbar_height = SW.cache.param && SW.cache.param.src == 'alipay' ? 0 : $('.top_bar').height(),
-            bottombar_height = $('.route_bar').height();
-        var full_width = $(window).width(),
-            full_height = $(window).height() - topbar_height - bottombar_height;
-        var w_rate = full_width / obj_width,
-            h_rate = full_height / obj_height,
-            scale = 1;
-        if (w_rate < 1 || h_rate < 1) {
-            scale = w_rate < h_rate ? (w_rate - 0.05) : (h_rate - 0.06);
-            self.scaleSvgUpdate(scale, true);
-        }
-    },
-    //显示过滤后的地铁线
-    showFilterLine: function(id) {
-        $('#g-select').remove();
-        $('#g-bg').css('display', 'block');
-        drwSw.drawSelectLine(SW.cache.lines[id], 'select');
     },
     //获取选择后的中心
     getFilterCenter: function() {
@@ -990,8 +759,8 @@ var tip = {
     //更新最近位置的信息
     updateNear: function() {
         var self = this;
-        if (DrwMain.nearId) {
-            var obj = $('#near-' + DrwMain.nearId);
+        if (drwSw.nearId) {
+            var obj = $('#near-' + drwSw.nearId);
 
             if (obj) {
                 var obj_left = obj.offset().left,
@@ -1014,25 +783,25 @@ var tip = {
         }
     },
     //格式化时间
-    formatTime: function(le) {
-        if (!le || le == '0') {
-            return '';
-        }
-        le = le / 60;
-        if (le <= 60) {
-            return parseInt(Math.ceil(le)) + '分钟';
-        } else {
-            var o = Math.floor(le / 60) + '小时';
-            if (le % 60 !== 0) {
-                if (Math.floor(le % 60) === 0) {
-
-                } else {
-                    o += Math.floor(le % 60) + '分钟';
-                }
-            }
-            return o;
-        }
-    },
+    //formatTime: function(le) {
+    //    if (!le || le == '0') {
+    //        return '';
+    //    }
+    //    le = le / 60;
+    //    if (le <= 60) {
+    //        return parseInt(Math.ceil(le)) + '分钟';
+    //    } else {
+    //        var o = Math.floor(le / 60) + '小时';
+    //        if (le % 60 !== 0) {
+    //            if (Math.floor(le % 60) === 0) {
+    //
+    //            } else {
+    //                o += Math.floor(le % 60) + '分钟';
+    //            }
+    //        }
+    //        return o;
+    //    }
+    //},
     unableFlite: function() {
         $('.filter_btn').css({
             'z-index': '10'
@@ -1056,5 +825,21 @@ var tip = {
         }
         $obj.find('.route_startend').html(placeholder[type]).addClass('route_placeholder');
         $obj.find('.route_close').addClass('hidden');
-    }
+    },
+    //正在加载
+    loading: function() {
+        $('.loading-outer').css('position', 'fixed');
+        $('.loading-bg').css({
+            'position': 'fixed',
+            'display': 'block'
+        });
+        $('.loading-bg .loading').css('top', '-30px');
+    },
+    //加载完成
+    loadingOver: function() {
+        $('.loading-bg').css('display', 'none');
+    },
 };
+
+
+module.exports=tip;

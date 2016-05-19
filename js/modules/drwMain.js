@@ -3,16 +3,16 @@
  */
 
 var $=require("../lib/zepto");
-var Drw2lines=require("./drwDoublelines");
-var TraF=require("./drwtrafficlines");
-var Cache=require("./Cache");
+var AllData=require("./AllData");
+var SW=require("./SW");
+var Drwlines=require("./drwLines");
+var DrwTraf=require("./drwtraffic");
 
-var DrwMain={
-    defaultColor:TraF.statusColor[0].color,
+
+var drwSw = {
+    defaultColor:AllData.statusColor[0].color,
+    timer:{},
     currLines: {},
-    svgReady: false,
-    sortline:[],
-    statusColor:TraF.statusColor,
     w: document.documentElement.clientWidth,
     h: document.documentElement.clientHeight,
     t_top: 0,
@@ -20,19 +20,8 @@ var DrwMain={
     moveX: 0,
     moveY: 0,
     font_size: 12,
-    isNearTip: false,
-    ns_svg: "http://www.w3.org/2000/svg",
-    nearId: null,
-    svgOffset: {
-        left: 0,
-        top: 0
-    },
-    timer: {},
-    trafficInfo: Cache.trafficInfo,
-    stations: Cache.stations,
-    convertData: Cache.convertData,
-    stationsInfo: Cache.stationsInfo, /*几个数据接口*/
     nearHightLight: 14,
+    isNearTip: false,
     /*站点名称的位置*/
     label_angle: {
         '0': [0, -1],
@@ -46,7 +35,24 @@ var DrwMain={
     },
     specailPhone: false,
     curOffset: {},
+    sortline: null,
+    ns_svg: "http://www.w3.org/2000/svg",
+    nearId: null,
+    svgReady: false,
+    svgOffset: {
+        left: 0,
+        top: 0
+    },
+    statusColor:AllData.statusColor,
+    trafficInfo:AllData.cache.trafficInfo,
+    stations:AllData.cache.stations,
+    convertData:AllData.cache.convertData,
+    stationsInfo: AllData.cache.stationsInfo, /*几个数据接口*/
 
+    isSpecailPhone: function() {
+        var self = this;
+        var ua = navigator.userAgent.toLowerCase();
+    },
     draw: function(drwData, param) {
         $('#subway-svg').remove();
         this.currLines = {};
@@ -73,12 +79,12 @@ var DrwMain={
             lightStation.id = detailStation;
             lightStation.detail = true;
             if (detailStation) {
-                var offset = Cache.stations[detailStation].p;
+                var offset = AllData.cache.stations[detailStation].p;
                 ox = parseInt(offset.split(' ')[0]);
                 oy = parseInt(offset.split(' ')[1]);
             } else {
-                ox = Cache.curCity.offset.x;
-                oy = Cache.curCity.offset.y;
+                ox = AllData.cache.curCity.offset.x;
+                oy = AllData.cache.curCity.offset.y;
             }
         }
         else {
@@ -90,25 +96,26 @@ var DrwMain={
             lightStation.detail = false;
             self.nearId = nearStation;
             if (nearStation) {
-                var offset = Cache.stations[nearStation].p;
+                var offset = AllData.cache.stations[nearStation].p;
                 ox = parseInt(offset.split(' ')[0]);
                 oy = parseInt(offset.split(' ')[1]);
             }
             else {
-                ox = Cache.curCity.offset.x;
-                oy = Cache.curCity.offset.y;
+                ox = AllData.cache.curCity.offset.x;
+                oy = AllData.cache.curCity.offset.y;
             }
         }
         originX = ox;
         originY = oy;
         var moveX = Number(screenX) - Number(originX);
         var moveY = Number(screenY) - Number(originY);
-        DrwMain.moveX = moveX;
-        DrwMain.moveY = moveY;
+        drwSw.moveX = moveX;
+        drwSw.moveY = moveY;
 
         self.deletInProgress(drwData);
         self.drawSvgSubway(drwData, lightStation, param);
     },
+    //初始化currLines数据
     deletInProgress: function(drwData) {
         var self = this;
         var j = 0;
@@ -146,6 +153,21 @@ var DrwMain={
         var svg_g = document.createElementNS(self.ns_svg, 'g');
         setTimeout(function() {
             var svgW = $('#subway-svg').offset().width;
+            // if (svgW != 2000) {
+            // 	self.specailPhone = true;
+            // 	subway_content.setAttribute("viewBox", "0 0 " + self.w + " " + self.h);
+            // 	subway_content.style.width = self.w + "px";
+            // 	subway_content.style.height = self.h + "px";
+            // 	subway_box.setAttribute("id", "subway-box");
+            // 	subway_content.appendChild(subway_box);
+
+            // 	svg_g.setAttribute("id", "svg-g");
+            // 	var top, left;
+            // 	top = self.t_top;
+            // 	left = self.t_left;
+            // 	svg_g.setAttribute("transform", "translate(" + drwSw.moveX + ", " + drwSw.moveY + ") scale(1)");
+            // 	subway_box.appendChild(svg_g);
+            // } else {
             subway_content.style.left = -1000 + self.w / 2 + "px";
             subway_content.style.top = -1000 + self.h / 2 + "px";
             self.svgOffset.left = -1000 + self.w / 2;
@@ -161,13 +183,43 @@ var DrwMain={
             // }
         }, 0)
     },
+    //地铁线按顺序排序
+    lineSort: function() {
+        var self = this;
+        self.sortline = [];
+        var id;
+        for (id in self.currLines) {
+            var index = parseInt(self.currLines[id].x);
+            var line_id = self.currLines[id].ls;
+            self.sortline[index - 1] = line_id;
+        }
+    },
+    addCaption: function(drwData) {
+        var self = this;
+        var subway_caption = $('#subway-caption');
+        for (var i = 0; i < self.sortline.length; i++) {
+            var caption_item = $('<div class="line-caption"></div>');
+            var la = SW.cache.lines[self.sortline[i]].la;
+            var html = '';
+            if (!la || la == '') {
+                html = SW.cache.lines[self.sortline[i]].ln;
+            } else {
+                html = SW.cache.lines[self.sortline[i]].ln + '<div class="caption_la">( ' + SW.cache.lines[self.sortline[i]].la + ' )</div>'
+            }
+            caption_item.html(html);
+            caption_item.attr('id', 'caption-' + self.sortline[i]);
+            caption_item.attr('lineid', self.sortline[i]);
+            caption_item.css('background', '#' + SW.cache.lines[self.sortline[i]].cl);
+            subway_caption.append(caption_item);
+        }
+    },
     //画图
     drawSvg: function(drwData, station, param) {
         var self = this;
         var status = 'normal';
         self.lineSort();
         self.drwSwLines(self.currLines, status);
-        TraF.drwTrafficLinesDefer(self.currLines, status);
+        DrwTraf.drwTrafficLinesDefer(self.currLines, status);
         self.drwSwStations(drwData, status, station);
         self.drwSwStationsName(drwData, status, 10, 20); //缩小为0.5，第二个参数为24
         self.drwSwLinesName(drwData, status);
@@ -179,19 +231,9 @@ var DrwMain={
             var center = tip.getStCenter(nearObj);
             tip.setCenter(center);
         }
+
         //SW.showStation(param);
         //SW.showRoute(param);
-    },
-    //地铁线按顺序排序
-    lineSort: function() {
-        var self = this;
-        self.sortline = [];
-        var id;
-        for (id in self.currLines) {
-            var index = parseInt(self.currLines[id].x);
-            var line_id = self.currLines[id].ls;
-            self.sortline[index - 1] = line_id;
-        }
     },
     //绘制背景
     drawBg: function() {
@@ -208,6 +250,19 @@ var DrwMain={
         bg_rect.setAttribute('height', 2000);
         subway_bg.appendChild(bg_rect);
     },
+    //绘制导航路线
+    drawNavLine: function(drwData) {
+        var self = this;
+        var status = 'nav';
+        var svg_g = document.getElementById("svg-g");
+        var subway_nav_g = document.createElementNS(self.ns_svg, 'g');
+        subway_nav_g.setAttribute("id", "g-nav");
+        svg_g.appendChild(subway_nav_g);
+        self.drwSwLines(drwData.lines, status);
+        self.drwSwStations(drwData, status);
+        self.drwSwStationsName(drwData, status, 12, 20); //缩小为0.5，第二个参数为24
+    },
+    // 绘制默认的地铁线路
     drwSwLines: function(drwData, status) {
         var self = this;
         var svg_g = document.getElementById("svg-g");
@@ -216,12 +271,13 @@ var DrwMain={
         if (status == 'normal') {
             svg_g.appendChild(subway_line);
             //console.log("开始画主路");
+            //console.log(drwData);
             for (var line_id in drwData) {
                 var current_drwData = drwData[line_id];
                 /*打印地铁线名称*/
                 //console.log("======##################=======" + drwData[line_id].ln + "=========############=====");
                 //画双线
-                Drw2lines.drwDouble(subway_line,current_drwData);
+                Drwlines.drwDouble(subway_line,current_drwData);
             }
             $("#refresh_content").show();
             $(".filter_btn").show();
@@ -230,29 +286,8 @@ var DrwMain={
         } else if (status == 'select') {
             var svg_select = document.getElementById("g-select");
             svg_select.appendChild(subway_line);
-            Drw2lines.drwDouble(subway_line, drwData);
+            Drwlines.drwDouble(subway_line, drwData);
         }
-    },
-    //画单线:输入:挂载节点,路径的名称,地铁线的id/name数据,输出:单条地铁线
-    drwlines: function (parentNode,pathName,LineId_Data) {
-        var onepath=pathName.path;
-        var	direction=pathName.direction;
-        var node_first = 'M' + onepath[0].split(' ').join(',');
-        var path = node_first + 'L' + onepath.join('L');
-        var line_path = document.createElementNS(this.ns_svg, 'path');
-        //line_path.setAttribute("id", "line-"+ LineId_Data.ls+"-"+ direction);
-        line_path.setAttribute("name", "line-"+ pathName.reflineName +"-"+ direction);
-        var color={};
-        //如果提供了强制的数据颜色,那就使用提供的颜色,否则就画定义好的颜色
-        if(pathName.color){
-            color=pathName.color;
-        }else{
-            color=DrwMain.defaultColor;/*如果感应器没有数据,就画默认颜色*/
-            //color=LineId_Data.cl;
-        }
-        line_path.setAttribute("stroke", "#" + color);
-        line_path.setAttribute("d", path);
-        parentNode.appendChild(line_path);
     },
     //绘制地铁线路名
     drwSwLinesName: function(drwData, status) {
@@ -270,10 +305,10 @@ var DrwMain={
         for (var id in data) {
             if (data[id] != null) {
                 for (var i = 0; i < data[id].length; i++) {
-                    var line_name = Cache.lines[id].ln;
+                    var line_name = AllData.cache.lines[id].ln;
                     var line_name_w = line_name.length * self.font_size + 6;
                     var line_name_h = 20;
-                    var line_color = Cache.lines[id].cl;
+                    var line_color = AllData.cache.lines[id].cl;
                     var line_name_x = parseInt(data[id][i].split(" ")[0]);
                     var line_name_y = parseInt(data[id][i].split(" ")[1]) - 15;
                     var _line_name = document.getElementById("g-line-name");
@@ -356,7 +391,7 @@ var DrwMain={
                 if (lightId) {
                     if (item.si == lightId) {
                         console.log(item.si);
-                        var data = Cache.stations[lightId];
+                        var data = SW.cache.stations[lightId];
                         var subway_station = document.createElementNS(self.ns_svg, 'circle');
                         subway_station.setAttribute("id", "near-" + lightId);
                         subway_station.setAttribute("class", "near-station");
@@ -456,6 +491,63 @@ var DrwMain={
             }
         })
     },
+    //动态展示选择器内的内容
+    addFilter: function(drwData) {
+        var self = this;
+        var subway_caption = $('.fliter_detail');
+        subway_caption.html(' ');
+        //增加“显示全部地铁的功能”
+        var firstHtml=[];
+        firstHtml.push("<li class='fliter_item' id='caption-allLines' lineid='caption-allLines' name='全部地铁'>");
+        //firstHtml.push("<span class='line_color' style='background:#000'></span>");
+        firstHtml.push("<span class='line_name'>全部地铁线路</span>");
+        firstHtml.push("</li>");
+        subway_caption.html(firstHtml.join(""));
+        //添加地铁
+        for (var i = 0; i < self.sortline.length; i++) {
+            //定义每个路线的展示内容
+            var caption_item = $('<li class="fliter_item"></li>');
+            //如果是最后一条路线
+            if (i == self.sortline.length - 1) {
+                caption_item = $('<li class="fliter_item fliter_item_last"></li>');
+            }
+            var la = AllData.cache.lines[self.sortline[i]].la;
+            var html = '',
+                line_name = '';
+            if (!la || la == '') {
+                line_name = AllData.cache.lines[self.sortline[i]].ln;
+            } else {
+                line_name = AllData.cache.lines[self.sortline[i]].ln + '<b class="line_name_la">( ' + AllData.cache.lines[self.sortline[i]].la + ' )</b>';
+            }
+            //html = '<span class="line_color" style="background:#' + SW.cache.lines[self.sortline[i]].cl + '"></span><span class="line_name">' + line_name + '</span>';
+            html = "<span class='line_name'>" + line_name + "</span>";
+            caption_item.html(html);
+            caption_item.attr('id', 'caption-' + self.sortline[i]);
+            caption_item.attr('lineid', self.sortline[i]);
+            caption_item.attr('name', line_name.split("/")[0].toString().substr(0,4));
+            subway_caption.append(caption_item);
+        }
+
+        $('.filter_btn').show().css({
+            'z-index': '20'
+        });
+    },
+    addHelp: function () {
+        var self = this;
+        var help_content = $('.help_content');
+        //添加地铁
+        for (var i = 0; i < self.statusColor.length; i++) {
+            var help_item=$("<div class='help_item'></div>");
+            var html='';
+            html = '<span class="help_color" style="background:#'+self.statusColor[i].color+'"></span><span class="help_text"><span style="float: left">'+self.statusColor[i].instruction+'</span></span>';
+            help_item.html(html);
+            help_content.append(help_item);
+        }
+        var html_warning_item=$('<div class="help_item help_warning"></div>');
+        var html_warning='<span class="help_color_warning"></span> <span class="help_text"> <span style="float: left">限流站点</span> </span>';
+        html_warning_item.html(html_warning);
+        help_content.append(html_warning_item);
+    },
     //离我最近Tip
     nearTip: function(id) {
         var self = this;
@@ -490,62 +582,19 @@ var DrwMain={
             tip.remove();
         }
     },
-    //动态展示选择器内的内容
-    addFilter: function(drwData) {
+    //getDistance 获得两点的距离
+    getDistance: function(a, b) { //a是当前位置
         var self = this;
-        var subway_caption = $('.fliter_detail');
-        subway_caption.html(' ');
-        //增加“显示全部地铁的功能”
-        var firstHtml=[];
-        firstHtml.push("<li class='fliter_item' id='caption-allLines' lineid='caption-allLines' name='全部地铁'>");
-        //firstHtml.push("<span class='line_color' style='background:#000'></span>");
-        firstHtml.push("<span class='line_name'>全部地铁线路</span>");
-        firstHtml.push("</li>");
-        subway_caption.html(firstHtml.join(""));
-        //添加地铁
-        for (var i = 0; i < self.sortline.length; i++) {
-            //定义每个路线的展示内容
-            var caption_item = $('<li class="fliter_item"></li>');
-            //如果是最后一条路线
-            if (i == self.sortline.length - 1) {
-                caption_item = $('<li class="fliter_item fliter_item_last"></li>');
-            }
-            var la = SW.cache.lines[self.sortline[i]].la;
-            var html = '',
-                line_name = '';
-            if (!la || la == '') {
-                line_name = SW.cache.lines[self.sortline[i]].ln;
-            } else {
-                line_name = SW.cache.lines[self.sortline[i]].ln + '<b class="line_name_la">( ' + SW.cache.lines[self.sortline[i]].la + ' )</b>';
-            }
-            //html = '<span class="line_color" style="background:#' + SW.cache.lines[self.sortline[i]].cl + '"></span><span class="line_name">' + line_name + '</span>';
-            html = "<span class='line_name'>" + line_name + "</span>";
-            caption_item.html(html);
-            caption_item.attr('id', 'caption-' + self.sortline[i]);
-            caption_item.attr('lineid', self.sortline[i]);
-            caption_item.attr('name', line_name.split("/")[0].toString().substr(0,4));
-            subway_caption.append(caption_item);
-        }
-
-        $('.filter_btn').show().css({
-            'z-index': '20'
-        });
-    },
-    addHelp: function () {
-        var self = this;
-        var help_content = $('.help_content');
-        //添加地铁
-        for (var i = 0; i < self.statusColor.length; i++) {
-            var help_item=$("<div class='help_item'></div>");
-            var html='';
-            html = '<span class="help_color" style="background:#'+self.statusColor[i].color+'"></span><span class="help_text"><span style="float: left">'+self.statusColor[i].instruction+'</span></span>';
-            help_item.html(html);
-            help_content.append(help_item);
-        }
-        var html_warning_item=$('<div class="help_item help_warning"></div>');
-        var html_warning='<span class="help_color_warning"></span> <span class="help_text"> <span style="float: left">限流站点</span> </span>';
-        html_warning_item.html(html_warning);
-        help_content.append(html_warning_item);
+        var R = 6378137, // earth radius in meters
+            d2r = Math.PI / 180,
+            dLat = (b.lat - a.lat) * d2r,
+            dLon = (b.lng - a.lng) * d2r,
+            lat1 = a.lat * d2r,
+            lat2 = b.lat * d2r,
+            sin1 = Math.sin(dLat / 2),
+            sin2 = Math.sin(dLon / 2);
+        var c = sin1 * sin1 + sin2 * sin2 * Math.cos(lat1) * Math.cos(lat2);
+        return R * 2 * Math.atan2(Math.sqrt(c), Math.sqrt(1 - c));
     },
     toLnglat: function(param) {
         var self = this;
@@ -600,20 +649,19 @@ var DrwMain={
             return false;
         }
     },
-    getDistance: function(a, b) { //a是当前位置
+    drawSelectLine: function(drwData) {
         var self = this;
-        var R = 6378137, // earth radius in meters
-            d2r = Math.PI / 180,
-            dLat = (b.lat - a.lat) * d2r,
-            dLon = (b.lng - a.lng) * d2r,
-            lat1 = a.lat * d2r,
-            lat2 = b.lat * d2r,
-            sin1 = Math.sin(dLat / 2),
-            sin2 = Math.sin(dLon / 2);
-        var c = sin1 * sin1 + sin2 * sin2 * Math.cos(lat1) * Math.cos(lat2);
-        return R * 2 * Math.atan2(Math.sqrt(c), Math.sqrt(1 - c));
-    },
-
+        var status = 'select';
+        var svg_g = document.getElementById("svg-g");
+        var subway_select_g = document.createElementNS(self.ns_svg, 'g');
+        subway_select_g.setAttribute("id", "g-select");
+        svg_g.appendChild(subway_select_g);
+        drwSw.drwSwLines(drwData, status);
+        drwSw.drwSwStations(drwData, status);
+        drwSw.drwSwStationsName(drwData, status, 10, 20); //缩小为0.5，第二个参数为24
+        drwSw.drwSwLinesName(drwData, status);
+        DrwTraf.drwTrafficLinesDefer(drwData, status);
+    }
 };
 
-module.exports=DrwMain;
+module.exports=drwSw;

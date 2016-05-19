@@ -2,10 +2,12 @@
  * Created by xinye on 16/5/18.
  */
 
+var AllData=require("./AllData");
+var drwSw=require("./drwMain");
 
-
-
-var Drw2lines={
+var Drwlines={
+    defaultColor:AllData.statusColor[0].color,
+    ns_svg: AllData.ns_svg,
     //输入主路的路径点,以及偏移量——输出两条路径的路径点信息
     doublePathInfo: function (mainPathData,offset) {
 
@@ -75,13 +77,14 @@ var Drw2lines={
         var start = station[0].n,
             end = station[station.length - 1].n;
         var Left = {}, Right = {};
+        //console.log(dataset_line_arr);
         //获取到两条路径信息，分路径信息
         Left.path = self.doublePathInfo(dataset_line_arr, 3).LeftPath;
         Right.path = self.doublePathInfo(dataset_line_arr, 3).RightPath;
 
         //获取左右两条线的颜色,若是地铁线颜色:current_drwData.cl;
-        Left.color = drwSw.defaultColor;
-        Right.color = drwSw.defaultColor;
+        Left.color = self.defaultColor;
+        Right.color = self.defaultColor;
 
         //确定两条线的终点信息
         Left.direction = end+"-to-"+start;
@@ -94,12 +97,34 @@ var Drw2lines={
         var lineId=drwData.ls;
         //区分机场线
         if(lineId=="110005"){
-            drwSw.drwlines(parentNode, Right, drwData);
+            self.drwlines(parentNode, Right, drwData);
         }else{
-            drwSw.drwlines(parentNode, Left, drwData);
-            drwSw.drwlines(parentNode, Right, drwData);
+            self.drwlines(parentNode, Left, drwData);
+            self.drwlines(parentNode, Right, drwData);
         }
+    },
+    //画单线:输入:挂载节点,路径的名称,地铁线的id/name数据,输出:单条地铁线
+    drwlines: function (parentNode,pathName,LineId_Data) {
+        var self=this;
+        var onepath=pathName.path;
+        var	direction=pathName.direction;
+        var node_first = 'M' + onepath[0].split(' ').join(',');
+        var path = node_first + 'L' + onepath.join('L');
+        var line_path = document.createElementNS(this.ns_svg, 'path');
+        //line_path.setAttribute("id", "line-"+ LineId_Data.ls+"-"+ direction);
+        line_path.setAttribute("name", "line-"+ pathName.reflineName +"-"+ direction);
+        var color={};
+        //如果提供了强制的数据颜色,那就使用提供的颜色,否则就画定义好的颜色
+        if(pathName.color){
+            color=pathName.color;
+        }else{
+            color=Drwlines.defaultColor;/*如果感应器没有数据,就画默认颜色*/
+            //color=LineId_Data.cl;
+        }
+        line_path.setAttribute("stroke", "#" + color);
+        line_path.setAttribute("d", path);
+        parentNode.appendChild(line_path);
     },
 };
 
-module.exports=Drw2lines;
+module.exports=Drwlines;
