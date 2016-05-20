@@ -1,7 +1,7 @@
 /**
  * Created by xinye on 16/5/18.
  */
-var $=require("../lib/zepto");
+var $=require("zepto");
 var Hammer=require("../lib/hammer.js");
 
 var DrwTraf=require("./drwtraffic");

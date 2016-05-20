@@ -3,7 +3,7 @@
  */
 
 require("./amapCache");
-var $=require("../lib/zepto");
+var $=require("zepto");
 var AllData=require("./AllData");
 var drwSw=require("./drwMain");
 var tip=require("./tip");
