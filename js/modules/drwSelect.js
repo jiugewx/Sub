@@ -1,12 +1,13 @@
 /**
- * Created by xinye on 16/5/18.
+ * Created by xinye on 16/5/20.
  */
 
+var AllData=require("./AllData");
 var DrwTraf=require("./drwtraffic");
 var drwSw=require("./drwMain");
 
-var drwSec={
-    /*绘制选择的线路*/
+var drwSelect={
+    ns_svg: AllData.ns_svg,
     drawSelectLine: function(drwData) {
         var self = this;
         var status = 'select';
@@ -22,4 +23,4 @@ var drwSec={
     }
 };
 
-module.exports=drwSec;
+module.exports=drwSelect;

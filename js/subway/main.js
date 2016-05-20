@@ -5,31 +5,29 @@ el.style.transformOrigin = "top left";
 var tip = {
     refreshTimer:{},
     refreshstate:0,
-    timer:{},
     w: document.documentElement.clientWidth,
     h: document.documentElement.clientHeight,
     curCity:SW.cache.curCity,
-    host: "http://m.amap.com/",
-    verify: "/verify/?from=",
-    isHighlight: false,
-    isInfoShow: false,
+    //host: "http://m.amap.com/",
+    //isHighlight: false,
+    //isInfoShow: false,
     stationsInfo: SW.cache.stationsInfo,/*几个数据接口*/
     stations: SW.cache.stations,
     lines: SW.cache.lines,
-    tempTrafficinfo:SW.cache.tempTrafficinfo,
+    //tempTrafficinfo:SW.cache.tempTrafficinfo,
     station_w: 26,
-    dragObjXY: {}, //拖拽div时的实时xy
-    dragX: null,
-    dragY: null,
-    onePoint: {}, //单手touch时的初始xy
-    twoPoint1: {}, //双手touch时的初始x1y1
-    twoPoint2: {}, //双手touch时的初始x2y2
-    twoOriginPointDis: null, //双手touch时的两手指的初始距离
+    //dragObjXY: {}, //拖拽div时的实时xy
+    //dragX: null,
+    //dragY: null,
+    //onePoint: {}, //单手touch时的初始xy
+    //twoPoint1: {}, //双手touch时的初始x1y1
+    //twoPoint2: {}, //双手touch时的初始x2y2
+    //twoOriginPointDis: null, //双手touch时的两手指的初始距离
     touchStatus: null, //当前touch状态：drag, scale
     curScale: 1, //当前缩放级别
     allScale: 1,
-    zoomCenter: null, //搜索初始中心点
-    dragHandle: $("#drag_handle"), //touch对象
+    //zoomCenter: null, //搜索初始中心点
+    //dragHandle: $("#drag_handle"), //touch对象
     dragObj: $("#subwaySvg"), //
     svgOffset: {
         left: 0,
@@ -40,29 +38,29 @@ var tip = {
         y: $(window).height() / 2
     },
     subwaySvg: document.getElementById("subway-svg"),
-    dragObjOffset: {
-        x: null,
-        y: null
-    },
+    //dragObjOffset: {
+    //    x: null,
+    //    y: null
+    //},
     opentip: false,
-    curopenStation: null,
-    routeInfo: { //路线规划起始点信息
-        start: null,
-        end: null
-    },
-    routeDtailInfo: {
-        start: null,
-        end: null
-    },
-    routeId: {
-        start: null,
-        end: null
-    },
-    navDrwData: {
-        linesbar: [],
-        lines: {},
-        stations: []
-    },
+    //curopenStation: null,
+    //routeInfo: { //路线规划起始点信息
+    //    start: null,
+    //    end: null
+    //},
+    //routeDtailInfo: {
+    //    start: null,
+    //    end: null
+    //},
+    //routeId: {
+    //    start: null,
+    //    end: null
+    //},
+    //navDrwData: {
+    //    linesbar: [],
+    //    lines: {},
+    //    stations: []
+    //},
     transform: {
         translate: {
             x: 0,
@@ -80,7 +78,7 @@ var tip = {
     transformOrigin: null,
     routeState: false,
     fromendState: false,
-    pathData: null,
+    //pathData: null,
     //初始化事件绑定信息
     init: function() {
         this.bindEvent();
@@ -846,6 +844,8 @@ var tip = {
                         if (current_station[lineid][j]) {
                             var first_time = current_station[lineid][j].ft;
                             var last_time = current_station[lineid][j].lt;
+                            first_time=self.resetTime(first_time);
+                            last_time=self.resetTime(last_time);
                             var direction = self.stations[current_station[lineid][j].n];
                             if (first_time.split(':')[0] != '--' || last_time.split(':')[0] != '--') {
                                 infowHtml.push("<li class=\"time-item-detail\">");
@@ -863,11 +863,6 @@ var tip = {
                 }
 
             }
-            //for(var k in self.tempTrafficinfo.stInfo){
-            //    if(self.tempTrafficinfo.stInfo[k].timeInside==true){
-            //        $("#tip_detail_error").html("由于现在客流量较大，现在该站采取限流措施。")
-            //    }
-            //}
         }
 
         $("#tip_content").html(infowHtml.join(""));
@@ -1502,6 +1497,31 @@ var tip = {
         $('.filter_btn').css({
             'z-index': '20'
         })
+    },
+    resetTime: function (timeString) {
+        if(timeString!="--:--"){
+            var hours=Number(timeString.split(":")[0]);
+            var mins=Number(timeString.split(":")[1]);
+            if(hours<10 && hours>0){
+                hours="0"+hours;
+            }else if(hours==0){
+                hours="00";
+            }else{
+                hours=hours;
+            }
+
+            if(mins<10 && mins>0){
+                mins="0"+mins;
+            }else if(mins==0){
+                mins="00";
+            }else{
+                mins=mins;
+            }
+
+            return hours+":"+mins;
+        }else{
+            return timeString;
+        }
     },
     //航线
     //route: function() {

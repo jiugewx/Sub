@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e2e7e6cd4abaa8e54b95"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "23bb6641bddbad430a10"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -8140,8 +8140,8 @@
 
 	'use strict';/*使用严格模式*/
 	/*加载样式*/
-	__webpack_require__(77);
-	var FastClick = __webpack_require__(91);
+	//require("./css/style.css");
+
 	///*加载库*/
 	//require('./js/lib/zepto.mim.js');
 	//require('./js/lib/fastclick.js');
@@ -8157,7 +8157,8 @@
 	//require("./js/actions/drwtrafficlines");
 	//require("./js/actions/tip");
 
-	var SW=__webpack_require__(92);
+	var SW=__webpack_require__(77);
+
 
 	SW.swInit();
 
@@ -8167,1273 +8168,18 @@
 /* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(78);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(90)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(true) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept(78, function() {
-				var newContent = __webpack_require__(78);
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 78 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(79)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "/*****************reset*******************/\r\nhtml {\r\n    font-size: 100%;\r\n    cursor: default;\r\n}\r\n\r\nbody, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {\r\n    margin: 0;\r\n    padding: 0;\r\n    font-family: \"Microsoft YaHei\", Arial, Verdana, Helvetica, sans-serif;\r\n}\r\n\r\n/*html{-webkit-text-size-adjust:none;}*/\r\ntable {\r\n    border-collapse: collapse;\r\n    border-spacing: 0;\r\n}\r\n\r\nfieldset, img {\r\n    border: 0;\r\n}\r\n\r\naddress, caption, cite, code, dfn, em, strong, th, var {\r\n    font-style: normal;\r\n    font-weight: normal;\r\n}\r\n\r\nol, ul {\r\n    list-style: none;\r\n}\r\n\r\ncaption, th {\r\n    text-align: left;\r\n}\r\n\r\nh1, h2, h3, h4, h5, h6 {\r\n    font-weight: normal;\r\n}\r\n\r\nq:before, q:after {\r\n    content: '';\r\n}\r\n\r\nabbr, acronym {\r\n    border: 0;\r\n}\r\n\r\n/*****************base********************/\r\nhtml, body {\r\n    height: 100%;\r\n    width: 100%;\r\n    overflow: auto;\r\n}\r\n\r\n.fl {\r\n    float: left;\r\n}\r\n\r\n.fr {\r\n    float: right;\r\n}\r\n\r\n.clr {\r\n    clear: both;\r\n}\r\n\r\n.hidden {\r\n    display: none;\r\n}\r\n\r\ninput::-webkit-input-placeholder, textarea::-webkit-input-placeholder {\r\n    color: #c8c8c8;\r\n}\r\n\r\ninput:-moz-placeholder, textarea:-moz-placeholder {\r\n    color: #c8c8c8;\r\n}\r\n\r\ninput::-moz-placeholder, textarea::-moz-placeholder {\r\n    color: #c8c8c8;\r\n}\r\n\r\ninput:-ms-input-placeholder, textarea:-ms-input-placeholder {\r\n    color: #c8c8c8;\r\n}\r\n\r\nv\\: * {\r\n    behavior: url(#default#vml);\r\n    display: inline-block;\r\n    position: absolute;\r\n}\r\n\r\nv\\:shape {\r\n    behavior: url(#default#VML);\r\n    display: inline-block;\r\n    position: absolute;\r\n}\r\n\r\nv\\:group {\r\n    behavior: url(#default#VML);\r\n    position: absolute;\r\n    display: inline-block;\r\n}\r\n\r\nv\\:oval {\r\n    behavior: url(#default#VML);\r\n    position: absolute;\r\n}\r\n\r\nv\\:TextBox {\r\n    behavior: url(#default#VML);\r\n    position: absolute;\r\n    font-size: 12px;\r\n    text-align: center;\r\n}\r\n\r\npath {\r\n    fill: none;\r\n    stroke-width: 3;\r\n}\r\n\r\ncircle {\r\n}\r\n\r\n/*#subway-content,#subwaySvg{width: 2000px; height: 2000px;}*/\r\n#subway-svg {\r\n    position: absolute;\r\n}\r\n\r\n#subwaySvgBody {\r\n    position: absolute;\r\n    left: 0px;\r\n    top: 0px;\r\n    /*background: yellow;*/\r\n}\r\n\r\n.subway_svg {\r\n    width: 2000px;\r\n    height: 2000px;\r\n    position: relative;\r\n}\r\n\r\n#g-bg {\r\n    display: none;\r\n}\r\n\r\n#select_bg {\r\n    fill: #FFF;\r\n    fill-opacity: 0.8;\r\n}\r\n\r\n/*#subway{width: 2000px;height: 2000px; position: relative; overflow: hidden;}*/\r\n#subway, #citypage {\r\n    display: none;\r\n}\r\n\r\n#subway {\r\n    width: 100%;\r\n    height: 100%;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0; /*overflow: hidden;*/\r\n}\r\n\r\n\r\n.line_name {\r\n}\r\n\r\n.line_name_txt {\r\n    font-size: 12px;\r\n}\r\n\r\n.station-out {\r\n    display: block;\r\n}\r\n\r\n.infowindow-out {\r\n    position: absolute;\r\n}\r\n\r\n.infowindow-content {\r\n    position: absolute;\r\n}\r\n\r\nbody.disable-default-action {\r\n    -webkit-touch-callout: none;\r\n    -webkit-user-select: none;\r\n    -khtml-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n}\r\n\r\n.ust {\r\n    -webkit-touch-callout: none;\r\n    -webkit-user-select: none;\r\n    -khtml-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n}\r\n\r\n/*****************style********************/\r\n.os {\r\n    display: none;\r\n}\r\n\r\n#os {\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n\r\n.top_bar {\r\n    display: none;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 45px;\r\n    z-index: 999999;\r\n    background: #f8f8f8;\r\n    border-bottom: 1px #9a9997 solid;\r\n    text-align: center;\r\n}\r\n\r\n/*.ios .top_bar{padding-top: 20px;}*/\r\n.top_bar .city_name, .top_bar .city_title {\r\n    display: inline-block;\r\n    font-size: 20px;\r\n    text-align: center;\r\n    line-height: 45px;\r\n}\r\n\r\n.top_bar .back_btn {\r\n    position: absolute;\r\n    height: 45px;\r\n    width: 45px;\r\n    background: url(" + __webpack_require__(80) + ") center center no-repeat;\r\n    background-size: 10px 18px;\r\n}\r\n\r\n.top_bar .city_list_btn {\r\n    display: inline-block;\r\n    position: absolute;\r\n    right: 12px;\r\n    bottom: 9px;\r\n    width: 50px;\r\n    text-align: center;\r\n    text-decoration: none;\r\n    color: #0091ff;\r\n    font-size: 16px; /*border: 1px #0091ff solid;*//*padding: 4px 12px 4px 4px;*//*border-radius: 3px;*/\r\n    line-height: 26px;\r\n    min-height: 26px;\r\n    min-width: 30px; /*background: url(../img/subway/arrow.png) center right no-repeat;background-size: 10px 12px;*/\r\n    -webkit-tap-highlight-color: transparent;\r\n    -webkit-touch-callout: none;\r\n    -webkit-user-select: none;\r\n    user-select: none;\r\n}\r\n\r\n/*.route_entry{margin-top: 10px;display: -moz-box; display: -webkit-box; display: box;  width: calc(100% - 126px); margin-left:45px; }*/\r\n.msubway .top_bar {\r\n    display: block;\r\n}\r\n\r\n.page-title {\r\n    margin: 10px auto;\r\n    font-size: 20px;\r\n    /*color: #6a6968;*/\r\n}\r\n\r\n#subwaySvg {\r\n    position: absolute;\r\n    z-index: 10;\r\n    transform: scale3d(1, 1, 1);\r\n}\r\n\r\n#drag_handle {\r\n    height: 100%;\r\n    width: 100%;\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    z-index: 10\r\n}\r\n\r\n/*.subway-content{overflow: visible;}*/\r\n.light_box {\r\n    display: none;\r\n    width: 100%;\r\n    height: 100%;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    background: rgba(0, 0, 0, 0.2);\r\n    z-index: 15;\r\n}\r\n\r\n.filter_btn {\r\n    display: none;\r\n    position: fixed;\r\n    width: 36px;\r\n    height: 14px;\r\n    line-height: 14px;\r\n    top: 14px;\r\n    right: 8px;\r\n    box-shadow: 0 0 6px 0 rgba(0, 0, 0,.3);\r\n    border-radius: 4px;\r\n    z-index: 20;\r\n    background: rgba(102,102,102,1) url(" + __webpack_require__(81) + ") no-repeat;\r\n    background-size: 24px 14px;\r\n    background-position: 6px 5px;\r\n    -webkit-text-size-adjust:none;\r\n    font-size: 9px;\r\n    text-align: center;\r\n    padding-top: 22px;\r\n    color: #fff;\r\n}\r\n\r\n.filter_content {\r\n    display: none;\r\n    position: absolute;\r\n    width: 180px;\r\n    z-index: 21;\r\n    background: #fff;\r\n    box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);\r\n    border-radius: 5px;\r\n    overflow: hidden;\r\n}\r\n/*.fliter_item_last{margin-bottom: 30px;}*/\r\n.line_color {\r\n    display: block;\r\n    height: 8px;\r\n    width: 35px;\r\n    float: left;\r\n    margin: 16px  10px 0 0 ;\r\n}\r\n\r\n.line_name {\r\n    display: block;\r\n    float: left;\r\n    margin-left: 10px;\r\n}\r\n\r\n/*.ios .filter_content{top: 112px;}*/\r\n\r\n.fliter_detail {\r\n    max-height: 286px;\r\n    min-width : 130px;\r\n    padding: 0 20px;\r\n    overflow-y: scroll;\r\n    -webkit-overflow-scrolling: touch;\r\n    -webkit-tap-highlight-color: transparent;\r\n    -webkit-touch-callout: none;\r\n    -webkit-user-select: none;\r\n    user-select: none;\r\n\r\n}\r\n\r\n.fliter_item {\r\n    font-size: 12px;\r\n    height: 40px;\r\n    line-height: 40px;\r\n    border-bottom: 1px #eaeaea solid;\r\n    overflow: hidden;\r\n    zoom: 1;\r\n}\r\n\r\n.help_btn{\r\n    display: none;\r\n    position: fixed;\r\n    width: 36px;\r\n    height: 14px;\r\n    line-height: 14px;\r\n    top: 58px;\r\n    right: 8px;\r\n    box-shadow: 0 0 6px 0 rgba(0, 0, 0,.3);\r\n    border-radius: 4px;\r\n    z-index: 20;\r\n    background: rgba(102,102,102,1) url(" + __webpack_require__(82) + ") center center no-repeat;\r\n    background-size: 24px 14px;\r\n    background-position: 6px 5px;\r\n    -webkit-text-size-adjust:none;\r\n    font-size: 9px;\r\n    text-align: center;\r\n    padding-top: 22px;\r\n    color: #fff;\r\n}\r\n\r\n\r\n.help_content{\r\n    display:none;\r\n    position: absolute;\r\n    width:180px;\r\n    top:30%;\r\n    z-index: 20;\r\n    background: #fff;\r\n    box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);\r\n    border-radius: 5px;\r\n    font-size: 16px;\r\n    text-align: center;\r\n    padding-bottom: 5px;\r\n}\r\n\r\n.help_title{\r\n    display: block;\r\n    margin: 0 auto;\r\n    height: 16px;\r\n    font-size: 16px;\r\n    line-height: 16px;\r\n    padding:8px 16px;\r\n    border-bottom: 1px solid #cccccc;\r\n}\r\n.help_name{\r\n    float: left;\r\n}\r\n\r\n\r\n.help_close{\r\n    position: absolute;\r\n    top: 4px;\r\n    right: 6px;\r\n    width: 22px;\r\n    height: 22px;\r\n    background:url(" + __webpack_require__(83) + ") center center no-repeat;\r\n    background-size: 22px 22px;\r\n}\r\n\r\n.help_item{\r\n    width: 200px;\r\n    height: 20px;\r\n    margin: 5px auto;\r\n    text-decoration: none;\r\n}\r\n.help_color{\r\n    display:block;\r\n    float: left;\r\n    height: 8px;\r\n    width: 30px;\r\n    margin: 6px 3px 6px 40px;\r\n}\r\n.help_color_warning{\r\n    display:block;\r\n    float: left;\r\n    height: 20px;\r\n    width: 30px;\r\n    margin: 0 3px  0 40px;\r\n    background:url(" + __webpack_require__(84) + ") no-repeat;\r\n    background-position: 3px 0;\r\n    background-size: 23px 20px;\r\n}\r\n.help_text{\r\n    float: right;\r\n    display: block;\r\n    font-size: 14px;\r\n    line-height: 14px;\r\n    text-align: left;\r\n    margin:3px 40px 3px 13px;\r\n    height: 14px;\r\n    width: 70px;\r\n}\r\n\r\n/*.ios .filter_btn{top: 76px;}*/\r\n.msubway .filter_btn {\r\n    display: block;\r\n}\r\n\r\n.route_close_btn {\r\n    position: fixed;\r\n    width: 40px;\r\n    height: 36px;\r\n    top: 56px;\r\n    right: 10px;\r\n    z-index: 20;\r\n    background: #fff url(" + __webpack_require__(85) + ") center center no-repeat;\r\n    background-size: 16px 16px;\r\n    box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);\r\n}\r\n\r\n#refresh_content{\r\n    display:none;\r\n}\r\n.refresh_content{\r\n    display: block;\r\n}\r\n\r\n\r\n.refresh_btn {\r\n    position: fixed;\r\n    width: 30px;\r\n    height: 30px;\r\n    bottom: 15px;\r\n    left: 15px;\r\n    border-radius: 50%;\r\n    z-index: 20;\r\n    border: solid #ffffff 1px;\r\n    background-color: rgba(156,156,156,1);\r\n}\r\n.refresh{\r\n    display: block;\r\n    margin: 0 auto;\r\n    width: 30px;\r\n    height: 30px;\r\n    border-radius: 50%;\r\n    background: url(" + __webpack_require__(86) + ") center center no-repeat;\r\n    background-size: 20px 20px;\r\n}\r\n\r\n.refresh_active{\r\n    animation: updata 1.5s infinite linear;\r\n    -webkit-animation:updata 1.5s infinite linear;\r\n}\r\n\r\n@-webkit-keyframes updata {\r\n    from {\r\n        -webkit-transform: rotate(0deg);\r\n    }\r\n    to {\r\n        -webkit-transform: rotate(720deg);\r\n    }\r\n}\r\n\r\n\r\n.refresh_box{\r\n    position: fixed;\r\n    bottom: 18px;\r\n    left: 30px;\r\n    display: none;\r\n    height: 25px;\r\n    line-height: 25px;\r\n    width: 0;\r\n    font-size: 12px;\r\n    color:#fff;\r\n    background-color: rgba(156,156,156,0.8);\r\n    border-radius: 20px;\r\n    z-index: 11;\r\n}\r\n.refresh_box_show{\r\n    animation: showBox 4s;\r\n    -webkit-animation:showBox 4s;\r\n}\r\n\r\n@-webkit-keyframes showBox {\r\n    0% {\r\n        width: 0;\r\n    }\r\n    10% {\r\n        width: 120px;\r\n    }\r\n    93% {\r\n        width: 120px;\r\n    }\r\n    98% {\r\n        width: 0;\r\n    }\r\n    100% {\r\n        width: 0;\r\n    }\r\n}\r\n.refresh_time_text{\r\n    display: block;\r\n    opacity: 0;\r\n    margin-left: 25px;\r\n    text-align: left;\r\n    width: 98px;\r\n}\r\n.refresh_time_text_show{\r\n    animation: showText 4s;\r\n    -webkit-animation:showText 4s;\r\n}\r\n@-webkit-keyframes showText {\r\n    0% {\r\n        opacity: 0;\r\n    }\r\n    10% {\r\n        opacity: 0;\r\n    }\r\n    20%{\r\n        opacity: 1;\r\n    }\r\n    90% {\r\n        opacity: 1;\r\n    }\r\n    95%{\r\n        opacity: 0;\r\n    }\r\n    98% {\r\n        opacity: 0;\r\n    }\r\n    100% {\r\n        opacity: 0;\r\n    }\r\n}\r\n\r\n.refresh_error{\r\n    display: none;\r\n    position: absolute;\r\n    top:40%;\r\n    left: 30px;\r\n    right: 30px;\r\n    background-color: rgba(102,102,102,0.8);\r\n    border-radius:10px;\r\n    width:auto;\r\n    height: 50px;\r\n}\r\n.refresh_error_text{\r\n    color:#fff;\r\n    display: block;\r\n    width: 200px;\r\n    height: 20px;\r\n    line-height: 20px;\r\n    text-align: center;\r\n    margin:14px auto;\r\n    font-size: 14px;\r\n}\r\n\r\n\r\n\r\n/*.ios .route_close_btn{top: 76px;}*/\r\n\r\n\r\n.overlays {\r\n    position: absolute;\r\n}\r\n\r\n/*.tip_wrap_out{display: none; position: absolute;z-index: 23; -webkit-transform-origin: 50% bottom;transform-origin: 50% bottom;}*/\r\n.tip_wrap_out {\r\n    display: none;\r\n    position: absolute;\r\n    z-index: 20;\r\n}\r\n\r\n.tip_wrap {\r\n    /*调整模态框的位置*/\r\n    position: absolute;\r\n    left: -150px; /*body-width/2+8*/\r\n    bottom: 0;\r\n    z-index: 101;\r\n    margin-bottom: 3px;\r\n}\r\n\r\n.tip_body {\r\n    width: 300px;\r\n    height: auto;\r\n    overflow: hidden;\r\n    font-size: 16px;\r\n    background: rgba(255, 255, 255, 1);\r\n    box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);\r\n    border-radius: 5px;\r\n}\r\n\r\n.tip_title {\r\n    /*width: 100%;*/\r\n    height: auto;\r\n    padding: 0 16px 0 16px;\r\n    border-bottom: solid 1px #cccccc;\r\n}\r\n\r\n.tip_name {\r\n    display: inline-block;\r\n    font-size: 16px;\r\n    font-weight: bold;\r\n    color: black;\r\n    padding: 10px 0;\r\n    height: 16px;\r\n    line-height: 16px;\r\n}\r\n\r\n.tip_detail_time {\r\n    display: inline-block;\r\n    font-size: 12px;\r\n    padding: 10px 0;\r\n    height: 12px;\r\n    color:#848484;\r\n}\r\n\r\n.tip_close {\r\n    position: absolute;\r\n    top: 7px;\r\n    right: 6px;\r\n    width: 22px;\r\n    height: 22px;\r\n    background: url(" + __webpack_require__(83) + ") center center no-repeat;\r\n    background-size: 22px 22px;\r\n}\r\n\r\n.tip_detail {\r\n    display: block;\r\n    color: red;\r\n    font-size: 9px;\r\n}\r\n\r\n.tip_detail_error, .tip_detail_success {\r\n    padding-bottom: 4px;\r\n}\r\n\r\n.tip_content {\r\n    padding: 4px 16px 0 16px;\r\n    height: auto;\r\n}\r\n\r\n.tip_detail_line {\r\n    overflow: hidden;\r\n    color: #6a6968;\r\n    font-size: 10px;\r\n    padding-bottom: 8px;\r\n    width: 100%;\r\n    display: block;\r\n    margin-top: 5px;\r\n    line-height: 22px;\r\n}\r\n\r\n.tip_detail_btn {\r\n    padding-left: 16px;\r\n    padding-right: 5px;\r\n}\r\n\r\n.line-name {\r\n    color:black;\r\n    display: inline-block;\r\n    /*padding: 0 5px;*/\r\n    font-size: 16px;\r\n    font-weight: bold;\r\n    /*background-color: rosybrown;*/\r\n}\r\n\r\n\r\n\r\n.line-white-label {\r\n    padding-left: 5px;\r\n    font-size: 14px;\r\n    color: #000;\r\n}\r\n\r\n.line-sub-label {\r\n    padding-left: 5px;\r\n}\r\n\r\n.time-item {\r\n    padding-bottom: 10px;\r\n}\r\n\r\n\r\n.time-item .time-item-main {\r\n    overflow: hidden;\r\n    font-size: 14px;\r\n    color: #848484;\r\n}\r\n\r\n.time-item .time-item-main .time-item-detail {\r\n    line-height: 22px;\r\n    padding: 3px 0;\r\n    overflow: hidden;\r\n    zoom: 1;\r\n}\r\n\r\n\r\n.time-item-detail .train-direct .direct-label {\r\n    display: block;\r\n    width: 35px;\r\n    float: left;\r\n    font-size: 14px;\r\n}\r\n\r\n.time-item-detail .train-direct .direct-name {\r\n    display: block;\r\n    float: left;\r\n    width:auto;\r\n    font-size: 14px;\r\n}\r\n\r\n.time-item-detail .train-time .time-box {\r\n    width:64px;\r\n    height: 22px;\r\n    overflow: hidden;\r\n    margin-left: 2px;\r\n}\r\n\r\n.time-item-detail .train-time .time-box .time-label-start{\r\n    display: inline-block;\r\n    width: 14px;\r\n    height: 14px;\r\n    line-height: 14px;\r\n    font-size: 12px;\r\n    margin: 4px 0 4px 2px;\r\n    border-radius: 50%;\r\n    text-align: center;\r\n    color: #1774ff;\r\n    border: solid 1px #1774ff;\r\n}\r\n\r\n.time-item-detail .train-time .time-box .time-label-end {\r\n    display: inline-block;\r\n    width: 14px;\r\n    height: 14px;\r\n    line-height: 14px;\r\n    font-size: 12px;\r\n    margin: 4px 0 4px 2px;\r\n    border-radius: 50%;\r\n    text-align: center;\r\n    color: #ff0033;\r\n    border: solid 1px #ff0033;\r\n}\r\n\r\n.time-item-detail .train-time .time {\r\n    font-size: 14px;\r\n    display:inline-block;\r\n    line-height: 14px;\r\n    margin: 5px 2px 5px 1px;\r\n    width: 40px;\r\n    float: right;\r\n    text-align: center;\r\n}\r\n\r\n.tip_footer {\r\n    width: 0;\r\n    height: 0;\r\n    border: 10px solid transparent;\r\n    border-top: 10px solid rgba(255, 255, 255, 1);\r\n    margin-left: 140px;\r\n}\r\n\r\n.android .tip_footer {\r\n    bottom: -24px;\r\n}\r\n\r\n.tip_footer .arrow {\r\n    display: inline-block;\r\n    width: 0;\r\n    height: 0;\r\n    margin: 0 auto;\r\n    margin-left: -10px;\r\n    border: 10px solid rgba(0, 0, 0, 0);\r\n    border-top: 10px solid rgba(51, 51, 51, 0.8);\r\n}\r\n\r\n.citylistTitle {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n}\r\n\r\n/*.subway-box*/\r\n.subway-box {\r\n    position: relative;\r\n}\r\n\r\n#citypage {\r\n    display: none;\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    z-index: 50;\r\n    background: #fff;\r\n}\r\n\r\n.city_bar {\r\n    position: relative;\r\n    width: 100%;\r\n    height: 45px;\r\n    z-index: 11;\r\n    background: #f8f8f8;\r\n    border-bottom: 1px #9a9997 solid;\r\n    text-align: center;\r\n}\r\n\r\n.citylist_wrap {\r\n    margin-top: 46px;\r\n    background: #fff;\r\n}\r\n\r\n/*.ios .citylist_wrap{margin-top: 66px;height: calc(100% - 60px); overflow-y:scroll;}*/\r\n/*.ios .citylist_wrap .citylist{background: #fff; max-height: 400px; overflow-y:scroll;}*/\r\ndiv.citylistTitle {\r\n    width: 100%;\r\n    height: 45px;\r\n    line-height: 45px;\r\n    background: #f8f8f8;\r\n    border-bottom: 1px #9a9997 solid;\r\n    text-align: center;\r\n    font-size: 18px;\r\n}\r\n\r\ndiv.citylistTitle .back_btn {\r\n    position: absolute;\r\n    height: 18px;\r\n    width: 10px;\r\n    background: url(" + __webpack_require__(80) + ") no-repeat;\r\n    background-size: 10px 18px;\r\n    top: 14px;\r\n    left: 15px;\r\n}\r\n\r\nul.citylist {\r\n    padding-left: 12px;\r\n    background: #fff;\r\n}\r\n\r\nul.citylist li {\r\n    height: 44px;\r\n    line-height: 44px;\r\n    font-size: 16px;\r\n    border-bottom: 1px #ddd solid;\r\n    -webkit-tap-highlight-color: transparent;\r\n    -webkit-touch-callout: none;\r\n    -webkit-user-select: none;\r\n    user-select: none;\r\n}\r\n\r\n/*ul.citylist li.active{background: #f8f8f8;}*/\r\nul.citylist li a {\r\n    display: block;\r\n    text-decoration: none;\r\n    color: #000;\r\n}\r\n\r\nul.citylist li a:active {\r\n    background: #f8f8f8;\r\n}\r\n\r\n#srhpage {\r\n    display: none;\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    max-height: 100%;\r\n    z-index: 50;\r\n    background: #fff; /*overflow:auto;*/\r\n    -webkit-tap-highlight-color: transparent;\r\n    -webkit-touch-callout: none;\r\n    -webkit-user-select: none;\r\n    user-select: none;\r\n}\r\n\r\n.srh_wrap {\r\n    padding: 0 15px 0 45px;\r\n    margin-top: 7px;\r\n}\r\n\r\n.srh_wrap .srh_ipt {\r\n    width: 100%;\r\n    webkit-box-sizing: border-box;\r\n    -moz-box-sizing: border-box;\r\n    box-sizing: border-box;\r\n    -webkit-appearance: none;\r\n    border-radius: 2px;\r\n    border: 1px #bbb solid;\r\n    height: 32px;\r\n    padding: 9px 10px 9px 30px;\r\n    background: #fff url(" + __webpack_require__(87) + ") no-repeat;\r\n    background-size: 62px 25px;\r\n    background-position: -38px 2px;\r\n    font-size: 14px;\r\n    color: #333;\r\n}\r\n\r\n.android .srh_wrap .srh_ipt {\r\n    line-height: normal;\r\n}\r\n\r\n/*.srh_wrap .srh_ipt.route_placeholder{color: #c8c8c8;}*/\r\n.srhlist_wrap {\r\n    margin-top: 46px; /*padding:10px;*/\r\n    background: #fff;\r\n    overflow: hidden;\r\n    zoom: 1;\r\n}\r\n\r\n/*.ios .srhlist_wrap{margin-top: 66px;}*/\r\n.sug_err {\r\n    text-align: center;\r\n    margin-top: 20px;\r\n}\r\n\r\n.srhlist {\r\n    border-radius: 2px; /*border:1px #ccc solid;*/\r\n    padding-left: 20px;\r\n    background: #fff;\r\n}\r\n\r\n.srhlist .st_item {\r\n    /*line-height: 40px; */\r\n    font-size: 14px; /*border-bottom: 1px #ccc solid;*/\r\n    overflow: hidden;\r\n    zoom: 1;\r\n    background: url(" + __webpack_require__(88) + ") no-repeat;\r\n    background-size: 20px 22px;\r\n    background-position: left center;\r\n}\r\n\r\n.st_item_wrap {\r\n    margin-left: 40px;\r\n    border-bottom: 1px #eaeaea solid;\r\n    background: url(" + __webpack_require__(89) + ") right center no-repeat;\r\n    background-size: 36px 14px;\r\n}\r\n\r\n.srhlist li:last-child {\r\n    border: 0;\r\n}\r\n\r\n.st_item .st_name {\r\n    display: inline-block;\r\n    font-size: 16px; /*height: 30px;line-height: 30px;*/\r\n    margin: 7px 0;\r\n    color: #333;\r\n}\r\n\r\n.st_item .st_name .match {\r\n    color: #0091ff;\r\n    font-weight: normal;\r\n}\r\n\r\n.st_item .st_rfline {\r\n    /*float: right;*/\r\n    overflow: hidden;\r\n    zoom: 1;\r\n    margin-bottom: 12px;\r\n}\r\n\r\n.st_rfline .rfline {\r\n    display: inline-block;\r\n    margin-right: 8px;\r\n    min-width: 20px;\r\n    border-radius: 2px;\r\n    padding: 2px 6px 0;\r\n    color: #fff;\r\n    font-size: 10px;\r\n    text-align: center;\r\n    height: 18px;\r\n    line-height: 18px;\r\n}\r\n\r\n.st_rfline .rfline.knlong {\r\n    padding: 0 6px;\r\n}\r\n\r\n.loading-bg {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    background: #FFF;\r\n    opacity: 0.8;\r\n    filter: alpha(opacity=80);\r\n    z-index: 100;\r\n}\r\n\r\n.loading-bg .loading-outer {\r\n    width: 0px;\r\n    height: 0px;\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n}\r\n\r\n.loading-bg .loading {\r\n    width: 110px;\r\n    position: absolute;\r\n    left: -55px;\r\n    top: -30px;\r\n    margin: 0 auto;\r\n    font-size: 12px;\r\n    font-weight: bold;\r\n}\r\n\r\n.loading-bg .loading .loading-img {\r\n    display: block;\r\n    width: 32px;\r\n    height: 32px;\r\n    margin: 0 auto;\r\n    margin-bottom: 10px;\r\n}\r\n\r\n/*.tip-content*/\r\n.tip-content {\r\n    position: absolute;\r\n}\r\n\r\n.tip-content .tip-t {\r\n    width: 100px;\r\n    height: 42px;\r\n    position: absolute;\r\n    left: -50px;\r\n    bottom: 0;\r\n    overflow: hidden;\r\n    z-index: 10;\r\n}\r\n\r\n/*\r\noverflow: hidden\r\n\r\n;\r\n}*/\r\n.tip-content .tip-t .near-img {\r\n    width: 100px;\r\n    height: 42px;\r\n}\r\n\r\n.tip-content .tip-l {\r\n    width: 110px;\r\n    height: 40px;\r\n    position: absolute;\r\n    left: 28px;\r\n    top: -6px;\r\n    overflow: hidden;\r\n}\r\n\r\n.tip-content .tip-l .near-img {\r\n    width: 110px;\r\n    height: 40px;\r\n}\r\n\r\n.tip-content .tip-r {\r\n    width: 100px;\r\n    height: 40px;\r\n    position: absolute;\r\n    left: -50px;\r\n    bottom: 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.tip-content .tip-r .near-img {\r\n    width: 100px;\r\n    height: 42px;\r\n}\r\n\r\n.line-caption {\r\n    font-size: 22px;\r\n    font-weight: bold;\r\n    color: #fff;\r\n    padding: 3px 10px 5px;\r\n    border-radius: 5px;\r\n    margin-bottom: 30px;\r\n}\r\n\r\n.line-caption .caption_la {\r\n    font-size: 14px;\r\n}\r\n\r\n.info-tip-top-out {\r\n    position: absolute;\r\n    left: 0;\r\n    top: 0;\r\n}\r\n\r\n.info-tip {\r\n    position: relative;\r\n    padding: 10px;\r\n    width: 200px;\r\n    background: rgba(26, 26, 26, 0.9);\r\n    border-radius: 3px;\r\n    box-shadow: 0 0 6px 1px #767676\r\n}\r\n\r\n.info-tip .close-info-btn {\r\n    position: absolute;\r\n    width: 28px;\r\n    height: 28px;\r\n    top: -12px;\r\n    right: -12px;\r\n}\r\n\r\n.info-tip .close-info-btn img {\r\n    width: 28px;\r\n    height: 28px;\r\n}\r\n\r\n.info-tip .info-content {\r\n    margin-bottom: 10px;\r\n    overflow: hidden;\r\n    zoom: 1;\r\n    display: table;\r\n}\r\n\r\n.info-tip .info-content .info-l {\r\n    width: 148px;\r\n    margin-right: 10px;\r\n}\r\n\r\n.info-tip .info-content .info-l .info-st-name {\r\n    color: #e5e5e5;\r\n}\r\n\r\n.info-tip .info-content .info-l .info-st-name .st-near-lbl {\r\n    font-size: 14px;\r\n    color: #35bc00;\r\n    margin-left: 5px;\r\n}\r\n\r\n.info-tip .info-content .info-l .info-st-line {\r\n    color: #999;\r\n    font-size: 12px;\r\n    line-height: 18px;\r\n}\r\n\r\n.info-tip .info-content .info-l .info-st-line span {\r\n    margin-right: 2px;\r\n}\r\n\r\n.info-tip .info-content .info-r {\r\n    display: table-cell;\r\n    vertical-align: middle;\r\n    color: #007aff;\r\n    font-size: 14px;\r\n    height: 40px;\r\n}\r\n\r\n.info-tip .info-event {\r\n    overflow: hidden;\r\n    zoom: 1;\r\n}\r\n\r\n.info-tip .info-event .info-event-btn {\r\n    float: left;\r\n    color: #FFF;\r\n    font-size: 14px;\r\n    height: 26px;\r\n    line-height: 26px;\r\n    padding: 0 19px;\r\n}\r\n\r\n.info-tip .info-event .set-start {\r\n    margin-right: 10px;\r\n    background: #007aff;\r\n}\r\n\r\n.info-tip .info-event .set-end {\r\n    background: #fc3e39;\r\n}\r\n\r\n.info-tip-bottom {\r\n    height: 8px; /*margin-top: -1px;*/\r\n}\r\n\r\n.info-tip-bottom .arrow-bg {\r\n    margin: 0 auto;\r\n    width: 20px;\r\n    position: relative;\r\n    z-index: 10;\r\n}\r\n\r\n.info-tip-bottom .arrow {\r\n    display: inline-block;\r\n    width: 0;\r\n    height: 0;\r\n    margin: 0 auto;\r\n    border: 10px solid rgba(0, 0, 0, 0);\r\n    border-top: 8px solid rgba(26, 26, 26, 0.9);\r\n}\r\n\r\n.nav-detail-title {\r\n    text-align: center;\r\n    padding: 20px 0;\r\n    font-size: 20px;\r\n}\r\n\r\n.nav-detail-general {\r\n    padding: 10px;\r\n    border: 1px #9C9D9E solid;\r\n    border-left: 0;\r\n    border-right: 0;\r\n    margin-bottom: 12px;\r\n    background: #FFF;\r\n}\r\n\r\n.nav-detail-general .nav-line {\r\n    overflow: hidden;\r\n    zoom: 1;\r\n    line-height: 30px;\r\n    font-size: 20px;\r\n}\r\n\r\n.nav-detail-general .nav-line span {\r\n    float: left;\r\n    color: #3B3B3B;\r\n    margin-right: 4px;\r\n}\r\n\r\n.nav-nav-sum {\r\n    font-size: 14px;\r\n}\r\n\r\n.nav-detail-general .nav-line .nav-line-arrow {\r\n    float: left;\r\n    width: 20px;\r\n    height: 9px;\r\n    margin-right: 4px;\r\n    margin-top: 10px;\r\n}\r\n\r\n.nav-detail-general .nav-info {\r\n}\r\n\r\n.nav-detail-general .nav-info .nav-info-item {\r\n    color: #818181;\r\n    font-size: 14px;\r\n}\r\n\r\n.nav-detail-general .nav-info .nav-info-item .nav-red {\r\n    font-weight: normal;\r\n    color: #f00;\r\n}\r\n\r\n.nav-detail-box {\r\n    padding: 0 8px;\r\n    padding-bottom: 20px;\r\n}\r\n\r\n.nav-detail-box .nav-detail {\r\n    border-radius: 2px;\r\n    border: 1px #E5E8E8 solid;\r\n    box-shadow: 0 0 6px 1px #E5E8E8;\r\n    background: #FFF url(/img/subway/axis.png) repeat-y 25px 0;\r\n}\r\n\r\n.nav-detail-box .nav-detail .nav-detail-li {\r\n    padding-left: 60px;\r\n}\r\n\r\n.nav-detail-box .nav-detail .nav-start {\r\n    background: url(/img/subway/nav-start.png) no-repeat 19px center;\r\n    background-size: 20px 294px;\r\n}\r\n\r\n.nav-detail-box .nav-detail .nav-end {\r\n    background: url(/img/subway/nav-end.png) no-repeat 19px center;\r\n    background-size: 20px 294px;\r\n}\r\n\r\n.nav-detail-box .nav-detail .nav-trans {\r\n    background: url(/img/subway/nav-transfor.png) no-repeat 14px center;\r\n    background-size: 30px 30px;\r\n}\r\n\r\n.nav-detail-box .nav-detail .nav-normal {\r\n    padding: 0;\r\n}\r\n\r\n.nav-detail-box .nav-detail .nav-end .nav-detail-item {\r\n    border-bottom: 0;\r\n}\r\n\r\n.nav-detail-item {\r\n    border-bottom: 1px #E5E8E8 solid;\r\n    padding: 10px 0;\r\n}\r\n\r\n.nav-detail-item .nav-st-name {\r\n    font-size: 18px;\r\n    line-height: 30px;\r\n}\r\n\r\n.nav-detail-item .nav-line-direc {\r\n    font-size: 14px;\r\n    color: #818181;\r\n    line-height: 20px;\r\n}\r\n\r\n.nav-detail-item .nav-line-direc .nav-line-icon {\r\n    float: left;\r\n    padding: 0 2px;\r\n    line-height: 20px;\r\n    border-radius: 2px;\r\n    margin-right: 4px;\r\n    background: red;\r\n    color: #FFF;\r\n    text-align: center;\r\n}\r\n\r\n.nav-detail-item .nav-line-direc .nav-line-number {\r\n    width: 20px;\r\n    height: 20px;\r\n    padding: 0;\r\n    border-radius: 10px;\r\n}\r\n\r\n.nav-detail-item .nav-line-direc .nav-direc {\r\n    color: #818181;\r\n}\r\n\r\n.nav-detail-item .nav-line-direc .nav-direc .nav-nxt-st {\r\n    padding: 0 4px;\r\n    color: #333333;\r\n}\r\n\r\n.nav-normal-ul {\r\n    padding: 10px 0;\r\n    margin-left: 60px;\r\n    border-bottom: 1px #E5E8E8 solid;\r\n}\r\n\r\n.nav-normal-ul .nav-normal-li {\r\n    line-height: 22px;\r\n    font-size: 14px;\r\n    background: url(/img/subway/nav-st.png) no-repeat 20px center;\r\n    background-size: 18px 18px;\r\n    padding-left: 60px;\r\n    margin-left: -60px;\r\n    color: #3b3b3b;\r\n}\r\n\r\n.nav-normal-ul .nav-normal-last {\r\n    height: 10px;\r\n    margin-left: 60px;\r\n    border-bottom: 1px #E5E8E8 solid;\r\n}\r\n\r\n.back {\r\n    padding-bottom: 20px;\r\n    text-align: center;\r\n}\r\n\r\n.back .back-subway {\r\n    display: inline-block;\r\n    padding: 0 10px;\r\n    border-radius: 2px;\r\n    font-size: 14px;\r\n    height: 30px;\r\n    line-height: 30px;\r\n    background: #007AFF;\r\n    color: #FFF;\r\n}\r\n\r\n.nav-tip .info-tip {\r\n    width: 292px;\r\n}\r\n\r\n.nav-tip .info-tip .info-content .info-l {\r\n    width: 240px;\r\n    margin-right: 10px;\r\n}\r\n\r\n.nav-tip .info-tip .info-content .info-l .info-st-name {\r\n    margin-bottom: 5px;\r\n}\r\n\r\n.nav-tip .info-tip .info-content .info-l .info-st-line {\r\n    font-size: 14px;\r\n}\r\n\r\n.nav-tip .info-st-name .nav-line-ref {\r\n    display: inline-block;\r\n    line-height: 8px;\r\n}\r\n\r\n.nav-tip .info-st-name .nav-line-arrow {\r\n    width: 40px;\r\n    height: 8px;\r\n}\r\n\r\n.nav-tip .info-st-name .nav-line-icon {\r\n    line-height: 20px;\r\n    margin: 0 auto;\r\n    padding: 0 2px;\r\n    border-radius: 2px;\r\n    background: red;\r\n    color: #FFF;\r\n    text-align: center;\r\n    font-size: 14px;\r\n}\r\n\r\n.nav-tip .info-st-name .nav-line-number {\r\n    width: 20px;\r\n    height: 20px;\r\n    border-radius: 10px;\r\n    padding: 0;\r\n}\r\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 79 */
-/***/ function(module, exports) {
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	// css base code, injected by the css-loader
-	module.exports = function() {
-		var list = [];
-
-		// return the list of modules as css string
-		list.toString = function toString() {
-			var result = [];
-			for(var i = 0; i < this.length; i++) {
-				var item = this[i];
-				if(item[2]) {
-					result.push("@media " + item[2] + "{" + item[1] + "}");
-				} else {
-					result.push(item[1]);
-				}
-			}
-			return result.join("");
-		};
-
-		// import a list of modules into the list
-		list.i = function(modules, mediaQuery) {
-			if(typeof modules === "string")
-				modules = [[null, modules, ""]];
-			var alreadyImportedModules = {};
-			for(var i = 0; i < this.length; i++) {
-				var id = this[i][0];
-				if(typeof id === "number")
-					alreadyImportedModules[id] = true;
-			}
-			for(i = 0; i < modules.length; i++) {
-				var item = modules[i];
-				// skip already imported module
-				// this implementation is not 100% perfect for weird media query combinations
-				//  when a module is imported multiple times with different media queries.
-				//  I hope this will never occur (Hey this way we have smaller bundles)
-				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-					if(mediaQuery && !item[2]) {
-						item[2] = mediaQuery;
-					} else if(mediaQuery) {
-						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-					}
-					list.push(item);
-				}
-			}
-		};
-		return list;
-	};
-
-
-/***/ },
-/* 80 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAkCAYAAACJ8xqgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5YmY5MjI0OS0yZTBjLTQ1OWEtYjc0Yy1iNGViMjNiNWYyMDIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MjZCQTY0NUU4NUYxMTFFNTg3OTlDNTgwNkU3RkFBQjgiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MjZCQTY0NUQ4NUYxMTFFNTg3OTlDNTgwNkU3RkFBQjgiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpkZGMxODhlNC03NzFkLTQ3YjAtYTllYS1jYmIyOTVhYTI1M2MiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDpiYWVkNzc3NC04NzllLTExNzgtOTdmNy1iNzA0YzExMjliMDgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7ANQseAAABb0lEQVR42qzWWU7DMBAG4Dj4BhwlJ4AXOEmeWEoKlKUtlG5IlJblMLy2byAOA1yAMpb+kUYRSR2PLf2qI0VfJ41rj8nzPIkwzinblI6NgHUo95i/pUrsQmCuyqVVYlPMzygzNwmt8PI/LBS8okwwP5WYGzYAG2PepszLN6QxsSbgtcCKKswX7FJGmJ9QFnU3px7YUGBPm769DuwBW/tidWCfcges8MWqlo3DBqKy5ybrytZgLcpL01UvH/lGi8kKbwE67JjyGrpjWFTVj4HxIxtxvdbutqlYIga/24EW5Bci0UMtKN+ywdoLQreyLJPXS3zuUPYpX5SP0Ap5DFCtwV/uSFMhjxXeOFf67VtpFVhG9yg/lHcNyOgvZdcX9dmxh9gbDXbrlhZMcAT0MF9gW1OBjHYxn1ehTQ/6MU5ARgstmKBrYPSxjIb2NhMc/Iy2tWCCZonRGfqcRNtwTrH43ecD5TNGB8sNp2uJV38CDAAT6limaMVZ4QAAAABJRU5ErkJggg=="
-
-/***/ },
-/* 81 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAbCAYAAAAOEM1uAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M0RENTkyNEExN0ZGMTFFNjgzMTJGRDBDQzlEQTlGQzIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6M0RENTkyNEIxN0ZGMTFFNjgzMTJGRDBDQzlEQTlGQzIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozREQ1OTI0ODE3RkYxMUU2ODMxMkZEMENDOURBOUZDMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozREQ1OTI0OTE3RkYxMUU2ODMxMkZEMENDOURBOUZDMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PolQJ5sAAAJQSURBVHjazJjNS1RRGMbvSJaaWaSSM4PSxkZq0dqVJCFYBOI2apMb7Q+QFv0F0aaoVa5cFISK4Jj0RVG0imohuK2gD4wKBUNp7PY79Iwdr+N4z9x7ZV744b0z7+E8933Pee4ZU77v93ueNwZpr7riC1xKIfBzFYrbEFljiXsAGUiFoBipGJgMzJ/RtYm0qaCvm4zKGiZ8S2DUWIKmwPymaKazXk2g57sd5gH3lCnAJoG7HSfgGTTo/g60QVab9t8TWC12aVeUFh+BK3BZ1fsGtXCo9Ez/w3OgkjEdcB1WNPY33IJmyMEELIsJe4IkBTbCeXgE6xpTgLtwPMwcSQjcBwNwD35Zud/hJnS6zOEqsNMuv66LEx6Da7BofW8E3odBCXcugotAs05++lvDfDYDf6wW5tXaRkdRkQQWKzcLaTFrjf8IV6E9gqgtAm2b2SmWyzj+KhyAQow+6cdh1MWHK8Qsziv1Jtnppf64jOM/TOx947AGu7bZJGZT9MS07iLbTC5gM3YswA04B/VJbJKw79W9sKbrC9ANvdBl5azoTDcFeR2pKlrflQg8Ce/gBzRbnx+FPjirv3XWBnoFc/Ac5uUIiQm8DcMwDQPb5BjLOQOD0K97O97DB1nUomxqTZu2VvkjlQg0bXyr6pyGJyHGmNxTyu/WObAp9InWQaB5qhdq8ThcjGAeHZCTXbVCi86GB2FdS2A0aDPpMjtqPzxV3htoSMBWbNpK2UxeXwSTs/BaOS/hcMListKyYTPV/Lv4q9k1Q+aiCsV9Mv9Z+CvAAKiCiZPMrr7MAAAAAElFTkSuQmCC"
-
-/***/ },
-/* 82 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAWCAYAAABDhYU9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MjFGRDE0QzQxQjNFMTFFNjhBM0ZGQTc4QUE5NkNGMEIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MjFGRDE0QzUxQjNFMTFFNjhBM0ZGQTc4QUE5NkNGMEIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyMUZEMTRDMjFCM0UxMUU2OEEzRkZBNzhBQTk2Q0YwQiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyMUZEMTRDMzFCM0UxMUU2OEEzRkZBNzhBQTk2Q0YwQiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PoqqZzYAAAGZSURBVHjavJa/SgNBEMYvJ14EjaYQGwvtfQD7INbxSKdvkETfQsgriL2FD3JFwESxUNMo2tiqRWLA9Rv5DhbZPblz7gZ+7N382XwJs7MJjDGBhwgcgwS8k4S+KKNOgx/zBTfByPhtxJzKxUWWsAcQg1US0yc2BvWqxfUZuwdNR1x8d8zpVy0uYSzOKI6Zk2iI8Plr8vLLZiACa+AtcFuDMcldCopb+uE1lz/856bzoERzibviupdRt8/1NseXMRriLriegqYj3mTMzi3HHM1Y55iwR0mDxDzFYtc5Rklm42sP4XHOIawqLh3GJ2AIPsiQvkhThM/vO60yStpgF6yDRTb0Cn1t5gRV99wBmJi/beIY1Kq/nO1YAAOr4IbX0w5YJvLcYyy1AWtLFZcKm4Juent4qDFnagkU/2UZ4jp8n4FWjlPYYo3hHhvgVVOcnLxnvvcKXN5d1r5wr46muEOrx8IC4kKrB480R0zIsSB2Dr4KHHipOeNzW3OSSGM/Yt1S2u8JbOf9a+Tzi7gp1rqSuE/PXoXEfQswALgwJiUO822rAAAAAElFTkSuQmCC"
-
-/***/ },
-/* 83 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QjcwRDNEQjMxQjNEMTFFNkJEMERFMUVGOUQwNjJFQjAiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QjcwRDNEQjQxQjNEMTFFNkJEMERFMUVGOUQwNjJFQjAiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCNzBEM0RCMTFCM0QxMUU2QkQwREUxRUY5RDA2MkVCMCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCNzBEM0RCMjFCM0QxMUU2QkQwREUxRUY5RDA2MkVCMCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PpFT6AcAAAR6SURBVHjavJldSBRRFMfvjlH5lRBlEWglbVFIGUQvta5ChW/6ohUYFWmQkUGREFbaYkGgDylRKlFhQelD9pYaaGUvESQiQW1oKkRiBPmRGoidQ/8rl2H2Y2bueuDPzH7MPb+ZuXPOmXM9jY2NwoUlkPaTckg7SFtJ60hJ+H2KNEb6QvpE6iH1kv44dbjMwTEe0iHScVIBKT7Mf1dD20n5pMukGVI76RGpk7QQS2B2WkXarXw3QXpD6iMFSd9J0/gtkbSB5CVlkbJJq0hHoY+kAE5AK3AG6Q4pD59nSU9ILbjF81GOE4cpVAzxiT8nvSSdJQ1GGsCIwkkhrgTD/iXVkjaRSkivbcAK/JePKcUYtRgzDz4K3QJfJ7XiNvKVzCRdwoPk1sYwFo/5Fj5a4dMRcD3pGh6KG4gEQaHfeMxc+FiAz9t2gfksz+EW8u27YvPW27V5+CjFfnmoK22EmLPyypaR7oulM/Z1RrnSRZGAORo0Y/8mqcn0+1pSmkbANIypWjOmh4D/jHDAHLpS8BBUWcB24SlP1wCbjrFeWUBXI7angMkSuADhZY50yjRnJewu0mak2HSXsD0Ya6cF9DzC5hyYCszAHuWK1ltEg5UIO9LcQKuw0pItUnwQLAJsHhX4IFIn5/k6CyejCGtDLqGtYIcQ1kYs/l8HpiwwLgKfxPZZmKQw4hI6HOxwmOTyVGU0UCLm48uWCE6dQjuBlfZYKbwSGNiH+TOBp1a4gN6oGVaA6RcYfQZKPoFQFm02CwXdbYJ2Cysjxjvs+w0UH2zvbT7tkaB1wEr7gG2mgdcatq8OQlQ4aF2wKpvXUAL2T4dJIBS0Lli2HzKBGQja8oVRaITWBSuUl9ZkQ+i1BZvf2zYGnsR+ksvaoNtcWWlI42o7gW2SgcfxYY1G2CENaVy19diOG2hysG3RCJurqfYQJrYgAw/gw16HVVdGiAdsRCP0HmwHDBTKAv2COA1V17DGgkn2MvbJNG0gJc+iuvfHoOpyC+1Hu4sZew3EONkqOhaDEtEtdDG2L7gFJuPwA2wPo/uou0R0Cs0sR1RGCdyFZh6XcBdDvN3qqA3sQl8AUx86nYvAC0rjohzdRtVmlQTjNt1aQU/iVUg1ZjiP/YDMlmpqbkcXcQV6A2rE4ORygNSvqTZQofsx9rgpMjSDpQMdTsu+BLc8f+PJrDb9JqFzXMKq0H4LWNmX8OMtqCxcI4X7s6exX4lelxl6RGOxNGoBWwLfAv4HI/XWuOVZgz7AXTRVlsrY1z34rgFLVN3Lq6QGZS7V2MiCTiwOPuSz0wCGqNutMloEcLaVKHK8MYD1YuxK+ArAt7ALLFtERZj8PhRKt0ipGkBTMdYAxp6Ar6pIBXwkaxP/F084cC8nVZC+oRWabXOqxOGYJoxRgTE74aMt0gAemwuLBbgCWcp36rLXZ7wwTilvMVx8b8MxPhRZ0vqQsKJe9vI4WAmVC4sn0D6Kt3n8DAqZh2IJFhZlGu+AElFHc5BXl26TlZSrLt1y24lXo6adTvx/AgwArkFW26xxUwYAAAAASUVORK5CYII="
-
-/***/ },
-/* 84 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAiCAYAAAAtZZsLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QjhCMkE3RDYxQjNEMTFFNkJFNUE4MzJBNzBERUNCNjUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QjhCMkE3RDcxQjNEMTFFNkJFNUE4MzJBNzBERUNCNjUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCOEIyQTdENDFCM0QxMUU2QkU1QTgzMkE3MERFQ0I2NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCOEIyQTdENTFCM0QxMUU2QkU1QTgzMkE3MERFQ0I2NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PoZOUsEAAAILSURBVHjazJg7SMNAGMcvQQfBx+agOAlCHyDiY7CLdXRwbgVHcevg4NhanNqqQ1tFFBwUwdFdEJfiUkRF7OIkFIq6aCsoCvX74CRp2rsmuUuaD/7Qy+Py4+5+F1KlTiaJhJqGbEJCtH0FSUKKoh0rEgAXIOeQbsPxL8gi5KKTgD2QJ8gQ43wZMgr5tvsAVXD0khw4rGHIRqdG0A+5bTG1xvqBjENKbo9g3gQcodfsuj3FUUi44cjdCSH1opZ5v/4sXhtxC7APkrFx3xak1w3ABF38VsuWMFYBA5CYwLqNUbkcA8yZFIMnTN4pwKUmMfRV+2xsXz6yrgxTyaQCohhp7hXVmpWBydA+pQHaFYMnTEIWoKgYPGECMgBFxeAJkxMF5Iuhrw/dGnx5MwsZps+wBdheDBagtUrzhFFdFMOWMCzAoENi8IQJmgVUIFmHxOAJk6XPbgsYNS0Gqyqvdu5q+YYxAvZbEkNf71UZI5mmDEzAuEti8ISJs75JcJHeuLz2WtUvZALyoB/BTojBqi76hlH0gOJiyK25f2EQ0AfZE+5ye1X7YCrsEzI2KNojMvkQMAUZEOoqEiJkbUVrz07BglkXBUSmlOqxqW3aG1X65S9WZwVCdg619n0JdrQjKUbjNnMMP5Y9OoKnCIib4zVkxGNwz7iacYrxL7IZCM5RxQNg+CI/oEzlPwEGADSiZHrtfuHhAAAAAElFTkSuQmCC"
-
-/***/ },
-/* 85 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjA4RTkyODhCOTFFMDExRTU5NDVBRDk2N0E5ODg1OUUwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjA4RTkyODhDOTFFMDExRTU5NDVBRDk2N0E5ODg1OUUwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDhFOTI4ODk5MUUwMTFFNTk0NUFEOTY3QTk4ODU5RTAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDhFOTI4OEE5MUUwMTFFNTk0NUFEOTY3QTk4ODU5RTAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4hE1o8AAABIUlEQVR42rTX0QnCMBCA4Xhr9CngDL4JGUPoe2frGEJ9cgahIHQMwRQSiLHJXS53gSBqy/+hqTWnaZqMH9bP2c/Rz5fRHT8tCC8sfl78vPt5Vo6nLQtBM4QDBkVEjKetGcJHsSUHaiDyuAnNEcJ37hQRpbiLa8AoIqrx/Qkkb0gj0HgOkESQ4kcACQQ5XgJgCCsVrwFqiKWAaI5jgIi4EhCsOAWwjxVBsONUAIZgx1sANQQ73gooIdhxDgAbn9YTWgFHC45yiYoASqt960FAZ9wRfye6ANh1Hhfmm4OAznh6dTgOAgRvLCwESN3VuAgQjLMQIBxvRoBCvAkBSnEyAhTjJES+NZOOY4i/rZlGvITYW7d0a/ZUjOf/Jx7hcf0KMABwP6hpikSb/gAAAABJRU5ErkJggg=="
-
-/***/ },
-/* 86 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUM0Q0E1MEUxQ0RBMTFFNkFCMjZCNDlEMjI2RTk5RTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUM0Q0E1MEYxQ0RBMTFFNkFCMjZCNDlEMjI2RTk5RTUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxQzRDQTUwQzFDREExMUU2QUIyNkI0OUQyMjZFOTlFNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxQzRDQTUwRDFDREExMUU2QUIyNkI0OUQyMjZFOTlFNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PpeFk7MAAANuSURBVHja1JlLSBVhFMfn3sRSryFUSkUSGQYauIveDyOzpxUYVma5aBHVok2tetxFBi0kEwmiwBa5ihZRUhGI4kaM0FArq4W1Kiiy1DSt6X/gTA2Hb57euXc68OPe+z3/8813vzlzTkTXdW0aNgusBhtBEVgG5oEsQAMPMy9BL+gC7eCn3wkjPgVvBrWgAsQ89v0GWkEzeMIXZmd54CT4Beo1EuyBneCZnjh7AXY7zNlnav/ArdDF1FgPzlrBEsW8C0S7yTQXt3AfuAVyLOrHQSczAIbACJgEc8BCsBysAptAumKMbaAHHAd3TOVSX5rTyp63WZXn4CjI9rClcsAR0GMz7mUQ4fb5stJu8KsWA77lfRfxuP/NUN9d4J3FHE3cxrXgixYDNYKMaQiVZIIGm5V2JXi/ovMEqE6gUEkNGFfMe9ZJMP1TvyrElgco1mArz2W2KSfBT0X9b3AoCWINqp3OP3PjvYr6hiSKNbhuJ9g45yLggjjz3oAzWjA2nx+3cxV1Gfy4jqg6GoLLQImoOw0mAhBLQtrYUfJsUf6sFeXd4GFAq5vnVyxsKsreVoWoaNSCs4+8IH7sLm2JUvZrDRsD9wIUrLN7WgMWeej3CrSQ4DWighzsUS1Y+w6a/O7hIlHWqYXYSHChKOsPu+BcUTYUdsHZiv0VasH/lUUVK5oddsGfRFl+2AUPirLisAuWx9i6sAtuVwjOCom+EnZDC/492HU9Bn4IP7k6BY67pNT0ijQCiqk8ykGP++LKToVgdS+BGfyd7vgO8zncLBqv4GhMqqwcrBRlvcaWMAIbvWJbvAYzU7AVaM5+oaXfCNxETT5qXFwROUV1KVjduMKDPPc3LCuu7rHiNf9gEld3D89ptjZzG9mhAAwrAillSToVRsXc9HupnWCiyiJUVRWg2ANgTDHvYdnWaoA6RWe6VfUJ/iOmOwQDNbeCiWsWAw2C7QkQuwUMWMxxwyqc6zRo3CZq1M23LOZBJLU9Brpsxr1iF3t2k0WqBDfBbIt6Cgt08Msrpbfec6ZoypQyKOb02AYbP4Xe1E+A2/ZBAncrQ2HYRwEmZejoKnSjxeu+q+DcRqKMnmCVXtIPfvMTFHxusTiKnIz6NIP1fvIkfjOhhmWCtbw3jdRtLu9Tylx+Bl/AB9DH+7yDPURf9keAAQDbKNydaY+RvQAAAABJRU5ErkJggg=="
-
-/***/ },
-/* 87 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAAyCAMAAABGUCSuAAACdlBMVEWvr6////8Aev96enqvr6+vr68Aev96enqvr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr68Aev96enoAev96enqvr68Aev96enqvr68Aev96enoAev96enoAev96enqvr68Aev96enqvr6+vr6+vr68Aev96enqvr6+vr6+vr6+vr68Aev96enqvr6+vr6+vr6+vr6+vr68Aev96enqvr68Aev96enqvr68Aev96enqvr6+vr6+vr68Aev96enoAev96enqvr68Aev96enqvr68Aev96enqvr6+vr6+vr6+vr68Aev96enoAev96enqvr68Aev96enqvr6+vr6+vr6+vr6+vr6+vr68Aev96enqvr6+vr6+vr6+vr6+vr6+vr6+vr68Aev96enqvr68Aev96enqvr68Aev96enqvr6+vr68Aev96enqvr6+vr6+vr68Aev96enqvr68Aev96enqvr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr68Aev96enqvr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr68Aev96enqvr6+vr6+vr68Aev96enqvr6+vr68Aev96enqvr6+vr6+vr68Aev96enqvr6+vr68Aev96enqvr68Aev96enqvr68Aev96enqvr68Aev96enqvr68Aev96enqvr6+vr68Aev96enqvr6+tbRINAAAAz3RSTlMAAAEBAQIDAwMEBQYHCAoLDA0ODxMUFxgbHB0eHyIjJCkrLCwtLS8zMzM1NTc3ODg6Ozs7Pj9CQkNISkxOTk5SVFVXWVlZWlpaW1tbX2BiYmNjY2lpam5ubm9xdnh4eXl6e3t9foCBg4aIiIiJjo+QkpOUlJSVlZWXl5udnp6foKGioqKlpaeqrK6vsLGytba4vb6/wMHExcfKzM3S0tLT1NXX2Nrb3d7f4OPm6evr6+3u7+/v8PHx8fL09vb29/j4+Pn5+fr6+vz8/P39/f4CIM3LAAADWElEQVRYw+3Y+T9UURQA8PvsTI1Ce2nXRjtKVNpRlogSbcjSqlS0aaHSQoq0qqRdG1mKtNJCM3P+o96deRne3PfevX1uH784v8ybX+73cz/vvnPPOUjozUB9um1E1taG0S8TVVcXzlGPNRqNtdSrxJlMpjp+OsbpdYxz1OMxboykXCMB46YoXnoStjuiKZdIxnZnDK9TZ8HDmPBwXmeeC440g6xvZcK3KezcqniG7imuKD+XPs+NQs/EeNtSSjwL4+3LBEXd+8gHkKIm1VNLt+DBTHiIoKQ7bmkV2V9PrpU/+CY+PF+orvPCLbr+kkhej/DAz/2DLhjAkKqmc8PNuq4UoH6J1Zv5CGC7om6Xi/GPlLh9HsY/hQiK+iGAx2O6v+pBZQCLFHQL3hzAgrcECoq6vwFqRvY85/pb8MqLqHPFsX4DYIH8Ix/dCjtJOl9c1OcAXLbNMTugSW+rO51kwZ1PaeCing0w31Yf+vvvm++mOxVgvGE6JV6I8cYZahkc3YMmV0KCrYC9cl3CfZlwP9X7w+07XCGl911wVabzxwU0GOAESU+E+zL9AAsuHKTABTQc4DBJXwcPZfoXEf8xifZS/iriPydr3dzuAOdJehrclOm38d4LnCj1O3jvhc4aOqqBapJ+Fs7I9HEvWPjxLyl4hC4CjLLF3V7DBvmZn2Dmj9rR8RPN/DF7dX0tQIatHgoGb5vvfWoD5nMp+WmNmM+zV9UHvoWmIXLc9S6UEjKtLxPvp8mLy6eIqdZFpqeDYS4pz3PmcT1RBZDj0ANfbYDj5BvWwu8TWPj9ajoaWw9w2t1qO6YYoNJd4X6f1Yz5TEp+dgvms9R05P8O4GmEVMs6BFUCVA1TrG0CmPhAVd4i+FTjWjY/MWLx+myxrIISL5RTv1GhruPISxsckPEeuuLZGgekF3/TFKpKfry1lkss+4zpN0WrdPh/EUilJaGiDmjD/CZavh3zm1V1MVxGTPHp+vL7lUg8qZsINvNJlHyImU/W0HuGTuKJnRQnHmny5C6SD4+0+OUKHbSFj2fiE5g6aF0xQKrS9GBFB+ZjKfmVnZiPY+rfdem7PRQnJ2FMfDiJ/9fpgZWPZOK5TY0knnpiZuY5zuuEaKZpYQxnvXcnpX0T8v8dfwC0K0RQFs76UQAAAABJRU5ErkJggg=="
-
-/***/ },
-/* 88 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAlCAYAAAAnQjt6AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4JpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo0MEMwOTEzMTI1MjA2ODExODIyQThDRjJDMkJGNjc5RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo4OTEzMTc1Q0RBQzQxMUU1OUQxMEFCMDQxQkFCNkZFNiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo4OTEzMTc1QkRBQzQxMUU1OUQxMEFCMDQxQkFCNkZFNiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoTWFjaW50b3NoKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjNjN2YyZTE4LTlkMmUtNDllMy05NmQ4LWE4MTUyYzZhZTM3OSIgc3RSZWY6ZG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjRlODg4NDFiLTFiNTEtMTE3OS04NmM2LWM5MTJiODM2NWRiZiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqFFCEgAAAJ7SURBVHja7JjBZxxRHMdnp7EREiGUkGsJOUSipxL6B5QQGiGnkNpI9LQlStesWVs9hJ4i7BBySQilhJJTKCGnnEIIOVVKCCEaImFtv7/1fTyvszOz76Wbqvz4eDM7M7/f9/3e7715s7lareZltCdggrwAg6AXDPP6CbgG5+AA7JN6ktNCodBsuzIIeA7egtcM3MqGteNXbEXYF7AKDpOCJAkZAmtgUvvtFHwHe8zADTjmtRHQA55R/CTFzZEdsAR+tiNkliL6eS69+syUtzIlSHq+DZY5hEVmU4S9pJgt82E/xmEINilCej0KplNEtLIDPjtKX/30HaYJeQ8CHkdgHBx57nZEXxHPA8aKFSIF9kkTscAauC+7oU8lRmLNmEJkNqh5/JXj+LdsiTHE1qIoGtCFfOAsuQBv0ua+o9UZQ2INMHZTiEy5Rd70EVxqD+VBFZyBhiVn9JHX/F4yltg8stIjQqZYzdfa+OkzSGXL1obow5wpEuuKsad8LtkeFxyzOOfZlkDOkpLhSy/ebzyeECFjPNmN6c1TtisOGVkxfOmmYo75XJK9lPXizkHIXcr60nxP+doy/sPrvKmYvb5WzVcPIETFzPvG/O601ZNeeg9ij0La2aHp1njMiGE5xziN/7ZYq+xd1fGeP1OOD6xGQvrNa7+4m5MtQ18Ln3H3pMZoNyOrRmt7j3VGuh3ewPIuu3XNyAXbokMdFg1fVsW6rm39bfes6hNlw2UdKTO1s/z6t7FzfmKWXIRIXbwj/8Q6EjDNYRu+Qz4TZJ01WUSEjh2WIa4k/VHjd0CEyk5gOzRKRMXhm0ZRSRPTlUFE+R4yUtYy48UN028BBgAuHa50U84otwAAAABJRU5ErkJggg=="
-
-/***/ },
-/* 89 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAWCAYAAACcy/8iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjU1NUEyNERDREFDNjExRTVCRTM1QTI2QUNCMURFMzVCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjU1NUEyNEREREFDNjExRTVCRTM1QTI2QUNCMURFMzVCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NTU1QTI0REFEQUM2MTFFNUJFMzVBMjZBQ0IxREUzNUIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NTU1QTI0REJEQUM2MTFFNUJFMzVBMjZBQ0IxREUzNUIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5qcpNtAAAAxUlEQVR42uTTuw0CMQwGYOcXzS0AO8AQ6BgmBaPQUqW7SQ6WOIZgAVqcAimKeNwjSLZj6S+S2JE+RXEhhCsR7alwee8dCSz8Ayu5kK0HzobjCkQ8+MbZcXrOuoYXbmtAp+B7Dej8D5tH482eaTQ+7JtF48tZjr5YQOPHeYreWkBjRI8pNEb2mUFjQq8JNCb2q0djxswLPWhEY+ZcRB80orFgViUaC+fVoVHgjhx94jSWwSm645w5D6ngVcG7IvooGRvrKcAArX07sRLJsOUAAAAASUVORK5CYII="
-
-/***/ },
-/* 90 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	var stylesInDom = {},
-		memoize = function(fn) {
-			var memo;
-			return function () {
-				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-				return memo;
-			};
-		},
-		isOldIE = memoize(function() {
-			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
-		}),
-		getHeadElement = memoize(function () {
-			return document.head || document.getElementsByTagName("head")[0];
-		}),
-		singletonElement = null,
-		singletonCounter = 0,
-		styleElementsInsertedAtTop = [];
-
-	module.exports = function(list, options) {
-		if(false) {
-			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-		}
-
-		options = options || {};
-		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-		// tags it will allow on a page
-		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
-
-		// By default, add <style> tags to the bottom of <head>.
-		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
-
-		var styles = listToStyles(list);
-		addStylesToDom(styles, options);
-
-		return function update(newList) {
-			var mayRemove = [];
-			for(var i = 0; i < styles.length; i++) {
-				var item = styles[i];
-				var domStyle = stylesInDom[item.id];
-				domStyle.refs--;
-				mayRemove.push(domStyle);
-			}
-			if(newList) {
-				var newStyles = listToStyles(newList);
-				addStylesToDom(newStyles, options);
-			}
-			for(var i = 0; i < mayRemove.length; i++) {
-				var domStyle = mayRemove[i];
-				if(domStyle.refs === 0) {
-					for(var j = 0; j < domStyle.parts.length; j++)
-						domStyle.parts[j]();
-					delete stylesInDom[domStyle.id];
-				}
-			}
-		};
-	}
-
-	function addStylesToDom(styles, options) {
-		for(var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-			if(domStyle) {
-				domStyle.refs++;
-				for(var j = 0; j < domStyle.parts.length; j++) {
-					domStyle.parts[j](item.parts[j]);
-				}
-				for(; j < item.parts.length; j++) {
-					domStyle.parts.push(addStyle(item.parts[j], options));
-				}
-			} else {
-				var parts = [];
-				for(var j = 0; j < item.parts.length; j++) {
-					parts.push(addStyle(item.parts[j], options));
-				}
-				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-			}
-		}
-	}
-
-	function listToStyles(list) {
-		var styles = [];
-		var newStyles = {};
-		for(var i = 0; i < list.length; i++) {
-			var item = list[i];
-			var id = item[0];
-			var css = item[1];
-			var media = item[2];
-			var sourceMap = item[3];
-			var part = {css: css, media: media, sourceMap: sourceMap};
-			if(!newStyles[id])
-				styles.push(newStyles[id] = {id: id, parts: [part]});
-			else
-				newStyles[id].parts.push(part);
-		}
-		return styles;
-	}
-
-	function insertStyleElement(options, styleElement) {
-		var head = getHeadElement();
-		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
-		if (options.insertAt === "top") {
-			if(!lastStyleElementInsertedAtTop) {
-				head.insertBefore(styleElement, head.firstChild);
-			} else if(lastStyleElementInsertedAtTop.nextSibling) {
-				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
-			} else {
-				head.appendChild(styleElement);
-			}
-			styleElementsInsertedAtTop.push(styleElement);
-		} else if (options.insertAt === "bottom") {
-			head.appendChild(styleElement);
-		} else {
-			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
-		}
-	}
-
-	function removeStyleElement(styleElement) {
-		styleElement.parentNode.removeChild(styleElement);
-		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
-		if(idx >= 0) {
-			styleElementsInsertedAtTop.splice(idx, 1);
-		}
-	}
-
-	function createStyleElement(options) {
-		var styleElement = document.createElement("style");
-		styleElement.type = "text/css";
-		insertStyleElement(options, styleElement);
-		return styleElement;
-	}
-
-	function createLinkElement(options) {
-		var linkElement = document.createElement("link");
-		linkElement.rel = "stylesheet";
-		insertStyleElement(options, linkElement);
-		return linkElement;
-	}
-
-	function addStyle(obj, options) {
-		var styleElement, update, remove;
-
-		if (options.singleton) {
-			var styleIndex = singletonCounter++;
-			styleElement = singletonElement || (singletonElement = createStyleElement(options));
-			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
-			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
-		} else if(obj.sourceMap &&
-			typeof URL === "function" &&
-			typeof URL.createObjectURL === "function" &&
-			typeof URL.revokeObjectURL === "function" &&
-			typeof Blob === "function" &&
-			typeof btoa === "function") {
-			styleElement = createLinkElement(options);
-			update = updateLink.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-				if(styleElement.href)
-					URL.revokeObjectURL(styleElement.href);
-			};
-		} else {
-			styleElement = createStyleElement(options);
-			update = applyToTag.bind(null, styleElement);
-			remove = function() {
-				removeStyleElement(styleElement);
-			};
-		}
-
-		update(obj);
-
-		return function updateStyle(newObj) {
-			if(newObj) {
-				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
-					return;
-				update(obj = newObj);
-			} else {
-				remove();
-			}
-		};
-	}
-
-	var replaceText = (function () {
-		var textStore = [];
-
-		return function (index, replacement) {
-			textStore[index] = replacement;
-			return textStore.filter(Boolean).join('\n');
-		};
-	})();
-
-	function applyToSingletonTag(styleElement, index, remove, obj) {
-		var css = remove ? "" : obj.css;
-
-		if (styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = replaceText(index, css);
-		} else {
-			var cssNode = document.createTextNode(css);
-			var childNodes = styleElement.childNodes;
-			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
-			if (childNodes.length) {
-				styleElement.insertBefore(cssNode, childNodes[index]);
-			} else {
-				styleElement.appendChild(cssNode);
-			}
-		}
-	}
-
-	function applyToTag(styleElement, obj) {
-		var css = obj.css;
-		var media = obj.media;
-
-		if(media) {
-			styleElement.setAttribute("media", media)
-		}
-
-		if(styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = css;
-		} else {
-			while(styleElement.firstChild) {
-				styleElement.removeChild(styleElement.firstChild);
-			}
-			styleElement.appendChild(document.createTextNode(css));
-		}
-	}
-
-	function updateLink(linkElement, obj) {
-		var css = obj.css;
-		var sourceMap = obj.sourceMap;
-
-		if(sourceMap) {
-			// http://stackoverflow.com/a/26603875
-			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-		}
-
-		var blob = new Blob([css], { type: "text/css" });
-
-		var oldSrc = linkElement.href;
-
-		linkElement.href = URL.createObjectURL(blob);
-
-		if(oldSrc)
-			URL.revokeObjectURL(oldSrc);
-	}
-
-
-/***/ },
-/* 91 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
-		'use strict';
-
-		/**
-		 * @preserve FastClick: polyfill to remove click delays on browsers with touch UIs.
-		 *
-		 * @codingstandard ftlabs-jsv2
-		 * @copyright The Financial Times Limited [All Rights Reserved]
-		 * @license MIT License (see LICENSE.txt)
-		 */
-
-		/*jslint browser:true, node:true*/
-		/*global define, Event, Node*/
-
-
-		/**
-		 * Instantiate fast-clicking listeners on the specified layer.
-		 *
-		 * @constructor
-		 * @param {Element} layer The layer to listen on
-		 * @param {Object} [options={}] The options to override the defaults
-		 */
-		function FastClick(layer, options) {
-			var oldOnClick;
-
-			options = options || {};
-
-			/**
-			 * Whether a click is currently being tracked.
-			 *
-			 * @type boolean
-			 */
-			this.trackingClick = false;
-
-
-			/**
-			 * Timestamp for when click tracking started.
-			 *
-			 * @type number
-			 */
-			this.trackingClickStart = 0;
-
-
-			/**
-			 * The element being tracked for a click.
-			 *
-			 * @type EventTarget
-			 */
-			this.targetElement = null;
-
-
-			/**
-			 * X-coordinate of touch start event.
-			 *
-			 * @type number
-			 */
-			this.touchStartX = 0;
-
-
-			/**
-			 * Y-coordinate of touch start event.
-			 *
-			 * @type number
-			 */
-			this.touchStartY = 0;
-
-
-			/**
-			 * ID of the last touch, retrieved from Touch.identifier.
-			 *
-			 * @type number
-			 */
-			this.lastTouchIdentifier = 0;
-
-
-			/**
-			 * Touchmove boundary, beyond which a click will be cancelled.
-			 *
-			 * @type number
-			 */
-			this.touchBoundary = options.touchBoundary || 10;
-
-
-			/**
-			 * The FastClick layer.
-			 *
-			 * @type Element
-			 */
-			this.layer = layer;
-
-			/**
-			 * The minimum time between tap(touchstart and touchend) events
-			 *
-			 * @type number
-			 */
-			this.tapDelay = options.tapDelay || 200;
-
-			/**
-			 * The maximum time for a tap
-			 *
-			 * @type number
-			 */
-			this.tapTimeout = options.tapTimeout || 700;
-
-			if (FastClick.notNeeded(layer)) {
-				return;
-			}
-
-			// Some old versions of Android don't have Function.prototype.bind
-			function bind(method, context) {
-				return function() { return method.apply(context, arguments); };
-			}
-
-
-			var methods = ['onMouse', 'onClick', 'onTouchStart', 'onTouchMove', 'onTouchEnd', 'onTouchCancel'];
-			var context = this;
-			for (var i = 0, l = methods.length; i < l; i++) {
-				context[methods[i]] = bind(context[methods[i]], context);
-			}
-
-			// Set up event handlers as required
-			if (deviceIsAndroid) {
-				layer.addEventListener('mouseover', this.onMouse, true);
-				layer.addEventListener('mousedown', this.onMouse, true);
-				layer.addEventListener('mouseup', this.onMouse, true);
-			}
-
-			layer.addEventListener('click', this.onClick, true);
-			layer.addEventListener('touchstart', this.onTouchStart, false);
-			layer.addEventListener('touchmove', this.onTouchMove, false);
-			layer.addEventListener('touchend', this.onTouchEnd, false);
-			layer.addEventListener('touchcancel', this.onTouchCancel, false);
-
-			// Hack is required for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
-			// which is how FastClick normally stops click events bubbling to callbacks registered on the FastClick
-			// layer when they are cancelled.
-			if (!Event.prototype.stopImmediatePropagation) {
-				layer.removeEventListener = function(type, callback, capture) {
-					var rmv = Node.prototype.removeEventListener;
-					if (type === 'click') {
-						rmv.call(layer, type, callback.hijacked || callback, capture);
-					} else {
-						rmv.call(layer, type, callback, capture);
-					}
-				};
-
-				layer.addEventListener = function(type, callback, capture) {
-					var adv = Node.prototype.addEventListener;
-					if (type === 'click') {
-						adv.call(layer, type, callback.hijacked || (callback.hijacked = function(event) {
-							if (!event.propagationStopped) {
-								callback(event);
-							}
-						}), capture);
-					} else {
-						adv.call(layer, type, callback, capture);
-					}
-				};
-			}
-
-			// If a handler is already declared in the element's onclick attribute, it will be fired before
-			// FastClick's onClick handler. Fix this by pulling out the user-defined handler function and
-			// adding it as listener.
-			if (typeof layer.onclick === 'function') {
-
-				// Android browser on at least 3.2 requires a new reference to the function in layer.onclick
-				// - the old one won't work if passed to addEventListener directly.
-				oldOnClick = layer.onclick;
-				layer.addEventListener('click', function(event) {
-					oldOnClick(event);
-				}, false);
-				layer.onclick = null;
-			}
-		}
-
-		/**
-		* Windows Phone 8.1 fakes user agent string to look like Android and iPhone.
-		*
-		* @type boolean
-		*/
-		var deviceIsWindowsPhone = navigator.userAgent.indexOf("Windows Phone") >= 0;
-
-		/**
-		 * Android requires exceptions.
-		 *
-		 * @type boolean
-		 */
-		var deviceIsAndroid = navigator.userAgent.indexOf('Android') > 0 && !deviceIsWindowsPhone;
-
-
-		/**
-		 * iOS requires exceptions.
-		 *
-		 * @type boolean
-		 */
-		var deviceIsIOS = /iP(ad|hone|od)/.test(navigator.userAgent) && !deviceIsWindowsPhone;
-
-
-		/**
-		 * iOS 4 requires an exception for select elements.
-		 *
-		 * @type boolean
-		 */
-		var deviceIsIOS4 = deviceIsIOS && (/OS 4_\d(_\d)?/).test(navigator.userAgent);
-
-
-		/**
-		 * iOS 6.0-7.* requires the target element to be manually derived
-		 *
-		 * @type boolean
-		 */
-		var deviceIsIOSWithBadTarget = deviceIsIOS && (/OS [6-7]_\d/).test(navigator.userAgent);
-
-		/**
-		 * BlackBerry requires exceptions.
-		 *
-		 * @type boolean
-		 */
-		var deviceIsBlackBerry10 = navigator.userAgent.indexOf('BB10') > 0;
-
-		/**
-		 * Determine whether a given element requires a native click.
-		 *
-		 * @param {EventTarget|Element} target Target DOM element
-		 * @returns {boolean} Returns true if the element needs a native click
-		 */
-		FastClick.prototype.needsClick = function(target) {
-			switch (target.nodeName.toLowerCase()) {
-
-			// Don't send a synthetic click to disabled inputs (issue #62)
-			case 'button':
-			case 'select':
-			case 'textarea':
-				if (target.disabled) {
-					return true;
-				}
-
-				break;
-			case 'input':
-
-				// File inputs need real clicks on iOS 6 due to a browser bug (issue #68)
-				if ((deviceIsIOS && target.type === 'file') || target.disabled) {
-					return true;
-				}
-
-				break;
-			case 'label':
-			case 'iframe': // iOS8 homescreen apps can prevent events bubbling into frames
-			case 'video':
-				return true;
-			}
-
-			return (/\bneedsclick\b/).test(target.className);
-		};
-
-
-		/**
-		 * Determine whether a given element requires a call to focus to simulate click into element.
-		 *
-		 * @param {EventTarget|Element} target Target DOM element
-		 * @returns {boolean} Returns true if the element requires a call to focus to simulate native click.
-		 */
-		FastClick.prototype.needsFocus = function(target) {
-			switch (target.nodeName.toLowerCase()) {
-			case 'textarea':
-				return true;
-			case 'select':
-				return !deviceIsAndroid;
-			case 'input':
-				switch (target.type) {
-				case 'button':
-				case 'checkbox':
-				case 'file':
-				case 'image':
-				case 'radio':
-				case 'submit':
-					return false;
-				}
-
-				// No point in attempting to focus disabled inputs
-				return !target.disabled && !target.readOnly;
-			default:
-				return (/\bneedsfocus\b/).test(target.className);
-			}
-		};
-
-
-		/**
-		 * Send a click event to the specified element.
-		 *
-		 * @param {EventTarget|Element} targetElement
-		 * @param {Event} event
-		 */
-		FastClick.prototype.sendClick = function(targetElement, event) {
-			var clickEvent, touch;
-
-			// On some Android devices activeElement needs to be blurred otherwise the synthetic click will have no effect (#24)
-			if (document.activeElement && document.activeElement !== targetElement) {
-				document.activeElement.blur();
-			}
-
-			touch = event.changedTouches[0];
-
-			// Synthesise a click event, with an extra attribute so it can be tracked
-			clickEvent = document.createEvent('MouseEvents');
-			clickEvent.initMouseEvent(this.determineEventType(targetElement), true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, false, false, false, false, 0, null);
-			clickEvent.forwardedTouchEvent = true;
-			targetElement.dispatchEvent(clickEvent);
-		};
-
-		FastClick.prototype.determineEventType = function(targetElement) {
-
-			//Issue #159: Android Chrome Select Box does not open with a synthetic click event
-			if (deviceIsAndroid && targetElement.tagName.toLowerCase() === 'select') {
-				return 'mousedown';
-			}
-
-			return 'click';
-		};
-
-
-		/**
-		 * @param {EventTarget|Element} targetElement
-		 */
-		FastClick.prototype.focus = function(targetElement) {
-			var length;
-
-			// Issue #160: on iOS 7, some input elements (e.g. date datetime month) throw a vague TypeError on setSelectionRange. These elements don't have an integer value for the selectionStart and selectionEnd properties, but unfortunately that can't be used for detection because accessing the properties also throws a TypeError. Just check the type instead. Filed as Apple bug #15122724.
-			if (deviceIsIOS && targetElement.setSelectionRange && targetElement.type.indexOf('date') !== 0 && targetElement.type !== 'time' && targetElement.type !== 'month') {
-				length = targetElement.value.length;
-				targetElement.setSelectionRange(length, length);
-			} else {
-				targetElement.focus();
-			}
-		};
-
-
-		/**
-		 * Check whether the given target element is a child of a scrollable layer and if so, set a flag on it.
-		 *
-		 * @param {EventTarget|Element} targetElement
-		 */
-		FastClick.prototype.updateScrollParent = function(targetElement) {
-			var scrollParent, parentElement;
-
-			scrollParent = targetElement.fastClickScrollParent;
-
-			// Attempt to discover whether the target element is contained within a scrollable layer. Re-check if the
-			// target element was moved to another parent.
-			if (!scrollParent || !scrollParent.contains(targetElement)) {
-				parentElement = targetElement;
-				do {
-					if (parentElement.scrollHeight > parentElement.offsetHeight) {
-						scrollParent = parentElement;
-						targetElement.fastClickScrollParent = parentElement;
-						break;
-					}
-
-					parentElement = parentElement.parentElement;
-				} while (parentElement);
-			}
-
-			// Always update the scroll top tracker if possible.
-			if (scrollParent) {
-				scrollParent.fastClickLastScrollTop = scrollParent.scrollTop;
-			}
-		};
-
-
-		/**
-		 * @param {EventTarget} targetElement
-		 * @returns {Element|EventTarget}
-		 */
-		FastClick.prototype.getTargetElementFromEventTarget = function(eventTarget) {
-
-			// On some older browsers (notably Safari on iOS 4.1 - see issue #56) the event target may be a text node.
-			if (eventTarget.nodeType === Node.TEXT_NODE) {
-				return eventTarget.parentNode;
-			}
-
-			return eventTarget;
-		};
-
-
-		/**
-		 * On touch start, record the position and scroll offset.
-		 *
-		 * @param {Event} event
-		 * @returns {boolean}
-		 */
-		FastClick.prototype.onTouchStart = function(event) {
-			var targetElement, touch, selection;
-
-			// Ignore multiple touches, otherwise pinch-to-zoom is prevented if both fingers are on the FastClick element (issue #111).
-			if (event.targetTouches.length > 1) {
-				return true;
-			}
-
-			targetElement = this.getTargetElementFromEventTarget(event.target);
-			touch = event.targetTouches[0];
-
-			if (deviceIsIOS) {
-
-				// Only trusted events will deselect text on iOS (issue #49)
-				selection = window.getSelection();
-				if (selection.rangeCount && !selection.isCollapsed) {
-					return true;
-				}
-
-				if (!deviceIsIOS4) {
-
-					// Weird things happen on iOS when an alert or confirm dialog is opened from a click event callback (issue #23):
-					// when the user next taps anywhere else on the page, new touchstart and touchend events are dispatched
-					// with the same identifier as the touch event that previously triggered the click that triggered the alert.
-					// Sadly, there is an issue on iOS 4 that causes some normal touch events to have the same identifier as an
-					// immediately preceeding touch event (issue #52), so this fix is unavailable on that platform.
-					// Issue 120: touch.identifier is 0 when Chrome dev tools 'Emulate touch events' is set with an iOS device UA string,
-					// which causes all touch events to be ignored. As this block only applies to iOS, and iOS identifiers are always long,
-					// random integers, it's safe to to continue if the identifier is 0 here.
-					if (touch.identifier && touch.identifier === this.lastTouchIdentifier) {
-						event.preventDefault();
-						return false;
-					}
-
-					this.lastTouchIdentifier = touch.identifier;
-
-					// If the target element is a child of a scrollable layer (using -webkit-overflow-scrolling: touch) and:
-					// 1) the user does a fling scroll on the scrollable layer
-					// 2) the user stops the fling scroll with another tap
-					// then the event.target of the last 'touchend' event will be the element that was under the user's finger
-					// when the fling scroll was started, causing FastClick to send a click event to that layer - unless a check
-					// is made to ensure that a parent layer was not scrolled before sending a synthetic click (issue #42).
-					this.updateScrollParent(targetElement);
-				}
-			}
-
-			this.trackingClick = true;
-			this.trackingClickStart = event.timeStamp;
-			this.targetElement = targetElement;
-
-			this.touchStartX = touch.pageX;
-			this.touchStartY = touch.pageY;
-
-			// Prevent phantom clicks on fast double-tap (issue #36)
-			if ((event.timeStamp - this.lastClickTime) < this.tapDelay) {
-				event.preventDefault();
-			}
-
-			return true;
-		};
-
-
-		/**
-		 * Based on a touchmove event object, check whether the touch has moved past a boundary since it started.
-		 *
-		 * @param {Event} event
-		 * @returns {boolean}
-		 */
-		FastClick.prototype.touchHasMoved = function(event) {
-			var touch = event.changedTouches[0], boundary = this.touchBoundary;
-
-			if (Math.abs(touch.pageX - this.touchStartX) > boundary || Math.abs(touch.pageY - this.touchStartY) > boundary) {
-				return true;
-			}
-
-			return false;
-		};
-
-
-		/**
-		 * Update the last position.
-		 *
-		 * @param {Event} event
-		 * @returns {boolean}
-		 */
-		FastClick.prototype.onTouchMove = function(event) {
-			if (!this.trackingClick) {
-				return true;
-			}
-
-			// If the touch has moved, cancel the click tracking
-			if (this.targetElement !== this.getTargetElementFromEventTarget(event.target) || this.touchHasMoved(event)) {
-				this.trackingClick = false;
-				this.targetElement = null;
-			}
-
-			return true;
-		};
-
-
-		/**
-		 * Attempt to find the labelled control for the given label element.
-		 *
-		 * @param {EventTarget|HTMLLabelElement} labelElement
-		 * @returns {Element|null}
-		 */
-		FastClick.prototype.findControl = function(labelElement) {
-
-			// Fast path for newer browsers supporting the HTML5 control attribute
-			if (labelElement.control !== undefined) {
-				return labelElement.control;
-			}
-
-			// All browsers under test that support touch events also support the HTML5 htmlFor attribute
-			if (labelElement.htmlFor) {
-				return document.getElementById(labelElement.htmlFor);
-			}
-
-			// If no for attribute exists, attempt to retrieve the first labellable descendant element
-			// the list of which is defined here: http://www.w3.org/TR/html5/forms.html#category-label
-			return labelElement.querySelector('button, input:not([type=hidden]), keygen, meter, output, progress, select, textarea');
-		};
-
-
-		/**
-		 * On touch end, determine whether to send a click event at once.
-		 *
-		 * @param {Event} event
-		 * @returns {boolean}
-		 */
-		FastClick.prototype.onTouchEnd = function(event) {
-			var forElement, trackingClickStart, targetTagName, scrollParent, touch, targetElement = this.targetElement;
-
-			if (!this.trackingClick) {
-				return true;
-			}
-
-			// Prevent phantom clicks on fast double-tap (issue #36)
-			if ((event.timeStamp - this.lastClickTime) < this.tapDelay) {
-				this.cancelNextClick = true;
-				return true;
-			}
-
-			if ((event.timeStamp - this.trackingClickStart) > this.tapTimeout) {
-				return true;
-			}
-
-			// Reset to prevent wrong click cancel on input (issue #156).
-			this.cancelNextClick = false;
-
-			this.lastClickTime = event.timeStamp;
-
-			trackingClickStart = this.trackingClickStart;
-			this.trackingClick = false;
-			this.trackingClickStart = 0;
-
-			// On some iOS devices, the targetElement supplied with the event is invalid if the layer
-			// is performing a transition or scroll, and has to be re-detected manually. Note that
-			// for this to function correctly, it must be called *after* the event target is checked!
-			// See issue #57; also filed as rdar://13048589 .
-			if (deviceIsIOSWithBadTarget) {
-				touch = event.changedTouches[0];
-
-				// In certain cases arguments of elementFromPoint can be negative, so prevent setting targetElement to null
-				targetElement = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset) || targetElement;
-				targetElement.fastClickScrollParent = this.targetElement.fastClickScrollParent;
-			}
-
-			targetTagName = targetElement.tagName.toLowerCase();
-			if (targetTagName === 'label') {
-				forElement = this.findControl(targetElement);
-				if (forElement) {
-					this.focus(targetElement);
-					if (deviceIsAndroid) {
-						return false;
-					}
-
-					targetElement = forElement;
-				}
-			} else if (this.needsFocus(targetElement)) {
-
-				// Case 1: If the touch started a while ago (best guess is 100ms based on tests for issue #36) then focus will be triggered anyway. Return early and unset the target element reference so that the subsequent click will be allowed through.
-				// Case 2: Without this exception for input elements tapped when the document is contained in an iframe, then any inputted text won't be visible even though the value attribute is updated as the user types (issue #37).
-				if ((event.timeStamp - trackingClickStart) > 100 || (deviceIsIOS && window.top !== window && targetTagName === 'input')) {
-					this.targetElement = null;
-					return false;
-				}
-
-				this.focus(targetElement);
-				this.sendClick(targetElement, event);
-
-				// Select elements need the event to go through on iOS 4, otherwise the selector menu won't open.
-				// Also this breaks opening selects when VoiceOver is active on iOS6, iOS7 (and possibly others)
-				if (!deviceIsIOS || targetTagName !== 'select') {
-					this.targetElement = null;
-					event.preventDefault();
-				}
-
-				return false;
-			}
-
-			if (deviceIsIOS && !deviceIsIOS4) {
-
-				// Don't send a synthetic click event if the target element is contained within a parent layer that was scrolled
-				// and this tap is being used to stop the scrolling (usually initiated by a fling - issue #42).
-				scrollParent = targetElement.fastClickScrollParent;
-				if (scrollParent && scrollParent.fastClickLastScrollTop !== scrollParent.scrollTop) {
-					return true;
-				}
-			}
-
-			// Prevent the actual click from going though - unless the target node is marked as requiring
-			// real clicks or if it is in the whitelist in which case only non-programmatic clicks are permitted.
-			if (!this.needsClick(targetElement)) {
-				event.preventDefault();
-				this.sendClick(targetElement, event);
-			}
-
-			return false;
-		};
-
-
-		/**
-		 * On touch cancel, stop tracking the click.
-		 *
-		 * @returns {void}
-		 */
-		FastClick.prototype.onTouchCancel = function() {
-			this.trackingClick = false;
-			this.targetElement = null;
-		};
-
-
-		/**
-		 * Determine mouse events which should be permitted.
-		 *
-		 * @param {Event} event
-		 * @returns {boolean}
-		 */
-		FastClick.prototype.onMouse = function(event) {
-
-			// If a target element was never set (because a touch event was never fired) allow the event
-			if (!this.targetElement) {
-				return true;
-			}
-
-			if (event.forwardedTouchEvent) {
-				return true;
-			}
-
-			// Programmatically generated events targeting a specific element should be permitted
-			if (!event.cancelable) {
-				return true;
-			}
-
-			// Derive and check the target element to see whether the mouse event needs to be permitted;
-			// unless explicitly enabled, prevent non-touch click events from triggering actions,
-			// to prevent ghost/doubleclicks.
-			if (!this.needsClick(this.targetElement) || this.cancelNextClick) {
-
-				// Prevent any user-added listeners declared on FastClick element from being fired.
-				if (event.stopImmediatePropagation) {
-					event.stopImmediatePropagation();
-				} else {
-
-					// Part of the hack for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
-					event.propagationStopped = true;
-				}
-
-				// Cancel the event
-				event.stopPropagation();
-				event.preventDefault();
-
-				return false;
-			}
-
-			// If the mouse event is permitted, return true for the action to go through.
-			return true;
-		};
-
-
-		/**
-		 * On actual clicks, determine whether this is a touch-generated click, a click action occurring
-		 * naturally after a delay after a touch (which needs to be cancelled to avoid duplication), or
-		 * an actual click which should be permitted.
-		 *
-		 * @param {Event} event
-		 * @returns {boolean}
-		 */
-		FastClick.prototype.onClick = function(event) {
-			var permitted;
-
-			// It's possible for another FastClick-like library delivered with third-party code to fire a click event before FastClick does (issue #44). In that case, set the click-tracking flag back to false and return early. This will cause onTouchEnd to return early.
-			if (this.trackingClick) {
-				this.targetElement = null;
-				this.trackingClick = false;
-				return true;
-			}
-
-			// Very odd behaviour on iOS (issue #18): if a submit element is present inside a form and the user hits enter in the iOS simulator or clicks the Go button on the pop-up OS keyboard the a kind of 'fake' click event will be triggered with the submit-type input element as the target.
-			if (event.target.type === 'submit' && event.detail === 0) {
-				return true;
-			}
-
-			permitted = this.onMouse(event);
-
-			// Only unset targetElement if the click is not permitted. This will ensure that the check for !targetElement in onMouse fails and the browser's click doesn't go through.
-			if (!permitted) {
-				this.targetElement = null;
-			}
-
-			// If clicks are permitted, return true for the action to go through.
-			return permitted;
-		};
-
-
-		/**
-		 * Remove all FastClick's event listeners.
-		 *
-		 * @returns {void}
-		 */
-		FastClick.prototype.destroy = function() {
-			var layer = this.layer;
-
-			if (deviceIsAndroid) {
-				layer.removeEventListener('mouseover', this.onMouse, true);
-				layer.removeEventListener('mousedown', this.onMouse, true);
-				layer.removeEventListener('mouseup', this.onMouse, true);
-			}
-
-			layer.removeEventListener('click', this.onClick, true);
-			layer.removeEventListener('touchstart', this.onTouchStart, false);
-			layer.removeEventListener('touchmove', this.onTouchMove, false);
-			layer.removeEventListener('touchend', this.onTouchEnd, false);
-			layer.removeEventListener('touchcancel', this.onTouchCancel, false);
-		};
-
-
-		/**
-		 * Check whether FastClick is needed.
-		 *
-		 * @param {Element} layer The layer to listen on
-		 */
-		FastClick.notNeeded = function(layer) {
-			var metaViewport;
-			var chromeVersion;
-			var blackberryVersion;
-			var firefoxVersion;
-
-			// Devices that don't support touch don't need FastClick
-			if (typeof window.ontouchstart === 'undefined') {
-				return true;
-			}
-
-			// Chrome version - zero for other browsers
-			chromeVersion = +(/Chrome\/([0-9]+)/.exec(navigator.userAgent) || [,0])[1];
-
-			if (chromeVersion) {
-
-				if (deviceIsAndroid) {
-					metaViewport = document.querySelector('meta[name=viewport]');
-
-					if (metaViewport) {
-						// Chrome on Android with user-scalable="no" doesn't need FastClick (issue #89)
-						if (metaViewport.content.indexOf('user-scalable=no') !== -1) {
-							return true;
-						}
-						// Chrome 32 and above with width=device-width or less don't need FastClick
-						if (chromeVersion > 31 && document.documentElement.scrollWidth <= window.outerWidth) {
-							return true;
-						}
-					}
-
-				// Chrome desktop doesn't need FastClick (issue #15)
-				} else {
-					return true;
-				}
-			}
-
-			if (deviceIsBlackBerry10) {
-				blackberryVersion = navigator.userAgent.match(/Version\/([0-9]*)\.([0-9]*)/);
-
-				// BlackBerry 10.3+ does not require Fastclick library.
-				// https://github.com/ftlabs/fastclick/issues/251
-				if (blackberryVersion[1] >= 10 && blackberryVersion[2] >= 3) {
-					metaViewport = document.querySelector('meta[name=viewport]');
-
-					if (metaViewport) {
-						// user-scalable=no eliminates click delay.
-						if (metaViewport.content.indexOf('user-scalable=no') !== -1) {
-							return true;
-						}
-						// width=device-width (or less than device-width) eliminates click delay.
-						if (document.documentElement.scrollWidth <= window.outerWidth) {
-							return true;
-						}
-					}
-				}
-			}
-
-			// IE10 with -ms-touch-action: none or manipulation, which disables double-tap-to-zoom (issue #97)
-			if (layer.style.msTouchAction === 'none' || layer.style.touchAction === 'manipulation') {
-				return true;
-			}
-
-			// Firefox version - zero for other browsers
-			firefoxVersion = +(/Firefox\/([0-9]+)/.exec(navigator.userAgent) || [,0])[1];
-
-			if (firefoxVersion >= 27) {
-				// Firefox 27+ does not have tap delay if the content is not zoomable - https://bugzilla.mozilla.org/show_bug.cgi?id=922896
-
-				metaViewport = document.querySelector('meta[name=viewport]');
-				if (metaViewport && (metaViewport.content.indexOf('user-scalable=no') !== -1 || document.documentElement.scrollWidth <= window.outerWidth)) {
-					return true;
-				}
-			}
-
-			// IE11: prefixed -ms-touch-action is no longer supported and it's recomended to use non-prefixed version
-			// http://msdn.microsoft.com/en-us/library/windows/apps/Hh767313.aspx
-			if (layer.style.touchAction === 'none' || layer.style.touchAction === 'manipulation') {
-				return true;
-			}
-
-			return false;
-		};
-
-
-		/**
-		 * Factory method for creating a FastClick object
-		 *
-		 * @param {Element} layer The layer to listen on
-		 * @param {Object} [options={}] The options to override the defaults
-		 */
-		FastClick.attach = function(layer, options) {
-			return new FastClick(layer, options);
-		};
-
-
-		if (true) {
-
-			// AMD. Register as an anonymous module.
-			!(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
-				return FastClick;
-			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		} else if (typeof module !== 'undefined' && module.exports) {
-			module.exports = FastClick.attach;
-			module.exports.FastClick = FastClick;
-		} else {
-			window.FastClick = FastClick;
-		}
-	}());
-
-
-/***/ },
-/* 92 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/**
 	 * Created by Wangxin on 2016/5/19.
 	 */
 
-	__webpack_require__(93);
-	var $=__webpack_require__(94);
-	var AllData=__webpack_require__(95);
-	var drwSw=__webpack_require__(96);
-	var tip=__webpack_require__(99);
-	var DrwTraf=__webpack_require__(98);
-	var bindEv=__webpack_require__(102);
-	var FastClick = __webpack_require__(91);
+	__webpack_require__(78);
+	var $=__webpack_require__(79);
+	var AllData=__webpack_require__(80);
+	var drwSw=__webpack_require__(81);
+	var tip=__webpack_require__(84);
+	var DrwTraf=__webpack_require__(83);
+	var bindEvent=__webpack_require__(86);
+	var FastClick = __webpack_require__(88);
 
 	/**fastclick.js在commonJs规范中的引用方式
 	 * var FastClick = require('fastclick');
@@ -9450,7 +8196,7 @@
 	        amapCache.init({
 	            complete: function() {
 	                self.initCity(); //根据缓存加载相应城市
-	                bindEv.init(); //初始化事件绑定信息
+	                bindEvent.init(); //初始化事件绑定信息
 	                tip.loadingOver();//加载完成
 	            }
 	        });
@@ -9478,10 +8224,10 @@
 	        }
 	        //如果param不存在，那就打开城市选择列表。
 	        if (!param) {
-	            AllData.subwayFlag = 0;
+	            self.subwayFlag = 0;
 	            return tip.cityChange();
 	        }
-	        AllData.param = param;
+	        self.param = param;
 	        //取adcode为param中city的值。
 	        var adcode = param.city && param.city.substr(0, 4);
 	        //var adcode = "1100";
@@ -9500,7 +8246,7 @@
 	        }
 	        //如果城市代码不存在
 	        else {
-	            AllData.subwayFlag = 0;
+	            self.subwayFlag = 0;
 	            return tip.cityChange();
 	        }
 
@@ -9511,7 +8257,7 @@
 	        // 此城市代码与当前城市的代码不一致，即发生了变化，tip.hideCitylist();
 	        if (adcode != cache.curCity.adcode) {
 	            $("#subway-svg,#infowindow-content,#tip-content,.line-caption").remove();
-	            drwSw.svgReady = false;
+	            AllData.svgReady = false;
 	            //开启加载对应城市的数据
 	            tip.loading();
 	            $(".filter_btn").hide();
@@ -9533,12 +8279,31 @@
 	            var station = AllData.cache.stations[stationId] || AllData.cache.stationspoi[stationId];
 	            var sid = 'st-' + station.si;
 	            var obj = $('#' + sid);
-	            if (drwSw.isNearTip) {
+	            if (AllData.isNearTip) {
 	                drwSw.clearNearTip();
 	            }
 	            tip.openTip(obj);
 	            var center = tip.getStCenter(obj);
 	            tip.setCenter(center);
+	        }
+	    },
+	    //地址栏里的参数转为一个json对象
+	    param2json: function(str) {
+	        if (!str || str == '') {
+	            return null
+	        } else {
+	            var strArr = str.split('&');
+	            var json = {};
+
+	            if (strArr.length > 0) {
+	                for (var i = 0; i < strArr.length; i++) {
+	                    var item = strArr[i].split('=');
+	                    var key = item[0];
+	                    var value = item[1];
+	                    json[key] = value;
+	                }
+	            }
+	            return json
 	        }
 	    },
 	    //加载数据
@@ -9564,10 +8329,25 @@
 	            //self.loadTempTraffic();
 	        }
 	    },
+	    //请求站点首末班车信息
+	    loadStInfo: function (city_code,city_name){
+	        var self=this;
+	        var infoData_Url = "data/" + city_code + "_info_" + city_name + ".json";
+	        amapCache.loadData(infoData_Url, function(info_data) {
+	            for (var k = 0; k < info_data.l.length; k++) {
+	                for (var l = 0; l < info_data.l[k].st.length; l++) {
+	                    AllData.cache.stationsInfo[info_data.l[k].st[l].si] = info_data.l[k].st[l];
+	                }
+	            }
+	            console.log("站点首末车时间请求完成!");
+	        },function() {
+	            alert('地铁站点数据加载失败！');
+	        });
+	    },
 	    //这里是请求对应城市的地铁数据
 	    loadMainData: function (city_code,city_name,callback) {
-	        AllData.loadStatus.currLinesInfo=0;
 	        var self = this;
+	        AllData.loadStatus.currLinesInfo=0;
 	        var drwData_Url = "data/" + city_code + "_drw_" + city_name + ".json";
 	        amapCache.loadData(drwData_Url, function(loaddata) {
 	                //-------------JSON编译功能-------------
@@ -9579,13 +8359,13 @@
 	                //},2000);
 	                //————————————JSON编译结束——————————
 	                self.buildCurLinesData(city_code,loaddata);
-	                AllData.loadStatus.currLinesInfo=1,
+	                AllData.loadStatus.currLinesInfo=1;
 	                callback(AllData.cache.cities[city_code]);
 	            },
 	            function() {
 	                AllData.loadStatus.currLinesInfo=2;
 	                alert('城市地铁数据加载失败！');
-	                AllData.subwayFlag = 0;
+	                self.subwayFlag = 0;
 	                //tip.cityChange();
 	            });
 	    },
@@ -9710,302 +8490,13 @@
 	        var drwData = cache.cities[city_code];
 	        console.log("纯地铁信息编译完成!");
 	        //console.log(drwData);
-	    },
-	    //请求站点首末班车信息
-	    loadStInfo: function (city_code,city_name){
-	        var infoData_Url = "data/" + city_code + "_info_" + city_name + ".json";
-	        amapCache.loadData(infoData_Url, function(info_data) {
-	            for (var k = 0; k < info_data.l.length; k++) {
-	                for (var l = 0; l < info_data.l[k].st.length; l++) {
-	                    AllData.cache.stationsInfo[info_data.l[k].st[l].si] = info_data.l[k].st[l];
-	                }
-	            }
-	            console.log("站点首末车时间请求完成!");
-	        },function() {
-	            alert('地铁站点数据加载失败！');
-	        });
-	    },
-	    // 请求数据查询转换接口
-	    loadConvert: function (city_code,city_name) {
-	        var self=this;
-	        var trafficData_Url="data/" + city_code + "_conv_" + city_name + ".json";
-	        amapCache.loadData(trafficData_Url, function(convertData) {
-	            //遍历数据，缓存所有的路况信息到trafficInfo！
-	            var len=convertData.length;
-	            for(var i=0;i<len;i++){
-	                self.cache.convertData[i]=convertData[i];
-	            }
-	            console.log("数据转换接口请求成功！")
-	        },function() {
-	            alert('数据转换表加载出错！');
-	        });
-	    },
-	    /*给初始化的drwData增加st2st信息的开关,之后打印成JSON文本*/
-	    Traffic2JSON: function (drwData) {
-	        /*依赖self.cache.convertData,self.cache.trafficInfo,self.cache.stations;
-	         要在buildCurLinesData()之前运行,所以要先加载loadTraffic(),再loadMainData(),阻塞buildCurLinesData*/
-	        var self = this;
-	        var current_City_lines=drwData.l /*|| drwData.lines*/;
-	        //加入站点名称
-	        for (var line_id in current_City_lines) {
-	            //console.log(current_City_lines[line_id]);
-	            for (var i in AllData.cache.convertData) {
-	                if (AllData.cache.convertData[i].line_id == current_City_lines[line_id].ls) {
-	                    /*已经选择了一条地铁*/
-	                    var length=AllData.cache.convertData[i].stations.length;
-	                    //遍历转换器中的stations
-	                    for (var j = 0; j < length; j++) {
-	                        var acc = AllData.cache.convertData[i].stations[j].Acc;
-	                        /*已经选中了单个车站*/
-	                        var name = AllData.cache.convertData[i].stations[j].Name;
-	                        var current_drwData = current_City_lines[line_id];
-	                        var st = current_drwData.st;
-	                        var dataset_line_arr = current_drwData.c;
-	                        //以下获取start信息
-	                        for (var k in AllData.cache.trafficInfo) {
-	                            /*去遍历所有的路段信息*/
-	                            if (AllData.cache.trafficInfo[k].startAcc == acc) {
-	                                /*查到当前站点为起点的路段*/
-	                                AllData.cache.trafficInfo[k].startName = name;
-	                                AllData.cache.trafficInfo[k].reflineId = current_drwData.ls;
-	                                AllData.cache.trafficInfo[k].reflineName = current_drwData.ln;
-	                                for (var x in st) {
-	                                    //当drw信息中的station的名字与traffic信息中的名字匹配时
-	                                    if (st[x].n == name) {
-	                                        AllData.cache.trafficInfo[k].startPos = st[x].p;
-	                                    }
-	                                }
-	                                if (!(AllData.cache.trafficInfo[k].hasOwnProperty("startPos"))) {
-	                                    //AllData.cache.trafficInfo[k].startPos = AllData.cache.trafficInfo[k - 1].startPos;
-	                                    console.log(AllData.cache.trafficInfo[k], k)
-	                                }
-	                                var startPos = AllData.cache.trafficInfo[k].startPos;
-	                                for (var y in dataset_line_arr) {
-	                                    if (dataset_line_arr[y] == startPos) {
-	                                        AllData.cache.trafficInfo[k].startIndex = y;
-	                                    }
-	                                }
-	                            }
-	                        }
-	                        //获取end信息
-	                        for (var k in AllData.cache.trafficInfo) {
-	                            if (AllData.cache.trafficInfo[k].endAcc == acc) {
-	                                /*查到当前站点为起点的路段*/
-	                                AllData.cache.trafficInfo[k].endName = name;
-	                                for (var x in st) {
-	                                    if (st[x].n == name) {
-	                                        AllData.cache.trafficInfo[k].endPos = st[x].p;
-	                                    }
-	                                }
-	                                var endPos = AllData.cache.trafficInfo[k].endPos;
-	                                //
-	                                if (!(AllData.cache.trafficInfo[k].hasOwnProperty("endPos"))) {
-	                                    //AllData.cache.trafficInfo[k].endPos = AllData.cache.trafficInfo[k - 1].endPos;
-	                                    console.log(AllData.cache.trafficInfo[k], k)
-	                                }
-	                                for (var y in dataset_line_arr) {
-	                                    if (dataset_line_arr[y] == endPos) {
-	                                        AllData.cache.trafficInfo[k].endIndex = y;
-	                                    }
-	                                }
-	                            }
-	                        }
-	                        //修正环线的的首尾连接问题
-	                        for (var k in AllData.cache.trafficInfo) {
-	                            if (AllData.cache.trafficInfo[k].endIndex - AllData.cache.trafficInfo[k].startIndex> 30) {
-	                                AllData.cache.trafficInfo[k].endIndex = 0;
-	                            }else if(AllData.cache.trafficInfo[k].startIndex - AllData.cache.trafficInfo[k].endIndex> 30){
-	                                AllData.cache.trafficInfo[k].startIndex = 0;
-	                            }
-	                            AllData.cache.trafficInfo[k].direction = AllData.cache.trafficInfo[k].startName+"-to-"+self.cache.trafficInfo[k].endName;
-	                        }
-	                        //增加path和color、direct
-	                        for (var k in AllData.cache.trafficInfo) {
-	                            var loadRate=self.cache.trafficInfo[k].loadRate;
-	                            var color={};
-	                            //增加path
-	                            if (AllData.cache.trafficInfo[k].reflineId == current_drwData.ls) {
-	                                var start = Number(AllData.cache.trafficInfo[k].startIndex);
-	                                var end = Number(AllData.cache.trafficInfo[k].endIndex);
-	                                if (start < end) {
-	                                    AllData.cache.trafficInfo[k].path = dataset_line_arr.slice(start, end + 1);
-	                                    AllData.cache.trafficInfo[k].ref_direct = "right";
-	                                } else {
-	                                    AllData.cache.trafficInfo[k].path = dataset_line_arr.slice(end, start + 1);
-	                                    AllData.cache.trafficInfo[k].ref_direct = "left";
-	                                }
-	                            }
-	                            //增加color
-	                            if (loadRate >= 0 && loadRate <= 0.6) {
-	                                color = "00cc33";
-	                            } else if (loadRate > 0.6 && loadRate <= 0.9) {
-	                                color = "EFEA3A";
-	                            } else if (loadRate > 0.9 && loadRate <= 1.1) {
-	                                color = "E71F1A";
-	                            } else if (loadRate > 1.1){
-	                                color = "1D1D1D";
-	                            } else {
-	                                color = "CCCCCC";
-	                            }
-	                            AllData.cache.trafficInfo[k].color = color;
-	                        }
-	                    }
-	                }
-	            }
-	        }
-	        console.log("路况信息整理完毕！");
-	        //console.log("trafficInfo",AllData.cache.trafficInfo);
-	        //整理信息,增加st2st信息!
-	        for(var i in current_City_lines){
-	            var current_drwData = current_City_lines[i];
-	            //console.log("current_drwData",current_drwData);
-	            var obj={};
-	            obj.lineId=current_drwData.ls;
-	            obj.lineName=current_drwData.ln;
-	            obj.sections=[];
-	            //console.log(AllData.cache.trafficInfo);
-	            for(var k in AllData.cache.trafficInfo){
-	                if(current_drwData.ls==AllData.cache.trafficInfo[k].reflineId){
-	                    var section={};
-	                    section.directionAcc="Acc"+AllData.cache.trafficInfo[k].startAcc+"_"+AllData.cache.trafficInfo[k].endAcc;
-	                    section.directionPos=AllData.cache.trafficInfo[k].startPos+"-to-"+AllData.cache.trafficInfo[k].endPos;
-	                    section.directionName=AllData.cache.trafficInfo[k].direction;
-	                    section.startPos=AllData.cache.trafficInfo[k].startPos;
-	                    section.startName=AllData.cache.trafficInfo[k].startName;
-	                    section.endPos=AllData.cache.trafficInfo[k].endPos;
-	                    section.endName=AllData.cache.trafficInfo[k].endName;
-	                    section.reflineId=AllData.cache.trafficInfo[k].reflineId;
-	                    section.reflineName=AllData.cache.trafficInfo[k].reflineName;
-	                    section.path=AllData.cache.trafficInfo[k].path;
-	                    section.ref_direct=AllData.cache.trafficInfo[k].ref_direct;
-	                    obj.sections.push(section);
-	                }
-	            }
-	            //console.log(obj);
-	            current_drwData.st2st=obj.sections;
-	            //console.log(current_drwData);
-	            AllData.cache.trafficNew.push(current_drwData);
-	        }
-	        console.log("新的画图数据drwData整理完毕！");
-	        //console.log("trafficNew",AllData.cache.trafficNew);
-	        //转json!
-	        console.log("正在转译成Json...");
-	        console.log(JSON.stringify(AllData.cache.trafficNew));
-	    },
-	    //请求临时交通限流信息
-	    loadTempTraffic: function () {
-	        var self=this;
-	        var trafficData_Url="http://223.72.210.20:8388/PublicTripProvide/LoadAfcZdxlDataJson?ask=t8ai8t4s3acb1ce";
-	        amapCache.loadData(trafficData_Url, function(Temptraffic) {
-	            //编译最原始的trafficInfo
-	            //遍历数据，缓存所有的路况信息到trafficInfo！
-	            //console.log(trafficData);
-	            var tempInfo=[];
-	            var len=Temptraffic.zdxlList.length;
-	            for (var k = 0; k < len; k++) {
-	                var info={};
-	                var statCode=Temptraffic.zdxlList[k].statCode;
-	                info.stationAcc=statCode.slice(3).split("_")[0];
-	                info.stationName=Temptraffic.zdxlList[k].statName;
-	                info.endTime=Temptraffic.zdxlList[k].endTime;
-	                info.lineId=Temptraffic.zdxlList[k].lineId;
-	                info.startTime=Temptraffic.zdxlList[k].startTime;
-	                tempInfo.push(info);
-	                if(self.compTime(info.startTime,info.endTime)==1){
-	                    info.timeInside=true;
-	                }else{
-	                    info.timeInside=false;
-	                }
-	            }
-	            var publishTime=[];
-	            publishTime[0]=Temptraffic.publishTime.slice(0,4);
-	            publishTime[1]=Temptraffic.publishTime.slice(4,6);
-	            publishTime[2]=Temptraffic.publishTime.slice(6,8);
-	            publishTime[3]=Temptraffic.publishTime.slice(8,10);
-	            publishTime[4]=Temptraffic.publishTime.slice(10,12);
-	            publishTime[5]=Temptraffic.publishTime.slice(12,14);
-	            var pubTime=publishTime[0]+"-"+publishTime[1]+"-"+publishTime[2]+' '+publishTime[3]+":"+publishTime[4]+":"+publishTime[5];
-	            AllData.cache.tempTrafficinfo.pubTime=self.formatTime(pubTime).trafficTemp;
-	            AllData.cache.tempTrafficinfo.stInfo=tempInfo;
-	            AllData.loadStatus.tempTrafficinfo=1;
-	            console.log("限流管制信息请求完成!");
-	            //console.log(AllData.cache.tempTrafficinfo);
-	            //console.log(AllData.cache.stationsInfo);
-	            //console.log(self.refreshStatus);
-	        },function() {
-	            self.loadStatus.tempTrafficinfo=2;
-	            //self.loadMainData(city_code,city_name,callback);
-	            //延迟弹窗
-	            setTimeout(function () {
-	                alert("限流管制信息加载失败!");
-	            },1000);
-	        });
-	    },
-	    //地址栏里的参数转为一个json对象
-	    param2json: function(str) {
-	        if (!str || str == '') {
-	            return null
-	        } else {
-	            var strArr = str.split('&');
-	            var json = {};
-
-	            if (strArr.length > 0) {
-	                for (var i = 0; i < strArr.length; i++) {
-	                    var item = strArr[i].split('=');
-	                    var key = item[0];
-	                    var value = item[1];
-	                    json[key] = value;
-	                }
-	            }
-	            return json
-	        }
-	    },
-	    compTime: function (startTime,endTime) {
-	        var newtime = new Date();
-	        var newYear = newtime.getFullYear();
-	        var newMonth = newtime.getMonth() + 1;
-	        var newData = newtime.getDate();
-	        var newHours = newtime.getHours();
-	        var newMinutes = newtime.getMinutes();
-	        var newSeconds = newtime.getSeconds();
-
-	        if(newHours<10){
-	            newHours="0"+newHours;
-	        }
-	        if(newMinutes<10){
-	            newMinutes="0"+newMinutes;
-	        }
-	        if(newSeconds<10){
-	            newSeconds="0"+newSeconds;
-	        }
-	        if(newMonth<10){
-	            newMonth="0"+newMonth;
-	        }
-	        if(newData<10){
-	            newData="0"+newData;
-	        }
-
-	        var today = newYear + "-" + newMonth + "-" + newData;
-	        var now =today+newHours + ":" + newMinutes + ":" + newSeconds;
-	        var _now=newtime.getTime();
-	        var beginTime =today+" "+startTime;
-	        var endTime =today+" "+endTime;
-	        var _endTime=Date.parse(endTime);
-	        var _beginTime=Date.parse(beginTime);
-	        var timeInfo="";
-	        if(_beginTime<_now && _now<_endTime){
-	            timeInfo=1;
-	        }else{
-	            timeInfo=0;
-	        }
-	        return timeInfo;
 	    }
 	};
 
 	module.exports=SW;
 
 /***/ },
-/* 93 */
+/* 78 */
 /***/ function(module, exports) {
 
 	/*数据缓存*/
@@ -10136,7 +8627,7 @@
 	}(window));
 
 /***/ },
-/* 94 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* Zepto v1.1.6 - zepto event ajax form ie - zeptojs.com/license */
@@ -11732,12 +10223,13 @@
 	})(Zepto)
 
 /***/ },
-/* 95 */
-/***/ function(module, exports) {
+/* 80 */
+/***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Created by Wangxin on 2016/5/19.
 	 */
+	var $=__webpack_require__(79);
 
 	var AllData={
 	    status:{
@@ -11812,23 +10304,26 @@
 	        }
 	    ],
 	    ns_svg: "http://www.w3.org/2000/svg",
+	    //=====tip===========
+	    svgReady:false,
+	    isNearTip: false
 	};
 	module.exports=AllData;
 
 
 /***/ },
-/* 96 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Created by xinye on 16/5/18.
 	 */
 
-	var $=__webpack_require__(94);
-	var AllData=__webpack_require__(95);
-	var SW=__webpack_require__(92);
-	var Drwlines=__webpack_require__(97);
-	var DrwTraf=__webpack_require__(98);
+	var $=__webpack_require__(79);
+	var AllData=__webpack_require__(80);
+	var SW=__webpack_require__(77);
+	var Drwlines=__webpack_require__(82);
+	var DrwTraf=__webpack_require__(83);
 
 
 	var drwSw = {
@@ -11843,7 +10338,6 @@
 	    moveY: 0,
 	    font_size: 12,
 	    nearHightLight: 14,
-	    isNearTip: false,
 	    /*站点名称的位置*/
 	    label_angle: {
 	        '0': [0, -1],
@@ -11858,13 +10352,12 @@
 	    specailPhone: false,
 	    curOffset: {},
 	    sortline: null,
-	    ns_svg: AllData.ns_svg,
 	    nearId: null,
-	    svgReady: false,
 	    svgOffset: {
 	        left: 0,
 	        top: 0
 	    },
+	    ns_svg: AllData.ns_svg,
 	    statusColor:AllData.statusColor,
 	    trafficInfo:AllData.cache.trafficInfo,
 	    stations:AllData.cache.stations,
@@ -11885,7 +10378,7 @@
 	    //初始化画图数据;
 	    initDraw: function(drwData, param) {
 	        var self = this;
-	        self.t_left =0;
+	        self.t_left = 0;
 	        self.t_top = 0;
 	        var screenX = parseInt(self.w / 2),
 	            screenY = parseInt(self.h / 2),
@@ -12053,7 +10546,6 @@
 	            var center = tip.getStCenter(nearObj);
 	            tip.setCenter(center);
 	        }
-
 	        //SW.showStation(param);
 	        //SW.showRoute(param);
 	    },
@@ -12071,18 +10563,6 @@
 	        bg_rect.setAttribute('width', 2000);
 	        bg_rect.setAttribute('height', 2000);
 	        subway_bg.appendChild(bg_rect);
-	    },
-	    //绘制导航路线
-	    drawNavLine: function(drwData) {
-	        var self = this;
-	        var status = 'nav';
-	        var svg_g = document.getElementById("svg-g");
-	        var subway_nav_g = document.createElementNS(self.ns_svg, 'g');
-	        subway_nav_g.setAttribute("id", "g-nav");
-	        svg_g.appendChild(subway_nav_g);
-	        self.drwSwLines(drwData.lines, status);
-	        self.drwSwStations(drwData, status);
-	        self.drwSwStationsName(drwData, status, 12, 20); //缩小为0.5，第二个参数为24
 	    },
 	    // 绘制默认的地铁线路
 	    drwSwLines: function(drwData, status) {
@@ -12472,34 +10952,22 @@
 	            return false;
 	        }
 	    },
-	    drawSelectLine: function(drwData) {
-	        var self = this;
-	        var status = 'select';
-	        var svg_g = document.getElementById("svg-g");
-	        var subway_select_g = document.createElementNS(self.ns_svg, 'g');
-	        subway_select_g.setAttribute("id", "g-select");
-	        svg_g.appendChild(subway_select_g);
-	        drwSw.drwSwLines(drwData, status);
-	        drwSw.drwSwStations(drwData, status);
-	        drwSw.drwSwStationsName(drwData, status, 10, 20); //缩小为0.5，第二个参数为24
-	        drwSw.drwSwLinesName(drwData, status);
-	        DrwTraf.drwTrafficLinesDefer(drwData, status);
-	    }
+
 	};
 
 	module.exports=drwSw;
 
 
 /***/ },
-/* 97 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Created by xinye on 16/5/18.
 	 */
 
-	var AllData=__webpack_require__(95);
-	var drwSw=__webpack_require__(96);
+	var AllData=__webpack_require__(80);
+	var drwSw=__webpack_require__(81);
 
 	var Drwlines={
 	    defaultColor:AllData.statusColor[0].color,
@@ -12627,18 +11095,18 @@
 
 
 /***/ },
-/* 98 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Created by xinye on 16/5/18.
 	 */
 
-	__webpack_require__(93);
-	var AllData=__webpack_require__(95);
-	var drwSw=__webpack_require__(96);
-	var Drwlines=__webpack_require__(97);
-	var tip=__webpack_require__(99);
+	__webpack_require__(78);
+	var AllData=__webpack_require__(80);
+	var drwSw=__webpack_require__(81);
+	var Drwlines=__webpack_require__(82);
+	var tip=__webpack_require__(84);
 
 	var DrwTraf = {
 	    timer:null,
@@ -12935,21 +11403,19 @@
 
 
 /***/ },
-/* 99 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Created by xinye on 16/5/18.
 	 */
-	var $=__webpack_require__(94);
-	__webpack_require__(100);
+	var $=__webpack_require__(79);
+	var Hammer=__webpack_require__(85);
 
-	var DrwTraf=__webpack_require__(98);
-	var drwSw=__webpack_require__(96);
-	var SW=__webpack_require__(92);
-	var AllData=__webpack_require__(95);
-	var drwSec=__webpack_require__(101);
-
+	var DrwTraf=__webpack_require__(83);
+	var drwSw=__webpack_require__(81);
+	var SW=__webpack_require__(77);
+	var AllData=__webpack_require__(80);
 
 	var getstureState = 0;
 	var el = document.getElementById('drag_handle');
@@ -12958,31 +11424,16 @@
 	var tip = {
 	    refreshTimer:{},
 	    refreshstate:0,
-	    timer:{},
 	    w: document.documentElement.clientWidth,
 	    h: document.documentElement.clientHeight,
 	    curCity:AllData.cache.curCity,
-	    host: "http://m.amap.com/",
-	    verify: "/verify/?from=",
-	    isHighlight: false,
-	    isInfoShow: false,
 	    stationsInfo: AllData.cache.stationsInfo,/*几个数据接口*/
 	    stations: AllData.cache.stations,
 	    lines: AllData.cache.lines,
-	    tempTrafficinfo:AllData.cache.tempTrafficinfo,
 	    station_w: 26,
-	    dragObjXY: {}, //拖拽div时的实时xy
-	    dragX: null,
-	    dragY: null,
-	    onePoint: {}, //单手touch时的初始xy
-	    twoPoint1: {}, //双手touch时的初始x1y1
-	    twoPoint2: {}, //双手touch时的初始x2y2
-	    twoOriginPointDis: null, //双手touch时的两手指的初始距离
 	    touchStatus: null, //当前touch状态：drag, scale
 	    curScale: 1, //当前缩放级别
 	    allScale: 1,
-	    zoomCenter: null, //搜索初始中心点
-	    dragHandle: $("#drag_handle"), //touch对象
 	    dragObj: $("#subwaySvg"), //
 	    svgOffset: {
 	        left: 0,
@@ -12993,29 +11444,7 @@
 	        y: $(window).height() / 2
 	    },
 	    subwaySvg: document.getElementById("subway-svg"),
-	    dragObjOffset: {
-	        x: null,
-	        y: null
-	    },
 	    opentip: false,
-	    curopenStation: null,
-	    routeInfo: { //路线规划起始点信息
-	        start: null,
-	        end: null
-	    },
-	    routeDtailInfo: {
-	        start: null,
-	        end: null
-	    },
-	    routeId: {
-	        start: null,
-	        end: null
-	    },
-	    navDrwData: {
-	        linesbar: [],
-	        lines: {},
-	        stations: []
-	    },
 	    transform: {
 	        translate: {
 	            x: 0,
@@ -13033,7 +11462,8 @@
 	    transformOrigin: null,
 	    routeState: false,
 	    fromendState: false,
-	    pathData: null,
+	    //pathData: null,
+	    //初始化事件绑定信息
 
 	    preventScrollBounce: function(eles) {
 	        if (!eles.length && !eles.unshift) {
@@ -13055,6 +11485,270 @@
 
 	    },
 	    //绑定事件
+	    bindEvent: function() {
+	        document.addEventListener('touchstart', function() {});
+	        var self = this;
+	        var $refresh=$(".refresh_btn");
+	        var $subway = $('#subway');
+	        var $citypage = $('#citypage');
+	        var $overlays = $('#overlays');
+	        //var $srh = $('#srhpage');
+	        var el = document.getElementById('drag_handle');
+	        var mc = new Hammer.Manager(el, {
+	            domEvents: true
+	        });
+
+	        mc.add(new Hammer.Pan());
+	        mc.add(new Hammer.Pinch());
+
+	        var enableGesture = true;
+	        var lastAction = "";
+	        var hasPenchend = false;
+
+	        mc.on("panmove", function(ev) {
+	            if (!enableGesture) return;
+	            self.touchStatus = 'pan';
+	            lastAction = "pan";
+	            self.mcdragSvg(ev);
+	        });
+
+	        mc.on("pinchstart pinchmove", function(ev) {
+
+	            if (!enableGesture) return;
+
+	            self.touchStatus = 'pinch';
+	            lastAction = "pinch";
+	            if (ev.type == 'pinchstart') {
+	                self.svgOffset = drwSw.svgOffset || tip.svgOffset;
+	                hasPenchend = false;
+	            }
+	            self.mcScaleSvg(ev);
+
+	        });
+
+	        mc.on("pinchend", function(ev) {
+	            setTimeout(function() {
+	                if (!hasPenchend) {
+	                    self.scaleSvgUpdate(self.transform.scale);
+	                }
+	            }, 0)
+	        });
+	        mc.on("hammer.input", function(ev) {
+
+	            if (ev.isFinal) {
+
+	                if (lastAction == "pinch") {
+	                    self.scaleSvgUpdate(self.transform.scale);
+	                    hasPenchend = true;
+	                }
+
+	                if (lastAction == "pan") {
+	                    self.svgUpdate(ev);
+	                }
+
+	                enableGesture = false;
+	                setTimeout(function() {
+	                    enableGesture = true;
+	                }, 50);
+	            }
+	        });
+
+	        $subway.on('touchend', 'g', function() {
+	            if (!self.touchStatus) {
+	                if ($(this).hasClass('line_name')) {
+	                    //线路选择器显示线路名
+	                    var line_id = $(this).attr('lineid');
+	                    var SW_line_name = AllData.cache.lines[line_id].ln;
+	                    var line_name=SW_line_name.split("/")[0].toString().substr(0,4);
+	                    $(".filter_btn").html(line_name);
+	                    showFilter.showFilterLine(line_id);
+	                    var select_obj = $('#g-select');
+	                    tip.setFitview(select_obj);
+	                    var center = self.getFilterCenter();
+	                    self.setCenter(center);
+	                }
+	            }
+	        });
+
+	        $subway.on('touchend', '#g-bg', function() {
+	            if (!tip.routeState) {
+	                if (!self.touchStatus) {
+	                    $('#g-select').remove();
+	                    $('#g-bg').css('display', 'none');
+	                    $(".filter_btn").html("线路图");
+	                }
+	            }
+	        });
+
+	        //触击 非站点又不是换乘点的区域 关闭弹窗
+	        $subway.on('touchend','#drag_handle'&&".light_box",function(e) {
+	            if (!self.touchStatus && !tip.routeState) {
+	                var target = e.target;
+	                if (target.getAttribute('class') != 'station_obj' || target.getAttribute('class') != 'nav-img') {
+	                    tip.closeTip();
+	                    tip.closehelpBox();
+	                }
+	            }
+	        });
+
+
+
+	        //$("#srhlist").on("touchmove", function(e) {
+	        //    $("#srh_ipt").blur();
+	        //});
+	        //触击站点事件：打开一个#city=city代码&station=站点代码的网址;
+	        $subway.on('touchend', '.station_obj', function (e) {
+	            e.stopPropagation();
+	            if (!self.touchStatus && !tip.routeState) {
+	                var id = $(this).attr('station_id');
+	                self.closeFilter();
+	                $('.light_box').css('display', 'block');
+	                //var obj = $("#overlays");
+	                //if (drwSw.isNearTip) {
+	                //    drwSw.clearNearTip();
+	                //}
+	                //tip.openTip(obj);
+	                //var center = tip.getStCenter(obj);
+	                //tip.setCenter(center);
+	                //console.log(obj,center);
+	                window.location.hash = '#city=' + AllData.cache.curCity.adcode + '&station=' + id;
+	            }
+	        });
+
+	        //点击弹出层事件：阻止冒泡,接受事件,但是无动作
+	        $overlays.on('touchend', '.tip_wrap', function(e) {
+	            e.stopPropagation();
+	        });
+	        //点击弹出层事件：阻止冒泡
+	        $overlays.on('touchstart', '.tip_wrap', function(e) {
+	            e.stopPropagation();
+	        });
+
+	        $(".top_bar").on("touchend", function () {
+	            tip.closeTip();
+	            tip.closeFilter();
+	        });
+
+	        $('.light_box').on('touchmove', function(ev) {
+	            ev.preventDefault();
+	        });
+
+	        $('#loading').on('touchmove', function(ev) {
+	            ev.preventDefault();
+	        });
+	        //关闭背景暗箱
+	        $('.light_box').on('touchend', function() {
+	            self.closeFilter();
+	            self.closehelpBox()
+	        });
+
+	        $refresh.on('touchend', function (ev) {
+	            ev.stopPropagation();
+	            if(self.refreshstate==0){
+	                self.refreshstate=1;
+	                var $refresh = $(".refresh_btn");
+	                $refresh.addClass("refresh_active");
+	                var city_code = AllData.cache.curCity.adcode;
+	                var city_name = AllData.fileNameData[AllData.cache.curCity.adcode];
+	                var status = 'normal';
+	                SW.loadTraffic(city_code, city_name);
+	                //console.log("add前",drwSw.currLines);
+	                drwSw.drwTrafficLinesDefer(drwSw.currLines, status);
+	            }else {
+	                ev.stopPropagation();
+	            }
+	        });
+
+	        //点击线路图选择器，打开选择器
+	        $('.filter_btn').on('touchend', function() {
+	            self.closehelpBox();
+	            if (!tip.routeState) {
+	                self.openFilter();
+	            }
+	        });
+	        //点击选择器中的路线：关闭选择器，显示地铁，设置屏幕中心点为地铁的中心
+	        $('.fliter_detail').on('touchend', '.fliter_item', function() {
+	            if (lockfd) return;
+	            var line_id = $(this).attr('lineid');
+	            var line_name=$(this).attr('name');
+	            if (line_id == "caption-allLines") {
+	                self.closeFilter();
+	                $(".filter_btn").html("线路图");
+	                $('#g-bg').css('display','none');
+	                //self.showFilterLine(line_id);
+	                var center={};
+	                var $Svg=$('#svg-g');
+	                var $Svg_offset = $Svg.offset();
+	                var $Svg_h = document.getElementById('svg-g').getBBox().height * self.allScale,
+	                    $Svg_w = document.getElementById('svg-g').getBBox().width * self.allScale;
+	                center.x = $Svg_offset.left + $Svg_w/2;
+	                center.y = $Svg_offset.top + $Svg_h/2;
+	                //var center2=self.getStCenter($Svg);
+	                //console.log($Svg_offset,center,center2,$Svg_w,$Svg_h);
+	                //console.log(tip.realCenter);
+	                tip.setCenter(center);
+
+	            } else {
+	                self.closeFilter();
+	                $(".filter_btn").html(line_name);
+	                showFilter.showFilterLine(line_id);
+	                var select_obj = $('#g-select');
+	                tip.setFitview(select_obj);
+	                var center = self.getFilterCenter();
+	                self.setCenter(center);
+	            }
+	        });
+
+	        //处理选择器中的移动事件
+	        var fdTimer;
+	        var lockfd = false;
+	        $('.fliter_detail').on('touchmove', function(e) {
+	            e.stopPropagation();
+	            lockfd = true;
+	            fdTimer && clearTimeout(fdTimer);
+	            fdTimer = setTimeout(function() {
+	                lockfd = false;
+	            }, 60);
+	        });
+
+	        $(".help_btn").on("touchend", function (e) {
+	            e.stopPropagation();
+	            self.closeFilter();
+	            $(".refresh_time_text").removeClass("refresh_time_text_show").css("display", "none");
+	            $(".refresh_box").hide().removeClass("refresh_box_show").css("display", "none");
+	            tip.openhelpBox();
+	        });
+	        $(".help_close").on("touchend", function (e) {
+	            e.stopPropagation();
+	            tip.closehelpBox();
+	        });
+
+
+	        $('.tip_close').on('touchend', function(e) {
+	            e.stopPropagation();
+	            tip.closeTip();/*调用closeTip的方法*/
+	        });
+
+	        $('#back_amap').on('touchend', function() {
+	            tip.goback()
+	        });
+
+	        //导航栏中的城市名的触摸事件
+	        $('.city_list_btn').on('touchend', function() {
+	            tip.cityChange();
+	        });
+
+	        $citypage.on('touchend', '.cityitem', function() {
+	            var adcode = $(this).attr('adcode');
+	            // window.location.hash = "#city=" + adcode;
+	            // $('#tip-content').remove();
+	            tip.initCity();
+	            window.location.hash = "#city=" + adcode;
+	            // SW.changeCity(adcode);
+	            tip.hideCitylist();
+	            $('#subway').show();
+	        });
+	    },
 	    refreshShow: function () {
 	        $(".refresh_box").css("display", "block").addClass("refresh_box_show");
 	        $(".refresh_time_text").css("display", "block").addClass("refresh_time_text_show");
@@ -13413,7 +12107,7 @@
 	                                infowHtml.push("<li class=\"time-item-detail\">");
 	                                infowHtml.push("<div class=\"train-direct fl\"><span class=\"direct-name\">" + direction.n + "</span><label class=\"direct-label\">方向</label></div>"); //下一站名，表示方向
 	                                infowHtml.push("<div class=\"train-time fr\">");
-	                                infowHtml.push("<div class=\"start-time time-box fl\"><label class=\"time-label-start\"><span>首</span></label><span class=\"time\">" + first_time + "</span></div>"); //首发
+	                                infowHtml.push("<div class=\"start-time time-box fl\"><label class=\"time-label-start\">首</label><span class=\"time\">" + first_time + "</span></div>"); //首发
 	                                infowHtml.push("<div class=\"last-time time-box fl\"><label class=\"time-label-end\">末</label><span class=\"time\">" + last_time + "</span></div>"); //末发
 	                                infowHtml.push("</div>");
 	                                infowHtml.push("</li>");
@@ -13425,11 +12119,6 @@
 	                }
 
 	            }
-	            //for(var k in self.tempTrafficinfo.stInfo){
-	            //    if(self.tempTrafficinfo.stInfo[k].timeInside==true){
-	            //        $("#tip_detail_error").html("由于现在客流量较大，现在该站采取限流措施。")
-	            //    }
-	            //}
 	        }
 
 	        $("#tip_content").html(infowHtml.join(""));
@@ -13584,7 +12273,7 @@
 	    },
 	    //创建城市列表
 	    creatCitylist: function() {
-	        var city = AllData.cityListData;
+	        var city = SW.cityListData;
 	        if (city) {
 	            var citylist = $('#citylist');
 	            var cityListHtm = '';
@@ -13606,7 +12295,6 @@
 	    hideCitylist: function() {
 	        $('#citypage').hide();
 	    },
-
 	    //获得对象中心位置
 	    getStCenter: function(obj) {
 	        if (obj) {
@@ -13620,7 +12308,6 @@
 
 	        }
 	    },
-
 	    //清楚标记
 	    clearMarker: function(type) {
 	        var self = this;
@@ -13725,25 +12412,25 @@
 	        }
 	    },
 	    //格式化时间
-	    //formatTime: function(le) {
-	    //    if (!le || le == '0') {
-	    //        return '';
-	    //    }
-	    //    le = le / 60;
-	    //    if (le <= 60) {
-	    //        return parseInt(Math.ceil(le)) + '分钟';
-	    //    } else {
-	    //        var o = Math.floor(le / 60) + '小时';
-	    //        if (le % 60 !== 0) {
-	    //            if (Math.floor(le % 60) === 0) {
-	    //
-	    //            } else {
-	    //                o += Math.floor(le % 60) + '分钟';
-	    //            }
-	    //        }
-	    //        return o;
-	    //    }
-	    //},
+	    formatTime: function(le) {
+	        if (!le || le == '0') {
+	            return '';
+	        }
+	        le = le / 60;
+	        if (le <= 60) {
+	            return parseInt(Math.ceil(le)) + '分钟';
+	        } else {
+	            var o = Math.floor(le / 60) + '小时';
+	            if (le % 60 !== 0) {
+	                if (Math.floor(le % 60) === 0) {
+
+	                } else {
+	                    o += Math.floor(le % 60) + '分钟';
+	                }
+	            }
+	            return o;
+	        }
+	    },
 	    unableFlite: function() {
 	        $('.filter_btn').css({
 	            'z-index': '10'
@@ -13753,6 +12440,31 @@
 	        $('.filter_btn').css({
 	            'z-index': '20'
 	        })
+	    },
+	    resetTime: function (timeString) {
+	        if(timeString!="--:--"){
+	            var hours=Number(timeString.split(":")[0]);
+	            var mins=Number(timeString.split(":")[1]);
+	            if(hours<10 && hours>0){
+	                hours="0"+hours;
+	            }else if(hours==0){
+	                hours="00";
+	            }else{
+	                hours=hours;
+	            }
+
+	            if(mins<10 && mins>0){
+	                mins="0"+mins;
+	            }else if(mins==0){
+	                mins="00";
+	            }else{
+	                mins=mins;
+	            }
+
+	            return hours+":"+mins;
+	        }else{
+	            return timeString;
+	        }
 	    },
 	    clearRouteIpt: function(type) {
 	        var placeholder = {
@@ -13780,31 +12492,6 @@
 	    //加载完成
 	    loadingOver: function() {
 	        $('.loading-bg').css('display', 'none');
-	    },
-	    resetTime: function (timeString) {
-	        if(timeString!="--:--"){
-	            var hours=Number(timeString.split(":")[0]);
-	            var mins=Number(timeString.split(":")[1]);
-	            if(hours<10 && hours>0){
-	                hours="0"+hours;
-	            }else if(hours==0){
-	                hours="00";
-	            }else{
-	                hours=hours;
-	            }
-
-	            if(mins<10 && mins>0){
-	                mins="0"+mins;
-	            }else if(mins==0){
-	                mins="00";
-	            }else{
-	                mins=mins;
-	            }
-
-	            return hours+":"+mins;
-	        }else{
-	            return timeString;
-	        }
 	    }
 	};
 
@@ -13812,7 +12499,7 @@
 	module.exports=tip;
 
 /***/ },
-/* 100 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.6 - 2016-01-06
@@ -13824,78 +12511,54 @@
 	//# sourceMappingURL=hammer.min.map
 
 /***/ },
-/* 101 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
-	 * Created by xinye on 16/5/18.
+	 * Created by xinye on 16/5/20.
 	 */
 
-	var DrwTraf=__webpack_require__(98);
-	var drwSw=__webpack_require__(96);
+	var AllData=__webpack_require__(80);
+	var drwSelect=__webpack_require__(87);
+	var tip=__webpack_require__(84);
 
-	var drwSec={
-	    /*绘制选择的线路*/
-	    drawSelectLine: function(drwData) {
-	        var self = this;
-	        var status = 'select';
-	        var svg_g = document.getElementById("svg-g");
-	        var subway_select_g = document.createElementNS(self.ns_svg, 'g');
-	        subway_select_g.setAttribute("id", "g-select");
-	        svg_g.appendChild(subway_select_g);
-	        drwSw.drwSwLines(drwData, status);
-	        drwSw.drwSwStations(drwData, status);
-	        drwSw.drwSwStationsName(drwData, status, 10, 20); //缩小为0.5，第二个参数为24
-	        drwSw.drwSwLinesName(drwData, status);
-	        DrwTraf.drwTrafficLinesDefer(drwData, status);
-	    }
-	};
 
-	module.exports=drwSec;
-
-/***/ },
-/* 102 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Created by xinye on 16/5/19.
-	 */
-
-	var $=__webpack_require__(94);
-	__webpack_require__(100);
-	var tip=__webpack_require__(99);
-	var drwSw=__webpack_require__(96);
-	var AllData=__webpack_require__(95);
-	var DrwTraf=__webpack_require__(98);
-
-	var bindEv={
-	    //初始化事件绑定信息
+	var bindEvent={
 	    init: function() {
 	        this.bindEvent();
 	    },
+	    //绑定事件
 	    bindEvent: function() {
+	        document.addEventListener('touchstart', function() {});
 	        var self = this;
-	        document.addEventListener('touchstart', function () {});
-	        var $refresh = $(".refresh_btn");
+	        var $refresh=$(".refresh_btn");
 	        var $subway = $('#subway');
 	        var $citypage = $('#citypage');
 	        var $overlays = $('#overlays');
-	        //=================mc===================
+	        //var $srh = $('#srhpage');
 	        var el = document.getElementById('drag_handle');
-	        var mc = new Hammer.Manager(el, {domEvents: true});
+	        var mc = new Hammer.Manager(el, {
+	            domEvents: true
+	        });
+
 	        mc.add(new Hammer.Pan());
 	        mc.add(new Hammer.Pinch());
+
 	        var enableGesture = true;
 	        var lastAction = "";
 	        var hasPenchend = false;
-	        mc.on("panmove", function (ev) {
+
+	        mc.on("panmove", function(ev) {
 	            if (!enableGesture) return;
 	            tip.touchStatus = 'pan';
 	            lastAction = "pan";
 	            tip.mcdragSvg(ev);
 	        });
-	        mc.on("pinchstart pinchmove", function (ev) {
+
+	        mc.on("pinchstart pinchmove", function(ev) {
+
 	            if (!enableGesture) return;
+
 	            tip.touchStatus = 'pinch';
 	            lastAction = "pinch";
 	            if (ev.type == 'pinchstart') {
@@ -13903,30 +12566,36 @@
 	                hasPenchend = false;
 	            }
 	            tip.mcScaleSvg(ev);
+
 	        });
-	        mc.on("pinchend", function (ev) {
-	            setTimeout(function () {
+
+	        mc.on("pinchend", function(ev) {
+	            setTimeout(function() {
 	                if (!hasPenchend) {
 	                    tip.scaleSvgUpdate(tip.transform.scale);
 	                }
 	            }, 0)
 	        });
-	        mc.on("hammer.input", function (ev) {
+	        mc.on("hammer.input", function(ev) {
+
 	            if (ev.isFinal) {
+
 	                if (lastAction == "pinch") {
 	                    tip.scaleSvgUpdate(tip.transform.scale);
 	                    hasPenchend = true;
 	                }
+
 	                if (lastAction == "pan") {
 	                    tip.svgUpdate(ev);
 	                }
+
 	                enableGesture = false;
-	                setTimeout(function () {
+	                setTimeout(function() {
 	                    enableGesture = true;
 	                }, 50);
 	            }
 	        });
-	        //======================subway======================
+
 	        $subway.on('touchend', 'g', function() {
 	            if (!tip.touchStatus) {
 	                if ($(this).hasClass('line_name')) {
@@ -13966,6 +12635,10 @@
 	        });
 
 
+
+	        //$("#srhlist").on("touchmove", function(e) {
+	        //    $("#srh_ipt").blur();
+	        //});
 	        //触击站点事件：打开一个#city=city代码&station=站点代码的网址;
 	        $subway.on('touchend', '.station_obj', function (e) {
 	            e.stopPropagation();
@@ -13973,10 +12646,18 @@
 	                var id = $(this).attr('station_id');
 	                tip.closeFilter();
 	                $('.light_box').css('display', 'block');
+	                //var obj = $("#overlays");
+	                //if (drwSw.isNearTip) {
+	                //    drwSw.clearNearTip();
+	                //}
+	                //tip.openTip(obj);
+	                //var center = tip.getStCenter(obj);
+	                //tip.setCenter(center);
+	                //console.log(obj,center);
 	                window.location.hash = '#city=' + AllData.cache.curCity.adcode + '&station=' + id;
 	            }
 	        });
-	        /*=======================overlays=====================*/
+
 	        //点击弹出层事件：阻止冒泡,接受事件,但是无动作
 	        $overlays.on('touchend', '.tip_wrap', function(e) {
 	            e.stopPropagation();
@@ -13991,11 +12672,6 @@
 	            tip.closeFilter();
 	        });
 
-	        //关闭背景暗箱
-	        $('.light_box').on('touchend', function() {
-	            tip.closeFilter();
-	            tip.closehelpBox()
-	        });
 	        $('.light_box').on('touchmove', function(ev) {
 	            ev.preventDefault();
 	        });
@@ -14003,6 +12679,12 @@
 	        $('#loading').on('touchmove', function(ev) {
 	            ev.preventDefault();
 	        });
+	        //关闭背景暗箱
+	        $('.light_box').on('touchend', function() {
+	            tip.closeFilter();
+	            tip.closehelpBox()
+	        });
+
 	        $refresh.on('touchend', function (ev) {
 	            ev.stopPropagation();
 	            if(tip.refreshstate==0){
@@ -14012,9 +12694,9 @@
 	                var city_code = AllData.cache.curCity.adcode;
 	                var city_name = AllData.fileNameData[AllData.cache.curCity.adcode];
 	                var status = 'normal';
-	                DrwTraf.loadTraffic(city_code, city_name);
+	                SW.loadTraffic(city_code, city_name);
 	                //console.log("add前",drwSw.currLines);
-	                DrwTraf.drwTrafficLinesDefer(drwSw.currLines, status);
+	                drwSw.drwTrafficLinesDefer(drwSw.currLines, status);
 	            }else {
 	                ev.stopPropagation();
 	            }
@@ -14032,20 +12714,19 @@
 	            if (lockfd) return;
 	            var line_id = $(this).attr('lineid');
 	            var line_name=$(this).attr('name');
-	            var center={};
 	            if (line_id == "caption-allLines") {
 	                tip.closeFilter();
 	                $(".filter_btn").html("线路图");
 	                $('#g-bg').css('display','none');
-	                //tip.showFilterLine(line_id);
-
+	                //self.showFilterLine(line_id);
+	                var center={};
 	                var $Svg=$('#svg-g');
 	                var $Svg_offset = $Svg.offset();
 	                var $Svg_h = document.getElementById('svg-g').getBBox().height * tip.allScale,
 	                    $Svg_w = document.getElementById('svg-g').getBBox().width * tip.allScale;
 	                center.x = $Svg_offset.left + $Svg_w/2;
 	                center.y = $Svg_offset.top + $Svg_h/2;
-	                //var center2=tip.getStCenter($Svg);
+	                //var center2=self.getStCenter($Svg);
 	                //console.log($Svg_offset,center,center2,$Svg_w,$Svg_h);
 	                //console.log(tip.realCenter);
 	                tip.setCenter(center);
@@ -14056,7 +12737,7 @@
 	                self.showFilterLine(line_id);
 	                var select_obj = $('#g-select');
 	                tip.setFitview(select_obj);
-	                center = tip.getFilterCenter();
+	                var center = tip.getFilterCenter();
 	                tip.setCenter(center);
 	            }
 	        });
@@ -14100,7 +12781,6 @@
 	            tip.cityChange();
 	        });
 
-
 	        $citypage.on('touchend', '.cityitem', function() {
 	            var adcode = $(this).attr('adcode');
 	            // window.location.hash = "#city=" + adcode;
@@ -14112,16 +12792,894 @@
 	            $('#subway').show();
 	        });
 	    },
+
+
 	    //显示过滤后的地铁线
 	    showFilterLine: function(id) {
-	        var self=this;
 	        $('#g-select').remove();
 	        $('#g-bg').css('display', 'block');
-	        drwSw.drawSelectLine(AllData.cache.lines[id], 'select');
+	        drwSelect.drawSelectLine(AllData.cache.lines[id], 'select');
+	    }
+	};
+	module.exports=bindEvent;
+
+/***/ },
+/* 87 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by xinye on 16/5/20.
+	 */
+
+	var AllData=__webpack_require__(80);
+	var DrwTraf=__webpack_require__(83);
+	var drwSw=__webpack_require__(81);
+
+	var drwSelect={
+	    ns_svg: AllData.ns_svg,
+	    drawSelectLine: function(drwData) {
+	        var self = this;
+	        var status = 'select';
+	        var svg_g = document.getElementById("svg-g");
+	        var subway_select_g = document.createElementNS(self.ns_svg, 'g');
+	        subway_select_g.setAttribute("id", "g-select");
+	        svg_g.appendChild(subway_select_g);
+	        drwSw.drwSwLines(drwData, status);
+	        drwSw.drwSwStations(drwData, status);
+	        drwSw.drwSwStationsName(drwData, status, 10, 20); //缩小为0.5，第二个参数为24
+	        drwSw.drwSwLinesName(drwData, status);
+	        DrwTraf.drwTrafficLinesDefer(drwData, status);
 	    }
 	};
 
-	module.exports=bindEv;
+	module.exports=drwSelect;
+
+/***/ },
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
+		'use strict';
+
+		/**
+		 * @preserve FastClick: polyfill to remove click delays on browsers with touch UIs.
+		 *
+		 * @codingstandard ftlabs-jsv2
+		 * @copyright The Financial Times Limited [All Rights Reserved]
+		 * @license MIT License (see LICENSE.txt)
+		 */
+
+		/*jslint browser:true, node:true*/
+		/*global define, Event, Node*/
+
+
+		/**
+		 * Instantiate fast-clicking listeners on the specified layer.
+		 *
+		 * @constructor
+		 * @param {Element} layer The layer to listen on
+		 * @param {Object} [options={}] The options to override the defaults
+		 */
+		function FastClick(layer, options) {
+			var oldOnClick;
+
+			options = options || {};
+
+			/**
+			 * Whether a click is currently being tracked.
+			 *
+			 * @type boolean
+			 */
+			this.trackingClick = false;
+
+
+			/**
+			 * Timestamp for when click tracking started.
+			 *
+			 * @type number
+			 */
+			this.trackingClickStart = 0;
+
+
+			/**
+			 * The element being tracked for a click.
+			 *
+			 * @type EventTarget
+			 */
+			this.targetElement = null;
+
+
+			/**
+			 * X-coordinate of touch start event.
+			 *
+			 * @type number
+			 */
+			this.touchStartX = 0;
+
+
+			/**
+			 * Y-coordinate of touch start event.
+			 *
+			 * @type number
+			 */
+			this.touchStartY = 0;
+
+
+			/**
+			 * ID of the last touch, retrieved from Touch.identifier.
+			 *
+			 * @type number
+			 */
+			this.lastTouchIdentifier = 0;
+
+
+			/**
+			 * Touchmove boundary, beyond which a click will be cancelled.
+			 *
+			 * @type number
+			 */
+			this.touchBoundary = options.touchBoundary || 10;
+
+
+			/**
+			 * The FastClick layer.
+			 *
+			 * @type Element
+			 */
+			this.layer = layer;
+
+			/**
+			 * The minimum time between tap(touchstart and touchend) events
+			 *
+			 * @type number
+			 */
+			this.tapDelay = options.tapDelay || 200;
+
+			/**
+			 * The maximum time for a tap
+			 *
+			 * @type number
+			 */
+			this.tapTimeout = options.tapTimeout || 700;
+
+			if (FastClick.notNeeded(layer)) {
+				return;
+			}
+
+			// Some old versions of Android don't have Function.prototype.bind
+			function bind(method, context) {
+				return function() { return method.apply(context, arguments); };
+			}
+
+
+			var methods = ['onMouse', 'onClick', 'onTouchStart', 'onTouchMove', 'onTouchEnd', 'onTouchCancel'];
+			var context = this;
+			for (var i = 0, l = methods.length; i < l; i++) {
+				context[methods[i]] = bind(context[methods[i]], context);
+			}
+
+			// Set up event handlers as required
+			if (deviceIsAndroid) {
+				layer.addEventListener('mouseover', this.onMouse, true);
+				layer.addEventListener('mousedown', this.onMouse, true);
+				layer.addEventListener('mouseup', this.onMouse, true);
+			}
+
+			layer.addEventListener('click', this.onClick, true);
+			layer.addEventListener('touchstart', this.onTouchStart, false);
+			layer.addEventListener('touchmove', this.onTouchMove, false);
+			layer.addEventListener('touchend', this.onTouchEnd, false);
+			layer.addEventListener('touchcancel', this.onTouchCancel, false);
+
+			// Hack is required for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
+			// which is how FastClick normally stops click events bubbling to callbacks registered on the FastClick
+			// layer when they are cancelled.
+			if (!Event.prototype.stopImmediatePropagation) {
+				layer.removeEventListener = function(type, callback, capture) {
+					var rmv = Node.prototype.removeEventListener;
+					if (type === 'click') {
+						rmv.call(layer, type, callback.hijacked || callback, capture);
+					} else {
+						rmv.call(layer, type, callback, capture);
+					}
+				};
+
+				layer.addEventListener = function(type, callback, capture) {
+					var adv = Node.prototype.addEventListener;
+					if (type === 'click') {
+						adv.call(layer, type, callback.hijacked || (callback.hijacked = function(event) {
+							if (!event.propagationStopped) {
+								callback(event);
+							}
+						}), capture);
+					} else {
+						adv.call(layer, type, callback, capture);
+					}
+				};
+			}
+
+			// If a handler is already declared in the element's onclick attribute, it will be fired before
+			// FastClick's onClick handler. Fix this by pulling out the user-defined handler function and
+			// adding it as listener.
+			if (typeof layer.onclick === 'function') {
+
+				// Android browser on at least 3.2 requires a new reference to the function in layer.onclick
+				// - the old one won't work if passed to addEventListener directly.
+				oldOnClick = layer.onclick;
+				layer.addEventListener('click', function(event) {
+					oldOnClick(event);
+				}, false);
+				layer.onclick = null;
+			}
+		}
+
+		/**
+		* Windows Phone 8.1 fakes user agent string to look like Android and iPhone.
+		*
+		* @type boolean
+		*/
+		var deviceIsWindowsPhone = navigator.userAgent.indexOf("Windows Phone") >= 0;
+
+		/**
+		 * Android requires exceptions.
+		 *
+		 * @type boolean
+		 */
+		var deviceIsAndroid = navigator.userAgent.indexOf('Android') > 0 && !deviceIsWindowsPhone;
+
+
+		/**
+		 * iOS requires exceptions.
+		 *
+		 * @type boolean
+		 */
+		var deviceIsIOS = /iP(ad|hone|od)/.test(navigator.userAgent) && !deviceIsWindowsPhone;
+
+
+		/**
+		 * iOS 4 requires an exception for select elements.
+		 *
+		 * @type boolean
+		 */
+		var deviceIsIOS4 = deviceIsIOS && (/OS 4_\d(_\d)?/).test(navigator.userAgent);
+
+
+		/**
+		 * iOS 6.0-7.* requires the target element to be manually derived
+		 *
+		 * @type boolean
+		 */
+		var deviceIsIOSWithBadTarget = deviceIsIOS && (/OS [6-7]_\d/).test(navigator.userAgent);
+
+		/**
+		 * BlackBerry requires exceptions.
+		 *
+		 * @type boolean
+		 */
+		var deviceIsBlackBerry10 = navigator.userAgent.indexOf('BB10') > 0;
+
+		/**
+		 * Determine whether a given element requires a native click.
+		 *
+		 * @param {EventTarget|Element} target Target DOM element
+		 * @returns {boolean} Returns true if the element needs a native click
+		 */
+		FastClick.prototype.needsClick = function(target) {
+			switch (target.nodeName.toLowerCase()) {
+
+			// Don't send a synthetic click to disabled inputs (issue #62)
+			case 'button':
+			case 'select':
+			case 'textarea':
+				if (target.disabled) {
+					return true;
+				}
+
+				break;
+			case 'input':
+
+				// File inputs need real clicks on iOS 6 due to a browser bug (issue #68)
+				if ((deviceIsIOS && target.type === 'file') || target.disabled) {
+					return true;
+				}
+
+				break;
+			case 'label':
+			case 'iframe': // iOS8 homescreen apps can prevent events bubbling into frames
+			case 'video':
+				return true;
+			}
+
+			return (/\bneedsclick\b/).test(target.className);
+		};
+
+
+		/**
+		 * Determine whether a given element requires a call to focus to simulate click into element.
+		 *
+		 * @param {EventTarget|Element} target Target DOM element
+		 * @returns {boolean} Returns true if the element requires a call to focus to simulate native click.
+		 */
+		FastClick.prototype.needsFocus = function(target) {
+			switch (target.nodeName.toLowerCase()) {
+			case 'textarea':
+				return true;
+			case 'select':
+				return !deviceIsAndroid;
+			case 'input':
+				switch (target.type) {
+				case 'button':
+				case 'checkbox':
+				case 'file':
+				case 'image':
+				case 'radio':
+				case 'submit':
+					return false;
+				}
+
+				// No point in attempting to focus disabled inputs
+				return !target.disabled && !target.readOnly;
+			default:
+				return (/\bneedsfocus\b/).test(target.className);
+			}
+		};
+
+
+		/**
+		 * Send a click event to the specified element.
+		 *
+		 * @param {EventTarget|Element} targetElement
+		 * @param {Event} event
+		 */
+		FastClick.prototype.sendClick = function(targetElement, event) {
+			var clickEvent, touch;
+
+			// On some Android devices activeElement needs to be blurred otherwise the synthetic click will have no effect (#24)
+			if (document.activeElement && document.activeElement !== targetElement) {
+				document.activeElement.blur();
+			}
+
+			touch = event.changedTouches[0];
+
+			// Synthesise a click event, with an extra attribute so it can be tracked
+			clickEvent = document.createEvent('MouseEvents');
+			clickEvent.initMouseEvent(this.determineEventType(targetElement), true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, false, false, false, false, 0, null);
+			clickEvent.forwardedTouchEvent = true;
+			targetElement.dispatchEvent(clickEvent);
+		};
+
+		FastClick.prototype.determineEventType = function(targetElement) {
+
+			//Issue #159: Android Chrome Select Box does not open with a synthetic click event
+			if (deviceIsAndroid && targetElement.tagName.toLowerCase() === 'select') {
+				return 'mousedown';
+			}
+
+			return 'click';
+		};
+
+
+		/**
+		 * @param {EventTarget|Element} targetElement
+		 */
+		FastClick.prototype.focus = function(targetElement) {
+			var length;
+
+			// Issue #160: on iOS 7, some input elements (e.g. date datetime month) throw a vague TypeError on setSelectionRange. These elements don't have an integer value for the selectionStart and selectionEnd properties, but unfortunately that can't be used for detection because accessing the properties also throws a TypeError. Just check the type instead. Filed as Apple bug #15122724.
+			if (deviceIsIOS && targetElement.setSelectionRange && targetElement.type.indexOf('date') !== 0 && targetElement.type !== 'time' && targetElement.type !== 'month') {
+				length = targetElement.value.length;
+				targetElement.setSelectionRange(length, length);
+			} else {
+				targetElement.focus();
+			}
+		};
+
+
+		/**
+		 * Check whether the given target element is a child of a scrollable layer and if so, set a flag on it.
+		 *
+		 * @param {EventTarget|Element} targetElement
+		 */
+		FastClick.prototype.updateScrollParent = function(targetElement) {
+			var scrollParent, parentElement;
+
+			scrollParent = targetElement.fastClickScrollParent;
+
+			// Attempt to discover whether the target element is contained within a scrollable layer. Re-check if the
+			// target element was moved to another parent.
+			if (!scrollParent || !scrollParent.contains(targetElement)) {
+				parentElement = targetElement;
+				do {
+					if (parentElement.scrollHeight > parentElement.offsetHeight) {
+						scrollParent = parentElement;
+						targetElement.fastClickScrollParent = parentElement;
+						break;
+					}
+
+					parentElement = parentElement.parentElement;
+				} while (parentElement);
+			}
+
+			// Always update the scroll top tracker if possible.
+			if (scrollParent) {
+				scrollParent.fastClickLastScrollTop = scrollParent.scrollTop;
+			}
+		};
+
+
+		/**
+		 * @param {EventTarget} targetElement
+		 * @returns {Element|EventTarget}
+		 */
+		FastClick.prototype.getTargetElementFromEventTarget = function(eventTarget) {
+
+			// On some older browsers (notably Safari on iOS 4.1 - see issue #56) the event target may be a text node.
+			if (eventTarget.nodeType === Node.TEXT_NODE) {
+				return eventTarget.parentNode;
+			}
+
+			return eventTarget;
+		};
+
+
+		/**
+		 * On touch start, record the position and scroll offset.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onTouchStart = function(event) {
+			var targetElement, touch, selection;
+
+			// Ignore multiple touches, otherwise pinch-to-zoom is prevented if both fingers are on the FastClick element (issue #111).
+			if (event.targetTouches.length > 1) {
+				return true;
+			}
+
+			targetElement = this.getTargetElementFromEventTarget(event.target);
+			touch = event.targetTouches[0];
+
+			if (deviceIsIOS) {
+
+				// Only trusted events will deselect text on iOS (issue #49)
+				selection = window.getSelection();
+				if (selection.rangeCount && !selection.isCollapsed) {
+					return true;
+				}
+
+				if (!deviceIsIOS4) {
+
+					// Weird things happen on iOS when an alert or confirm dialog is opened from a click event callback (issue #23):
+					// when the user next taps anywhere else on the page, new touchstart and touchend events are dispatched
+					// with the same identifier as the touch event that previously triggered the click that triggered the alert.
+					// Sadly, there is an issue on iOS 4 that causes some normal touch events to have the same identifier as an
+					// immediately preceeding touch event (issue #52), so this fix is unavailable on that platform.
+					// Issue 120: touch.identifier is 0 when Chrome dev tools 'Emulate touch events' is set with an iOS device UA string,
+					// which causes all touch events to be ignored. As this block only applies to iOS, and iOS identifiers are always long,
+					// random integers, it's safe to to continue if the identifier is 0 here.
+					if (touch.identifier && touch.identifier === this.lastTouchIdentifier) {
+						event.preventDefault();
+						return false;
+					}
+
+					this.lastTouchIdentifier = touch.identifier;
+
+					// If the target element is a child of a scrollable layer (using -webkit-overflow-scrolling: touch) and:
+					// 1) the user does a fling scroll on the scrollable layer
+					// 2) the user stops the fling scroll with another tap
+					// then the event.target of the last 'touchend' event will be the element that was under the user's finger
+					// when the fling scroll was started, causing FastClick to send a click event to that layer - unless a check
+					// is made to ensure that a parent layer was not scrolled before sending a synthetic click (issue #42).
+					this.updateScrollParent(targetElement);
+				}
+			}
+
+			this.trackingClick = true;
+			this.trackingClickStart = event.timeStamp;
+			this.targetElement = targetElement;
+
+			this.touchStartX = touch.pageX;
+			this.touchStartY = touch.pageY;
+
+			// Prevent phantom clicks on fast double-tap (issue #36)
+			if ((event.timeStamp - this.lastClickTime) < this.tapDelay) {
+				event.preventDefault();
+			}
+
+			return true;
+		};
+
+
+		/**
+		 * Based on a touchmove event object, check whether the touch has moved past a boundary since it started.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.touchHasMoved = function(event) {
+			var touch = event.changedTouches[0], boundary = this.touchBoundary;
+
+			if (Math.abs(touch.pageX - this.touchStartX) > boundary || Math.abs(touch.pageY - this.touchStartY) > boundary) {
+				return true;
+			}
+
+			return false;
+		};
+
+
+		/**
+		 * Update the last position.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onTouchMove = function(event) {
+			if (!this.trackingClick) {
+				return true;
+			}
+
+			// If the touch has moved, cancel the click tracking
+			if (this.targetElement !== this.getTargetElementFromEventTarget(event.target) || this.touchHasMoved(event)) {
+				this.trackingClick = false;
+				this.targetElement = null;
+			}
+
+			return true;
+		};
+
+
+		/**
+		 * Attempt to find the labelled control for the given label element.
+		 *
+		 * @param {EventTarget|HTMLLabelElement} labelElement
+		 * @returns {Element|null}
+		 */
+		FastClick.prototype.findControl = function(labelElement) {
+
+			// Fast path for newer browsers supporting the HTML5 control attribute
+			if (labelElement.control !== undefined) {
+				return labelElement.control;
+			}
+
+			// All browsers under test that support touch events also support the HTML5 htmlFor attribute
+			if (labelElement.htmlFor) {
+				return document.getElementById(labelElement.htmlFor);
+			}
+
+			// If no for attribute exists, attempt to retrieve the first labellable descendant element
+			// the list of which is defined here: http://www.w3.org/TR/html5/forms.html#category-label
+			return labelElement.querySelector('button, input:not([type=hidden]), keygen, meter, output, progress, select, textarea');
+		};
+
+
+		/**
+		 * On touch end, determine whether to send a click event at once.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onTouchEnd = function(event) {
+			var forElement, trackingClickStart, targetTagName, scrollParent, touch, targetElement = this.targetElement;
+
+			if (!this.trackingClick) {
+				return true;
+			}
+
+			// Prevent phantom clicks on fast double-tap (issue #36)
+			if ((event.timeStamp - this.lastClickTime) < this.tapDelay) {
+				this.cancelNextClick = true;
+				return true;
+			}
+
+			if ((event.timeStamp - this.trackingClickStart) > this.tapTimeout) {
+				return true;
+			}
+
+			// Reset to prevent wrong click cancel on input (issue #156).
+			this.cancelNextClick = false;
+
+			this.lastClickTime = event.timeStamp;
+
+			trackingClickStart = this.trackingClickStart;
+			this.trackingClick = false;
+			this.trackingClickStart = 0;
+
+			// On some iOS devices, the targetElement supplied with the event is invalid if the layer
+			// is performing a transition or scroll, and has to be re-detected manually. Note that
+			// for this to function correctly, it must be called *after* the event target is checked!
+			// See issue #57; also filed as rdar://13048589 .
+			if (deviceIsIOSWithBadTarget) {
+				touch = event.changedTouches[0];
+
+				// In certain cases arguments of elementFromPoint can be negative, so prevent setting targetElement to null
+				targetElement = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset) || targetElement;
+				targetElement.fastClickScrollParent = this.targetElement.fastClickScrollParent;
+			}
+
+			targetTagName = targetElement.tagName.toLowerCase();
+			if (targetTagName === 'label') {
+				forElement = this.findControl(targetElement);
+				if (forElement) {
+					this.focus(targetElement);
+					if (deviceIsAndroid) {
+						return false;
+					}
+
+					targetElement = forElement;
+				}
+			} else if (this.needsFocus(targetElement)) {
+
+				// Case 1: If the touch started a while ago (best guess is 100ms based on tests for issue #36) then focus will be triggered anyway. Return early and unset the target element reference so that the subsequent click will be allowed through.
+				// Case 2: Without this exception for input elements tapped when the document is contained in an iframe, then any inputted text won't be visible even though the value attribute is updated as the user types (issue #37).
+				if ((event.timeStamp - trackingClickStart) > 100 || (deviceIsIOS && window.top !== window && targetTagName === 'input')) {
+					this.targetElement = null;
+					return false;
+				}
+
+				this.focus(targetElement);
+				this.sendClick(targetElement, event);
+
+				// Select elements need the event to go through on iOS 4, otherwise the selector menu won't open.
+				// Also this breaks opening selects when VoiceOver is active on iOS6, iOS7 (and possibly others)
+				if (!deviceIsIOS || targetTagName !== 'select') {
+					this.targetElement = null;
+					event.preventDefault();
+				}
+
+				return false;
+			}
+
+			if (deviceIsIOS && !deviceIsIOS4) {
+
+				// Don't send a synthetic click event if the target element is contained within a parent layer that was scrolled
+				// and this tap is being used to stop the scrolling (usually initiated by a fling - issue #42).
+				scrollParent = targetElement.fastClickScrollParent;
+				if (scrollParent && scrollParent.fastClickLastScrollTop !== scrollParent.scrollTop) {
+					return true;
+				}
+			}
+
+			// Prevent the actual click from going though - unless the target node is marked as requiring
+			// real clicks or if it is in the whitelist in which case only non-programmatic clicks are permitted.
+			if (!this.needsClick(targetElement)) {
+				event.preventDefault();
+				this.sendClick(targetElement, event);
+			}
+
+			return false;
+		};
+
+
+		/**
+		 * On touch cancel, stop tracking the click.
+		 *
+		 * @returns {void}
+		 */
+		FastClick.prototype.onTouchCancel = function() {
+			this.trackingClick = false;
+			this.targetElement = null;
+		};
+
+
+		/**
+		 * Determine mouse events which should be permitted.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onMouse = function(event) {
+
+			// If a target element was never set (because a touch event was never fired) allow the event
+			if (!this.targetElement) {
+				return true;
+			}
+
+			if (event.forwardedTouchEvent) {
+				return true;
+			}
+
+			// Programmatically generated events targeting a specific element should be permitted
+			if (!event.cancelable) {
+				return true;
+			}
+
+			// Derive and check the target element to see whether the mouse event needs to be permitted;
+			// unless explicitly enabled, prevent non-touch click events from triggering actions,
+			// to prevent ghost/doubleclicks.
+			if (!this.needsClick(this.targetElement) || this.cancelNextClick) {
+
+				// Prevent any user-added listeners declared on FastClick element from being fired.
+				if (event.stopImmediatePropagation) {
+					event.stopImmediatePropagation();
+				} else {
+
+					// Part of the hack for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
+					event.propagationStopped = true;
+				}
+
+				// Cancel the event
+				event.stopPropagation();
+				event.preventDefault();
+
+				return false;
+			}
+
+			// If the mouse event is permitted, return true for the action to go through.
+			return true;
+		};
+
+
+		/**
+		 * On actual clicks, determine whether this is a touch-generated click, a click action occurring
+		 * naturally after a delay after a touch (which needs to be cancelled to avoid duplication), or
+		 * an actual click which should be permitted.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onClick = function(event) {
+			var permitted;
+
+			// It's possible for another FastClick-like library delivered with third-party code to fire a click event before FastClick does (issue #44). In that case, set the click-tracking flag back to false and return early. This will cause onTouchEnd to return early.
+			if (this.trackingClick) {
+				this.targetElement = null;
+				this.trackingClick = false;
+				return true;
+			}
+
+			// Very odd behaviour on iOS (issue #18): if a submit element is present inside a form and the user hits enter in the iOS simulator or clicks the Go button on the pop-up OS keyboard the a kind of 'fake' click event will be triggered with the submit-type input element as the target.
+			if (event.target.type === 'submit' && event.detail === 0) {
+				return true;
+			}
+
+			permitted = this.onMouse(event);
+
+			// Only unset targetElement if the click is not permitted. This will ensure that the check for !targetElement in onMouse fails and the browser's click doesn't go through.
+			if (!permitted) {
+				this.targetElement = null;
+			}
+
+			// If clicks are permitted, return true for the action to go through.
+			return permitted;
+		};
+
+
+		/**
+		 * Remove all FastClick's event listeners.
+		 *
+		 * @returns {void}
+		 */
+		FastClick.prototype.destroy = function() {
+			var layer = this.layer;
+
+			if (deviceIsAndroid) {
+				layer.removeEventListener('mouseover', this.onMouse, true);
+				layer.removeEventListener('mousedown', this.onMouse, true);
+				layer.removeEventListener('mouseup', this.onMouse, true);
+			}
+
+			layer.removeEventListener('click', this.onClick, true);
+			layer.removeEventListener('touchstart', this.onTouchStart, false);
+			layer.removeEventListener('touchmove', this.onTouchMove, false);
+			layer.removeEventListener('touchend', this.onTouchEnd, false);
+			layer.removeEventListener('touchcancel', this.onTouchCancel, false);
+		};
+
+
+		/**
+		 * Check whether FastClick is needed.
+		 *
+		 * @param {Element} layer The layer to listen on
+		 */
+		FastClick.notNeeded = function(layer) {
+			var metaViewport;
+			var chromeVersion;
+			var blackberryVersion;
+			var firefoxVersion;
+
+			// Devices that don't support touch don't need FastClick
+			if (typeof window.ontouchstart === 'undefined') {
+				return true;
+			}
+
+			// Chrome version - zero for other browsers
+			chromeVersion = +(/Chrome\/([0-9]+)/.exec(navigator.userAgent) || [,0])[1];
+
+			if (chromeVersion) {
+
+				if (deviceIsAndroid) {
+					metaViewport = document.querySelector('meta[name=viewport]');
+
+					if (metaViewport) {
+						// Chrome on Android with user-scalable="no" doesn't need FastClick (issue #89)
+						if (metaViewport.content.indexOf('user-scalable=no') !== -1) {
+							return true;
+						}
+						// Chrome 32 and above with width=device-width or less don't need FastClick
+						if (chromeVersion > 31 && document.documentElement.scrollWidth <= window.outerWidth) {
+							return true;
+						}
+					}
+
+				// Chrome desktop doesn't need FastClick (issue #15)
+				} else {
+					return true;
+				}
+			}
+
+			if (deviceIsBlackBerry10) {
+				blackberryVersion = navigator.userAgent.match(/Version\/([0-9]*)\.([0-9]*)/);
+
+				// BlackBerry 10.3+ does not require Fastclick library.
+				// https://github.com/ftlabs/fastclick/issues/251
+				if (blackberryVersion[1] >= 10 && blackberryVersion[2] >= 3) {
+					metaViewport = document.querySelector('meta[name=viewport]');
+
+					if (metaViewport) {
+						// user-scalable=no eliminates click delay.
+						if (metaViewport.content.indexOf('user-scalable=no') !== -1) {
+							return true;
+						}
+						// width=device-width (or less than device-width) eliminates click delay.
+						if (document.documentElement.scrollWidth <= window.outerWidth) {
+							return true;
+						}
+					}
+				}
+			}
+
+			// IE10 with -ms-touch-action: none or manipulation, which disables double-tap-to-zoom (issue #97)
+			if (layer.style.msTouchAction === 'none' || layer.style.touchAction === 'manipulation') {
+				return true;
+			}
+
+			// Firefox version - zero for other browsers
+			firefoxVersion = +(/Firefox\/([0-9]+)/.exec(navigator.userAgent) || [,0])[1];
+
+			if (firefoxVersion >= 27) {
+				// Firefox 27+ does not have tap delay if the content is not zoomable - https://bugzilla.mozilla.org/show_bug.cgi?id=922896
+
+				metaViewport = document.querySelector('meta[name=viewport]');
+				if (metaViewport && (metaViewport.content.indexOf('user-scalable=no') !== -1 || document.documentElement.scrollWidth <= window.outerWidth)) {
+					return true;
+				}
+			}
+
+			// IE11: prefixed -ms-touch-action is no longer supported and it's recomended to use non-prefixed version
+			// http://msdn.microsoft.com/en-us/library/windows/apps/Hh767313.aspx
+			if (layer.style.touchAction === 'none' || layer.style.touchAction === 'manipulation') {
+				return true;
+			}
+
+			return false;
+		};
+
+
+		/**
+		 * Factory method for creating a FastClick object
+		 *
+		 * @param {Element} layer The layer to listen on
+		 * @param {Object} [options={}] The options to override the defaults
+		 */
+		FastClick.attach = function(layer, options) {
+			return new FastClick(layer, options);
+		};
+
+
+		if (true) {
+
+			// AMD. Register as an anonymous module.
+			!(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
+				return FastClick;
+			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else if (typeof module !== 'undefined' && module.exports) {
+			module.exports = FastClick.attach;
+			module.exports.FastClick = FastClick;
+		} else {
+			window.FastClick = FastClick;
+		}
+	}());
+
 
 /***/ }
 /******/ ]);

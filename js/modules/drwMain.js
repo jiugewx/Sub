@@ -21,7 +21,6 @@ var drwSw = {
     moveY: 0,
     font_size: 12,
     nearHightLight: 14,
-    isNearTip: false,
     /*站点名称的位置*/
     label_angle: {
         '0': [0, -1],
@@ -37,7 +36,6 @@ var drwSw = {
     curOffset: {},
     sortline: null,
     nearId: null,
-    svgReady: false,
     svgOffset: {
         left: 0,
         top: 0
@@ -63,7 +61,7 @@ var drwSw = {
     //初始化画图数据;
     initDraw: function(drwData, param) {
         var self = this;
-        self.t_left =0;
+        self.t_left = 0;
         self.t_top = 0;
         var screenX = parseInt(self.w / 2),
             screenY = parseInt(self.h / 2),
@@ -107,12 +105,10 @@ var drwSw = {
         }
         originX = ox;
         originY = oy;
-
         var moveX = Number(screenX) - Number(originX);
         var moveY = Number(screenY) - Number(originY);
         drwSw.moveX = moveX;
         drwSw.moveY = moveY;
-
 
         self.deletInProgress(drwData);
         self.drawSvgSubway(drwData, lightStation, param);
@@ -233,7 +229,6 @@ var drwSw = {
             var center = tip.getStCenter(nearObj);
             tip.setCenter(center);
         }
-
         //SW.showStation(param);
         //SW.showRoute(param);
     },
@@ -251,18 +246,6 @@ var drwSw = {
         bg_rect.setAttribute('width', 2000);
         bg_rect.setAttribute('height', 2000);
         subway_bg.appendChild(bg_rect);
-    },
-    //绘制导航路线
-    drawNavLine: function(drwData) {
-        var self = this;
-        var status = 'nav';
-        var svg_g = document.getElementById("svg-g");
-        var subway_nav_g = document.createElementNS(self.ns_svg, 'g');
-        subway_nav_g.setAttribute("id", "g-nav");
-        svg_g.appendChild(subway_nav_g);
-        self.drwSwLines(drwData.lines, status);
-        self.drwSwStations(drwData, status);
-        self.drwSwStationsName(drwData, status, 12, 20); //缩小为0.5，第二个参数为24
     },
     // 绘制默认的地铁线路
     drwSwLines: function(drwData, status) {
@@ -652,19 +635,7 @@ var drwSw = {
             return false;
         }
     },
-    drawSelectLine: function(drwData) {
-        var self = this;
-        var status = 'select';
-        var svg_g = document.getElementById("svg-g");
-        var subway_select_g = document.createElementNS(self.ns_svg, 'g');
-        subway_select_g.setAttribute("id", "g-select");
-        svg_g.appendChild(subway_select_g);
-        drwSw.drwSwLines(drwData, status);
-        drwSw.drwSwStations(drwData, status);
-        drwSw.drwSwStationsName(drwData, status, 10, 20); //缩小为0.5，第二个参数为24
-        drwSw.drwSwLinesName(drwData, status);
-        DrwTraf.drwTrafficLinesDefer(drwData, status);
-    }
+
 };
 
 module.exports=drwSw;

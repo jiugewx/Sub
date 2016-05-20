@@ -22,5 +22,7 @@
 //require("./js/actions/tip");
 
 var SW=require("./js/modules/SW");
+
+
 SW.swInit();
 

@@ -1,42 +1,48 @@
 /**
- * Created by xinye on 16/5/19.
+ * Created by xinye on 16/5/20.
  */
 
-var $=require("../lib/zepto");
-require("../lib/hammer.js");
-var tip=require("./tip");
-var drwSw=require("./drwMain");
 var AllData=require("./AllData");
-var DrwTraf=require("./drwtraffic");
+var drwSelect=require("./drwSelect");
+var tip=require("./tip");
 
-var bindEv={
-    //初始化事件绑定信息
+
+var bindEvent={
     init: function() {
         this.bindEvent();
     },
+    //绑定事件
     bindEvent: function() {
+        document.addEventListener('touchstart', function() {});
         var self = this;
-        document.addEventListener('touchstart', function () {});
-        var $refresh = $(".refresh_btn");
+        var $refresh=$(".refresh_btn");
         var $subway = $('#subway');
         var $citypage = $('#citypage');
         var $overlays = $('#overlays');
-        //=================mc===================
+        //var $srh = $('#srhpage');
         var el = document.getElementById('drag_handle');
-        var mc = new Hammer.Manager(el, {domEvents: true});
+        var mc = new Hammer.Manager(el, {
+            domEvents: true
+        });
+
         mc.add(new Hammer.Pan());
         mc.add(new Hammer.Pinch());
+
         var enableGesture = true;
         var lastAction = "";
         var hasPenchend = false;
-        mc.on("panmove", function (ev) {
+
+        mc.on("panmove", function(ev) {
             if (!enableGesture) return;
             tip.touchStatus = 'pan';
             lastAction = "pan";
             tip.mcdragSvg(ev);
         });
-        mc.on("pinchstart pinchmove", function (ev) {
+
+        mc.on("pinchstart pinchmove", function(ev) {
+
             if (!enableGesture) return;
+
             tip.touchStatus = 'pinch';
             lastAction = "pinch";
             if (ev.type == 'pinchstart') {
@@ -44,30 +50,36 @@ var bindEv={
                 hasPenchend = false;
             }
             tip.mcScaleSvg(ev);
+
         });
-        mc.on("pinchend", function (ev) {
-            setTimeout(function () {
+
+        mc.on("pinchend", function(ev) {
+            setTimeout(function() {
                 if (!hasPenchend) {
                     tip.scaleSvgUpdate(tip.transform.scale);
                 }
             }, 0)
         });
-        mc.on("hammer.input", function (ev) {
+        mc.on("hammer.input", function(ev) {
+
             if (ev.isFinal) {
+
                 if (lastAction == "pinch") {
                     tip.scaleSvgUpdate(tip.transform.scale);
                     hasPenchend = true;
                 }
+
                 if (lastAction == "pan") {
                     tip.svgUpdate(ev);
                 }
+
                 enableGesture = false;
-                setTimeout(function () {
+                setTimeout(function() {
                     enableGesture = true;
                 }, 50);
             }
         });
-        //======================subway======================
+
         $subway.on('touchend', 'g', function() {
             if (!tip.touchStatus) {
                 if ($(this).hasClass('line_name')) {
@@ -107,6 +119,10 @@ var bindEv={
         });
 
 
+
+        //$("#srhlist").on("touchmove", function(e) {
+        //    $("#srh_ipt").blur();
+        //});
         //触击站点事件：打开一个#city=city代码&station=站点代码的网址;
         $subway.on('touchend', '.station_obj', function (e) {
             e.stopPropagation();
@@ -114,10 +130,18 @@ var bindEv={
                 var id = $(this).attr('station_id');
                 tip.closeFilter();
                 $('.light_box').css('display', 'block');
+                //var obj = $("#overlays");
+                //if (drwSw.isNearTip) {
+                //    drwSw.clearNearTip();
+                //}
+                //tip.openTip(obj);
+                //var center = tip.getStCenter(obj);
+                //tip.setCenter(center);
+                //console.log(obj,center);
                 window.location.hash = '#city=' + AllData.cache.curCity.adcode + '&station=' + id;
             }
         });
-        /*=======================overlays=====================*/
+
         //点击弹出层事件：阻止冒泡,接受事件,但是无动作
         $overlays.on('touchend', '.tip_wrap', function(e) {
             e.stopPropagation();
@@ -132,11 +156,6 @@ var bindEv={
             tip.closeFilter();
         });
 
-        //关闭背景暗箱
-        $('.light_box').on('touchend', function() {
-            tip.closeFilter();
-            tip.closehelpBox()
-        });
         $('.light_box').on('touchmove', function(ev) {
             ev.preventDefault();
         });
@@ -144,6 +163,12 @@ var bindEv={
         $('#loading').on('touchmove', function(ev) {
             ev.preventDefault();
         });
+        //关闭背景暗箱
+        $('.light_box').on('touchend', function() {
+            tip.closeFilter();
+            tip.closehelpBox()
+        });
+
         $refresh.on('touchend', function (ev) {
             ev.stopPropagation();
             if(tip.refreshstate==0){
@@ -153,9 +178,9 @@ var bindEv={
                 var city_code = AllData.cache.curCity.adcode;
                 var city_name = AllData.fileNameData[AllData.cache.curCity.adcode];
                 var status = 'normal';
-                DrwTraf.loadTraffic(city_code, city_name);
+                SW.loadTraffic(city_code, city_name);
                 //console.log("add前",drwSw.currLines);
-                DrwTraf.drwTrafficLinesDefer(drwSw.currLines, status);
+                drwSw.drwTrafficLinesDefer(drwSw.currLines, status);
             }else {
                 ev.stopPropagation();
             }
@@ -173,20 +198,19 @@ var bindEv={
             if (lockfd) return;
             var line_id = $(this).attr('lineid');
             var line_name=$(this).attr('name');
-            var center={};
             if (line_id == "caption-allLines") {
                 tip.closeFilter();
                 $(".filter_btn").html("线路图");
                 $('#g-bg').css('display','none');
-                //tip.showFilterLine(line_id);
-
+                //self.showFilterLine(line_id);
+                var center={};
                 var $Svg=$('#svg-g');
                 var $Svg_offset = $Svg.offset();
                 var $Svg_h = document.getElementById('svg-g').getBBox().height * tip.allScale,
                     $Svg_w = document.getElementById('svg-g').getBBox().width * tip.allScale;
                 center.x = $Svg_offset.left + $Svg_w/2;
                 center.y = $Svg_offset.top + $Svg_h/2;
-                //var center2=tip.getStCenter($Svg);
+                //var center2=self.getStCenter($Svg);
                 //console.log($Svg_offset,center,center2,$Svg_w,$Svg_h);
                 //console.log(tip.realCenter);
                 tip.setCenter(center);
@@ -197,7 +221,7 @@ var bindEv={
                 self.showFilterLine(line_id);
                 var select_obj = $('#g-select');
                 tip.setFitview(select_obj);
-                center = tip.getFilterCenter();
+                var center = tip.getFilterCenter();
                 tip.setCenter(center);
             }
         });
@@ -241,7 +265,6 @@ var bindEv={
             tip.cityChange();
         });
 
-
         $citypage.on('touchend', '.cityitem', function() {
             var adcode = $(this).attr('adcode');
             // window.location.hash = "#city=" + adcode;
@@ -253,13 +276,13 @@ var bindEv={
             $('#subway').show();
         });
     },
+
+
     //显示过滤后的地铁线
     showFilterLine: function(id) {
-        var self=this;
         $('#g-select').remove();
         $('#g-bg').css('display', 'block');
-        drwSw.drawSelectLine(AllData.cache.lines[id], 'select');
+        drwSelect.drawSelectLine(AllData.cache.lines[id], 'select');
     }
 };
-
-module.exports=bindEv;
+module.exports=bindEvent;

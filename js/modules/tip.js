@@ -2,14 +2,12 @@
  * Created by xinye on 16/5/18.
  */
 var $=require("../lib/zepto");
-require("../lib/hammer.js");
+var Hammer=require("../lib/hammer.js");
 
 var DrwTraf=require("./drwtraffic");
 var drwSw=require("./drwMain");
 var SW=require("./SW");
 var AllData=require("./AllData");
-var drwSec=require("./drwSelect");
-
 
 var getstureState = 0;
 var el = document.getElementById('drag_handle');
@@ -18,31 +16,16 @@ el.style.transformOrigin = "top left";
 var tip = {
     refreshTimer:{},
     refreshstate:0,
-    timer:{},
     w: document.documentElement.clientWidth,
     h: document.documentElement.clientHeight,
     curCity:AllData.cache.curCity,
-    host: "http://m.amap.com/",
-    verify: "/verify/?from=",
-    isHighlight: false,
-    isInfoShow: false,
     stationsInfo: AllData.cache.stationsInfo,/*几个数据接口*/
     stations: AllData.cache.stations,
     lines: AllData.cache.lines,
-    tempTrafficinfo:AllData.cache.tempTrafficinfo,
     station_w: 26,
-    dragObjXY: {}, //拖拽div时的实时xy
-    dragX: null,
-    dragY: null,
-    onePoint: {}, //单手touch时的初始xy
-    twoPoint1: {}, //双手touch时的初始x1y1
-    twoPoint2: {}, //双手touch时的初始x2y2
-    twoOriginPointDis: null, //双手touch时的两手指的初始距离
     touchStatus: null, //当前touch状态：drag, scale
     curScale: 1, //当前缩放级别
     allScale: 1,
-    zoomCenter: null, //搜索初始中心点
-    dragHandle: $("#drag_handle"), //touch对象
     dragObj: $("#subwaySvg"), //
     svgOffset: {
         left: 0,
@@ -53,29 +36,7 @@ var tip = {
         y: $(window).height() / 2
     },
     subwaySvg: document.getElementById("subway-svg"),
-    dragObjOffset: {
-        x: null,
-        y: null
-    },
     opentip: false,
-    curopenStation: null,
-    routeInfo: { //路线规划起始点信息
-        start: null,
-        end: null
-    },
-    routeDtailInfo: {
-        start: null,
-        end: null
-    },
-    routeId: {
-        start: null,
-        end: null
-    },
-    navDrwData: {
-        linesbar: [],
-        lines: {},
-        stations: []
-    },
     transform: {
         translate: {
             x: 0,
@@ -93,7 +54,8 @@ var tip = {
     transformOrigin: null,
     routeState: false,
     fromendState: false,
-    pathData: null,
+    //pathData: null,
+    //初始化事件绑定信息
 
     preventScrollBounce: function(eles) {
         if (!eles.length && !eles.unshift) {
@@ -115,6 +77,270 @@ var tip = {
 
     },
     //绑定事件
+    bindEvent: function() {
+        document.addEventListener('touchstart', function() {});
+        var self = this;
+        var $refresh=$(".refresh_btn");
+        var $subway = $('#subway');
+        var $citypage = $('#citypage');
+        var $overlays = $('#overlays');
+        //var $srh = $('#srhpage');
+        var el = document.getElementById('drag_handle');
+        var mc = new Hammer.Manager(el, {
+            domEvents: true
+        });
+
+        mc.add(new Hammer.Pan());
+        mc.add(new Hammer.Pinch());
+
+        var enableGesture = true;
+        var lastAction = "";
+        var hasPenchend = false;
+
+        mc.on("panmove", function(ev) {
+            if (!enableGesture) return;
+            self.touchStatus = 'pan';
+            lastAction = "pan";
+            self.mcdragSvg(ev);
+        });
+
+        mc.on("pinchstart pinchmove", function(ev) {
+
+            if (!enableGesture) return;
+
+            self.touchStatus = 'pinch';
+            lastAction = "pinch";
+            if (ev.type == 'pinchstart') {
+                self.svgOffset = drwSw.svgOffset || tip.svgOffset;
+                hasPenchend = false;
+            }
+            self.mcScaleSvg(ev);
+
+        });
+
+        mc.on("pinchend", function(ev) {
+            setTimeout(function() {
+                if (!hasPenchend) {
+                    self.scaleSvgUpdate(self.transform.scale);
+                }
+            }, 0)
+        });
+        mc.on("hammer.input", function(ev) {
+
+            if (ev.isFinal) {
+
+                if (lastAction == "pinch") {
+                    self.scaleSvgUpdate(self.transform.scale);
+                    hasPenchend = true;
+                }
+
+                if (lastAction == "pan") {
+                    self.svgUpdate(ev);
+                }
+
+                enableGesture = false;
+                setTimeout(function() {
+                    enableGesture = true;
+                }, 50);
+            }
+        });
+
+        $subway.on('touchend', 'g', function() {
+            if (!self.touchStatus) {
+                if ($(this).hasClass('line_name')) {
+                    //线路选择器显示线路名
+                    var line_id = $(this).attr('lineid');
+                    var SW_line_name = AllData.cache.lines[line_id].ln;
+                    var line_name=SW_line_name.split("/")[0].toString().substr(0,4);
+                    $(".filter_btn").html(line_name);
+                    showFilter.showFilterLine(line_id);
+                    var select_obj = $('#g-select');
+                    tip.setFitview(select_obj);
+                    var center = self.getFilterCenter();
+                    self.setCenter(center);
+                }
+            }
+        });
+
+        $subway.on('touchend', '#g-bg', function() {
+            if (!tip.routeState) {
+                if (!self.touchStatus) {
+                    $('#g-select').remove();
+                    $('#g-bg').css('display', 'none');
+                    $(".filter_btn").html("线路图");
+                }
+            }
+        });
+
+        //触击 非站点又不是换乘点的区域 关闭弹窗
+        $subway.on('touchend','#drag_handle'&&".light_box",function(e) {
+            if (!self.touchStatus && !tip.routeState) {
+                var target = e.target;
+                if (target.getAttribute('class') != 'station_obj' || target.getAttribute('class') != 'nav-img') {
+                    tip.closeTip();
+                    tip.closehelpBox();
+                }
+            }
+        });
+
+
+
+        //$("#srhlist").on("touchmove", function(e) {
+        //    $("#srh_ipt").blur();
+        //});
+        //触击站点事件：打开一个#city=city代码&station=站点代码的网址;
+        $subway.on('touchend', '.station_obj', function (e) {
+            e.stopPropagation();
+            if (!self.touchStatus && !tip.routeState) {
+                var id = $(this).attr('station_id');
+                self.closeFilter();
+                $('.light_box').css('display', 'block');
+                //var obj = $("#overlays");
+                //if (drwSw.isNearTip) {
+                //    drwSw.clearNearTip();
+                //}
+                //tip.openTip(obj);
+                //var center = tip.getStCenter(obj);
+                //tip.setCenter(center);
+                //console.log(obj,center);
+                window.location.hash = '#city=' + AllData.cache.curCity.adcode + '&station=' + id;
+            }
+        });
+
+        //点击弹出层事件：阻止冒泡,接受事件,但是无动作
+        $overlays.on('touchend', '.tip_wrap', function(e) {
+            e.stopPropagation();
+        });
+        //点击弹出层事件：阻止冒泡
+        $overlays.on('touchstart', '.tip_wrap', function(e) {
+            e.stopPropagation();
+        });
+
+        $(".top_bar").on("touchend", function () {
+            tip.closeTip();
+            tip.closeFilter();
+        });
+
+        $('.light_box').on('touchmove', function(ev) {
+            ev.preventDefault();
+        });
+
+        $('#loading').on('touchmove', function(ev) {
+            ev.preventDefault();
+        });
+        //关闭背景暗箱
+        $('.light_box').on('touchend', function() {
+            self.closeFilter();
+            self.closehelpBox()
+        });
+
+        $refresh.on('touchend', function (ev) {
+            ev.stopPropagation();
+            if(self.refreshstate==0){
+                self.refreshstate=1;
+                var $refresh = $(".refresh_btn");
+                $refresh.addClass("refresh_active");
+                var city_code = AllData.cache.curCity.adcode;
+                var city_name = AllData.fileNameData[AllData.cache.curCity.adcode];
+                var status = 'normal';
+                SW.loadTraffic(city_code, city_name);
+                //console.log("add前",drwSw.currLines);
+                drwSw.drwTrafficLinesDefer(drwSw.currLines, status);
+            }else {
+                ev.stopPropagation();
+            }
+        });
+
+        //点击线路图选择器，打开选择器
+        $('.filter_btn').on('touchend', function() {
+            self.closehelpBox();
+            if (!tip.routeState) {
+                self.openFilter();
+            }
+        });
+        //点击选择器中的路线：关闭选择器，显示地铁，设置屏幕中心点为地铁的中心
+        $('.fliter_detail').on('touchend', '.fliter_item', function() {
+            if (lockfd) return;
+            var line_id = $(this).attr('lineid');
+            var line_name=$(this).attr('name');
+            if (line_id == "caption-allLines") {
+                self.closeFilter();
+                $(".filter_btn").html("线路图");
+                $('#g-bg').css('display','none');
+                //self.showFilterLine(line_id);
+                var center={};
+                var $Svg=$('#svg-g');
+                var $Svg_offset = $Svg.offset();
+                var $Svg_h = document.getElementById('svg-g').getBBox().height * self.allScale,
+                    $Svg_w = document.getElementById('svg-g').getBBox().width * self.allScale;
+                center.x = $Svg_offset.left + $Svg_w/2;
+                center.y = $Svg_offset.top + $Svg_h/2;
+                //var center2=self.getStCenter($Svg);
+                //console.log($Svg_offset,center,center2,$Svg_w,$Svg_h);
+                //console.log(tip.realCenter);
+                tip.setCenter(center);
+
+            } else {
+                self.closeFilter();
+                $(".filter_btn").html(line_name);
+                showFilter.showFilterLine(line_id);
+                var select_obj = $('#g-select');
+                tip.setFitview(select_obj);
+                var center = self.getFilterCenter();
+                self.setCenter(center);
+            }
+        });
+
+        //处理选择器中的移动事件
+        var fdTimer;
+        var lockfd = false;
+        $('.fliter_detail').on('touchmove', function(e) {
+            e.stopPropagation();
+            lockfd = true;
+            fdTimer && clearTimeout(fdTimer);
+            fdTimer = setTimeout(function() {
+                lockfd = false;
+            }, 60);
+        });
+
+        $(".help_btn").on("touchend", function (e) {
+            e.stopPropagation();
+            self.closeFilter();
+            $(".refresh_time_text").removeClass("refresh_time_text_show").css("display", "none");
+            $(".refresh_box").hide().removeClass("refresh_box_show").css("display", "none");
+            tip.openhelpBox();
+        });
+        $(".help_close").on("touchend", function (e) {
+            e.stopPropagation();
+            tip.closehelpBox();
+        });
+
+
+        $('.tip_close').on('touchend', function(e) {
+            e.stopPropagation();
+            tip.closeTip();/*调用closeTip的方法*/
+        });
+
+        $('#back_amap').on('touchend', function() {
+            tip.goback()
+        });
+
+        //导航栏中的城市名的触摸事件
+        $('.city_list_btn').on('touchend', function() {
+            tip.cityChange();
+        });
+
+        $citypage.on('touchend', '.cityitem', function() {
+            var adcode = $(this).attr('adcode');
+            // window.location.hash = "#city=" + adcode;
+            // $('#tip-content').remove();
+            tip.initCity();
+            window.location.hash = "#city=" + adcode;
+            // SW.changeCity(adcode);
+            tip.hideCitylist();
+            $('#subway').show();
+        });
+    },
     refreshShow: function () {
         $(".refresh_box").css("display", "block").addClass("refresh_box_show");
         $(".refresh_time_text").css("display", "block").addClass("refresh_time_text_show");
@@ -473,7 +699,7 @@ var tip = {
                                 infowHtml.push("<li class=\"time-item-detail\">");
                                 infowHtml.push("<div class=\"train-direct fl\"><span class=\"direct-name\">" + direction.n + "</span><label class=\"direct-label\">方向</label></div>"); //下一站名，表示方向
                                 infowHtml.push("<div class=\"train-time fr\">");
-                                infowHtml.push("<div class=\"start-time time-box fl\"><label class=\"time-label-start\"><span>首</span></label><span class=\"time\">" + first_time + "</span></div>"); //首发
+                                infowHtml.push("<div class=\"start-time time-box fl\"><label class=\"time-label-start\">首</label><span class=\"time\">" + first_time + "</span></div>"); //首发
                                 infowHtml.push("<div class=\"last-time time-box fl\"><label class=\"time-label-end\">末</label><span class=\"time\">" + last_time + "</span></div>"); //末发
                                 infowHtml.push("</div>");
                                 infowHtml.push("</li>");
@@ -485,11 +711,6 @@ var tip = {
                 }
 
             }
-            //for(var k in self.tempTrafficinfo.stInfo){
-            //    if(self.tempTrafficinfo.stInfo[k].timeInside==true){
-            //        $("#tip_detail_error").html("由于现在客流量较大，现在该站采取限流措施。")
-            //    }
-            //}
         }
 
         $("#tip_content").html(infowHtml.join(""));
@@ -644,7 +865,7 @@ var tip = {
     },
     //创建城市列表
     creatCitylist: function() {
-        var city = AllData.cityListData;
+        var city = SW.cityListData;
         if (city) {
             var citylist = $('#citylist');
             var cityListHtm = '';
@@ -666,7 +887,6 @@ var tip = {
     hideCitylist: function() {
         $('#citypage').hide();
     },
-
     //获得对象中心位置
     getStCenter: function(obj) {
         if (obj) {
@@ -680,7 +900,6 @@ var tip = {
 
         }
     },
-
     //清楚标记
     clearMarker: function(type) {
         var self = this;
@@ -785,25 +1004,25 @@ var tip = {
         }
     },
     //格式化时间
-    //formatTime: function(le) {
-    //    if (!le || le == '0') {
-    //        return '';
-    //    }
-    //    le = le / 60;
-    //    if (le <= 60) {
-    //        return parseInt(Math.ceil(le)) + '分钟';
-    //    } else {
-    //        var o = Math.floor(le / 60) + '小时';
-    //        if (le % 60 !== 0) {
-    //            if (Math.floor(le % 60) === 0) {
-    //
-    //            } else {
-    //                o += Math.floor(le % 60) + '分钟';
-    //            }
-    //        }
-    //        return o;
-    //    }
-    //},
+    formatTime: function(le) {
+        if (!le || le == '0') {
+            return '';
+        }
+        le = le / 60;
+        if (le <= 60) {
+            return parseInt(Math.ceil(le)) + '分钟';
+        } else {
+            var o = Math.floor(le / 60) + '小时';
+            if (le % 60 !== 0) {
+                if (Math.floor(le % 60) === 0) {
+
+                } else {
+                    o += Math.floor(le % 60) + '分钟';
+                }
+            }
+            return o;
+        }
+    },
     unableFlite: function() {
         $('.filter_btn').css({
             'z-index': '10'
@@ -813,6 +1032,31 @@ var tip = {
         $('.filter_btn').css({
             'z-index': '20'
         })
+    },
+    resetTime: function (timeString) {
+        if(timeString!="--:--"){
+            var hours=Number(timeString.split(":")[0]);
+            var mins=Number(timeString.split(":")[1]);
+            if(hours<10 && hours>0){
+                hours="0"+hours;
+            }else if(hours==0){
+                hours="00";
+            }else{
+                hours=hours;
+            }
+
+            if(mins<10 && mins>0){
+                mins="0"+mins;
+            }else if(mins==0){
+                mins="00";
+            }else{
+                mins=mins;
+            }
+
+            return hours+":"+mins;
+        }else{
+            return timeString;
+        }
     },
     clearRouteIpt: function(type) {
         var placeholder = {
@@ -840,31 +1084,6 @@ var tip = {
     //加载完成
     loadingOver: function() {
         $('.loading-bg').css('display', 'none');
-    },
-    resetTime: function (timeString) {
-        if(timeString!="--:--"){
-            var hours=Number(timeString.split(":")[0]);
-            var mins=Number(timeString.split(":")[1]);
-            if(hours<10 && hours>0){
-                hours="0"+hours;
-            }else if(hours==0){
-                hours="00";
-            }else{
-                hours=hours;
-            }
-
-            if(mins<10 && mins>0){
-                mins="0"+mins;
-            }else if(mins==0){
-                mins="00";
-            }else{
-                mins=mins;
-            }
-
-            return hours+":"+mins;
-        }else{
-            return timeString;
-        }
     }
 };
 
