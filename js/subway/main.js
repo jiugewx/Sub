@@ -839,8 +839,8 @@ var tip = {
                     }
                     infowHtml.push("<div class=\"tip_detail_line\">");
                     //infowHtml.push("<label class=\"line-label\" style=\"background-color:#"+self.lines[lineid].cl+"\">地铁" + self.lines[lineid].ln + line_sub_name +"</label>");
-                    infowHtml.push("<label class=\"line-label\">" + self.lines[lineid].ln + line_sub_name +"</label>");
-                    infowHtml.push("<label class='line-sub-label'></label>");
+                    infowHtml.push("<label class=\"line-name\">" + self.lines[lineid].ln + line_sub_name +"</label>");
+                    infowHtml.push("<label class='line-white-label'></label>");
                     infowHtml.push("<ul class=\"time-item-main\">");
                     for (var j = 0; j < 2; j++) {
                         if (current_station[lineid][j]) {

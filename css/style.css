@@ -301,11 +301,11 @@ body.disable-default-action {
     position: fixed;
     width: 36px;
     height: 14px;
-    line-height: 9px;
+    line-height: 14px;
     top: 14px;
     right: 8px;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0,.3);
-    border-radius: 2px;
+    border-radius: 4px;
     z-index: 20;
     background: rgba(102,102,102,1) url(../img/subway/route.png) no-repeat;
     background-size: 24px 14px;
@@ -320,11 +320,26 @@ body.disable-default-action {
 .filter_content {
     display: none;
     position: absolute;
-    width: 200px;
+    width: 180px;
     z-index: 21;
     background: #fff;
     box-shadow: 0 0 6px 1px rgba(0, 0, 0, .3);
     border-radius: 5px;
+    overflow: hidden;
+}
+/*.fliter_item_last{margin-bottom: 30px;}*/
+.line_color {
+    display: block;
+    height: 8px;
+    width: 35px;
+    float: left;
+    margin: 16px  10px 0 0 ;
+}
+
+.line_name {
+    display: block;
+    float: left;
+    margin-left: 10px;
 }
 
 /*.ios .filter_content{top: 112px;}*/
@@ -332,13 +347,14 @@ body.disable-default-action {
 .fliter_detail {
     max-height: 286px;
     min-width : 130px;
-    padding: 0 11px;
+    padding: 0 20px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     user-select: none;
+
 }
 
 .fliter_item {
@@ -355,11 +371,11 @@ body.disable-default-action {
     position: fixed;
     width: 36px;
     height: 14px;
-    line-height: 9px;
+    line-height: 14px;
     top: 58px;
     right: 8px;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0,.3);
-    border-radius: 2px;
+    border-radius: 4px;
     z-index: 20;
     background: rgba(102,102,102,1) url(../img/subway/flow.png) center center no-repeat;
     background-size: 24px 14px;
@@ -430,8 +446,8 @@ body.disable-default-action {
     width: 30px;
     margin: 0 3px  0 40px;
     background:url(../img/subway/limit.png) no-repeat;
-    background-position: 5px 0;
-    background-size: 20px 20px;
+    background-position: 3px 0;
+    background-size: 23px 20px;
 }
 .help_text{
     float: right;
@@ -507,9 +523,8 @@ body.disable-default-action {
 
 .refresh_box{
     position: fixed;
-    bottom: 17px;
+    bottom: 18px;
     left: 30px;
-    border: solid #ffffff 1px;
     display: none;
     height: 25px;
     line-height: 25px;
@@ -548,7 +563,6 @@ body.disable-default-action {
     margin-left: 25px;
     text-align: left;
     width: 98px;
-    font-weight: bold;
 }
 .refresh_time_text_show{
     animation: showText 4s;
@@ -604,21 +618,6 @@ body.disable-default-action {
 
 /*.ios .route_close_btn{top: 76px;}*/
 
-/*.fliter_item_last{margin-bottom: 30px;}*/
-.line_color {
-    display: block;
-    height: 8px;
-    width: 60px;
-    float: left;
-    margin-top: 16px;
-    margin-right: 10px;
-}
-
-.line_name {
-    display: block;
-    float: left;
-    margin-left: 20px;
-}
 
 .overlays {
     position: absolute;
@@ -660,7 +659,7 @@ body.disable-default-action {
 .tip_name {
     display: inline-block;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: bold;
     color: black;
     padding: 10px 0;
     height: 16px;
@@ -708,7 +707,7 @@ body.disable-default-action {
     width: 100%;
     display: block;
     margin-top: 5px;
-    line-height: 24px;
+    line-height: 22px;
 }
 
 .tip_detail_btn {
@@ -716,16 +715,18 @@ body.disable-default-action {
     padding-right: 5px;
 }
 
-.line-label {
+.line-name {
     color:black;
     display: inline-block;
     /*padding: 0 5px;*/
     font-size: 16px;
     font-weight: bold;
-    /*border-radius: 5px;*/
+    /*background-color: rosybrown;*/
 }
 
-.line-sub-label {
+
+
+.line-white-label {
     padding-left: 5px;
     font-size: 14px;
     color: #000;
@@ -739,11 +740,6 @@ body.disable-default-action {
     padding-bottom: 10px;
 }
 
-.time-item .time-item-title {
-    height: 24px;
-    line-height: 24px;
-    color: black;
-}
 
 .time-item .time-item-main {
     overflow: hidden;
@@ -752,8 +748,8 @@ body.disable-default-action {
 }
 
 .time-item .time-item-main .time-item-detail {
-    line-height: 24px;
-    padding: 6px 0;
+    line-height: 22px;
+    padding: 3px 0;
     overflow: hidden;
     zoom: 1;
 }
@@ -761,7 +757,7 @@ body.disable-default-action {
 
 .time-item-detail .train-direct .direct-label {
     display: block;
-    width: 40px;
+    width: 35px;
     float: left;
     font-size: 14px;
 }
@@ -774,18 +770,19 @@ body.disable-default-action {
 }
 
 .time-item-detail .train-time .time-box {
-    width:66px;
+    width:64px;
+    height: 22px;
     overflow: hidden;
     margin-left: 2px;
 }
 
 .time-item-detail .train-time .time-box .time-label-start{
-    display: block;
-    width: 16px;
-    height: 16px;
-    line-height: 16px;
-    float: left;
-    margin: 2px 0 0 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    font-size: 12px;
+    margin: 4px 0 4px 2px;
     border-radius: 50%;
     text-align: center;
     color: #1774ff;
@@ -793,12 +790,12 @@ body.disable-default-action {
 }
 
 .time-item-detail .train-time .time-box .time-label-end {
-    display: block;
-    width: 16px;
-    height: 16px;
-    line-height: 16px;
-    float: left;
-    margin: 2px 0 0 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    font-size: 12px;
+    margin: 4px 0 4px 2px;
     border-radius: 50%;
     text-align: center;
     color: #ff0033;
@@ -807,10 +804,12 @@ body.disable-default-action {
 
 .time-item-detail .train-time .time {
     font-size: 14px;
-    display: block;
+    display:inline-block;
+    line-height: 14px;
+    margin: 5px 2px 5px 1px;
     width: 40px;
     float: right;
-    margin-left: 8px;
+    text-align: center;
 }
 
 .tip_footer {

@@ -212,7 +212,8 @@ var drwSw = {
 		var firstHtml=[];
 		firstHtml.push("<li class='fliter_item' id='caption-allLines' lineid='caption-allLines' name='全部地铁'>");
 		//firstHtml.push("<span class='line_color' style='background:#000'></span>");
-		firstHtml.push("<span class='line_name'>全部地铁线路</span>");
+		//firstHtml.push("<span class='line_name'>全部地铁线路</span>");
+		firstHtml.push("<span class='line_name' style='margin-left: 45px'>全部地铁线路</span>");
 		firstHtml.push("</li>");
 		subway_caption.html(firstHtml.join(""));
 		//添加地铁
@@ -231,8 +232,8 @@ var drwSw = {
 			} else {
 				line_name = SW.cache.lines[self.sortline[i]].ln + '<b class="line_name_la">( ' + SW.cache.lines[self.sortline[i]].la + ' )</b>';
 			}
-			//html = '<span class="line_color" style="background:#' + SW.cache.lines[self.sortline[i]].cl + '"></span><span class="line_name">' + line_name + '</span>';
-			html = "<span class='line_name'>" + line_name + "</span>";
+			html = '<span class="line_color" style="background:#' + SW.cache.lines[self.sortline[i]].cl + '"></span><span class="line_name">' + line_name + '</span>';
+			//html = "<span class='line_name'>" + line_name + "</span>";
 			caption_item.html(html);
 			caption_item.attr('id', 'caption-' + self.sortline[i]);
 			caption_item.attr('lineid', self.sortline[i]);

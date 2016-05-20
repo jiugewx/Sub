@@ -3,20 +3,20 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-    <title>地铁图</title>
-    <link rel="shortcut icon" type="image/x-icon" href="./img/subway/favicon.ico" media="screen">
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <title>轨道客流</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/subway/favicon.ico" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body class="disable-default-action">
     <div id="os" class="os">
         <!-- 地铁页面 -->
         <div id="subway">
             <!--<div class="top_bar">-->
-                <!--&lt;!&ndash; 返回按钮&ndash;&gt;-->
-                <!--<div class="back_btn" id="back_amap"></div>-->
-                <!--<div class="page-title">轨道客流</div>-->
-                <!--&lt;!&ndash; 当前城市，点击可以进入城市选择面板&ndash;&gt;-->
-                <!--&lt;!&ndash;<a class="city_list_btn city_name" href='javascript:void(0)'></a>&ndash;&gt;-->
+            <!--&lt;!&ndash; 返回按钮&ndash;&gt;-->
+            <!--<div class="back_btn" id="back_amap"></div>-->
+            <!--<div class="page-title">轨道客流</div>-->
+            <!--&lt;!&ndash; 当前城市，点击可以进入城市选择面板&ndash;&gt;-->
+            <!--&lt;!&ndash;<a class="city_list_btn city_name" href='javascript:void(0)'></a>&ndash;&gt;-->
             <!--</div>-->
             <!-- 线路选择盒子 -->
             <div class="light_box"></div><!--实现背景变暗-->
@@ -46,8 +46,8 @@
                                 <div class="tip_detail">
                                     <!--<div class="tip_detail_error">抱歉，暂无数据</div>-->
                                     <!--<div class="tip_detail_success">-->
-                                        <!--<span class="tip_detail_out">出：37人</span>-->
-                                        <!--<span class="tip_detail_in">进：79人</span>-->
+                                    <!--<span class="tip_detail_out">出：37人</span>-->
+                                    <!--<span class="tip_detail_in">进：79人</span>-->
                                     <!--</div>-->
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                     <!-- 地铁的划线部分-->
                 </div>
             </div>
-            <img id="transfer-img" src="./img/subway/transfer-station.png" style="display:none"/>
+            <img id="transfer-img" src="img/subway/transfer-station.png" style="display:none"/>
             <!-- 地铁画布Canvas-->
             <canvas id="subwayCanvas" width="2000" height="2000" style="display:none;"></canvas>
             <!-- 地铁的内容部分-->
@@ -97,12 +97,13 @@
         <div class="loading-bg" id="loading">
             <div class="loading-outer">
                 <div class="loading">
-                    <img class="loading-img" src="./img/subway/loading.gif">
+                    <img class="loading-img" src="img/subway/loading.gif">
                     <div class="loading-txt">正在加载，请稍候...</div>
                 </div>
             </div>
         </div>
     </div>
+
     <script type="text/javascript">
         /*登陆客户端设备判断*/
         var userAgent = navigator.userAgent;
@@ -114,7 +115,6 @@
             osbody.className = 'android'
         }
     </script>
-    <!-- //build:js js/main.min.js -->
     <script type="text/javascript" src="./js/lib/zepto.min.js"></script>
     <script type="text/javascript" src="./js/lib/fastclick.js"></script>
     <script type="text/javascript" src="./js/lib/hammer.js"></script>
@@ -122,16 +122,10 @@
     <script type="text/javascript" src="./js/subway/common.js"></script>
     <script type="text/javascript" src="./js/subway/drw.js"></script>
     <script type="text/javascript" src="./js/subway/main.js"></script>
-    <!--// /build -->
-    <script type="text/javascript">
-
+    <script>
         /*建立默认跳转*/
         window.location.hash = "#city=1100";
-        //延迟访问：根据缓存初始化相应城市
-//        setTimeout(function () {
-            SW.swInit();
-//        },50);
+        SW.swInit();
     </script>
-    <!--http://map.amap.com/subway/-->
 </body>
 </html>

@@ -82,7 +82,7 @@ var DrwTraf = {
             console.log("路况信息请求完成!");
             AllData.refreshStatus=self.formatTime(AllData.cache.trafficInfo[0].refreshTime).trafficLoad;
             //callback();
-            console.log(AllData.refreshStatus);
+            //console.log(AllData.refreshStatus);
             //console.log("AllData.cache.trafficInfo",AllData.cache.trafficInfo);
         },function() {
             AllData.loadStatus.trafficInfo=2;

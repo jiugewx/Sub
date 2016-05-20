@@ -459,19 +459,21 @@ var tip = {
                     }
                     infowHtml.push("<div class=\"tip_detail_line\">");
                     //infowHtml.push("<label class=\"line-label\" style=\"background-color:#"+self.lines[lineid].cl+"\">地铁" + self.lines[lineid].ln + line_sub_name +"</label>");
-                    infowHtml.push("<label class=\"line-label\">" + self.lines[lineid].ln + line_sub_name +"</label>");
-                    infowHtml.push("<label class='line-sub-label'></label>");
+                    infowHtml.push("<label class=\"line-name\">" + self.lines[lineid].ln + line_sub_name +"</label>");
+                    infowHtml.push("<label class='line-white-label'></label>");
                     infowHtml.push("<ul class=\"time-item-main\">");
                     for (var j = 0; j < 2; j++) {
                         if (current_station[lineid][j]) {
                             var first_time = current_station[lineid][j].ft;
                             var last_time = current_station[lineid][j].lt;
+                            first_time=self.resetTime(first_time);
+                            last_time=self.resetTime(last_time);
                             var direction = self.stations[current_station[lineid][j].n];
                             if (first_time.split(':')[0] != '--' || last_time.split(':')[0] != '--') {
                                 infowHtml.push("<li class=\"time-item-detail\">");
                                 infowHtml.push("<div class=\"train-direct fl\"><span class=\"direct-name\">" + direction.n + "</span><label class=\"direct-label\">方向</label></div>"); //下一站名，表示方向
                                 infowHtml.push("<div class=\"train-time fr\">");
-                                infowHtml.push("<div class=\"start-time time-box fl\"><label class=\"time-label-start\">首</label><span class=\"time\">" + first_time + "</span></div>"); //首发
+                                infowHtml.push("<div class=\"start-time time-box fl\"><label class=\"time-label-start\"><span>首</span></label><span class=\"time\">" + first_time + "</span></div>"); //首发
                                 infowHtml.push("<div class=\"last-time time-box fl\"><label class=\"time-label-end\">末</label><span class=\"time\">" + last_time + "</span></div>"); //末发
                                 infowHtml.push("</div>");
                                 infowHtml.push("</li>");
@@ -839,6 +841,31 @@ var tip = {
     loadingOver: function() {
         $('.loading-bg').css('display', 'none');
     },
+    resetTime: function (timeString) {
+        if(timeString!="--:--"){
+            var hours=Number(timeString.split(":")[0]);
+            var mins=Number(timeString.split(":")[1]);
+            if(hours<10 && hours>0){
+                hours="0"+hours;
+            }else if(hours==0){
+                hours="00";
+            }else{
+                hours=hours;
+            }
+
+            if(mins<10 && mins>0){
+                mins="0"+mins;
+            }else if(mins==0){
+                mins="00";
+            }else{
+                mins=mins;
+            }
+
+            return hours+":"+mins;
+        }else{
+            return timeString;
+        }
+    }
 };
 
 

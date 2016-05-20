@@ -36,13 +36,13 @@ var drwSw = {
     specailPhone: false,
     curOffset: {},
     sortline: null,
-    ns_svg: "http://www.w3.org/2000/svg",
     nearId: null,
     svgReady: false,
     svgOffset: {
         left: 0,
         top: 0
     },
+    ns_svg: AllData.ns_svg,
     statusColor:AllData.statusColor,
     trafficInfo:AllData.cache.trafficInfo,
     stations:AllData.cache.stations,
@@ -63,7 +63,7 @@ var drwSw = {
     //初始化画图数据;
     initDraw: function(drwData, param) {
         var self = this;
-        self.t_left = 0;
+        self.t_left =0;
         self.t_top = 0;
         var screenX = parseInt(self.w / 2),
             screenY = parseInt(self.h / 2),
@@ -107,10 +107,12 @@ var drwSw = {
         }
         originX = ox;
         originY = oy;
+
         var moveX = Number(screenX) - Number(originX);
         var moveY = Number(screenY) - Number(originY);
         drwSw.moveX = moveX;
         drwSw.moveY = moveY;
+
 
         self.deletInProgress(drwData);
         self.drawSvgSubway(drwData, lightStation, param);
@@ -199,17 +201,17 @@ var drwSw = {
         var subway_caption = $('#subway-caption');
         for (var i = 0; i < self.sortline.length; i++) {
             var caption_item = $('<div class="line-caption"></div>');
-            var la = SW.cache.lines[self.sortline[i]].la;
+            var la = AllData.cache.lines[self.sortline[i]].la;
             var html = '';
             if (!la || la == '') {
-                html = SW.cache.lines[self.sortline[i]].ln;
+                html = AllData.cache.lines[self.sortline[i]].ln;
             } else {
-                html = SW.cache.lines[self.sortline[i]].ln + '<div class="caption_la">( ' + SW.cache.lines[self.sortline[i]].la + ' )</div>'
+                html = AllData.cache.lines[self.sortline[i]].ln + '<div class="caption_la">( ' + AllData.cache.lines[self.sortline[i]].la + ' )</div>'
             }
             caption_item.html(html);
             caption_item.attr('id', 'caption-' + self.sortline[i]);
             caption_item.attr('lineid', self.sortline[i]);
-            caption_item.css('background', '#' + SW.cache.lines[self.sortline[i]].cl);
+            caption_item.css('background', '#' + AllData.cache.lines[self.sortline[i]].cl);
             subway_caption.append(caption_item);
         }
     },
@@ -391,7 +393,7 @@ var drwSw = {
                 if (lightId) {
                     if (item.si == lightId) {
                         console.log(item.si);
-                        var data = SW.cache.stations[lightId];
+                        var data = AllData.cache.stations[lightId];
                         var subway_station = document.createElementNS(self.ns_svg, 'circle');
                         subway_station.setAttribute("id", "near-" + lightId);
                         subway_station.setAttribute("class", "near-station");
@@ -500,7 +502,8 @@ var drwSw = {
         var firstHtml=[];
         firstHtml.push("<li class='fliter_item' id='caption-allLines' lineid='caption-allLines' name='全部地铁'>");
         //firstHtml.push("<span class='line_color' style='background:#000'></span>");
-        firstHtml.push("<span class='line_name'>全部地铁线路</span>");
+        //firstHtml.push("<span class='line_name'>全部地铁线路</span>");
+        firstHtml.push("<span class='line_name' style='margin-left: 0'>全部地铁线路</span>");
         firstHtml.push("</li>");
         subway_caption.html(firstHtml.join(""));
         //添加地铁
@@ -519,8 +522,8 @@ var drwSw = {
             } else {
                 line_name = AllData.cache.lines[self.sortline[i]].ln + '<b class="line_name_la">( ' + AllData.cache.lines[self.sortline[i]].la + ' )</b>';
             }
-            //html = '<span class="line_color" style="background:#' + SW.cache.lines[self.sortline[i]].cl + '"></span><span class="line_name">' + line_name + '</span>';
-            html = "<span class='line_name'>" + line_name + "</span>";
+            html = '<span class="line_color" style="background:#' + AllData.cache.lines[self.sortline[i]].cl + '"></span><span class="line_name">' + line_name + '</span>';
+            //html = "<span class='line_name'>" + line_name + "</span>";
             caption_item.html(html);
             caption_item.attr('id', 'caption-' + self.sortline[i]);
             caption_item.attr('lineid', self.sortline[i]);
@@ -614,7 +617,7 @@ var drwSw = {
         var self = this,
             poiid = param.poiid,
             lnglat = param.lnglat,
-            station = SW.cache.stationspoi[poiid];
+            station = AllData.cache.stationspoi[poiid];
         if (station) {
             return station.si;
         } else {

@@ -15,32 +15,27 @@ var bindEv={
         this.bindEvent();
     },
     bindEvent: function() {
-        var self=this;
-        document.addEventListener('touchstart', function() {});
-        var $refresh=$(".refresh_btn");
+        var self = this;
+        document.addEventListener('touchstart', function () {});
+        var $refresh = $(".refresh_btn");
         var $subway = $('#subway');
         var $citypage = $('#citypage');
         var $overlays = $('#overlays');
+        //=================mc===================
         var el = document.getElementById('drag_handle');
-        var mc = new Hammer.Manager(el, {
-            domEvents: true
-        });
-
+        var mc = new Hammer.Manager(el, {domEvents: true});
         mc.add(new Hammer.Pan());
         mc.add(new Hammer.Pinch());
-
         var enableGesture = true;
         var lastAction = "";
         var hasPenchend = false;
-
-        mc.on("panmove", function(ev) {
+        mc.on("panmove", function (ev) {
             if (!enableGesture) return;
             tip.touchStatus = 'pan';
             lastAction = "pan";
             tip.mcdragSvg(ev);
         });
-
-        mc.on("pinchstart pinchmove", function(ev) {
+        mc.on("pinchstart pinchmove", function (ev) {
             if (!enableGesture) return;
             tip.touchStatus = 'pinch';
             lastAction = "pinch";
@@ -50,15 +45,14 @@ var bindEv={
             }
             tip.mcScaleSvg(ev);
         });
-
-        mc.on("pinchend", function(ev) {
-            setTimeout(function() {
+        mc.on("pinchend", function (ev) {
+            setTimeout(function () {
                 if (!hasPenchend) {
                     tip.scaleSvgUpdate(tip.transform.scale);
                 }
             }, 0)
         });
-        mc.on("hammer.input", function(ev) {
+        mc.on("hammer.input", function (ev) {
             if (ev.isFinal) {
                 if (lastAction == "pinch") {
                     tip.scaleSvgUpdate(tip.transform.scale);
@@ -68,12 +62,12 @@ var bindEv={
                     tip.svgUpdate(ev);
                 }
                 enableGesture = false;
-                setTimeout(function() {
+                setTimeout(function () {
                     enableGesture = true;
                 }, 50);
             }
         });
-
+        //======================subway======================
         $subway.on('touchend', 'g', function() {
             if (!tip.touchStatus) {
                 if ($(this).hasClass('line_name')) {
@@ -113,10 +107,6 @@ var bindEv={
         });
 
 
-
-        //$("#srhlist").on("touchmove", function(e) {
-        //    $("#srh_ipt").blur();
-        //});
         //触击站点事件：打开一个#city=city代码&station=站点代码的网址;
         $subway.on('touchend', '.station_obj', function (e) {
             e.stopPropagation();
@@ -127,7 +117,7 @@ var bindEv={
                 window.location.hash = '#city=' + AllData.cache.curCity.adcode + '&station=' + id;
             }
         });
-
+        /*=======================overlays=====================*/
         //点击弹出层事件：阻止冒泡,接受事件,但是无动作
         $overlays.on('touchend', '.tip_wrap', function(e) {
             e.stopPropagation();
@@ -142,6 +132,11 @@ var bindEv={
             tip.closeFilter();
         });
 
+        //关闭背景暗箱
+        $('.light_box').on('touchend', function() {
+            tip.closeFilter();
+            tip.closehelpBox()
+        });
         $('.light_box').on('touchmove', function(ev) {
             ev.preventDefault();
         });
@@ -149,12 +144,6 @@ var bindEv={
         $('#loading').on('touchmove', function(ev) {
             ev.preventDefault();
         });
-        //关闭背景暗箱
-        $('.light_box').on('touchend', function() {
-            tip.closeFilter();
-            tip.closehelpBox()
-        });
-
         $refresh.on('touchend', function (ev) {
             ev.stopPropagation();
             if(tip.refreshstate==0){
@@ -174,7 +163,6 @@ var bindEv={
 
         //点击线路图选择器，打开选择器
         $('.filter_btn').on('touchend', function() {
-            console.log(tip.curScale);
             tip.closehelpBox();
             if (!tip.routeState) {
                 tip.openFilter();
