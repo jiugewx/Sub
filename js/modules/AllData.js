@@ -1,7 +1,7 @@
 /**
  * Created by Wangxin on 2016/5/19.
  */
-var $=require("zepto");
+var $=require("./zepto");
 
 var AllData={
     status:{

@@ -281,7 +281,6 @@ var tip = {
 
         //点击线路图选择器，打开选择器
         $('.filter_btn').on('touchend', function() {
-            console.log(tip.curScale);
             self.closehelpBox();
             if (!tip.routeState) {
                 self.openFilter();
@@ -292,21 +291,27 @@ var tip = {
             if (lockfd) return;
             var line_id = $(this).attr('lineid');
             var line_name=$(this).attr('name');
+            var center={};
             if (line_id == "caption-allLines") {
                 self.closeFilter();
                 $(".filter_btn").html("线路图");
                 $('#g-bg').css('display','none');
-                //self.showFilterLine(line_id);
-                var center={};
+                //获取中心相对于实际svg图像的偏移量
+                var hash = decodeURIComponent(window.location.hash).replace(/^\#/, '');
+                var param = SW.param2json(hash);
+                var adcode = param.city && param.city.substr(0, 4);
+                var curCity=SW.cache.cities[adcode];
+                var centerOffset={};
+                centerOffset.x=curCity.centerOffset.split(",")[0];
+                centerOffset.y=curCity.centerOffset.split(",")[1];
+                //设置新的中心
                 var $Svg=$('#svg-g');
+                tip.setFitview($Svg);
                 var $Svg_offset = $Svg.offset();
-                var $Svg_h = document.getElementById('svg-g').getBBox().height * self.allScale,
-                    $Svg_w = document.getElementById('svg-g').getBBox().width * self.allScale;
+                var $Svg_h = (document.getElementById('svg-g').getBBox().height-centerOffset.y) * self.allScale,
+                    $Svg_w = (document.getElementById('svg-g').getBBox().width-centerOffset.x) * tip.allScale;
                 center.x = $Svg_offset.left + $Svg_w/2;
                 center.y = $Svg_offset.top + $Svg_h/2;
-                //var center2=self.getStCenter($Svg);
-                //console.log($Svg_offset,center,center2,$Svg_w,$Svg_h);
-                //console.log(tip.realCenter);
                 tip.setCenter(center);
 
             } else {
@@ -315,7 +320,7 @@ var tip = {
                 self.showFilterLine(line_id);
                 var select_obj = $('#g-select');
                 tip.setFitview(select_obj);
-                var center = self.getFilterCenter();
+                center = self.getFilterCenter();
                 self.setCenter(center);
             }
         });

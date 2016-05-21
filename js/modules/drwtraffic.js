@@ -86,7 +86,6 @@ var DrwTraf = {
             //console.log("AllData.cache.trafficInfo",AllData.cache.trafficInfo);
         },function() {
             AllData.loadStatus.trafficInfo=2;
-            //self.loadMainData(city_code,city_name,callback);
             //延迟弹窗
             tip.loadingOver();
             setTimeout(function () {

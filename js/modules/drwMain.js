@@ -2,7 +2,7 @@
  * Created by xinye on 16/5/18.
  */
 
-var $=require("zepto");
+var $=require("./zepto");
 var AllData=require("./AllData");
 var SW=require("./SW");
 var Drwlines=require("./drwLines");

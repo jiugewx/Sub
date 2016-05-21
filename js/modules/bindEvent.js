@@ -5,7 +5,9 @@
 var AllData=require("./AllData");
 var drwSelect=require("./drwSelect");
 var tip=require("./tip");
-
+var $=require("./zepto");
+var DrwTraf=require("./drwtraffic");
+var drwSw=require("./drwMain");
 
 var bindEvent={
     init: function() {
@@ -178,9 +180,9 @@ var bindEvent={
                 var city_code = AllData.cache.curCity.adcode;
                 var city_name = AllData.fileNameData[AllData.cache.curCity.adcode];
                 var status = 'normal';
-                SW.loadTraffic(city_code, city_name);
+                DrwTraf.loadTraffic(city_code, city_name);
                 //console.log("add前",drwSw.currLines);
-                drwSw.drwTrafficLinesDefer(drwSw.currLines, status);
+                DrwTraf.drwTrafficLinesDefer(drwSw.currLines, status);
             }else {
                 ev.stopPropagation();
             }
@@ -198,31 +200,37 @@ var bindEvent={
             if (lockfd) return;
             var line_id = $(this).attr('lineid');
             var line_name=$(this).attr('name');
+            var center={};
             if (line_id == "caption-allLines") {
                 tip.closeFilter();
                 $(".filter_btn").html("线路图");
                 $('#g-bg').css('display','none');
-                //self.showFilterLine(line_id);
-                var center={};
+                //获取中心相对于实际svg图像的偏移量
+                var hash = decodeURIComponent(window.location.hash).replace(/^\#/, '');
+                var param = bindEvent.param2json(hash);
+                var adcode = param.city && param.city.substr(0, 4);
+                var curCity=AllData.cache.cities[adcode];
+                var centerOffset={};
+                centerOffset.x=curCity.centerOffset.split(",")[0];
+                centerOffset.y=curCity.centerOffset.split(",")[1];
+                //设置新的中心
                 var $Svg=$('#svg-g');
+                tip.setFitview($Svg);
                 var $Svg_offset = $Svg.offset();
-                var $Svg_h = document.getElementById('svg-g').getBBox().height * tip.allScale,
-                    $Svg_w = document.getElementById('svg-g').getBBox().width * tip.allScale;
+                var $Svg_h = (document.getElementById('svg-g').getBBox().height-centerOffset.y) * tip.allScale,
+                    $Svg_w = (document.getElementById('svg-g').getBBox().width-centerOffset.x) * tip.allScale;
                 center.x = $Svg_offset.left + $Svg_w/2;
                 center.y = $Svg_offset.top + $Svg_h/2;
-                //var center2=self.getStCenter($Svg);
-                //console.log($Svg_offset,center,center2,$Svg_w,$Svg_h);
-                //console.log(tip.realCenter);
                 tip.setCenter(center);
-
             } else {
                 tip.closeFilter();
                 $(".filter_btn").html(line_name);
                 self.showFilterLine(line_id);
                 var select_obj = $('#g-select');
                 tip.setFitview(select_obj);
-                var center = tip.getFilterCenter();
+                center = tip.getFilterCenter();
                 tip.setCenter(center);
+                //console.log(center);
             }
         });
 
@@ -283,6 +291,25 @@ var bindEvent={
         $('#g-select').remove();
         $('#g-bg').css('display', 'block');
         drwSelect.drawSelectLine(AllData.cache.lines[id], 'select');
-    }
+    },
+    //地址栏里的参数转为一个json对象
+    param2json: function(str) {
+        if (!str || str == '') {
+            return null
+        } else {
+            var strArr = str.split('&');
+            var json = {};
+
+            if (strArr.length > 0) {
+                for (var i = 0; i < strArr.length; i++) {
+                    var item = strArr[i].split('=');
+                    var key = item[0];
+                    var value = item[1];
+                    json[key] = value;
+                }
+            }
+            return json
+        }
+    },
 };
 module.exports=bindEvent;

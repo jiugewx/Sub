@@ -3,7 +3,7 @@
  */
 
 require("./amapCache");
-var $=require("zepto");
+var $=require("./zepto");
 var AllData=require("./AllData");
 var drwSw=require("./drwMain");
 var tip=require("./tip");
@@ -47,7 +47,7 @@ var SW = {
             cache = AllData.cache;
         var hash = decodeURIComponent(window.location.hash).replace(/^\#/, '');
         //decodeURIComponent 对 encodeURIComponent() 函数编码的 URI 进行解码。replace(/^\#/, '')，把#号给去除了。
-        var param = self.param2json(hash);
+        var param = bindEvent.param2json(hash);
         //self.param2json(hash)就是将hash转为json对象，"city=1100"字符串转换为了object的格式，｛"city":"1100"｝
         if (!param || !param.src || param.src && param.src != 'alipay') {
             $('#subway, #citypage').addClass('msubway');
@@ -117,25 +117,7 @@ var SW = {
             tip.setCenter(center);
         }
     },
-    //地址栏里的参数转为一个json对象
-    param2json: function(str) {
-        if (!str || str == '') {
-            return null
-        } else {
-            var strArr = str.split('&');
-            var json = {};
 
-            if (strArr.length > 0) {
-                for (var i = 0; i < strArr.length; i++) {
-                    var item = strArr[i].split('=');
-                    var key = item[0];
-                    var value = item[1];
-                    json[key] = value;
-                }
-            }
-            return json
-        }
-    },
     //加载数据
     loadData: function(adcode, callback) {
         var self = this,
@@ -209,6 +191,7 @@ var SW = {
         cache.cities[data.i].name = data.s;
         cache.cities[data.i].id = data.i;
         cache.cities[data.i].offset = data.o;
+        cache.cities[data.i].centerOffset = data.co;
         cache.cities[data.i].lines = [];
         cache.cities[data.i].linesNamePos = {};
         // cache.cities[data.i].stations = [];

@@ -2,13 +2,13 @@
  * Created by xinye on 16/5/20.
  */
 
-var AllData=require("./AllData");
-var DrwTraf=require("./drwtraffic");
-var drwSw=require("./drwMain");
+var AllData = require("./AllData");
+var DrwTraf = require("./drwtraffic");
+var drwSw = require("./drwMain");
 
-var drwSelect={
+var drwSelect = {
     ns_svg: AllData.ns_svg,
-    drawSelectLine: function(drwData) {
+    drawSelectLine: function (drwData) {
         var self = this;
         var status = 'select';
         var svg_g = document.getElementById("svg-g");
@@ -23,4 +23,4 @@ var drwSelect={
     }
 };
 
-module.exports=drwSelect;
+module.exports = drwSelect;

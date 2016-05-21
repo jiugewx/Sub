@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "23bb6641bddbad430a10"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "50c37cc955ae221fc93f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -8217,7 +8217,7 @@
 	            cache = AllData.cache;
 	        var hash = decodeURIComponent(window.location.hash).replace(/^\#/, '');
 	        //decodeURIComponent 对 encodeURIComponent() 函数编码的 URI 进行解码。replace(/^\#/, '')，把#号给去除了。
-	        var param = self.param2json(hash);
+	        var param = bindEvent.param2json(hash);
 	        //self.param2json(hash)就是将hash转为json对象，"city=1100"字符串转换为了object的格式，｛"city":"1100"｝
 	        if (!param || !param.src || param.src && param.src != 'alipay') {
 	            $('#subway, #citypage').addClass('msubway');
@@ -8287,25 +8287,7 @@
 	            tip.setCenter(center);
 	        }
 	    },
-	    //地址栏里的参数转为一个json对象
-	    param2json: function(str) {
-	        if (!str || str == '') {
-	            return null
-	        } else {
-	            var strArr = str.split('&');
-	            var json = {};
 
-	            if (strArr.length > 0) {
-	                for (var i = 0; i < strArr.length; i++) {
-	                    var item = strArr[i].split('=');
-	                    var key = item[0];
-	                    var value = item[1];
-	                    json[key] = value;
-	                }
-	            }
-	            return json
-	        }
-	    },
 	    //加载数据
 	    loadData: function(adcode, callback) {
 	        var self = this,
@@ -8379,6 +8361,7 @@
 	        cache.cities[data.i].name = data.s;
 	        cache.cities[data.i].id = data.i;
 	        cache.cities[data.i].offset = data.o;
+	        cache.cities[data.i].centerOffset = data.co;
 	        cache.cities[data.i].lines = [];
 	        cache.cities[data.i].linesNamePos = {};
 	        // cache.cities[data.i].stations = [];
@@ -11186,7 +11169,6 @@
 	            //console.log("AllData.cache.trafficInfo",AllData.cache.trafficInfo);
 	        },function() {
 	            AllData.loadStatus.trafficInfo=2;
-	            //self.loadMainData(city_code,city_name,callback);
 	            //延迟弹窗
 	            tip.loadingOver();
 	            setTimeout(function () {
@@ -11483,271 +11465,6 @@
 	            })
 	        })
 
-	    },
-	    //绑定事件
-	    bindEvent: function() {
-	        document.addEventListener('touchstart', function() {});
-	        var self = this;
-	        var $refresh=$(".refresh_btn");
-	        var $subway = $('#subway');
-	        var $citypage = $('#citypage');
-	        var $overlays = $('#overlays');
-	        //var $srh = $('#srhpage');
-	        var el = document.getElementById('drag_handle');
-	        var mc = new Hammer.Manager(el, {
-	            domEvents: true
-	        });
-
-	        mc.add(new Hammer.Pan());
-	        mc.add(new Hammer.Pinch());
-
-	        var enableGesture = true;
-	        var lastAction = "";
-	        var hasPenchend = false;
-
-	        mc.on("panmove", function(ev) {
-	            if (!enableGesture) return;
-	            self.touchStatus = 'pan';
-	            lastAction = "pan";
-	            self.mcdragSvg(ev);
-	        });
-
-	        mc.on("pinchstart pinchmove", function(ev) {
-
-	            if (!enableGesture) return;
-
-	            self.touchStatus = 'pinch';
-	            lastAction = "pinch";
-	            if (ev.type == 'pinchstart') {
-	                self.svgOffset = drwSw.svgOffset || tip.svgOffset;
-	                hasPenchend = false;
-	            }
-	            self.mcScaleSvg(ev);
-
-	        });
-
-	        mc.on("pinchend", function(ev) {
-	            setTimeout(function() {
-	                if (!hasPenchend) {
-	                    self.scaleSvgUpdate(self.transform.scale);
-	                }
-	            }, 0)
-	        });
-	        mc.on("hammer.input", function(ev) {
-
-	            if (ev.isFinal) {
-
-	                if (lastAction == "pinch") {
-	                    self.scaleSvgUpdate(self.transform.scale);
-	                    hasPenchend = true;
-	                }
-
-	                if (lastAction == "pan") {
-	                    self.svgUpdate(ev);
-	                }
-
-	                enableGesture = false;
-	                setTimeout(function() {
-	                    enableGesture = true;
-	                }, 50);
-	            }
-	        });
-
-	        $subway.on('touchend', 'g', function() {
-	            if (!self.touchStatus) {
-	                if ($(this).hasClass('line_name')) {
-	                    //线路选择器显示线路名
-	                    var line_id = $(this).attr('lineid');
-	                    var SW_line_name = AllData.cache.lines[line_id].ln;
-	                    var line_name=SW_line_name.split("/")[0].toString().substr(0,4);
-	                    $(".filter_btn").html(line_name);
-	                    showFilter.showFilterLine(line_id);
-	                    var select_obj = $('#g-select');
-	                    tip.setFitview(select_obj);
-	                    var center = self.getFilterCenter();
-	                    self.setCenter(center);
-	                }
-	            }
-	        });
-
-	        $subway.on('touchend', '#g-bg', function() {
-	            if (!tip.routeState) {
-	                if (!self.touchStatus) {
-	                    $('#g-select').remove();
-	                    $('#g-bg').css('display', 'none');
-	                    $(".filter_btn").html("线路图");
-	                }
-	            }
-	        });
-
-	        //触击 非站点又不是换乘点的区域 关闭弹窗
-	        $subway.on('touchend','#drag_handle'&&".light_box",function(e) {
-	            if (!self.touchStatus && !tip.routeState) {
-	                var target = e.target;
-	                if (target.getAttribute('class') != 'station_obj' || target.getAttribute('class') != 'nav-img') {
-	                    tip.closeTip();
-	                    tip.closehelpBox();
-	                }
-	            }
-	        });
-
-
-
-	        //$("#srhlist").on("touchmove", function(e) {
-	        //    $("#srh_ipt").blur();
-	        //});
-	        //触击站点事件：打开一个#city=city代码&station=站点代码的网址;
-	        $subway.on('touchend', '.station_obj', function (e) {
-	            e.stopPropagation();
-	            if (!self.touchStatus && !tip.routeState) {
-	                var id = $(this).attr('station_id');
-	                self.closeFilter();
-	                $('.light_box').css('display', 'block');
-	                //var obj = $("#overlays");
-	                //if (drwSw.isNearTip) {
-	                //    drwSw.clearNearTip();
-	                //}
-	                //tip.openTip(obj);
-	                //var center = tip.getStCenter(obj);
-	                //tip.setCenter(center);
-	                //console.log(obj,center);
-	                window.location.hash = '#city=' + AllData.cache.curCity.adcode + '&station=' + id;
-	            }
-	        });
-
-	        //点击弹出层事件：阻止冒泡,接受事件,但是无动作
-	        $overlays.on('touchend', '.tip_wrap', function(e) {
-	            e.stopPropagation();
-	        });
-	        //点击弹出层事件：阻止冒泡
-	        $overlays.on('touchstart', '.tip_wrap', function(e) {
-	            e.stopPropagation();
-	        });
-
-	        $(".top_bar").on("touchend", function () {
-	            tip.closeTip();
-	            tip.closeFilter();
-	        });
-
-	        $('.light_box').on('touchmove', function(ev) {
-	            ev.preventDefault();
-	        });
-
-	        $('#loading').on('touchmove', function(ev) {
-	            ev.preventDefault();
-	        });
-	        //关闭背景暗箱
-	        $('.light_box').on('touchend', function() {
-	            self.closeFilter();
-	            self.closehelpBox()
-	        });
-
-	        $refresh.on('touchend', function (ev) {
-	            ev.stopPropagation();
-	            if(self.refreshstate==0){
-	                self.refreshstate=1;
-	                var $refresh = $(".refresh_btn");
-	                $refresh.addClass("refresh_active");
-	                var city_code = AllData.cache.curCity.adcode;
-	                var city_name = AllData.fileNameData[AllData.cache.curCity.adcode];
-	                var status = 'normal';
-	                SW.loadTraffic(city_code, city_name);
-	                //console.log("add前",drwSw.currLines);
-	                drwSw.drwTrafficLinesDefer(drwSw.currLines, status);
-	            }else {
-	                ev.stopPropagation();
-	            }
-	        });
-
-	        //点击线路图选择器，打开选择器
-	        $('.filter_btn').on('touchend', function() {
-	            self.closehelpBox();
-	            if (!tip.routeState) {
-	                self.openFilter();
-	            }
-	        });
-	        //点击选择器中的路线：关闭选择器，显示地铁，设置屏幕中心点为地铁的中心
-	        $('.fliter_detail').on('touchend', '.fliter_item', function() {
-	            if (lockfd) return;
-	            var line_id = $(this).attr('lineid');
-	            var line_name=$(this).attr('name');
-	            if (line_id == "caption-allLines") {
-	                self.closeFilter();
-	                $(".filter_btn").html("线路图");
-	                $('#g-bg').css('display','none');
-	                //self.showFilterLine(line_id);
-	                var center={};
-	                var $Svg=$('#svg-g');
-	                var $Svg_offset = $Svg.offset();
-	                var $Svg_h = document.getElementById('svg-g').getBBox().height * self.allScale,
-	                    $Svg_w = document.getElementById('svg-g').getBBox().width * self.allScale;
-	                center.x = $Svg_offset.left + $Svg_w/2;
-	                center.y = $Svg_offset.top + $Svg_h/2;
-	                //var center2=self.getStCenter($Svg);
-	                //console.log($Svg_offset,center,center2,$Svg_w,$Svg_h);
-	                //console.log(tip.realCenter);
-	                tip.setCenter(center);
-
-	            } else {
-	                self.closeFilter();
-	                $(".filter_btn").html(line_name);
-	                showFilter.showFilterLine(line_id);
-	                var select_obj = $('#g-select');
-	                tip.setFitview(select_obj);
-	                var center = self.getFilterCenter();
-	                self.setCenter(center);
-	            }
-	        });
-
-	        //处理选择器中的移动事件
-	        var fdTimer;
-	        var lockfd = false;
-	        $('.fliter_detail').on('touchmove', function(e) {
-	            e.stopPropagation();
-	            lockfd = true;
-	            fdTimer && clearTimeout(fdTimer);
-	            fdTimer = setTimeout(function() {
-	                lockfd = false;
-	            }, 60);
-	        });
-
-	        $(".help_btn").on("touchend", function (e) {
-	            e.stopPropagation();
-	            self.closeFilter();
-	            $(".refresh_time_text").removeClass("refresh_time_text_show").css("display", "none");
-	            $(".refresh_box").hide().removeClass("refresh_box_show").css("display", "none");
-	            tip.openhelpBox();
-	        });
-	        $(".help_close").on("touchend", function (e) {
-	            e.stopPropagation();
-	            tip.closehelpBox();
-	        });
-
-
-	        $('.tip_close').on('touchend', function(e) {
-	            e.stopPropagation();
-	            tip.closeTip();/*调用closeTip的方法*/
-	        });
-
-	        $('#back_amap').on('touchend', function() {
-	            tip.goback()
-	        });
-
-	        //导航栏中的城市名的触摸事件
-	        $('.city_list_btn').on('touchend', function() {
-	            tip.cityChange();
-	        });
-
-	        $citypage.on('touchend', '.cityitem', function() {
-	            var adcode = $(this).attr('adcode');
-	            // window.location.hash = "#city=" + adcode;
-	            // $('#tip-content').remove();
-	            tip.initCity();
-	            window.location.hash = "#city=" + adcode;
-	            // SW.changeCity(adcode);
-	            tip.hideCitylist();
-	            $('#subway').show();
-	        });
 	    },
 	    refreshShow: function () {
 	        $(".refresh_box").css("display", "block").addClass("refresh_box_show");
@@ -12521,7 +12238,9 @@
 	var AllData=__webpack_require__(80);
 	var drwSelect=__webpack_require__(87);
 	var tip=__webpack_require__(84);
-
+	var $=__webpack_require__(79);
+	var DrwTraf=__webpack_require__(83);
+	var drwSw=__webpack_require__(81);
 
 	var bindEvent={
 	    init: function() {
@@ -12694,9 +12413,9 @@
 	                var city_code = AllData.cache.curCity.adcode;
 	                var city_name = AllData.fileNameData[AllData.cache.curCity.adcode];
 	                var status = 'normal';
-	                SW.loadTraffic(city_code, city_name);
+	                DrwTraf.loadTraffic(city_code, city_name);
 	                //console.log("add前",drwSw.currLines);
-	                drwSw.drwTrafficLinesDefer(drwSw.currLines, status);
+	                DrwTraf.drwTrafficLinesDefer(drwSw.currLines, status);
 	            }else {
 	                ev.stopPropagation();
 	            }
@@ -12714,31 +12433,37 @@
 	            if (lockfd) return;
 	            var line_id = $(this).attr('lineid');
 	            var line_name=$(this).attr('name');
+	            var center={};
 	            if (line_id == "caption-allLines") {
 	                tip.closeFilter();
 	                $(".filter_btn").html("线路图");
 	                $('#g-bg').css('display','none');
-	                //self.showFilterLine(line_id);
-	                var center={};
+	                //获取中心相对于实际svg图像的偏移量
+	                var hash = decodeURIComponent(window.location.hash).replace(/^\#/, '');
+	                var param = bindEvent.param2json(hash);
+	                var adcode = param.city && param.city.substr(0, 4);
+	                var curCity=AllData.cache.cities[adcode];
+	                var centerOffset={};
+	                centerOffset.x=curCity.centerOffset.split(",")[0];
+	                centerOffset.y=curCity.centerOffset.split(",")[1];
+	                //设置新的中心
 	                var $Svg=$('#svg-g');
+	                tip.setFitview($Svg);
 	                var $Svg_offset = $Svg.offset();
-	                var $Svg_h = document.getElementById('svg-g').getBBox().height * tip.allScale,
-	                    $Svg_w = document.getElementById('svg-g').getBBox().width * tip.allScale;
+	                var $Svg_h = (document.getElementById('svg-g').getBBox().height-centerOffset.y) * tip.allScale,
+	                    $Svg_w = (document.getElementById('svg-g').getBBox().width-centerOffset.x) * tip.allScale;
 	                center.x = $Svg_offset.left + $Svg_w/2;
 	                center.y = $Svg_offset.top + $Svg_h/2;
-	                //var center2=self.getStCenter($Svg);
-	                //console.log($Svg_offset,center,center2,$Svg_w,$Svg_h);
-	                //console.log(tip.realCenter);
 	                tip.setCenter(center);
-
 	            } else {
 	                tip.closeFilter();
 	                $(".filter_btn").html(line_name);
 	                self.showFilterLine(line_id);
 	                var select_obj = $('#g-select');
 	                tip.setFitview(select_obj);
-	                var center = tip.getFilterCenter();
+	                center = tip.getFilterCenter();
 	                tip.setCenter(center);
+	                //console.log(center);
 	            }
 	        });
 
@@ -12799,7 +12524,26 @@
 	        $('#g-select').remove();
 	        $('#g-bg').css('display', 'block');
 	        drwSelect.drawSelectLine(AllData.cache.lines[id], 'select');
-	    }
+	    },
+	    //地址栏里的参数转为一个json对象
+	    param2json: function(str) {
+	        if (!str || str == '') {
+	            return null
+	        } else {
+	            var strArr = str.split('&');
+	            var json = {};
+
+	            if (strArr.length > 0) {
+	                for (var i = 0; i < strArr.length; i++) {
+	                    var item = strArr[i].split('=');
+	                    var key = item[0];
+	                    var value = item[1];
+	                    json[key] = value;
+	                }
+	            }
+	            return json
+	        }
+	    },
 	};
 	module.exports=bindEvent;
 
@@ -12811,13 +12555,13 @@
 	 * Created by xinye on 16/5/20.
 	 */
 
-	var AllData=__webpack_require__(80);
-	var DrwTraf=__webpack_require__(83);
-	var drwSw=__webpack_require__(81);
+	var AllData = __webpack_require__(80);
+	var DrwTraf = __webpack_require__(83);
+	var drwSw = __webpack_require__(81);
 
-	var drwSelect={
+	var drwSelect = {
 	    ns_svg: AllData.ns_svg,
-	    drawSelectLine: function(drwData) {
+	    drawSelectLine: function (drwData) {
 	        var self = this;
 	        var status = 'select';
 	        var svg_g = document.getElementById("svg-g");
@@ -12832,7 +12576,7 @@
 	    }
 	};
 
-	module.exports=drwSelect;
+	module.exports = drwSelect;
 
 /***/ },
 /* 88 */
