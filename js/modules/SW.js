@@ -191,7 +191,6 @@ var SW = {
         cache.cities[data.i].name = data.s;
         cache.cities[data.i].id = data.i;
         cache.cities[data.i].offset = data.o;
-        cache.cities[data.i].centerOffset = data.co;
         cache.cities[data.i].lines = [];
         cache.cities[data.i].linesNamePos = {};
         // cache.cities[data.i].stations = [];

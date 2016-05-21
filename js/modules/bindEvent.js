@@ -211,14 +211,14 @@ var bindEvent={
                 var adcode = param.city && param.city.substr(0, 4);
                 var curCity=AllData.cache.cities[adcode];
                 var centerOffset={};
-                centerOffset.x=curCity.centerOffset.split(",")[0];
-                centerOffset.y=curCity.centerOffset.split(",")[1];
+                centerOffset.x=curCity.offset.split(",")[0];
+                centerOffset.y=curCity.offset.split(",")[1];
                 //设置新的中心
                 var $Svg=$('#svg-g');
                 tip.setFitview($Svg);
                 var $Svg_offset = $Svg.offset();
-                var $Svg_h = (document.getElementById('svg-g').getBBox().height-centerOffset.y) * tip.allScale,
-                    $Svg_w = (document.getElementById('svg-g').getBBox().width-centerOffset.x) * tip.allScale;
+                var $Svg_h = (document.getElementById('svg-g').getBBox().height) * tip.allScale,
+                    $Svg_w = (document.getElementById('svg-g').getBBox().width*1.5-centerOffset.x) * tip.allScale;
                 center.x = $Svg_offset.left + $Svg_w/2;
                 center.y = $Svg_offset.top + $Svg_h/2;
                 tip.setCenter(center);
