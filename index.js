@@ -4,7 +4,7 @@
 
 'use strict';/*使用严格模式*/
 /*加载样式*/
-//require("./css/style.css");
+require("./css/style.css");
 
 ///*加载库*/
 //require('./js/lib/zepto.mim.js');

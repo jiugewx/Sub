@@ -10,27 +10,13 @@ var DrwTraf=require("./drwtraffic");
 
 
 var drwSw = {
-    timer:{},
     currLines: {},
     t_top: 0,
     t_left: 0,
     moveX: 0,
     moveY: 0,
     font_size: 12,
-    nearHightLight: 14,
-    /*站点名称的位置*/
-    label_angle: {
-        '0': [0, -1],
-        '1': [1, -1],
-        '2': [1, 0],
-        '3': [1, 1],
-        '4': [0, 1],
-        '5': [-1, 1],
-        '6': [-1, 0],
-        '7': [-1, -1]
-    },
     specailPhone: false,
-    curOffset: {},
     sortline: null,
     nearId: null,
     svgOffset: {
@@ -153,21 +139,6 @@ var drwSw = {
         var svg_g = document.createElementNS(self.ns_svg, 'g');
         setTimeout(function() {
             var svgW = $('#subway-svg').offset().width;
-            // if (svgW != 2000) {
-            // 	self.specailPhone = true;
-            // 	subway_content.setAttribute("viewBox", "0 0 " + self.w + " " + self.h);
-            // 	subway_content.style.width = self.w + "px";
-            // 	subway_content.style.height = self.h + "px";
-            // 	subway_box.setAttribute("id", "subway-box");
-            // 	subway_content.appendChild(subway_box);
-
-            // 	svg_g.setAttribute("id", "svg-g");
-            // 	var top, left;
-            // 	top = self.t_top;
-            // 	left = self.t_left;
-            // 	svg_g.setAttribute("transform", "translate(" + drwSw.moveX + ", " + drwSw.moveY + ") scale(1)");
-            // 	subway_box.appendChild(svg_g);
-            // } else {
             subway_content.style.left = -1000 + self.w / 2 + "px";
             subway_content.style.top = -1000 + self.h / 2 + "px";
             self.svgOffset.left = -1000 + self.w / 2;
@@ -231,8 +202,6 @@ var drwSw = {
             var center = tip.getStCenter(nearObj);
             tip.setCenter(center);
         }
-        //SW.showStation(param);
-        //SW.showRoute(param);
     },
     //绘制背景
     drawBg: function() {
