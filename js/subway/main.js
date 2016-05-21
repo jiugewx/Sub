@@ -622,7 +622,6 @@ var tip = {
             svg_g_t = svg_g_offset.top,
             svg_g_w = svg_g_offset.width,
             svg_g_h = svg_g_offset.height;
-
         var canUpdate = true;
         if (svg_g_w > drwSw.w) {
             if (Number(svg_g_l) > Number(drwSw.w) / 2 || Math.abs(Number(svg_g_l)) > (Number(svg_g_w - Number(drwSw.w) / 2))) {

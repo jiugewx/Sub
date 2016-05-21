@@ -16,12 +16,6 @@ el.style.transformOrigin = "top left";
 var tip = {
     refreshTimer:{},
     refreshstate:0,
-    w: document.documentElement.clientWidth,
-    h: document.documentElement.clientHeight,
-    curCity:AllData.cache.curCity,
-    stationsInfo: AllData.cache.stationsInfo,/*几个数据接口*/
-    stations: AllData.cache.stations,
-    lines: AllData.cache.lines,
     station_w: 26,
     touchStatus: null, //当前touch状态：drag, scale
     curScale: 1, //当前缩放级别
@@ -54,6 +48,12 @@ var tip = {
     transformOrigin: null,
     routeState: false,
     fromendState: false,
+    w: AllData.w,
+    h: AllData.h,
+    curCity:AllData.cache.curCity,
+    stationsInfo: AllData.cache.stationsInfo,/*几个数据接口*/
+    stations: AllData.cache.stations,
+    lines: AllData.cache.lines,
     //pathData: null,
     //初始化事件绑定信息
 
@@ -214,35 +214,34 @@ var tip = {
             svg_g_t = svg_g_offset.top,
             svg_g_w = svg_g_offset.width,
             svg_g_h = svg_g_offset.height;
-
         var canUpdate = true;
-        if (svg_g_w > drwSw.w) {
-            if (Number(svg_g_l) > Number(drwSw.w) / 2 || Math.abs(Number(svg_g_l)) > (Number(svg_g_w - Number(drwSw.w) / 2))) {
+        if (svg_g_w > tip.w) {
+            if (Number(svg_g_l) > Number(tip.w) / 2 || Math.abs(Number(svg_g_l)) > (Number(svg_g_w - Number(tip.w) / 2))) {
                 canUpdate = false;
             }
         } else {
-            if (svg_g_l + svg_g_w / 2 < 0 || svg_g_l + svg_g_w / 2 > drwSw.w) {
+            if (svg_g_l + svg_g_w / 2 < 0 || svg_g_l + svg_g_w / 2 > tip.w) {
                 canUpdate = false;
             }
         }
-        if (svg_g_h > drwSw.h) {
-            if (Number(svg_g_t) > Number(drwSw.h) / 2 || Math.abs(Number(svg_g_t)) > (Number(svg_g_h - Number(drwSw.h) / 2))) {
+        if (svg_g_h > tip.h) {
+            if (Number(svg_g_t) > Number(tip.h) / 2 || Math.abs(Number(svg_g_t)) > (Number(svg_g_h - Number(tip.h) / 2))) {
                 canUpdate = false;
             }
         } else {
-            if (svg_g_t + svg_g_h / 2 < 0 || svg_g_t + svg_g_h / 2 > drwSw.h) {
+            if (svg_g_t + svg_g_h / 2 < 0 || svg_g_t + svg_g_h / 2 > tip.h) {
                 canUpdate = false;
             }
         }
 
         if (canUpdate) {
-            // var transform_arr = svg_g.attr("transform").match(/(-?\d+(\.\d+)?)/g),
-            //     translate_x = Number(transform_arr[0]),
-            //     translate_y = Number(transform_arr[1]),
-            //     curscale = transform_arr[2];
+             //var transform_arr = svg_g.attr("transform").match(/(-?\d+(\.\d+)?)/g),
+             //    translate_x = Number(transform_arr[0]),
+             //    translate_y = Number(transform_arr[1]),
+             //    curscale = transform_arr[2];
 
-            // self.transformState.translate.x = self.transform.translate.x;
-            // self.transformState.translate.y = self.transform.translate.y;
+            //tip.transformState.translate.x = tip.transform.translate.x;
+            //tip.transformState.translate.y = tip.transform.translate.y;
 
             var newTranslate_x = tip.transformState.translate.x + ev.deltaX,
                 newTranslate_y = tip.transformState.translate.y + ev.deltaY,
@@ -273,7 +272,6 @@ var tip = {
         }
 
         tip.handleReset();
-
         setTimeout(function() {
             tip.touchStatus = null;
         }, 100);

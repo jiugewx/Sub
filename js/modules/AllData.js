@@ -1,7 +1,6 @@
 /**
  * Created by Wangxin on 2016/5/19.
  */
-var $=require("./zepto");
 
 var AllData={
     status:{
@@ -78,6 +77,8 @@ var AllData={
     ns_svg: "http://www.w3.org/2000/svg",
     //=====tip===========
     svgReady:false,
-    isNearTip: false
+    isNearTip: false,
+    w: document.documentElement.clientWidth,
+    h: document.documentElement.clientHeight
 };
 module.exports=AllData;

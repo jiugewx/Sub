@@ -4956,12 +4956,11 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/pako/lib/zlib/zstream.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/fsevents/node_modules/fstream-ignore/test/zz-cleanup.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/fsevents/node_modules/tar/test/zz-cleanup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/1100_drw_beijing.json" afterPath="$PROJECT_DIR$/data/1100_drw_beijing.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/AllData.js" afterPath="$PROJECT_DIR$/js/modules/AllData.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/SW.js" afterPath="$PROJECT_DIR$/js/modules/SW.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/bindEvent.js" afterPath="$PROJECT_DIR$/js/modules/bindEvent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/subway/common.js" afterPath="$PROJECT_DIR$/js/subway/common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/main.js" afterPath="$PROJECT_DIR$/dist/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/drwMain.js" afterPath="$PROJECT_DIR$/js/modules/drwMain.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/subway/main.js" afterPath="$PROJECT_DIR$/js/subway/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/tip.js" afterPath="$PROJECT_DIR$/js/modules/tip.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="fff6501d-74f1-4fb3-b1a1-6d0179897558" name="New changelist" comment="" />
@@ -4993,16 +4992,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="drwtraffic.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/modules/drwtraffic.js">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="11.666667">
-              <caret line="88" column="18" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding>
-                <element signature="e#0#39#0" expanded="false" />
-                <element signature="e#285#629#0" expanded="false" />
-                <element signature="e#8810#10673#0" expanded="false" />
-                <element signature="e#10708#13236#0" expanded="false" />
+                <element signature="e#0#43#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -5012,59 +5008,80 @@
         <entry file="file://$PROJECT_DIR$/js/modules/SW.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="193" column="40" selection-start-line="193" selection-start-column="40" selection-end-line="193" selection-end-column="40" />
+              <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
               <folding>
                 <element signature="e#0#43#0" expanded="false" />
+                <element signature="e#303#418#0" expanded="false" />
                 <element signature="e#837#1042#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bindEvent.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/modules/bindEvent.js">
+      <file leaf-file-name="index-webpack.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index-webpack.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="220" column="82" selection-start-line="220" selection-start-column="82" selection-end-line="220" selection-end-column="82" />
+            <state vertical-scroll-proportion="-2.9642856">
+              <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
               <folding>
-                <element signature="e#0#39#0" expanded="false" />
-                <element signature="e#8241#8456#0" expanded="false" />
+                <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#4;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#5;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#6;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/subway/main.js">
+      <file leaf-file-name="AllData.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/modules/AllData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36658356">
-              <caret line="304" column="15" selection-start-line="304" selection-start-column="15" selection-end-line="305" selection-end-column="60" />
-              <folding />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#43#0" expanded="false" />
+                <element signature="e#228#572#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/subway/common.js">
+      <file leaf-file-name="drwMain.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/modules/drwMain.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="391" column="45" selection-start-line="391" selection-start-column="45" selection-end-line="391" selection-end-column="45" />
+            <state vertical-scroll-proportion="-9.333333">
+              <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
               <folding>
-                <element signature="e#3848#4072#0" expanded="false" />
-                <element signature="e#4324#5961#0" expanded="false" />
-                <element signature="e#6453#7093#0" expanded="false" />
-                <element signature="e#7168#7816#0" expanded="false" />
-                <element signature="e#12098#12527#0" expanded="false" />
-                <element signature="e#12589#12967#0" expanded="false" />
-                <element signature="e#13045#18980#0" expanded="false" />
-                <element signature="e#13336#17349#0" expanded="false" />
-                <element signature="e#19047#21434#0" expanded="false" />
-                <element signature="e#21492#22280#0" expanded="false" />
-                <element signature="e#22326#24165#0" expanded="false" />
-                <element signature="e#24196#24374#0" expanded="false" />
-                <element signature="e#24506#24830#0" expanded="false" />
-                <element signature="e#24862#26955#0" expanded="false" />
-                <element signature="e#26997#27939#0" expanded="false" />
+                <element signature="e#0#39#0" expanded="false" />
+                <element signature="e#6636#7537#0" expanded="false" />
+                <element signature="e#10109#12878#0" expanded="false" />
+                <element signature="e#12963#18216#0" expanded="false" />
+                <element signature="e#18296#21180#0" expanded="false" />
+                <element signature="e#21233#23221#0" expanded="false" />
+                <element signature="e#23248#24094#0" expanded="false" />
+                <element signature="e#24136#25126#0" expanded="false" />
+                <element signature="e#25352#25847#0" expanded="false" />
+                <element signature="e#25879#26128#0" expanded="false" />
+                <element signature="e#26177#26470#0" expanded="false" />
+                <element signature="e#26517#27357#0" expanded="false" />
+                <marker date="1463814544000" expanded="true" signature="21714:21728" placeholder="..." />
+                <marker date="1463814544000" expanded="true" signature="23623:23634" placeholder="..." />
+                <marker date="1463814544000" expanded="true" signature="23960:23971" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tip.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/modules/tip.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.5945946">
+              <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#39#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -5137,16 +5154,16 @@
         <option value="$PROJECT_DIR$/js/modules/showFilter.js" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/index-webpack.html" />
-        <option value="$PROJECT_DIR$/js/modules/AllData.js" />
-        <option value="$PROJECT_DIR$/js/modules/drwMain.js" />
-        <option value="$PROJECT_DIR$/js/modules/tip.js" />
         <option value="$PROJECT_DIR$/js/modules/drwtraffic.js" />
         <option value="$PROJECT_DIR$/js/subway/drw.js" />
         <option value="$PROJECT_DIR$/data/1100_drw_beijing.json" />
         <option value="$PROJECT_DIR$/js/subway/common.js" />
+        <option value="$PROJECT_DIR$/js/modules/bindEvent.js" />
         <option value="$PROJECT_DIR$/js/modules/SW.js" />
         <option value="$PROJECT_DIR$/js/subway/main.js" />
-        <option value="$PROJECT_DIR$/js/modules/bindEvent.js" />
+        <option value="$PROJECT_DIR$/js/modules/drwMain.js" />
+        <option value="$PROJECT_DIR$/js/modules/tip.js" />
+        <option value="$PROJECT_DIR$/js/modules/AllData.js" />
       </list>
     </option>
   </component>
@@ -5199,6 +5216,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -5230,6 +5248,10 @@
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="subway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -5259,14 +5281,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -5606,7 +5627,8 @@
       <workItem from="1463656658937" duration="16922000" />
       <workItem from="1463676204764" duration="1563000" />
       <workItem from="1463743152558" duration="9171000" />
-      <workItem from="1463799177715" duration="4610000" />
+      <workItem from="1463799177715" duration="4725000" />
+      <workItem from="1463812270894" duration="2080000" />
     </task>
     <task id="LOCAL-00001" summary="更新画图数据">
       <created>1462501255612</created>
@@ -5812,11 +5834,17 @@
       <option name="project" value="LOCAL" />
       <updated>1463803543084</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="用了新的方法解决问题">
+      <created>1463804425144</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1463804425144</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="234395000" />
+    <option name="totallyTimeSpent" value="236590000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -5824,16 +5852,15 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32912722" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905483" sideWeight="0.5021322" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32168674" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32650602" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32572114" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19670959" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19670959" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -5841,6 +5868,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32912722" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -5862,7 +5890,6 @@
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <confirmMoveToFailedCommit value="2" />
-    <MESSAGE value="修改了请求地址" />
     <MESSAGE value="修改了交通信息缓存机制，然后去除了trafficinfo中不存在的站点信息。" />
     <MESSAGE value="修正环线的的首尾连接问题" />
     <MESSAGE value="注释+修改默认跳转到1100" />
@@ -5887,7 +5914,8 @@
     <MESSAGE value="模块化后存在一个拖拽的bug!无法解决" />
     <MESSAGE value="小修复" />
     <MESSAGE value="修复了选择全部线路的显示问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复了选择全部线路的显示问题" />
+    <MESSAGE value="用了新的方法解决问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="用了新的方法解决问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -5930,7 +5958,6 @@
             <element signature="n#!!block;n#drawSvgSubway#0;n#drawSvgSubway#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
             <element signature="n#!!block;n#drwSwBox#0;n#drwSwBox#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
             <element signature="n#!!block;n#addCaption#0;n#addCaption#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#addFilter#0;n#addFilter#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
             <element signature="n#!!block;n#drawSvg#0;n#drawSvg#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
             <element signature="n#!!block;n#doublePathInfo#0;n#doublePathInfo#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
             <element signature="n#!!block;n#drwTrafficByUser#0;n#drwTrafficByUser#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
@@ -5941,6 +5968,9 @@
             <element signature="n#!!block;n#toLnglat#0;n#toLnglat#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
             <element signature="n#!!block;n#getDetailStation#0;n#getDetailStation#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
             <element signature="n#!!block;n#getNearStation#0;n#getNearStation#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <marker date="1463802658000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1463802658000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1463802658000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -6103,14 +6133,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.142857">
-          <caret line="130" column="7" selection-start-line="130" selection-start-column="7" selection-end-line="130" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/modules/amapCache.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -6159,16 +6181,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#43#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/modules/zepto.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -6183,93 +6195,6 @@
           <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
           <folding>
             <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/subway/drw.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56578946">
-          <caret line="215" column="87" selection-start-line="215" selection-start-column="87" selection-end-line="215" selection-end-column="87" />
-          <folding>
-            <element signature="n#!!block;n#initDraw#0;n#initDraw#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#drawSvgSubway#0;n#drawSvgSubway#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#drwSwBox#0;n#drwSwBox#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#addCaption#0;n#addCaption#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#drawSvg#0;n#drawSvg#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#doublePathInfo#0;n#doublePathInfo#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#drwTrafficByUser#0;n#drwTrafficByUser#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#drwDouble#0;n#drwDouble#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#drwSwStationsName#0;n#drwSwStationsName#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#clearNearTip#0;n#clearNearTip#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#getDistance#0;n#getDistance#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#toLnglat#0;n#toLnglat#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#getDetailStation#0;n#getDetailStation#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#getNearStation#0;n#getNearStation#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
-            <marker date="1463802658000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1463802658000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1463802658000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/modules/drwMain.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02970297">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-            <element signature="e#518#698#0" expanded="false" />
-            <element signature="e#4073#6271#0" expanded="false" />
-            <element signature="e#6625#7526#0" expanded="false" />
-            <element signature="e#10098#12867#0" expanded="false" />
-            <element signature="e#12952#18205#0" expanded="false" />
-            <element signature="e#18285#21169#0" expanded="false" />
-            <element signature="e#21222#23210#0" expanded="false" />
-            <element signature="e#23237#24083#0" expanded="false" />
-            <element signature="e#24125#25115#0" expanded="false" />
-            <element signature="e#25341#25836#0" expanded="false" />
-            <element signature="e#25868#26117#0" expanded="false" />
-            <element signature="e#26166#26459#0" expanded="false" />
-            <element signature="e#26506#27346#0" expanded="false" />
-            <marker date="1463799480000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1463799480000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1463799480000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/modules/AllData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.118421055">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#43#0" expanded="false" />
-            <element signature="e#254#598#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/modules/drwtraffic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="11.666667">
-          <caret line="88" column="18" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-            <element signature="e#285#629#0" expanded="false" />
-            <element signature="e#8810#10673#0" expanded="false" />
-            <element signature="e#10708#13236#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/modules/SW.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="193" column="40" selection-start-line="193" selection-start-column="40" selection-end-line="193" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#43#0" expanded="false" />
-            <element signature="e#837#1042#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -6298,20 +6223,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/modules/tip.js">
+    <entry file="file://$PROJECT_DIR$/data/1100_drw_beijing.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="12.561097">
-          <caret line="521" column="37" selection-start-line="521" selection-start-column="33" selection-end-line="521" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.08139535">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/modules/drwtraffic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.8022388">
+          <caret line="88" column="18" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
           <folding>
             <element signature="e#0#39#0" expanded="false" />
+            <element signature="e#285#629#0" expanded="false" />
+            <element signature="e#8810#10673#0" expanded="false" />
+            <element signature="e#10708#13236#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/modules/bindEvent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="220" column="82" selection-start-line="220" selection-start-column="82" selection-end-line="220" selection-end-column="82" />
+        <state vertical-scroll-proportion="6.1641793">
+          <caret line="238" column="27" selection-start-line="238" selection-start-column="27" selection-end-line="238" selection-end-column="27" />
           <folding>
             <element signature="e#0#39#0" expanded="false" />
             <element signature="e#8241#8456#0" expanded="false" />
@@ -6319,9 +6255,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/modules/SW.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#43#0" expanded="false" />
+            <element signature="e#303#418#0" expanded="false" />
+            <element signature="e#837#1042#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/subway/drw.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="38" selection-end-column="6" />
+          <folding>
+            <element signature="n#!!block;n#initDraw#0;n#initDraw#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#drawSvgSubway#0;n#drawSvgSubway#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#drwSwBox#0;n#drwSwBox#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#addCaption#0;n#addCaption#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#drawSvg#0;n#drawSvg#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#doublePathInfo#0;n#doublePathInfo#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#drwTrafficByUser#0;n#drwTrafficByUser#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#drwDouble#0;n#drwDouble#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#drwSwStationsName#0;n#drwSwStationsName#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#clearNearTip#0;n#clearNearTip#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#getDistance#0;n#getDistance#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#toLnglat#0;n#toLnglat#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#getDetailStation#0;n#getDetailStation#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#getNearStation#0;n#getNearStation#0;n#!!block;n#drwSw#0;n#!!top" expanded="false" />
+            <marker date="1463802658000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1463802658000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1463802658000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.87371135">
+          <caret line="130" column="7" selection-start-line="130" selection-start-column="7" selection-end-line="130" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#43#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/subway/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5298507">
+          <caret line="624" column="29" selection-start-line="624" selection-start-column="29" selection-end-line="624" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index-webpack.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14082687">
+        <state vertical-scroll-proportion="-2.9642856">
           <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
           <folding>
             <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -6335,19 +6335,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/1100_drw_beijing.json">
+    <entry file="file://$PROJECT_DIR$/js/modules/AllData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08139535">
-          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#43#0" expanded="false" />
+            <element signature="e#228#572#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/subway/main.js">
+    <entry file="file://$PROJECT_DIR$/js/modules/drwMain.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36658356">
-          <caret line="304" column="15" selection-start-line="304" selection-start-column="15" selection-end-line="305" selection-end-column="60" />
-          <folding />
+        <state vertical-scroll-proportion="-9.333333">
+          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+            <element signature="e#6636#7537#0" expanded="false" />
+            <element signature="e#10109#12878#0" expanded="false" />
+            <element signature="e#12963#18216#0" expanded="false" />
+            <element signature="e#18296#21180#0" expanded="false" />
+            <element signature="e#21233#23221#0" expanded="false" />
+            <element signature="e#23248#24094#0" expanded="false" />
+            <element signature="e#24136#25126#0" expanded="false" />
+            <element signature="e#25352#25847#0" expanded="false" />
+            <element signature="e#25879#26128#0" expanded="false" />
+            <element signature="e#26177#26470#0" expanded="false" />
+            <element signature="e#26517#27357#0" expanded="false" />
+            <marker date="1463814544000" expanded="true" signature="21714:21728" placeholder="..." />
+            <marker date="1463814544000" expanded="true" signature="23623:23634" placeholder="..." />
+            <marker date="1463814544000" expanded="true" signature="23960:23971" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/modules/tip.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.5945946">
+          <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

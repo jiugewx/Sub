@@ -10,11 +10,8 @@ var DrwTraf=require("./drwtraffic");
 
 
 var drwSw = {
-    defaultColor:AllData.statusColor[0].color,
     timer:{},
     currLines: {},
-    w: document.documentElement.clientWidth,
-    h: document.documentElement.clientHeight,
     t_top: 0,
     t_left: 0,
     moveX: 0,
@@ -40,6 +37,11 @@ var drwSw = {
         left: 0,
         top: 0
     },
+    w: AllData.w,
+    h: AllData.h,
+    isNearTip: AllData.isNearTip,
+    svgReady: AllData.svgReady,
+    defaultColor:AllData.statusColor[0].color,
     ns_svg: AllData.ns_svg,
     statusColor:AllData.statusColor,
     trafficInfo:AllData.cache.trafficInfo,

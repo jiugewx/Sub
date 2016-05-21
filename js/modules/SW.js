@@ -54,10 +54,10 @@ var SW = {
         }
         //如果param不存在，那就打开城市选择列表。
         if (!param) {
-            self.subwayFlag = 0;
+            AllData.subwayFlag = 0;
             return tip.cityChange();
         }
-        self.param = param;
+        AllData.param = param;
         //取adcode为param中city的值。
         var adcode = param.city && param.city.substr(0, 4);
         //var adcode = "1100";
@@ -76,7 +76,7 @@ var SW = {
         }
         //如果城市代码不存在
         else {
-            self.subwayFlag = 0;
+            AllData.subwayFlag = 0;
             return tip.cityChange();
         }
 
