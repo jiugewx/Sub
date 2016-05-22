@@ -2,77 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18973b9c-5a5a-4fcc-a02b-944705c43344" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\.idea\.name" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\.idea\compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\.idea\copyright\profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\.idea\dictionaries\xinye.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\.idea\encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\.idea\jsLibraryMappings.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\.idea\libraries\Sub_node_modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\.idea\misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\.idea\modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\.idea\uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\.idea\vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\.idea\workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\README.md" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\Subway.iml" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\css\style.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\data\1100_conv_beijing.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\data\1100_drw_beijing.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\data\1100_info_beijing.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\data\1100_trafficinfo_beijing.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\data\trafficinfo.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\data备份\1100_drw_beijing.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\data备份\1100_info_beijing.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\dist\main.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\axis.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\back_btn.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\back_srh_icon.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\close2_btn.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\close_btn.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\end_icon.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\flow.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\ipt_clear_btn.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\limit.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\nav-end.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\nav-st.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\nav-start.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\nav-transfor.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\refresh.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\route.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\srh_list_icon.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\st_icon.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\start_icon.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\switch_blac.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\img\subway\transfer-station.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\index-webpack.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\index.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\index.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\lib\fastclick.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\lib\hammer.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\lib\zepto.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\modules\AllData.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\modules\SW.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\modules\amapCache.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\modules\bindEvent.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\modules\drwLines.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\modules\drwMain.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\modules\drwSelect.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\modules\drwtraffic.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\modules\fastclick.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\modules\tip.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\modules\zepto.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\subway\amapCache.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\subway\common.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\subway\drw.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\js\subway\main.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\package.json" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\server.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\traffic.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\MyProjects\Sub\webpack.config.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="fff6501d-74f1-4fb3-b1a1-6d0179897558" name="New changelist" comment="New changelist" />
     <list id="d414c9a0-1582-4c3c-b9fd-6257e178ac54" name="Failed commit: Default" comment="增加trafficinfo文件" />
@@ -118,31 +49,31 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.06880734">
+            <state vertical-scroll-proportion="0.0">
               <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider editor-type-id="MarkdownPreviewEditor">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.0">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.6896552">
+              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -728,7 +659,7 @@
       <workItem from="1463892333927" duration="840000" />
       <workItem from="1463898271605" duration="648000" />
       <workItem from="1463898995567" duration="220000" />
-      <workItem from="1463900634057" duration="878000" />
+      <workItem from="1463900634057" duration="1027000" />
     </task>
     <task id="LOCAL-00001" summary="更新画图数据">
       <created>1462501255612</created>
@@ -958,11 +889,17 @@
       <option name="project" value="LOCAL" />
       <updated>1463898861295</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="尝试一下">
+      <created>1463901528278</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1463901528278</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244878000" />
+    <option name="totallyTimeSpent" value="245027000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -979,21 +916,21 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294423" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32912722" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905483" sideWeight="0.5021322" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35472578" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39688715" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35454544" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3961039" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19627507" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19627507" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32912722" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1017,7 +954,6 @@
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <confirmMoveToFailedCommit value="2" />
-    <MESSAGE value="注释+修改默认跳转到1100" />
     <MESSAGE value="路况显示无bug,新增的地铁站仅在drw中添加坐标即可，若未开通，可以让站点不显示" />
     <MESSAGE value="修复亦庄线 宋家庄的显示问题" />
     <MESSAGE value="修复小问题" />
@@ -1042,7 +978,8 @@
     <MESSAGE value="用了新的方法解决问题" />
     <MESSAGE value="压缩了数据" />
     <MESSAGE value="解决了拖拽的bug,主要原因是数据未能与方法模块脱离" />
-    <option name="LAST_COMMIT_MESSAGE" value="解决了拖拽的bug,主要原因是数据未能与方法模块脱离" />
+    <MESSAGE value="尝试一下" />
+    <option name="LAST_COMMIT_MESSAGE" value="尝试一下" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1416,6 +1353,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1437,16 +1382,8 @@
         </state>
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06880734">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.6896552">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
           <folding />
         </state>
       </provider>

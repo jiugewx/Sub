@@ -10,3 +10,6 @@ npm run dev  这个可以热加载,开启8080端口
 npm start  开启3000端口
 
 
+git rm -r --cached .
+git add .
+git commit -m "new!"
