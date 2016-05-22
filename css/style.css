@@ -300,8 +300,8 @@ body.disable-default-action {
     display: none;
     position: fixed;
     width: 36px;
-    height: 14px;
-    line-height: 14px;
+    height: 16px;
+    line-height: 16px;
     top: 14px;
     right: 8px;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0,.3);
@@ -313,7 +313,7 @@ body.disable-default-action {
     -webkit-text-size-adjust:none;
     font-size: 9px;
     text-align: center;
-    padding-top: 22px;
+    padding-top: 20px;
     color: #fff;
 }
 
@@ -370,8 +370,8 @@ body.disable-default-action {
     display: none;
     position: fixed;
     width: 36px;
-    height: 14px;
-    line-height: 14px;
+    height: 16px;
+    line-height: 16px;
     top: 58px;
     right: 8px;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0,.3);
@@ -383,7 +383,7 @@ body.disable-default-action {
     -webkit-text-size-adjust:none;
     font-size: 9px;
     text-align: center;
-    padding-top: 22px;
+    padding-top: 20px;
     color: #fff;
 }
 
@@ -780,8 +780,8 @@ body.disable-default-action {
     display: inline-block;
     width: 14px;
     height: 14px;
-    line-height: 14px;
-    font-size: 12px;
+    line-height: 16px;
+    font-size: 11px;
     margin: 4px 0 4px 2px;
     border-radius: 50%;
     text-align: center;
@@ -793,8 +793,8 @@ body.disable-default-action {
     display: inline-block;
     width: 14px;
     height: 14px;
-    line-height: 14px;
-    font-size: 12px;
+    line-height: 16px;
+    font-size: 11px;
     margin: 4px 0 4px 2px;
     border-radius: 50%;
     text-align: center;

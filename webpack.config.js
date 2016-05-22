@@ -11,8 +11,8 @@ module.exports = {
     devtool: false,/*生产环境，使用devtool:false这样打包出来的js会很小，开发环境，使用devtool: 'source-map'*/
     entry: [
         /*以下都会写进main.js*/
-        //'webpack/hot/dev-server',/*[HMR] Waiting for update signal from WDS..热加载必须要有的*/
-        //'webpack-dev-server/client?http://localhost:8080',/*[WDS]Hot Module Replacement enabled.热加载必须要有的*/
+        'webpack/hot/dev-server',/*[HMR] Waiting for update signal from WDS..热加载必须要有的*/
+        'webpack-dev-server/client?http://localhost:3000',/*[WDS]Hot Module Replacement enabled.热加载必须要有的*/
         './index.js' // 入口文件
     ],
     output: {
