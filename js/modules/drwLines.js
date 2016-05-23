@@ -55,9 +55,21 @@ var Drwlines={
             var p = {};
             p.x = parseInt(point.split(",")[0]);
             p.y = parseInt(point.split(",")[1]);
-            //计算偏离度
-            var Xoffset=parseInt(offset*Math.cos(Math.PI/2-p_a[Path_id])),
-                Yoffset=parseInt(offset*Math.sin(Math.PI/2+p_a[Path_id]));
+
+
+            //计算偏移量
+            var _p_a=parseInt(p_a[Path_id]*100000000);
+            var Xoffset="", Yoffset="";
+            if(_p_a==0 || _p_a==314159265 || _p_a==-157079632 || _p_a==157079632){
+                //直角或者平角的情况
+                Xoffset=parseInt(offset*Math.cos(Math.PI/2-p_a[Path_id]))/10;
+                Yoffset=parseInt(offset*Math.sin(Math.PI/2+p_a[Path_id]))/10;
+            }else{
+                //其他角度的情况
+                Xoffset=parseInt((offset+4)*Math.cos(Math.PI/2-p_a[Path_id]))/10;
+                Yoffset=parseInt((offset+4)*Math.sin(Math.PI/2+p_a[Path_id]))/10;
+            }
+
             //左偏移
             var LeftX=p.x+Xoffset;
             var LeftY=p.y-Yoffset;
@@ -79,8 +91,8 @@ var Drwlines={
         var Left = {}, Right = {};
         //console.log(dataset_line_arr);
         //获取到两条路径信息，分路径信息
-        Left.path = self.doublePathInfo(dataset_line_arr, 3).LeftPath;
-        Right.path = self.doublePathInfo(dataset_line_arr, 3).RightPath;
+        Left.path = self.doublePathInfo(dataset_line_arr, 26).LeftPath;
+        Right.path = self.doublePathInfo(dataset_line_arr, 26).RightPath;
 
         //获取左右两条线的颜色,若是地铁线颜色:current_drwData.cl;
         Left.color = self.defaultColor;
@@ -121,10 +133,17 @@ var Drwlines={
             color=Drwlines.defaultColor;/*如果感应器没有数据,就画默认颜色*/
             //color=LineId_Data.cl;
         }
+        var loadRate="";
+        if(pathName.loadRate){
+            loadRate=pathName.loadRate
+        }else{
+            loadRate=color
+        }
         line_path.setAttribute("stroke", "#" + color);
         line_path.setAttribute("d", path);
+        line_path.setAttribute("loadRate", loadRate);
         parentNode.appendChild(line_path);
-    },
+    }
 };
 
 module.exports=Drwlines;

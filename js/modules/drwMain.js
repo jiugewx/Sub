@@ -326,7 +326,7 @@ var drwSw = {
                     var subway_station = document.createElementNS(self.ns_svg, 'circle');
                     subway_station.setAttribute("cx", parseInt(item.p.split(" ")[0]));
                     subway_station.setAttribute("cy", parseInt(item.p.split(" ")[1]));
-                    subway_station.setAttribute("r", 7);
+                    subway_station.setAttribute("r", 5);
                     subway_station.setAttribute("fill", "#FFF");
                     subway_station.setAttribute("stroke-width", 2);
                     subway_station.setAttribute("stroke", "#"+item.cl);/*画对应地铁线的颜色*/
@@ -335,10 +335,10 @@ var drwSw = {
                 //如果是换乘车站
                 else if ((item.t == "1")) {
                     var subway_station_transfer = document.createElementNS(self.ns_svg, 'image');
-                    subway_station_transfer.setAttribute("x", parseInt(item.p.split(" ")[0]) - 13);
-                    subway_station_transfer.setAttribute("y", parseInt(item.p.split(" ")[1]) - 13);
-                    subway_station_transfer.setAttribute("width", 26);
-                    subway_station_transfer.setAttribute("height", 26);
+                    subway_station_transfer.setAttribute("x", parseInt(item.p.split(" ")[0]) - 10);
+                    subway_station_transfer.setAttribute("y", parseInt(item.p.split(" ")[1]) - 10);
+                    subway_station_transfer.setAttribute("width", 20);
+                    subway_station_transfer.setAttribute("height", 20);
                     subway_station_transfer.setAttributeNS('http://www.w3.org/1999/xlink', "xlink:href", "./img/subway/transfer-station.png");
                     subway_circle_g.appendChild(subway_station_transfer);
                 }

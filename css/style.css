@@ -284,6 +284,11 @@ body.disable-default-action {
     z-index: 10
 }
 
+.transfer-img{
+    width: 15px;
+    height: 15px;
+}
+
 /*.subway-content{overflow: visible;}*/
 .light_box {
     display: none;
@@ -754,18 +759,10 @@ body.disable-default-action {
     zoom: 1;
 }
 
-
-.time-item-detail .train-direct .direct-label {
-    display: block;
-    width: 35px;
-    float: left;
-    font-size: 14px;
-}
-
-.time-item-detail .train-direct .direct-name {
+.time-item-detail .train-direct {
     display: block;
     float: left;
-    width:auto;
+    width:120px;
     font-size: 14px;
 }
 
