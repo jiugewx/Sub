@@ -22,7 +22,7 @@
 //require("./js/actions/tip");
 
 var SW=require("./js/modules/SW");
-
-
+/*建立默认跳转*/
+window.location.hash = "#city=1100";
 SW.swInit();
 

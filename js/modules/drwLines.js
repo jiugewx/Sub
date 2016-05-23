@@ -137,7 +137,7 @@ var Drwlines={
         if(pathName.loadRate){
             loadRate=pathName.loadRate
         }else{
-            loadRate=color
+            loadRate="No Data!"
         }
         line_path.setAttribute("stroke", "#" + color);
         line_path.setAttribute("d", path);
