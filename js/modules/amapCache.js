@@ -76,7 +76,7 @@ window.amapCache = window.amapCache || {};
             type: 'get',
             method: 'get',
             dataType: 'json',
-            timeout: 5000,/*5秒后连接超时*/
+            timeout: 15000,/*5秒后连接超时*/
             success: callback,
             error: error
         })

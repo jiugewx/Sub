@@ -90,7 +90,7 @@ var tip = {
     },
     refreshSuccess: function () {
         $('.refresh_time_text').html("更新于"+AllData.refreshStatus);
-        //去除加载状态
+        //去除刷新按钮转圈
         var $refresh=$(".refresh_btn");
         $refresh.removeClass("refresh_active");
         tip.refreshstate = 1;

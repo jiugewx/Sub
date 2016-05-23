@@ -172,43 +172,43 @@ var DrwTraf = {
 
     },
     //使用浏览器自行加工数据的方法,需打开addTrafficInfo(city_code);
-    drwTrafficByUser: function (parentNode,LineId_Data) {
-        // 思路:从trafficData中获取lineid,stationname,
-        var self=this;
-        var Left={},Right={};
-        var line_id=LineId_Data.ls;
-        //console.log(self.trafficInfo);
-        for(var k in self.trafficInfo){
-            if (self.trafficInfo[k].reflineId == line_id) {
-                //console.log(self.trafficInfo[k],k);/*用来查看出问题的节点*/
-                if (self.trafficInfo[k].ref_direct == "right") {
-                    var rightmain = self.trafficInfo[k].path;
-                    var rightpath = self.doublePathInfo(rightmain, 3).RightPath;
-                    var rightcolor = self.trafficInfo[k].color;
-                    //console.log("right",rightpath,self.trafficInfo[k].startName+" to "+self.trafficInfo[k].endName);
-                    Right.path = rightpath;
-                    Right.color = "AF272B";
-                    Right.color=rightcolor;
-                    Right.direction = self.trafficInfo[k].direction;
-                    Right.reflineName = self.trafficInfo[k].reflineName;
-                    self.drwlines(parentNode, Right, LineId_Data);
-                }
-                if (self.trafficInfo[k].ref_direct == "left") {
-                    var leftmain = self.trafficInfo[k].path;
-                    var leftpath = self.doublePathInfo(leftmain, 3).LeftPath;
-                    var leftcolor = self.trafficInfo[k].color;
-                    Left.path = leftpath;
-                    Left.color = "C99616";
-                    Left.color=leftcolor;
-                    Left.direction = self.trafficInfo[k].direction;
-                    Left.reflineName = self.trafficInfo[k].reflineName;
-                    //console.log("Left",leftpath,self.trafficInfo[k].startName+" to "+self.trafficInfo[k].endName);
-                    self.drwlines(parentNode, Left, LineId_Data);
-                }
-            }
-        }
-
-    },
+    //drwTrafficByUser: function (parentNode,LineId_Data) {
+    //    // 思路:从trafficData中获取lineid,stationname,
+    //    var self=this;
+    //    var Left={},Right={};
+    //    var line_id=LineId_Data.ls;
+    //    //console.log(self.trafficInfo);
+    //    for(var k in self.trafficInfo){
+    //        if (self.trafficInfo[k].reflineId == line_id) {
+    //            //console.log(self.trafficInfo[k],k);/*用来查看出问题的节点*/
+    //            if (self.trafficInfo[k].ref_direct == "right") {
+    //                var rightmain = self.trafficInfo[k].path;
+    //                var rightpath = self.doublePathInfo(rightmain, 3).RightPath;
+    //                var rightcolor = self.trafficInfo[k].color;
+    //                //console.log("right",rightpath,self.trafficInfo[k].startName+" to "+self.trafficInfo[k].endName);
+    //                Right.path = rightpath;
+    //                Right.color = "AF272B";
+    //                Right.color=rightcolor;
+    //                Right.direction = self.trafficInfo[k].direction;
+    //                Right.reflineName = self.trafficInfo[k].reflineName;
+    //                self.drwlines(parentNode, Right, LineId_Data);
+    //            }
+    //            if (self.trafficInfo[k].ref_direct == "left") {
+    //                var leftmain = self.trafficInfo[k].path;
+    //                var leftpath = self.doublePathInfo(leftmain, 3).LeftPath;
+    //                var leftcolor = self.trafficInfo[k].color;
+    //                Left.path = leftpath;
+    //                Left.color = "C99616";
+    //                Left.color=leftcolor;
+    //                Left.direction = self.trafficInfo[k].direction;
+    //                Left.reflineName = self.trafficInfo[k].reflineName;
+    //                //console.log("Left",leftpath,self.trafficInfo[k].startName+" to "+self.trafficInfo[k].endName);
+    //                self.drwlines(parentNode, Left, LineId_Data);
+    //            }
+    //        }
+    //    }
+    //
+    //},
     formatTime:function(dateTime){
         var timeInfo={};
         var thedateTime = dateTime.replace(/-/g, "/");

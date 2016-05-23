@@ -134,10 +134,10 @@ var SW = {
         //如果对应的城市信息不存在,那就发起请求
         else {
             //从服务器请求数据
-            self.loadStInfo(city_code,city_name);
-            DrwTraf.loadTraffic(city_code,city_name);
             self.loadMainData(city_code,city_name,callback);
             //self.loadTempTraffic();
+            self.loadStInfo(city_code,city_name);
+            DrwTraf.loadTraffic(city_code,city_name);
         }
     },
     //请求站点首末班车信息
@@ -178,6 +178,7 @@ var SW = {
                 //	SW.Traffic2JSON(loaddata);/*drwData增加st2st信息的开关*/
                 //},2000);
                 //————————————JSON编译结束——————————
+                tip.loading();
                 self.buildCurLinesData(city_code,loaddata);
                 AllData.loadStatus.currLinesInfo=1;
                 callback(AllData.cache.cities[city_code]);
@@ -309,6 +310,7 @@ var SW = {
         cache.curCity.offset = cache.offset[city_code];
         var drwData = cache.cities[city_code];
         console.log("纯地铁信息编译完成!");
+        tip.loadingOver();
         //console.log(drwData);
     },
     /*给初始化的drwData增加st2st信息的开关,之后打印成JSON文本*/

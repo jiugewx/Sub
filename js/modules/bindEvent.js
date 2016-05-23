@@ -52,7 +52,6 @@ var bindEvent={
                 hasPenchend = false;
             }
             tip.mcScaleSvg(ev);
-
         });
 
         mc.on("pinchend", function(ev) {
@@ -63,18 +62,14 @@ var bindEvent={
             }, 0)
         });
         mc.on("hammer.input", function(ev) {
-
             if (ev.isFinal) {
-
                 if (lastAction == "pinch") {
                     tip.scaleSvgUpdate(tip.transform.scale);
                     hasPenchend = true;
                 }
-
                 if (lastAction == "pan") {
                     tip.svgUpdate(ev);
                 }
-
                 enableGesture = false;
                 setTimeout(function() {
                     enableGesture = true;
@@ -200,35 +195,16 @@ var bindEvent={
             if (lockfd) return;
             var line_id = $(this).attr('lineid');
             var line_name=$(this).attr('name');
-            var center={};
             if (line_id == "caption-allLines") {
                 tip.closeFilter();
-                $(".filter_btn").html("线路图");
-                $('#g-bg').css('display','none');
-                //获取中心相对于实际svg图像的偏移量
-                var hash = decodeURIComponent(window.location.hash).replace(/^\#/, '');
-                var param = bindEvent.param2json(hash);
-                var adcode = param.city && param.city.substr(0, 4);
-                var curCity=AllData.cache.cities[adcode];
-                var centerOffset={};
-                centerOffset.x=curCity.offset.split(",")[0];
-                centerOffset.y=curCity.offset.split(",")[1];
-                //设置新的中心
-                var $Svg=$('#svg-g');
-                tip.setFitview($Svg);
-                var $Svg_offset = $Svg.offset();
-                var $Svg_h = (document.getElementById('svg-g').getBBox().height) * tip.allScale,
-                    $Svg_w = (document.getElementById('svg-g').getBBox().width*1.5-centerOffset.x) * tip.allScale;
-                center.x = $Svg_offset.left + $Svg_w/2;
-                center.y = $Svg_offset.top + $Svg_h/2;
-                tip.setCenter(center);
+                bindEvent.showAlllines();
             } else {
                 tip.closeFilter();
                 $(".filter_btn").html(line_name);
                 self.showFilterLine(line_id);
                 var select_obj = $('#g-select');
                 tip.setFitview(select_obj);
-                center = tip.getFilterCenter();
+                var center = tip.getFilterCenter();
                 tip.setCenter(center);
                 //console.log(center);
             }
@@ -311,5 +287,27 @@ var bindEvent={
             return json
         }
     },
+    showAlllines: function () {
+        $(".filter_btn").html("线路图");
+        $('#g-bg').css('display','none');
+        //获取中心相对于实际svg图像的偏移量
+        var hash = decodeURIComponent(window.location.hash).replace(/^\#/, '');
+        var param = bindEvent.param2json(hash);
+        var adcode = param.city && param.city.substr(0, 4);
+        var curCity=AllData.cache.cities[adcode];
+        var centerOffset={};
+        centerOffset.x=curCity.offset.split(",")[0];
+        centerOffset.y=curCity.offset.split(",")[1];
+        //设置新的中心
+        var center={};
+        var $Svg=$('#svg-g');
+        tip.setFitview($Svg);
+        var $Svg_offset = $Svg.offset();
+        var $Svg_h = (document.getElementById('svg-g').getBBox().height) * tip.allScale,
+            $Svg_w = (document.getElementById('svg-g').getBBox().width*1.5-centerOffset.x) * tip.allScale;
+        center.x = $Svg_offset.left + $Svg_w/2;
+        center.y = $Svg_offset.top + $Svg_h/2;
+        tip.setCenter(center);
+    }
 };
 module.exports=bindEvent;
