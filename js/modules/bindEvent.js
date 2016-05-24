@@ -8,8 +8,11 @@ var tip=require("./tip");
 var $=require("./zepto");
 var DrwTraf=require("./drwtraffic");
 var drwSw=require("./drwMain");
+var pinch=require("./scales");
 
 var bindEvent={
+    enableGesture :pinch.enableGesture,
+    debounceTransLabel:pinch.debounceTransLabel,
     init: function() {
         this.bindEvent();
     },
@@ -30,12 +33,12 @@ var bindEvent={
         mc.add(new Hammer.Pan());
         mc.add(new Hammer.Pinch());
 
-        var enableGesture = true;
+
         var lastAction = "";
         var hasPenchend = false;
 
         mc.on("panmove", function(ev) {
-            if (!enableGesture) return;
+            if (!self.enableGesture) return;
             tip.touchStatus = 'pan';
             lastAction = "pan";
             tip.mcdragSvg(ev);
@@ -43,7 +46,7 @@ var bindEvent={
 
         mc.on("pinchstart pinchmove", function(ev) {
 
-            if (!enableGesture) return;
+            if (!self.enableGesture) return;
 
             tip.touchStatus = 'pinch';
             lastAction = "pinch";
@@ -70,9 +73,9 @@ var bindEvent={
                 if (lastAction == "pan") {
                     tip.svgUpdate(ev);
                 }
-                enableGesture = false;
+                self.enableGesture= false;
                 setTimeout(function() {
-                    enableGesture = true;
+                    self.enableGesture= true;
                 }, 50);
             }
         });
@@ -261,6 +264,10 @@ var bindEvent={
             tip.hideCitylist();
             $('#subway').show();
         });
+        //$(document).on("webkitTransitionEnd", "." + self.debounceTransLabel, function() {
+        //    $(document.getElementById("drag_handle")).removeClass(self.debounceTransLabel);
+        //    "pinch" == self.enableGesture && tip.resetAllElem();
+        //})
     },
 
 
