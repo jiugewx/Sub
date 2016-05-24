@@ -1,21 +1,21 @@
 /**
  * Created by xinye on 16/5/18.
  */
-var $=require("./zepto");
-var Hammer=require("../lib/hammer.js");
+var $ = require("./zepto");
+var Hammer = require("../lib/hammer.js");
 
-var DrwTraf=require("./drwtraffic");
-var drwSw=require("./drwMain");
-var SW=require("./SW");
-var AllData=require("./AllData");
+var DrwTraf = require("./drwtraffic");
+var drwSw = require("./drwMain");
+var SW = require("./SW");
+var AllData = require("./AllData");
 
 var getstureState = 0;
 var el = document.getElementById('drag_handle');
 el.style.transformOrigin = "top left";
 
 var tip = {
-    refreshTimer:{},
-    refreshstate:0,
+    refreshTimer: {},
+    refreshstate: 0,
     station_w: 26,
     touchStatus: null, //当前touch状态：drag, scale
     curScale: 1, //当前缩放级别
@@ -45,24 +45,26 @@ var tip = {
         },
         scale: 1
     },
+    min_scale: 0.3,
+    max_scale: 2.1,
     transformOrigin: null,
     routeState: false,
     fromendState: false,
     w: AllData.w,
     h: AllData.h,
-    curCity:AllData.cache.curCity,
-    stationsInfo: AllData.cache.stationsInfo,/*几个数据接口*/
+    curCity: AllData.cache.curCity,
+    stationsInfo: AllData.cache.stationsInfo, /*几个数据接口*/
     stations: AllData.cache.stations,
     lines: AllData.cache.lines,
     //pathData: null,
     //初始化事件绑定信息
 
-    preventScrollBounce: function(eles) {
+    preventScrollBounce: function (eles) {
         if (!eles.length && !eles.unshift) {
             eles = [eles]
         }
 
-        eles.forEach(function(el) {
+        eles.forEach(function (el) {
             new Hammer.Manager(el, {
                 recognizers: [
                     [Hammer.Pinch, {
@@ -89,44 +91,44 @@ var tip = {
         }, 4000);
     },
     refreshSuccess: function () {
-        $('.refresh_time_text').html("更新于"+AllData.refreshStatus);
+        $('.refresh_time_text').html("更新于" + AllData.refreshStatus);
         //去除刷新按钮转圈
-        var $refresh=$(".refresh_btn");
+        var $refresh = $(".refresh_btn");
         $refresh.removeClass("refresh_active");
         tip.refreshstate = 1;
         tip.refreshShow();
     },
     refreshError: function () {
-        var $refresh=$(".refresh_btn");
+        var $refresh = $(".refresh_btn");
         $refresh.removeClass("refresh_active");
-        $(".refresh_error").css("display","block");
+        $(".refresh_error").css("display", "block");
         setTimeout(function () {
-            $(".refresh_error").css("display","none");
+            $(".refresh_error").css("display", "none");
             tip.refreshstate = 0;
-        },1500);
+        }, 1500);
     },
-    stoprefresh:function (){
+    stoprefresh: function () {
         $(".refresh_btn").hide();
         $(".refresh_time_text").removeClass("refresh_time_text_show").css("display", "none");
         $(".refresh_box").hide().removeClass("refresh_box_show").css("display", "none");
     },
     openhelpBox: function () {
         $('.light_box').css('display', 'block');
-        var $helpContent=$(".help_content");
-        var width=parseInt($helpContent.css("width"));
-        var left=(tip.w-width)/2+"px";
-        $helpContent.css({"left":left});
-        $helpContent.css("display","block");
+        var $helpContent = $(".help_content");
+        var width = parseInt($helpContent.css("width"));
+        var left = (tip.w - width) / 2 + "px";
+        $helpContent.css({"left": left});
+        $helpContent.css("display", "block");
         $('.tip_wrap_out').hide();
         $(".refresh_btn").hide();
         $(".refresh_time").hide();
     },
     closehelpBox: function () {
         $('.light_box').css('display', 'none');
-        $(".help_content").css("display","none");
+        $(".help_content").css("display", "none");
     },
     //拖动Svg
-    mcdragSvg: function(ev) {
+    mcdragSvg: function (ev) {
         var self = this;
         // 降低渲染频率
         if (self.transform.translate.x == ev.deltaX && self.transform.translate.y == ev.deltaY) {
@@ -137,7 +139,7 @@ var tip = {
         self.handleUpdate();
     },
     //缩放
-    mcScaleSvg: function(ev) {
+    mcScaleSvg: function (ev) {
         var self = this;
         var scale;
         var initScale = 1;
@@ -177,7 +179,7 @@ var tip = {
         self.handleUpdate();
     },
     //处理更新
-    handleUpdate: function() {
+    handleUpdate: function () {
         var self = this;
         var value = [
             'translate3d(' + self.transform.translate.x + 'px, ' + self.transform.translate.y + 'px, 0)',
@@ -197,7 +199,7 @@ var tip = {
         }
     },
     //处理恢复默认
-    handleReset: function() {
+    handleReset: function () {
         var self = this;
         self.transform.translate.x = 0;
         self.transform.translate.y = 0;
@@ -206,7 +208,7 @@ var tip = {
         self.handleUpdate();
     },
     //svg更新
-    svgUpdate: function(ev) {
+    svgUpdate: function (ev) {
         var svg_g = $("#svg-g"),
             $svg_body = $('#subwaySvgBody'),
             svg_g_offset = svg_g.offset(),
@@ -235,10 +237,10 @@ var tip = {
         }
 
         if (canUpdate) {
-             //var transform_arr = svg_g.attr("transform").match(/(-?\d+(\.\d+)?)/g),
-             //    translate_x = Number(transform_arr[0]),
-             //    translate_y = Number(transform_arr[1]),
-             //    curscale = transform_arr[2];
+            //var transform_arr = svg_g.attr("transform").match(/(-?\d+(\.\d+)?)/g),
+            //    translate_x = Number(transform_arr[0]),
+            //    translate_y = Number(transform_arr[1]),
+            //    curscale = transform_arr[2];
 
             //tip.transformState.translate.x = tip.transform.translate.x;
             //tip.transformState.translate.y = tip.transform.translate.y;
@@ -246,7 +248,6 @@ var tip = {
             var newTranslate_x = tip.transformState.translate.x + ev.deltaX,
                 newTranslate_y = tip.transformState.translate.y + ev.deltaY,
                 curscale = tip.transformState.scale;
-
 
 
             if (newTranslate_x && newTranslate_y) {
@@ -272,12 +273,12 @@ var tip = {
         }
 
         tip.handleReset();
-        setTimeout(function() {
+        setTimeout(function () {
             tip.touchStatus = null;
         }, 100);
     },
     //svg缩放更新
-    scaleSvgUpdate: function(scale, nav) {
+    scaleSvgUpdate: function (scale, nav) {
         var self = this;
 
         enableGesture = true;
@@ -291,13 +292,13 @@ var tip = {
         tip.allScale = tip.allScale * scale;
 
         var newscale = scale * curscale;
-        if (newscale > 1.3) {
-            newscale = 1.3;
-            tip.allScale = 1.3;
+        if (newscale > self.max_scale) {
+            newscale = self.max_scale;
+            tip.allScale = self.max_scale;
         }
-        if (newscale < 0.3) {
-            newscale = 0.3;
-            tip.allScale = 0.3;
+        if (newscale < self.min_scale) {
+            newscale = self.min_scale;
+            tip.allScale = self.min_scale;
         }
         scale = newscale / curscale;
 
@@ -338,17 +339,17 @@ var tip = {
         tip.updateTip();
         tip.updateNear();
         tip.updateMarker();
-        setTimeout(function() {
+        setTimeout(function () {
             tip.touchStatus = null;
         }, 100);
 
-        setTimeout(function() {
+        setTimeout(function () {
             enableGesture = false;
         }, 100);
 
     },
     //设置合适的屏幕视图大小
-    setFitview: function(obj) {
+    setFitview: function (obj) {
         var self = this;
         self.scaleSvgUpdate(1 / self.transformState.scale, true);
         var obj_width = obj.width(),
@@ -366,7 +367,7 @@ var tip = {
         }
     },
     //获取缩放中心
-    getScaleCenter: function(xy1, xy2) {
+    getScaleCenter: function (xy1, xy2) {
         var center = {};
         if (xy1 && xy2) {
             var x1 = eval(xy1.x),
@@ -379,7 +380,7 @@ var tip = {
         return center;
     },
     //关闭最近的弹窗
-    closeNearTip: function() {
+    closeNearTip: function () {
         var self = this;
         var obj = $(".tip-content");
         if (drwSw.isNearTip) {
@@ -389,7 +390,7 @@ var tip = {
         }
     },
     //加载信息数据
-    loadinfo: function(lineId, StationId) {
+    loadinfo: function (lineId, StationId) {
         var self = this;
         var select_station_name,
             infowHtml = [],
@@ -418,19 +419,19 @@ var tip = {
                     }
                     infowHtml.push("<div class=\"tip_detail_line\">");
                     //infowHtml.push("<label class=\"line-label\" style=\"background-color:#"+self.lines[lineid].cl+"\">地铁" + self.lines[lineid].ln + line_sub_name +"</label>");
-                    infowHtml.push("<label class=\"line-name\">" + self.lines[lineid].ln + line_sub_name +"</label>");
+                    infowHtml.push("<label class=\"line-name\">" + self.lines[lineid].ln + line_sub_name + "</label>");
                     infowHtml.push("<label class='line-white-label'></label>");
                     infowHtml.push("<ul class=\"time-item-main\">");
                     for (var j = 0; j < 2; j++) {
                         if (current_station[lineid][j]) {
                             var first_time = current_station[lineid][j].ft;
                             var last_time = current_station[lineid][j].lt;
-                            first_time=self.resetTime(first_time);
-                            last_time=self.resetTime(last_time);
+                            first_time = self.resetTime(first_time);
+                            last_time = self.resetTime(last_time);
                             var direction = self.stations[current_station[lineid][j].n];
                             if (first_time.split(':')[0] != '--' || last_time.split(':')[0] != '--') {
                                 infowHtml.push("<li class=\"time-item-detail\">");
-                                infowHtml.push("<div class=\"train-direct\">" + direction.n + "方向"+"</div>"); //下一站名，表示方向
+                                infowHtml.push("<div class=\"train-direct\">" + direction.n + "方向" + "</div>"); //下一站名，表示方向
                                 infowHtml.push("<div class=\"train-time fr\">");
                                 infowHtml.push("<div class=\"start-time time-box fl\"><label class=\"time-label-start\">首</label><span class=\"time\">" + first_time + "</span></div>"); //首发
                                 infowHtml.push("<div class=\"last-time time-box fl\"><label class=\"time-label-end\">末</label><span class=\"time\">" + last_time + "</span></div>"); //末发
@@ -449,7 +450,7 @@ var tip = {
         $("#tip_content").html(infowHtml.join(""));
     },
     //打开Tip弹窗
-    openTip: function(obj) {
+    openTip: function (obj) {
         if (obj && !tip.routeState) {
             var self = this;
             self.curopenStation = obj;
@@ -464,11 +465,11 @@ var tip = {
             //设置站点的id和名称及关联线路id
             var station_name = obj.attr("station_name"),
                 station_poiid = obj.attr("station_poiid"),
-                station_lon = obj.attr("station_lon"),/*经度*/
-                station_lat = obj.attr("station_lat"),/*纬度*/
+                station_lon = obj.attr("station_lon"), /*经度*/
+                station_lat = obj.attr("station_lat"), /*纬度*/
                 station_id = obj.attr("station_id");
 
-            var line_id=obj.attr("line_id").toString();
+            var line_id = obj.attr("line_id").toString();
 
             //移除当前打开的info-window
             //$('#tip_name').html(station_name);
@@ -482,17 +483,17 @@ var tip = {
             self.setTipPos(obj);
             self.opentip = true;
             //打开窗口后就以弹窗的1/3为中心
-            var Top0ffset=self.topOffset(0.4);
+            var Top0ffset = self.topOffset(0.4);
             tip.transformState.translate.y = tip.transformState.translate.y + Top0ffset;
         }
     },
     topOffset: function (offset) {
         var $tipBodyHeight = $('.tip_body').css("height"),
-            bodyHeight = parseInt($tipBodyHeight)*offset;
+            bodyHeight = parseInt($tipBodyHeight) * offset;
         return bodyHeight;
     },
     //设置弹窗的位置属性
-    setTipPos: function(obj) {
+    setTipPos: function (obj) {
         var self = this;
         var tip_content = $('.tip_wrap_out');
         var obj_left = obj && obj.offset() && obj.offset().left,
@@ -510,17 +511,17 @@ var tip = {
         });
     },
     //关闭弹窗信息
-    closeTip: function(status) {
+    closeTip: function (status) {
         $('.tip_wrap_out').hide();
         if (!status) {
             tip.opentip = false;
         }
         $('.light_box').css('display', 'none');
         //window.location.hash = '#city=' + AllData.cache.curCity.adcode;
-        window.location.hash ="";
+        window.location.hash = "";
     },
     //设置中心信息
-    setCenter: function(center) {
+    setCenter: function (center) {
         var self = this;
         var svg_g = $('#svg-g');
         if (!center) {
@@ -534,12 +535,11 @@ var tip = {
         var screen_w = document.documentElement.clientWidth,
             screen_h = document.documentElement.clientHeight;
 
-        var moveX = center_x - screen_w *0.5,
-            moveY = center_y - screen_h *0.5;
+        var moveX = center_x - screen_w * 0.5,
+            moveY = center_y - screen_h * 0.5;
 
         translate_x = translate_x - moveX;
         translate_y = translate_y - moveY;
-
 
 
         svg_g.attr("transform", "translate(" + translate_x + "," + translate_y + ") scale(" + scale + ")");
@@ -548,40 +548,40 @@ var tip = {
         tip.transformState.translate.y = translate_y;
 
         //选取偏移量
-        var Top0ffset=self.topOffset(0.4);
+        var Top0ffset = self.topOffset(0.4);
 
         var $overlays = $('.overlays');
         var oldLeft = parseInt($overlays.css('left')) || 0,
             oldTop = parseInt($overlays.css('top')) || 0;
         var newLeft = Number(oldLeft) - Number(moveX),
-            newTop = Number(oldTop) - Number(moveY)+Top0ffset;
+            newTop = Number(oldTop) - Number(moveY) + Top0ffset;
         $overlays.css({
             left: newLeft + 'px',
             top: newTop + 'px'
         });
     },
     //打开路线选择器
-    openFilter: function() {
-        var $filterContent=$(".filter_content");
+    openFilter: function () {
+        var $filterContent = $(".filter_content");
         $('.light_box, .filter_content').css('display', 'block');
-        var width=parseInt($filterContent.css("width")),
-            height=parseInt($filterContent.css("height"));
-        var left=(tip.w-width)/2+"px",
-            top=(tip.h-height)/2+"px";
-        $filterContent.css({"top":top,"left":left});
+        var width = parseInt($filterContent.css("width")),
+            height = parseInt($filterContent.css("height"));
+        var left = (tip.w - width) / 2 + "px",
+            top = (tip.h - height) / 2 + "px";
+        $filterContent.css({"top": top, "left": left});
         //线路选择器不能与弹窗同时存在
         $('.tip_wrap_out').hide();
         tip.stoprefresh();
     },
     //关闭路线选择器
-    closeFilter: function() {
+    closeFilter: function () {
         $('.light_box, .filter_content').css('display', 'none');
         $(".refresh_btn").show();
         $(".refresh_box").show();
         $(".refresh_time").show();
     },
     //获取选择后的中心
-    getFilterCenter: function() {
+    getFilterCenter: function () {
         var self = this;
         var select_g_offset = $('#g-select').offset();
         var select_g_h = document.getElementById("g-select").getBBox().height * self.allScale,
@@ -593,13 +593,13 @@ var tip = {
         }
     },
     //改变城市
-    cityChange: function() {
+    cityChange: function () {
         $('#subway').hide();
         tip.creatCitylist();
         tip.showCitylist();
     },
     //创建城市列表
-    creatCitylist: function() {
+    creatCitylist: function () {
         var city = SW.cityListData;
         if (city) {
             var citylist = $('#citylist');
@@ -611,19 +611,19 @@ var tip = {
         }
     },
     //初始化城市信息
-    initCity: function() {
+    initCity: function () {
         tip.allScale = 1;
     },
     //显示城市列表
-    showCitylist: function() {
+    showCitylist: function () {
         $('#citypage').show();
     },
     //隐藏城市列表
-    hideCitylist: function() {
+    hideCitylist: function () {
         $('#citypage').hide();
     },
     //获得对象中心位置
-    getStCenter: function(obj) {
+    getStCenter: function (obj) {
         if (obj) {
             var st_offset = obj.offset();
             if (st_offset) {
@@ -636,7 +636,7 @@ var tip = {
         }
     },
     //清楚标记
-    clearMarker: function(type) {
+    clearMarker: function (type) {
         var self = this;
         if (type) {
             var marker = $('#nav_' + type).find('.marker-out');
@@ -646,7 +646,7 @@ var tip = {
         }
     },
     //更新标记
-    updateMarker: function() {
+    updateMarker: function () {
         if (tip.fromendState) {
             var start_id = tip.routeId.start,
                 end_id = tip.routeId.end;
@@ -659,7 +659,7 @@ var tip = {
         }
     },
     //更新起始点
-    updateStartEnd: function(id, type) {
+    updateStartEnd: function (id, type) {
         var self = this;
         if (id) {
             var obj = null;
@@ -689,7 +689,7 @@ var tip = {
         }
     },
     //更新tip
-    updateTip: function() {
+    updateTip: function () {
         var self = this;
         if (tip.opentip) {
             var obj = tip.curopenStation;
@@ -713,7 +713,7 @@ var tip = {
         }
     },
     //更新最近位置的信息
-    updateNear: function() {
+    updateNear: function () {
         var self = this;
         if (drwSw.nearId) {
             var obj = $('#near-' + drwSw.nearId);
@@ -739,7 +739,7 @@ var tip = {
         }
     },
     //格式化时间
-    formatTime: function(le) {
+    formatTime: function (le) {
         if (!le || le == '0') {
             return '';
         }
@@ -758,42 +758,42 @@ var tip = {
             return o;
         }
     },
-    unableFlite: function() {
+    unableFlite: function () {
         $('.filter_btn').css({
             'z-index': '10'
         })
     },
-    ableFilte: function() {
+    ableFilte: function () {
         $('.filter_btn').css({
             'z-index': '20'
         })
     },
     resetTime: function (timeString) {
-        if(timeString!="--:--"){
-            var hours=Number(timeString.split(":")[0]);
-            var mins=Number(timeString.split(":")[1]);
-            if(hours<10 && hours>0){
-                hours="0"+hours;
-            }else if(hours==0){
-                hours="00";
-            }else{
-                hours=hours;
+        if (timeString != "--:--") {
+            var hours = Number(timeString.split(":")[0]);
+            var mins = Number(timeString.split(":")[1]);
+            if (hours < 10 && hours > 0) {
+                hours = "0" + hours;
+            } else if (hours == 0) {
+                hours = "00";
+            } else {
+                hours = hours;
             }
 
-            if(mins<10 && mins>0){
-                mins="0"+mins;
-            }else if(mins==0){
-                mins="00";
-            }else{
-                mins=mins;
+            if (mins < 10 && mins > 0) {
+                mins = "0" + mins;
+            } else if (mins == 0) {
+                mins = "00";
+            } else {
+                mins = mins;
             }
 
-            return hours+":"+mins;
-        }else{
+            return hours + ":" + mins;
+        } else {
             return timeString;
         }
     },
-    clearRouteIpt: function(type) {
+    clearRouteIpt: function (type) {
         var placeholder = {
             'start': '输入起点',
             'end': '输入终点'
@@ -808,7 +808,7 @@ var tip = {
         $obj.find('.route_close').addClass('hidden');
     },
     //正在加载
-    loading: function() {
+    loading: function () {
         $('.loading-outer').css('position', 'fixed');
         $('.loading-bg').css({
             'position': 'fixed',
@@ -817,10 +817,10 @@ var tip = {
         $('.loading-bg .loading').css('top', '-30px');
     },
     //加载完成
-    loadingOver: function() {
+    loadingOver: function () {
         $('.loading-bg').css('display', 'none');
     }
 };
 
 
-module.exports=tip;
+module.exports = tip;

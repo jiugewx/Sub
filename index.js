@@ -22,7 +22,14 @@
 //require("./js/actions/tip");
 
 var SW=require("./js/modules/SW");
-/*建立默认跳转*/
-//window.location.hash = "#city=1100";
+/*登陆客户端设备判断*/
+var userAgent = navigator.userAgent;
+var os = userAgent.match(/iphone|ipad|ipod/i) ? 'ios' : 'android';
+var osbody = document.getElementById('os');
+if (os === 'ios') {
+    osbody.className = 'ios'
+} else {
+    osbody.className = 'android'
+}
 SW.swInit();
 

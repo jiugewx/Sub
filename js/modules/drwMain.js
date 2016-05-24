@@ -335,10 +335,17 @@ var drwSw = {
                 //如果是换乘车站
                 else if ((item.t == "1")) {
                     var subway_station_transfer = document.createElementNS(self.ns_svg, 'image');
-                    subway_station_transfer.setAttribute("x", parseInt(item.p.split(" ")[0]) - 10);
-                    subway_station_transfer.setAttribute("y", parseInt(item.p.split(" ")[1]) - 10);
-                    subway_station_transfer.setAttribute("width", 20);
-                    subway_station_transfer.setAttribute("height", 20);
+                    if(item.si=="11000150" || item.si=="11000149"){
+                        subway_station_transfer.setAttribute("x", parseInt(item.p.split(" ")[0]) - 11);
+                        subway_station_transfer.setAttribute("y", parseInt(item.p.split(" ")[1]) - 11);
+                        subway_station_transfer.setAttribute("width", 22);
+                        subway_station_transfer.setAttribute("height", 22);
+                    }else{
+                        subway_station_transfer.setAttribute("x", parseInt(item.p.split(" ")[0]) - 9);
+                        subway_station_transfer.setAttribute("y", parseInt(item.p.split(" ")[1]) - 9);
+                        subway_station_transfer.setAttribute("width", 18);
+                        subway_station_transfer.setAttribute("height", 18);
+                    }
                     subway_station_transfer.setAttributeNS('http://www.w3.org/1999/xlink', "xlink:href", "./img/subway/transfer-station.png");
                     subway_circle_g.appendChild(subway_station_transfer);
                 }
