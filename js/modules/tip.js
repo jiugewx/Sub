@@ -280,9 +280,7 @@ var tip = {
     //svg缩放更新
     scaleSvgUpdate: function (scale, nav) {
         var self = this;
-
         enableGesture = true;
-
         var svg_g = $("#svg-g");
         var $svg_body = $("#subwaySvgBody"),
             translate_x = self.transformState.translate.x,
