@@ -36,57 +36,66 @@ var SW = {
         var self = this;
         //如果有adcode那就展示城市
         self.showCity();
-        // 通过监听hashchange事件来更改城市
-        $(window).on('hashchange', function() {
-            self.showCity();
+        // 通过监听hashchange事件来更改站点
+        $(window).on('hashchange', function () {
+            var hash = decodeURIComponent(window.location.hash).replace(/^\#/, '');
+            //decodeURIComponent 对 encodeURIComponent() 函数编码的 URI 进行解码。replace(/^\#/, '')，把#号给去除了
+            var param = bindEvent.param2json(hash);
+            if (param != null) {
+                self.showStation(param);
+            }
         });
     },
     //显示城市：获取hash值，依据hash值匹配对应城市信息，
     showCity: function() {
-        var self = this,
-            cache = AllData.cache;
-        var hash = decodeURIComponent(window.location.hash).replace(/^\#/, '');
-        //decodeURIComponent 对 encodeURIComponent() 函数编码的 URI 进行解码。replace(/^\#/, '')，把#号给去除了。
-        var param = bindEvent.param2json(hash);
+        var self = this;
+        //var cache = AllData.cache;
+
+        var param = {"city":"1100"};
         //self.param2json(hash)就是将hash转为json对象，"city=1100"字符串转换为了object的格式，｛"city":"1100"｝
-        if (!param || !param.src || param.src && param.src != 'alipay') {
-            $('#subway, #citypage').addClass('msubway');
-        }
-        //如果param不存在，那就打开城市选择列表。
-        if (!param) {
-            AllData.subwayFlag = 0;
-            return tip.cityChange();
-        }
+        //if (!param || !param.src || param.src && param.src != 'alipay') {
+        //    $('#subway, #citypage').addClass('msubway');
+        //}
+        ////如果param不存在，那就打开城市选择列表。
+        //if (!param) {
+        //    AllData.subwayFlag = 0;
+        //    return tip.cityChange();
+        //}
+
         AllData.param = param;
+
         //取adcode为param中city的值。
-        var adcode = param.city && param.city.substr(0, 4);
+        var adcode = param.city;
         //var adcode = "1100";
 
         //如果城市代码存在，那就判断文件中是否存有对应的地铁图
-        if (adcode != '') {
-            if (!AllData.fileNameData[adcode]) {
-                // 该城市没有对应地铁图,那就打开cityChange的列表
-                AllData.subwayFlag = 0;
-                return tip.cityChange();
-            } else {
-                // 该城市有对应地铁图,那就显示#subway
-                AllData.subwayFlag = 1;
-                $('#subway').show()
-            }
-        }
-        //如果城市代码不存在
-        else {
+        //if (adcode != '') {
+
+        if (!AllData.fileNameData[adcode]) {
+            // 该城市没有对应地铁图,那就打开cityChange的列表
             AllData.subwayFlag = 0;
             return tip.cityChange();
+        } else {
+            // 该城市有对应地铁图,那就显示#subway
+            AllData.subwayFlag = 1;
+            $('#subway').show()
         }
+        //}
+        ////如果城市代码不存在
+        //else {
+        //    AllData.subwayFlag = 0;
+        //    return tip.cityChange();
+        //}
+
+
 
         $('.city_name').html(AllData.cityname[adcode]);
         //改变网页的标题
         document.title = AllData.cityname[adcode] + '地铁图';
 
         // 此城市代码与当前城市的代码不一致，即发生了变化，tip.hideCitylist();
-        if (adcode != cache.curCity.adcode) {
-            $("#subway-svg,#infowindow-content,#tip-content,.line-caption").remove();
+        //if (adcode != cache.curCity.adcode) {
+        //    $("#subway-svg,#infowindow-content,#tip-content,.line-caption").remove();
             AllData.svgReady = false;
             //开启加载对应城市的数据
             tip.loading();
@@ -97,10 +106,11 @@ var SW = {
                 //绘制对应城市的地铁
                 drwSw.draw(drwData, param);
             });
-        } else {
-            //显示车站
-            SW.showStation(param);
-        }
+        //} else {
+        //    //显示车站
+        //    SW.showStation(param);
+        //    console.log(param);
+        //}
     },
     //显示城市的地铁站
     showStation: function (param) {
@@ -209,12 +219,11 @@ var SW = {
         //data.o其实是人为的设定的一个地图中心，其他的数据就以这个做出偏移。
         var _offset = data.o.split(',');
         cache.offset[data.i] = cache.offset[data.i] || {};
-        var _x = 0,
-            _y = 0;
+
         cache.offset[data.i].x = _offset[0];
         cache.offset[data.i].y = _offset[1];
         //相对于（1000，1000）做偏移。
-        _x = 1000 - Number(_offset[0]);
+        var _x = 1000 - Number(_offset[0]),
         _y = 1000 - Number(_offset[1]);
         var sugobj = {};
         //遍历每条地铁线
@@ -280,16 +289,17 @@ var SW = {
                         _st2stpath[m] = (Number(_st2stpathPos[0]) + _x) + ' ' + (Number(_st2stpathPos[1]) + _y)
                     }
                     //_st2st的startPos偏移;
-                    var _startPos = _st2st[k].startPos.split(" ");
-                    _st2st[k].startPos = (Number(_startPos[0]) + _x) + ' ' + (Number(_startPos[1]) + _y);
+                    var _startPos = _st2st[k].sP.split(" ");
+                    _st2st[k].sP = (Number(_startPos[0]) + _x) + ' ' + (Number(_startPos[1]) + _y);
                     //	_st2st的endPos偏移;
-                    var _endPos = _st2st[k].endPos.split(" ");
-                    _st2st[k].endPos = (Number(_endPos[0]) + _x) + ' ' + (Number(_endPos[1]) + _y);
-                    //	_st2st的directionPos偏移;
-                    _st2st[k].directionPos = _st2st[k].startPos + "-to-" + _st2st[k].endPos;
+                    var _endPos = _st2st[k].eP.split(" ");
+                    _st2st[k].eP = (Number(_endPos[0]) + _x) + ' ' + (Number(_endPos[1]) + _y);
+                    //	_st2st的dP偏移;
+                    _st2st[k].dP = _st2st[k].sP + "-to-" + _st2st[k].eP;
                 }
 
                 cache.cities[data.i].linesNamePos[data.l[i].ls] = data.l[i].lp;
+                // 增加lines信息
                 cache.cities[data.i].lines.push(data.l[i]);
                 cache.lines[data.l[i].ls] = data.l[i]; //写入line
 
@@ -440,17 +450,17 @@ var SW = {
             for(var k in AllData.cache.trafficInfo){
                 if(current_drwData.ls==AllData.cache.trafficInfo[k].reflineId){
                     var section={};
-                    section.directionAcc="Acc"+AllData.cache.trafficInfo[k].startAcc+"_"+AllData.cache.trafficInfo[k].endAcc;
-                    section.directionPos=AllData.cache.trafficInfo[k].startPos+"-to-"+AllData.cache.trafficInfo[k].endPos;
-                    section.directionName=AllData.cache.trafficInfo[k].direction;
-                    section.startPos=AllData.cache.trafficInfo[k].startPos;
-                    section.startName=AllData.cache.trafficInfo[k].startName;
-                    section.endPos=AllData.cache.trafficInfo[k].endPos;
-                    section.endName=AllData.cache.trafficInfo[k].endName;
-                    section.reflineId=AllData.cache.trafficInfo[k].reflineId;
-                    section.reflineName=AllData.cache.trafficInfo[k].reflineName;
+                    section.dA="Acc"+AllData.cache.trafficInfo[k].startAcc+"_"+AllData.cache.trafficInfo[k].endAcc;
+                    section.dP=AllData.cache.trafficInfo[k].startPos+"-to-"+AllData.cache.trafficInfo[k].endPos;
+                    section.dN=AllData.cache.trafficInfo[k].direction;
+                    section.sP=AllData.cache.trafficInfo[k].startPos;
+                    section.sN=AllData.cache.trafficInfo[k].startName;
+                    section.eP=AllData.cache.trafficInfo[k].endPos;
+                    section.eN=AllData.cache.trafficInfo[k].endName;
+                    section.rli=AllData.cache.trafficInfo[k].reflineId;
+                    section.rln=AllData.cache.trafficInfo[k].reflineName;
                     section.path=AllData.cache.trafficInfo[k].path;
-                    section.ref_direct=AllData.cache.trafficInfo[k].ref_direct;
+                    section.rd=AllData.cache.trafficInfo[k].ref_direct;
                     obj.sections.push(section);
                 }
             }

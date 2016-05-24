@@ -66,8 +66,8 @@ var Drwlines={
                 Yoffset=parseInt(offset*Math.sin(Math.PI/2+p_a[Path_id]))/10;
             }else{
                 //其他角度的情况
-                Xoffset=parseInt((offset+4)*Math.cos(Math.PI/2-p_a[Path_id]))/10;
-                Yoffset=parseInt((offset+4)*Math.sin(Math.PI/2+p_a[Path_id]))/10;
+                Xoffset=parseInt((offset+2)*Math.cos(Math.PI/2-p_a[Path_id]))/10;
+                Yoffset=parseInt((offset+2)*Math.sin(Math.PI/2+p_a[Path_id]))/10;
             }
 
             //左偏移

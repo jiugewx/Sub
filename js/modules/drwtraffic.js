@@ -84,7 +84,7 @@ var DrwTraf = {
         for (var line_id in drwData.lines) {
             for (var j in drwData.lines[line_id].st2st) {
                 for (var k in AllData.cache.trafficInfo) {
-                    if (AllData.cache.trafficInfo[k].Acc2Acc == drwData.lines[line_id].st2st[j].directionAcc.slice(3)) {
+                    if (AllData.cache.trafficInfo[k].Acc2Acc == drwData.lines[line_id].st2st[j].dA.slice(3)) {
                         drwData.lines[line_id].st2st[j].loadRate = AllData.cache.trafficInfo[k].loadRate;
                         drwData.lines[line_id].st2st[j].refreshTime = AllData.cache.trafficInfo[k].refreshTime;
                         drwData.lines[line_id].st2st[j].rateColor = AllData.cache.trafficInfo[k].rateColor;
@@ -94,7 +94,7 @@ var DrwTraf = {
         }
         console.log("路况信息编译成功！");
         //console.log("addTrafficInfo",drwData);
-        //console.log("新的drwData",drwData);
+        console.log("新的drwData",drwData);
     },
     drwTrafficLinesDefer: function (drwData, status) {
         var self = this;
@@ -142,30 +142,30 @@ var DrwTraf = {
         //console.log(LineId_Data);
         for(var k in LineId_Data.st2st){
             //console.log(LineId_Data.st2st[k],k);
-            if (LineId_Data.st2st[k].ref_direct == "right") {
-                //console.log(LineId_Data.st2st[k],LineId_Data.st2st[k].directionName,k);
+            if (LineId_Data.st2st[k].rd == "right") {
+                //console.log(LineId_Data.st2st[k],LineId_Data.st2st[k].dN,k);
                 var rightmain = LineId_Data.st2st[k].path;
                 var rightpath = Drwlines.doublePathInfo(rightmain, 26).RightPath;
                 var rightcolor = LineId_Data.st2st[k].rateColor;
                 Right.path = rightpath;
                 Right.color = "AF272B";
                 Right.color = rightcolor;/*注意停运时的颜色使用,停运时没有颜色值,没有颜色值就会在drwlines()中,使用line本身的颜色*/
-                Right.direction = LineId_Data.st2st[k].directionName;
+                Right.direction = LineId_Data.st2st[k].dN;
                 Right.loadRate = LineId_Data.st2st[k].loadRate;
-                Right.reflineName = LineId_Data.st2st[k].reflineName;
+                Right.reflineName = LineId_Data.st2st[k].rln;
                 Drwlines.drwlines(parentNode, Right, LineId_Data);
             }
-            if (LineId_Data.st2st[k].ref_direct == "left") {
-                //console.log(LineId_Data.st2st[k],LineId_Data.st2st[k].directionName,k);
+            if (LineId_Data.st2st[k].rd == "left") {
+                //console.log(LineId_Data.st2st[k],LineId_Data.st2st[k].dN,k);
                 var leftmain = LineId_Data.st2st[k].path;
                 var leftpath = Drwlines.doublePathInfo(leftmain, 26).LeftPath;
                 var leftcolor = LineId_Data.st2st[k].rateColor;
                 Left.path = leftpath;
                 Left.color = "C99616";
                 Left.color = leftcolor;/*注意停运时的颜色使用,停运时没有颜色值,没有颜色值就会在drwlines()中,使用line本身的颜色*/
-                Left.direction = LineId_Data.st2st[k].directionName;
+                Left.direction = LineId_Data.st2st[k].dN;
                 Left.loadRate = LineId_Data.st2st[k].loadRate;
-                Left.reflineName = LineId_Data.st2st[k].reflineName;
+                Left.reflineName = LineId_Data.st2st[k].rln;
                 Drwlines.drwlines(parentNode, Left, LineId_Data);
             }
         }

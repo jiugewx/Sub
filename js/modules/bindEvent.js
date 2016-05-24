@@ -135,7 +135,9 @@ var bindEvent={
                 //var center = tip.getStCenter(obj);
                 //tip.setCenter(center);
                 //console.log(obj,center);
-                window.location.hash = '#city=' + AllData.cache.curCity.adcode + '&station=' + id;
+                //console.log(AllData.cache.curCity.adcode);
+                //window.location.hash = '#city=' + AllData.cache.curCity.adcode + '&station=' + id;
+                window.location.hash ='#station=' + id;
             }
         });
 
@@ -291,9 +293,7 @@ var bindEvent={
         $(".filter_btn").html("线路图");
         $('#g-bg').css('display','none');
         //获取中心相对于实际svg图像的偏移量
-        var hash = decodeURIComponent(window.location.hash).replace(/^\#/, '');
-        var param = bindEvent.param2json(hash);
-        var adcode = param.city && param.city.substr(0, 4);
+        var adcode = AllData.param.city;
         var curCity=AllData.cache.cities[adcode];
         var centerOffset={};
         centerOffset.x=curCity.offset.split(",")[0];

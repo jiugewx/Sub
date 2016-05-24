@@ -487,10 +487,9 @@ var tip = {
         }
     },
     topOffset: function (offset) {
-        var topBar=parseInt($(".top_bar").css("height"))/2,
-            $tipBodyHeight = $('.tip_body').css("height"),
+        var $tipBodyHeight = $('.tip_body').css("height"),
             bodyHeight = parseInt($tipBodyHeight)*offset;
-        return bodyHeight+topBar
+        return bodyHeight;
     },
     //设置弹窗的位置属性
     setTipPos: function(obj) {
@@ -517,7 +516,8 @@ var tip = {
             tip.opentip = false;
         }
         $('.light_box').css('display', 'none');
-        window.location.hash = '#city=' + AllData.cache.curCity.adcode;
+        //window.location.hash = '#city=' + AllData.cache.curCity.adcode;
+        window.location.hash ="";
     },
     //设置中心信息
     setCenter: function(center) {
@@ -539,6 +539,8 @@ var tip = {
 
         translate_x = translate_x - moveX;
         translate_y = translate_y - moveY;
+
+
 
         svg_g.attr("transform", "translate(" + translate_x + "," + translate_y + ") scale(" + scale + ")");
 
