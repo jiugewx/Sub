@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "6ecd61620fafc2182c55"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "caa7318da839fc4d52e1"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3285,6 +3285,7 @@
 	                else if ((item.t == "1")) {
 	                    var subway_station_transfer = document.createElementNS(self.ns_svg, 'image');
 	                    if(item.si=="11000150" || item.si=="11000149"){
+	                        //大型换乘车站
 	                        subway_station_transfer.setAttribute("x", parseInt(item.p.split(" ")[0]) - 11);
 	                        subway_station_transfer.setAttribute("y", parseInt(item.p.split(" ")[1]) - 11);
 	                        subway_station_transfer.setAttribute("width", 22);
@@ -5144,6 +5145,7 @@
 	            if (line_id == "caption-allLines") {
 	                tip.closeFilter();
 	                bindEvent.showAlllines();
+	                $("#g-select").remove();
 	            } else {
 	                tip.closeFilter();
 	                $(".filter_btn").html(line_name);
@@ -5213,7 +5215,7 @@
 	    showFilterLine: function(id) {
 	        $('#g-select').remove();
 	        $('#g-bg').css('display', 'block');
-	        drwSelect.drawSelectLine(AllData.cache.lines[id], 'select');
+	        drwSelect.drawSelectLine(AllData.cache.lines[id], 'select');/*画了一个select-DOM*/
 	    },
 	    //地址栏里的参数转为一个json对象
 	    param2json: function(str) {

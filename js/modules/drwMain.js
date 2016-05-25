@@ -336,6 +336,7 @@ var drwSw = {
                 else if ((item.t == "1")) {
                     var subway_station_transfer = document.createElementNS(self.ns_svg, 'image');
                     if(item.si=="11000150" || item.si=="11000149"){
+                        //大型换乘车站
                         subway_station_transfer.setAttribute("x", parseInt(item.p.split(" ")[0]) - 11);
                         subway_station_transfer.setAttribute("y", parseInt(item.p.split(" ")[1]) - 11);
                         subway_station_transfer.setAttribute("width", 22);

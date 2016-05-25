@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18973b9c-5a5a-4fcc-a02b-944705c43344" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/bindEvent.js" afterPath="$PROJECT_DIR$/js/modules/bindEvent.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/drwMain.js" afterPath="$PROJECT_DIR$/js/modules/drwMain.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/main.js" afterPath="$PROJECT_DIR$/dist/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/modules/tip.js" afterPath="$PROJECT_DIR$/js/modules/tip.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="fff6501d-74f1-4fb3-b1a1-6d0179897558" name="New changelist" comment="New changelist" />
@@ -53,29 +54,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bindEvent.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="bindEvent.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/modules/bindEvent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="7.633333">
-              <caret line="87" column="11" selection-start-line="87" selection-start-column="11" selection-end-line="87" selection-end-column="11" />
+            <state vertical-scroll-proportion="4.7598734">
+              <caret line="212" column="20" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
               <folding>
-                <element signature="e#9793#10276#0" expanded="false" />
+                <element signature="e#9852#10335#0" expanded="false" />
+                <element signature="e#10367#11172#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="drwMain.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="drwMain.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/modules/drwMain.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54298645">
-              <caret line="331" column="110" selection-start-line="331" selection-start-column="110" selection-end-line="331" selection-end-column="110" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="338" column="32" selection-start-line="338" selection-start-column="32" selection-end-line="338" selection-end-column="32" />
               <folding>
                 <element signature="e#1183#3028#0" expanded="false" />
                 <element signature="e#3090#3340#0" expanded="false" />
-                <marker date="1464170472768" expanded="true" signature="21156:21170" placeholder="..." />
-                <marker date="1464170472768" expanded="true" signature="23065:23076" placeholder="..." />
-                <marker date="1464170472768" expanded="true" signature="23402:23413" placeholder="..." />
+                <marker date="1464171198824" expanded="true" signature="21189:21203" placeholder="..." />
+                <marker date="1464171198824" expanded="true" signature="23098:23109" placeholder="..." />
+                <marker date="1464171198824" expanded="true" signature="23435:23446" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -222,11 +224,11 @@
         <option value="$PROJECT_DIR$/js/modules/scales.js" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/js/modules/SW.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/js/modules/bindEvent.js" />
         <option value="$PROJECT_DIR$/js/modules/tip.js" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/modules/drwMain.js" />
+        <option value="$PROJECT_DIR$/js/modules/bindEvent.js" />
       </list>
     </option>
   </component>
@@ -328,6 +330,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Subway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Sub" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dist" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -729,7 +745,7 @@
       <workItem from="1464053221370" duration="19296000" />
       <workItem from="1464080522858" duration="4887000" />
       <workItem from="1464097546114" duration="5177000" />
-      <workItem from="1464140118122" duration="26064000" />
+      <workItem from="1464140118122" duration="27011000" />
     </task>
     <task id="LOCAL-00001" summary="更新画图数据">
       <created>1462501255612</created>
@@ -983,11 +999,17 @@
       <option name="project" value="LOCAL" />
       <updated>1464170320126</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="这个版本是 禁缩放 站点颜色变灰">
+      <created>1464170542827</created>
+      <option name="number" value="00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1464170542827</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="330993000" />
+    <option name="totallyTimeSpent" value="331940000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -1011,9 +1033,9 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3523166" sideWeight="0.4978678" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33204633" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33204633" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1444563" sideWeight="0.496139" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1444563" sideWeight="0.496139" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1042,7 +1064,6 @@
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <confirmMoveToFailedCommit value="2" />
-    <MESSAGE value="大改" />
     <MESSAGE value="页面修改了一下，select的时候可以显示双线和路况" />
     <MESSAGE value="完成画线的同时画的站点颜色与地铁线颜色相同." />
     <MESSAGE value="修改了刷新动画" />
@@ -1067,7 +1088,8 @@
     <MESSAGE value="初步修改，可以实现禁止继续放大！" />
     <MESSAGE value="禁止放大!去除了弹回效果" />
     <MESSAGE value="这个版本是具有放大回缩功能，闪缩！" />
-    <option name="LAST_COMMIT_MESSAGE" value="这个版本是具有放大回缩功能，闪缩！" />
+    <MESSAGE value="这个版本是 禁缩放 站点颜色变灰" />
+    <option name="LAST_COMMIT_MESSAGE" value="这个版本是 禁缩放 站点颜色变灰" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1395,36 +1417,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.142858">
-          <caret line="87" column="10" selection-start-line="87" selection-start-column="10" selection-end-line="87" selection-end-column="10" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#6;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1474" column="36" selection-start-line="1474" selection-start-column="36" selection-end-line="1474" selection-end-column="36" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/modules/bindEvent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.633333">
-          <caret line="87" column="11" selection-start-line="87" selection-start-column="11" selection-end-line="87" selection-end-column="11" />
-          <folding>
-            <element signature="e#9793#10276#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1471,16 +1468,42 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.142858">
+          <caret line="87" column="10" selection-start-line="87" selection-start-column="10" selection-end-line="87" selection-end-column="10" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#5;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#6;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/modules/drwMain.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54298645">
-          <caret line="331" column="110" selection-start-line="331" selection-start-column="110" selection-end-line="331" selection-end-column="110" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="338" column="32" selection-start-line="338" selection-start-column="32" selection-end-line="338" selection-end-column="32" />
           <folding>
             <element signature="e#1183#3028#0" expanded="false" />
             <element signature="e#3090#3340#0" expanded="false" />
-            <marker date="1464170472768" expanded="true" signature="21156:21170" placeholder="..." />
-            <marker date="1464170472768" expanded="true" signature="23065:23076" placeholder="..." />
-            <marker date="1464170472768" expanded="true" signature="23402:23413" placeholder="..." />
+            <marker date="1464171198824" expanded="true" signature="21189:21203" placeholder="..." />
+            <marker date="1464171198824" expanded="true" signature="23098:23109" placeholder="..." />
+            <marker date="1464171198824" expanded="true" signature="23435:23446" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/modules/bindEvent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.7598734">
+          <caret line="212" column="20" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
+          <folding>
+            <element signature="e#9852#10335#0" expanded="false" />
+            <element signature="e#10367#11172#0" expanded="false" />
           </folding>
         </state>
       </provider>

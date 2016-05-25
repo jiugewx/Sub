@@ -209,6 +209,7 @@ var bindEvent={
             if (line_id == "caption-allLines") {
                 tip.closeFilter();
                 bindEvent.showAlllines();
+                $("#g-select").remove();
             } else {
                 tip.closeFilter();
                 $(".filter_btn").html(line_name);
@@ -278,7 +279,7 @@ var bindEvent={
     showFilterLine: function(id) {
         $('#g-select').remove();
         $('#g-bg').css('display', 'block');
-        drwSelect.drawSelectLine(AllData.cache.lines[id], 'select');
+        drwSelect.drawSelectLine(AllData.cache.lines[id], 'select');/*画了一个select-DOM*/
     },
     //地址栏里的参数转为一个json对象
     param2json: function(str) {
