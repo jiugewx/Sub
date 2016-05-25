@@ -45,8 +45,17 @@ var tip = {
         },
         scale: 1
     },
-    min_scale: 0.3,
-    max_scale: 2.1,
+
+    debounceTransLabel:"debounce-transition",
+    enableGesture : null,
+    //缩放极限
+    min_scale: 0.25,
+    max_scale: 2.0,
+    //单次缩放比例,单次的缩放比率范围超出缩放极限范围时，就会发生回弹！
+    MinTempScale : 0.25,
+    MaxTempScale: 2.4,
+
+    //
     transformOrigin: null,
     routeState: false,
     fromendState: false,
@@ -162,20 +171,23 @@ var tip = {
         var tmpscale = ev.scale;
         tip.curScale = tmpscale;
 
-        tmpscale = tmpscale > 2 ? 2 : tmpscale;
-        tmpscale = tmpscale < 0.5 ? 0.5 : tmpscale;
+        //以下：超出缩放极限会有弹回效果
+        tmpscale = tmpscale > self.MaxTempScale ? self.MaxTempScale : tmpscale;
+        //tmpscale = tmpscale < self.MinTempScale ? self.MinTempScale : tmpscale;
+
+
+        //以下：超出缩放极限会禁止缩放
+        //tmpscale=self.transformState.scale*tmpscale>self.MaxTempScale?self.MaxTempScale/self.transformState.scale:tmpscale;
+        tmpscale=self.transformState.scale*tmpscale<self.MinTempScale?self.MinTempScale/self.transformState.scale:tmpscale;
+
 
         scale = initScale * tmpscale;
-
         // 渲染频率
         if (self.transformOrigin == center && self.transform.scale == scale) {
             return
         }
-
         self.transformOrigin = center;
-
         self.transform.scale = scale;
-
         self.handleUpdate();
     },
     //处理更新
@@ -207,6 +219,97 @@ var tip = {
 
         self.handleUpdate();
     },
+
+
+    svgUpdate1: function(a) {
+        var b = this
+            , c = $("#svg-g")
+            , d = c.offset()
+            , e = d && d.left
+            , f = d && d.top
+            , g = d && d.width
+            , h = d && d.height
+            , i = a.deltaX
+            , j = a.deltaY
+            , k = !0;
+        if (g > tip.w ? (Number(e) > Number(tip.w) / 2 || Math.abs(Number(e)) > Number(g - Number(tip.w) / 2)) && (Number(b.startOffset.left) > 0 ? k = !1 : g - Math.abs(Number(b.startOffset.left)) < Number(tip.w) / 2 ? k = !1 : (i = a.deltaX / 2, $("#drag_handle").addClass(b.debounceTransLabel))) : (0 > e + g / 2 || e + g / 2 > tip.w) && (Number(b.startOffset.left) > 0 ? k = !1 : g - Math.abs(Number(b.startOffset.left)) < Number(tip.w) / 2 ? k = !1 : (i = a.deltaX / 2, $("#drag_handle").addClass(b.debounceTransLabel))), h > tip.h ? (Number(f) > Number(tip.h) / 2 || Math.abs(Number(f)) > Number(h - Number(tip.h) / 2)) && (Number(b.startOffset.top) > 0 ? k = !1 : h - Math.abs(Number(b.startOffset.top)) < Number(tip.h) / 2 ? k = !1 : (j = a.deltaY / 2, $("#drag_handle").addClass(b.debounceTransLabel))) : (0 > f + h / 2 || f + h / 2 > tip.h) && (Number(b.startOffset.top) > 0 ? k = !1 : h - Math.abs(Number(b.startOffset.top)) < Number(tip.h) / 2 ? k = !1 : (j = a.deltaY / 2, $("#drag_handle").addClass(b.debounceTransLabel))), k) {
+
+            var l = tip.transformState.translate.x + i
+                , m = tip.transformState.translate.y + j
+                , n = tip.transformState.scale;
+            l && m && (c.attr("transform", "translate(" + l + "," + m + ") scale(" + n + ")"),
+                tip.transformState.translate.x = l,
+                tip.transformState.translate.y = m);
+            var o = $(".overlays")
+                , p = parseInt(o.css("left")) || 0
+                , q = parseInt(o.css("top")) || 0
+                , r = Number(p) + Number(i)
+                , s = Number(q) + Number(j);
+            o.css({
+                left: r + "px",
+                top: s + "px"
+            })
+        } else
+            $("#drag_handle").addClass(b.debounceTransLabel);
+        tip.handleReset(),
+            setTimeout(function() {
+                tip.touchStatus = null ,
+                    b.enableGesture = null
+            }, 100)
+    },
+    scaleSvgUpdate1: function(a, b) {
+        var c,
+            d = this,
+            e = ($("#svg-g"), $("#subwaySvgBody"), d.transformState.translate.x),
+            f = d.transformState.translate.y,
+            g = d.transformState.scale;
+        tip.allScale = c = tip.allScale * a;
+        var h = a * g;
+        h > tip.max_scale && (h = tip.max_scale, tip.allScale = tip.max_scale), tip.min_scale > h && (h = tip.min_scale, tip.allScale = tip.min_scale),
+            a = h / g;
+        var i = tip.realCenter.x
+            , j = tip.realCenter.y;
+        b && (i = $(window).width() / 2,
+            j = $(window).height() / 2);
+        var k = (Number(a) - 1) * (Number(i) - Number(e))
+            , l = (Number(a) - 1) * (Number(j) - Number(f))
+            , m = e - k
+            , n = f - l;
+
+        if (d.newtransformState = {
+                translateX: m,
+                translateY: n,
+                scale: h
+            },
+            c > tip.max_scale ||  tip.min_scale > c) {
+            var o = c > tip.max_scale ? tip.max_scale / g :  tip.min_scale / g;
+            $("#drag_handle").addClass(d.debounceTransLabel).css({
+                "-webkit-transform": "translate3d(0px, 0px, 0) scale(" + o + ", " + o + ")"
+            })
+        } else
+            d.resetAllElem(m, n, h)
+    },
+    resetAllElem: function() {
+        var self = this
+            , newTranslate_x = self.newtransformState.translateX
+            , newTranslate_y = self.newtransformState.translateY
+            , newscale = self.newtransformState.scale;
+        newTranslate_x && newTranslate_y && ($("#svg-g").attr("transform", "translate(" + newTranslate_x + "," + newTranslate_y + ") scale(" + newscale + ")"),
+            self.transformState.translate.x = newTranslate_x,
+            self.transformState.translate.y = newTranslate_y,
+            self.transformState.scale = newscale),
+            tip.handleReset();
+        tip.updateTip();
+        tip.updateNear();
+        tip.updateMarker();
+        setTimeout(function () {
+            tip.touchStatus = null;
+        }, 100);
+        setTimeout(function () {
+            self.enableGesture = null;
+        }, 100);
+    },
+
     //svg更新
     svgUpdate: function (ev) {
         var svg_g = $("#svg-g"),
@@ -237,25 +340,10 @@ var tip = {
         }
 
         if (canUpdate) {
-            //var transform_arr = svg_g.attr("transform").match(/(-?\d+(\.\d+)?)/g),
-            //    translate_x = Number(transform_arr[0]),
-            //    translate_y = Number(transform_arr[1]),
-            //    curscale = transform_arr[2];
-
-            //tip.transformState.translate.x = tip.transform.translate.x;
-            //tip.transformState.translate.y = tip.transform.translate.y;
-
             var newTranslate_x = tip.transformState.translate.x + ev.deltaX,
                 newTranslate_y = tip.transformState.translate.y + ev.deltaY,
                 curscale = tip.transformState.scale;
-
-
             if (newTranslate_x && newTranslate_y) {
-                // $svg_body.css({
-                //     "-webkit-transform": "translate(" + newTranslate_x + "px," + newTranslate_y + "px) scale(" + curscale + ")",
-                //     "transform": "translate(" + newTranslate_x + "px," + newTranslate_y + "px) scale(" + curscale + ")"
-                // });
-                // $('#transform').html(newTranslate_x + ',' + newTranslate_y);
                 svg_g.attr("transform", "translate(" + newTranslate_x + "," + newTranslate_y + ") scale(" + curscale + ")"); //重置translate
                 tip.transformState.translate.x = newTranslate_x;
                 tip.transformState.translate.y = newTranslate_y;
@@ -280,15 +368,12 @@ var tip = {
     //svg缩放更新
     scaleSvgUpdate: function (scale, nav) {
         var self = this;
-        enableGesture = true;
-        var svg_g = $("#svg-g");
-        var $svg_body = $("#subwaySvgBody"),
-            translate_x = self.transformState.translate.x,
+        self.enableGesture = true;
+        var c;
+        var translate_x = ($("#svg-g"), $("#subwaySvgBody"),self.transformState.translate.x),
             translate_y = self.transformState.translate.y,
             curscale = self.transformState.scale;
-
-        tip.allScale = tip.allScale * scale;
-
+        tip.allScale = c = tip.allScale * scale;
         var newscale = scale * curscale;
         if (newscale > self.max_scale) {
             newscale = self.max_scale;
@@ -299,52 +384,24 @@ var tip = {
             tip.allScale = self.min_scale;
         }
         scale = newscale / curscale;
-
         var origin_x = tip.realCenter.x,
             origin_y = tip.realCenter.y;
-
         if (nav) {
             origin_x = $(window).width() / 2;
             origin_y = $(window).height() / 2;
-        } else {
-            // if (drwSw.specailPhone) {
-            //     origin_x = tip.transformOrigin.x,
-            //         origin_y = tip.transformOrigin.y;
-            // }
         }
-
-
         var moveX = (Number(scale) - 1) * (Number(origin_x) - Number(translate_x)),
             moveY = (Number(scale) - 1) * (Number(origin_y) - Number(translate_y));
-
-        // $('#transformOrigin').html(tip.transformOrigin.x + ',' + tip.transformOrigin.y);
-
         var newTranslate_x = translate_x - moveX,
             newTranslate_y = translate_y - moveY;
-        if (newTranslate_x && newTranslate_y) {
-            // $svg_body.css({
-            //     "-webkit-transform": "translate(" + newTranslate_x + "px," + newTranslate_y + "px) scale(" + newscale + ")",
-            //     "transform": "translate(" + newTranslate_x + "px," + newTranslate_y + "px) scale(" + newscale + ")"
-            // });
-            svg_g.attr("transform", "translate(" + newTranslate_x + "," + newTranslate_y + ") scale(" + newscale + ")");
-
-            self.transformState.translate.x = newTranslate_x;
-            self.transformState.translate.y = newTranslate_y;
-            self.transformState.scale = newscale;
-        }
-
-        tip.handleReset();
-        tip.updateTip();
-        tip.updateNear();
-        tip.updateMarker();
-        setTimeout(function () {
-            tip.touchStatus = null;
-        }, 100);
-
-        setTimeout(function () {
-            enableGesture = false;
-        }, 100);
-
+        self.newtransformState = {translateX: newTranslate_x, translateY: newTranslate_y, scale: newscale};
+        //if (c > tip.max_scale || tip.min_scale > c) {
+        //    var _scale = c > tip.max_scale ? tip.max_scale / curscale : tip.min_scale / curscale;
+        //    $("#drag_handle").addClass(self.debounceTransLabel).css({
+        //        "-webkit-transform": "translate3d(0px, 0px, 0) scale(" + _scale + ", " + _scale + ")"
+        //    })
+        //}else
+            self.resetAllElem(newTranslate_x,newTranslate_y,newscale);
     },
     //设置合适的屏幕视图大小
     setFitview: function (obj) {
@@ -352,10 +409,12 @@ var tip = {
         self.scaleSvgUpdate(1 / self.transformState.scale, true);
         var obj_width = obj.width(),
             obj_height = obj.height();
-        var topbar_height = AllData.cache.param && AllData.cache.param.src == 'alipay' ? 0 : $('.top_bar').height(),
-            bottombar_height = $('.route_bar').height();
+        //var topbar_height = AllData.cache.param && AllData.cache.param.src == 'alipay' ? 0 : $('.top_bar').height(),
+        //    bottombar_height = $('.route_bar').height();
+        //var H_offset=topbar_height + bottombar_height;
+
         var full_width = $(window).width(),
-            full_height = $(window).height() - topbar_height - bottombar_height;
+            full_height = $(window).height()/* - H_offset*/;
         var w_rate = full_width / obj_width,
             h_rate = full_height / obj_height,
             scale = 1;

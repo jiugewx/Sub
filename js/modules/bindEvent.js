@@ -11,8 +11,8 @@ var drwSw=require("./drwMain");
 var pinch=require("./scales");
 
 var bindEvent={
-    enableGesture :pinch.enableGesture,
-    debounceTransLabel:pinch.debounceTransLabel,
+    enableGesture :tip.enableGesture,
+    debounceTransLabel:tip.debounceTransLabel,
     init: function() {
         this.bindEvent();
     },
@@ -20,11 +20,12 @@ var bindEvent={
     bindEvent: function() {
         document.addEventListener('touchstart', function() {});
         var self = this;
+        self.enableGesture=null;
         var $refresh=$(".refresh_btn");
         var $subway = $('#subway');
         var $citypage = $('#citypage');
         var $overlays = $('#overlays');
-        //var $srh = $('#srhpage');
+        var $srh = $('#srhpage');
         var el = document.getElementById('drag_handle');
         var mc = new Hammer.Manager(el, {
             domEvents: true
@@ -38,26 +39,22 @@ var bindEvent={
         var hasPenchend = false;
 
         mc.on("panmove", function(ev) {
-            if (!self.enableGesture) return;
-            tip.touchStatus = 'pan';
-            lastAction = "pan";
-            tip.mcdragSvg(ev);
+            "pinch" != self.enableGesture && (self.enableGesture = "pan",
+                tip.touchStatus = "pan",
+                lastAction = "pan",
+                tip.mcdragSvg(ev))
         });
 
         mc.on("pinchstart pinchmove", function(ev) {
-
-            if (!self.enableGesture) return;
-
-            tip.touchStatus = 'pinch';
-            lastAction = "pinch";
-            if (ev.type == 'pinchstart') {
-                tip.svgOffset = drwSw.svgOffset || tip.svgOffset;
-                hasPenchend = false;
-            }
-            tip.mcScaleSvg(ev);
+            "pan" != self.enableGesture && (self.enableGesture = 'pinch',
+                tip.touchStatus = 'pinch',
+                lastAction = "pinch",
+            ev.type == 'pinchstart' && (tip.svgOffset = drwSw.svgOffset || tip.svgOffset,
+                hasPenchend = false),
+                tip.mcScaleSvg(ev))
         });
 
-        mc.on("pinchend", function(ev) {
+        mc.on("pinchend", function() {
             setTimeout(function() {
                 if (!hasPenchend) {
                     tip.scaleSvgUpdate(tip.transform.scale);
@@ -78,6 +75,11 @@ var bindEvent={
                     self.enableGesture= true;
                 }, 50);
             }
+        });
+
+        $(document).on("webkitTransitionEnd", "." + self.debounceTransLabel, function() {
+            $(document.getElementById("drag_handle")).removeClass(self.debounceTransLabel);
+            "pinch" == self.enableGesture && tip.resetAllElem();
         });
 
         $subway.on('touchend', 'g', function() {
@@ -264,10 +266,7 @@ var bindEvent={
             tip.hideCitylist();
             $('#subway').show();
         });
-        //$(document).on("webkitTransitionEnd", "." + self.debounceTransLabel, function() {
-        //    $(document.getElementById("drag_handle")).removeClass(self.debounceTransLabel);
-        //    "pinch" == self.enableGesture && tip.resetAllElem();
-        //})
+
     },
 
 
