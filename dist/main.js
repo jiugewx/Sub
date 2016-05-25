@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "caa7318da839fc4d52e1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a130a6255d55c766ae59"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -4037,9 +4037,9 @@
 
 	var debounceTransLabel = "debounce-transition",
 	//缩放极限
-	    MinScale = 0.25, MaxScale = 2.0,
+	    MinScale = 0.35, MaxScale = 1.9,
 	//单次缩放比例,单次的缩放比率范围超出缩放极限范围时，就会发生回弹！
-	    MinTempScale = 0.25, MaxTempScale =2;
+	    MinTempScale = 0.25, MaxTempScale =2.2;
 
 
 
@@ -4194,12 +4194,12 @@
 	        tip.curScale = tmpscale;
 
 	        //以下：超出缩放极限会有弹回效果
-	        //tmpscale = tmpscale > MaxTempScale ? MaxTempScale : tmpscale;
+	        tmpscale = tmpscale > MaxTempScale ? MaxTempScale : tmpscale;
 	        //tmpscale = tmpscale < MinTempScale ? MinTempScale : tmpscale;
 
 
 	        //以下：超出缩放极限会禁止缩放
-	        tmpscale = self.transformState.scale * tmpscale > MaxTempScale ? MaxTempScale / self.transformState.scale : tmpscale;
+	        //tmpscale = self.transformState.scale * tmpscale > MaxTempScale ? MaxTempScale / self.transformState.scale : tmpscale;
 	        tmpscale = self.transformState.scale * tmpscale < MinTempScale ? MinTempScale / self.transformState.scale : tmpscale;
 
 
@@ -4253,8 +4253,16 @@
 	            , i = a.deltaX
 	            , j = a.deltaY
 	            , k = !0;
-	        if (g > tip.w ? (Number(e) > Number(tip.w) / 2 || Math.abs(Number(e)) > Number(g - Number(tip.w) / 2)) && (Number(b.startOffset.left) > 0 ? k = !1 : g - Math.abs(Number(b.startOffset.left)) < Number(tip.w) / 2 ? k = !1 : (i = a.deltaX / 2, $("#drag_handle").addClass(b.debounceTransLabel))) : (0 > e + g / 2 || e + g / 2 > tip.w) && (Number(b.startOffset.left) > 0 ? k = !1 : g - Math.abs(Number(b.startOffset.left)) < Number(tip.w) / 2 ? k = !1 : (i = a.deltaX / 2, $("#drag_handle").addClass(b.debounceTransLabel))), h > tip.h ? (Number(f) > Number(tip.h) / 2 || Math.abs(Number(f)) > Number(h - Number(tip.h) / 2)) && (Number(b.startOffset.top) > 0 ? k = !1 : h - Math.abs(Number(b.startOffset.top)) < Number(tip.h) / 2 ? k = !1 : (j = a.deltaY / 2, $("#drag_handle").addClass(b.debounceTransLabel))) : (0 > f + h / 2 || f + h / 2 > tip.h) && (Number(b.startOffset.top) > 0 ? k = !1 : h - Math.abs(Number(b.startOffset.top)) < Number(tip.h) / 2 ? k = !1 : (j = a.deltaY / 2, $("#drag_handle").addClass(b.debounceTransLabel))), k) {
 
+
+	        if (g > tip.w ? (Number(e) > Number(tip.w) / 2 || Math.abs(Number(e)) > Number(g - Number(tip.w) / 2)) && (Number(b.startOffset.left) > 0 ? k = !1 : g - Math.abs(Number(b.startOffset.left)) < Number(tip.w) / 2 ? k = !1 : (i = a.deltaX / 2,
+	                $("#drag_handle").addClass(debounceTransLabel))) : (0 > e + g / 2 || e + g / 2 > tip.w) && (Number(b.startOffset.left) > 0 ? k = !1 : g - Math.abs(Number(b.startOffset.left)) < Number(tip.w) / 2 ? k = !1 : (i = a.deltaX / 2,
+	                $("#drag_handle").addClass(debounceTransLabel))),
+
+	                h > tip.h ? (Number(f) > Number(tip.h) / 2 || Math.abs(Number(f)) > Number(h - Number(tip.h) / 2)) && (Number(b.startOffset.top) > 0 ? k = !1 : h - Math.abs(Number(b.startOffset.top)) < Number(tip.h) / 2 ? k = !1 : (j = a.deltaY / 2,
+	                    $("#drag_handle").addClass(debounceTransLabel))) : (0 > f + h / 2 || f + h / 2 > tip.h) && (Number(b.startOffset.top) > 0 ? k = !1 : h - Math.abs(Number(b.startOffset.top)) < Number(tip.h) / 2 ? k = !1 : (j = a.deltaY / 2,
+	                    $("#drag_handle").addClass(debounceTransLabel))),
+	                k) {
 	            var l = tip.transformState.translate.x + i
 	                , m = tip.transformState.translate.y + j
 	                , n = tip.transformState.scale;
@@ -4279,6 +4287,7 @@
 	            }, 100)
 	    },
 	    scaleSvgUpdate1: function(a, b) {
+	        console.log("scaleSvgUpdate");
 	        var c,
 	            d = this,
 	            e = ($("#svg-g"), $("#subwaySvgBody"), d.transformState.translate.x),
@@ -4311,6 +4320,7 @@
 	            d.resetAllElem(m, n, h)
 	    },
 	    resetAllElem: function() {
+	        console.log("resetAllElem")
 	        var self = this
 	            , newTranslate_x = self.newtransformState.translateX
 	            , newTranslate_y = self.newtransformState.translateY
@@ -4332,6 +4342,7 @@
 	    },
 	    //svg更新
 	    svgUpdate: function (ev) {
+	        console.log("svgUpdate");
 	        var svg_g = $("#svg-g"),
 	            $svg_body = $('#subwaySvgBody'),
 	            svg_g_offset = svg_g.offset(),
@@ -4368,7 +4379,6 @@
 	                tip.transformState.translate.x = newTranslate_x;
 	                tip.transformState.translate.y = newTranslate_y;
 	            }
-
 	            var $overlays = $('.overlays');
 	            var oldLeft = parseInt($overlays.css('left')) || 0,
 	                oldTop = parseInt($overlays.css('top')) || 0;
@@ -4417,14 +4427,13 @@
 
 
 	        self.newtransformState = {translateX: newTranslate_x, translateY: newTranslate_y, scale: newscale};
-	        //if (c > MaxScale || MinScale > c) {
-	        //    var _scale = c > MaxScale ? MaxScale / curscale : MinScale / curscale;
-	        //    $("#drag_handle").addClass(self.debounceTransLabel).css({
-	        //        "-webkit-transform": "translate3d(0px, 0px, 0) scale(" + _scale + ", " + _scale + ")"
-	        //    });
-	        //    console.log("all",tip.allScale,"new!",newscale,"cur",curscale);
-	        //    console.log("addClass");
-	        //}else
+	        if (c > MaxScale || MinScale > c) {
+	            var _scale = c > MaxScale ? MaxScale / curscale : MinScale / curscale;
+	            $("#drag_handle").addClass(self.debounceTransLabel).css({
+	                "-webkit-transform": "translate3d(0px, 0px, 0) scale(" + _scale + ", " + _scale + ")"
+	            });
+	            console.log("addClass");
+	        }else
 	            self.resetAllElem(newTranslate_x,newTranslate_y,newscale);
 	    },
 	    transformStateReset: function() {
@@ -4977,7 +4986,7 @@
 	                var $svg_g = $("#svg-g")
 	                    , $svg_g_offset = $svg_g.offset();
 	                tip.startOffset.left = $svg_g_offset && $svg_g_offset.left;
-	                tip.startOffset.top = $svg_g_offset && $svg_g_offset.top - 50;
+	                tip.startOffset.top = $svg_g_offset && $svg_g_offset.top;
 	            }
 	            "pinch" != self.enableGesture && (self.enableGesture = "pan",
 	                tip.touchStatus = "pan",
@@ -5016,11 +5025,15 @@
 	                    self.enableGesture= true;
 	                }, 50);
 	            }
+	            console.log(self.enableGesture);
 	        });
 
 	        $(document).on("webkitTransitionEnd", "." + self.debounceTransLabel, function() {
 	            $(document.getElementById("drag_handle")).removeClass(self.debounceTransLabel);
-	            "pinch"==self.enableGesture  && tip.resetAllElem();
+	            console.log("removeClass");
+	            console.log("webkitTransitionEnd-0",self.enableGesture);
+	           /* "pinch"==self.enableGesture  && */tip.resetAllElem();
+	            console.log("webkitTransitionEnd-1",self.enableGesture)
 	        });
 
 	        $subway.on('touchend', 'g', function() {

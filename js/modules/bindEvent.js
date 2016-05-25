@@ -41,7 +41,7 @@ var bindEvent={
                 var $svg_g = $("#svg-g")
                     , $svg_g_offset = $svg_g.offset();
                 tip.startOffset.left = $svg_g_offset && $svg_g_offset.left;
-                tip.startOffset.top = $svg_g_offset && $svg_g_offset.top - 50;
+                tip.startOffset.top = $svg_g_offset && $svg_g_offset.top;
             }
             "pinch" != self.enableGesture && (self.enableGesture = "pan",
                 tip.touchStatus = "pan",
@@ -80,11 +80,15 @@ var bindEvent={
                     self.enableGesture= true;
                 }, 50);
             }
+            console.log(self.enableGesture);
         });
 
         $(document).on("webkitTransitionEnd", "." + self.debounceTransLabel, function() {
             $(document.getElementById("drag_handle")).removeClass(self.debounceTransLabel);
-            "pinch"==self.enableGesture  && tip.resetAllElem();
+            console.log("removeClass");
+            console.log("webkitTransitionEnd-0",self.enableGesture);
+           /* "pinch"==self.enableGesture  && */tip.resetAllElem();
+            console.log("webkitTransitionEnd-1",self.enableGesture)
         });
 
         $subway.on('touchend', 'g', function() {
