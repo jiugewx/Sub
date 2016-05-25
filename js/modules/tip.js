@@ -13,6 +13,14 @@ var getstureState = 0;
 var el = document.getElementById('drag_handle');
 el.style.transformOrigin = "top left";
 
+var debounceTransLabel = "debounce-transition",
+//缩放极限
+    MinScale = 0.25, MaxScale = 2.0,
+//单次缩放比例,单次的缩放比率范围超出缩放极限范围时，就会发生回弹！
+    MinTempScale = 0.25, MaxTempScale =2;
+
+
+
 var tip = {
     refreshTimer: {},
     refreshstate: 0,
@@ -46,15 +54,8 @@ var tip = {
         scale: 1
     },
 
-    debounceTransLabel:"debounce-transition",
+    debounceTransLabel:debounceTransLabel,
     enableGesture : null,
-    //缩放极限
-    min_scale: 0.25,
-    max_scale: 2.0,
-    //单次缩放比例,单次的缩放比率范围超出缩放极限范围时，就会发生回弹！
-    MinTempScale : 0.25,
-    MaxTempScale: 2.4,
-
     //
     transformOrigin: null,
     routeState: false,
@@ -172,13 +173,13 @@ var tip = {
         tip.curScale = tmpscale;
 
         //以下：超出缩放极限会有弹回效果
-        tmpscale = tmpscale > self.MaxTempScale ? self.MaxTempScale : tmpscale;
-        //tmpscale = tmpscale < self.MinTempScale ? self.MinTempScale : tmpscale;
+        //tmpscale = tmpscale > MaxTempScale ? MaxTempScale : tmpscale;
+        //tmpscale = tmpscale < MinTempScale ? MinTempScale : tmpscale;
 
 
         //以下：超出缩放极限会禁止缩放
-        //tmpscale=self.transformState.scale*tmpscale>self.MaxTempScale?self.MaxTempScale/self.transformState.scale:tmpscale;
-        tmpscale=self.transformState.scale*tmpscale<self.MinTempScale?self.MinTempScale/self.transformState.scale:tmpscale;
+        tmpscale=self.transformState.scale*tmpscale>MaxTempScale?MaxTempScale/self.transformState.scale:tmpscale;
+        tmpscale = self.transformState.scale * tmpscale < MinTempScale ? MinTempScale / self.transformState.scale : tmpscale;
 
 
         scale = initScale * tmpscale;
@@ -375,13 +376,13 @@ var tip = {
             curscale = self.transformState.scale;
         tip.allScale = c = tip.allScale * scale;
         var newscale = scale * curscale;
-        if (newscale > self.max_scale) {
-            newscale = self.max_scale;
-            tip.allScale = self.max_scale;
+        if (newscale > MaxScale) {
+            newscale = MaxScale;
+            tip.allScale = MaxScale;
         }
-        if (newscale < self.min_scale) {
-            newscale = self.min_scale;
-            tip.allScale = self.min_scale;
+        if (newscale < MinScale) {
+            newscale = MinScale;
+            tip.allScale = MinScale;
         }
         scale = newscale / curscale;
         var origin_x = tip.realCenter.x,
@@ -395,13 +396,24 @@ var tip = {
         var newTranslate_x = translate_x - moveX,
             newTranslate_y = translate_y - moveY;
         self.newtransformState = {translateX: newTranslate_x, translateY: newTranslate_y, scale: newscale};
-        //if (c > tip.max_scale || tip.min_scale > c) {
-        //    var _scale = c > tip.max_scale ? tip.max_scale / curscale : tip.min_scale / curscale;
+        //if (c > MaxScale || MinScale > c) {
+        //    var _scale = c > MaxScale ? MaxScale / curscale : MinScale / curscale;
         //    $("#drag_handle").addClass(self.debounceTransLabel).css({
         //        "-webkit-transform": "translate3d(0px, 0px, 0) scale(" + _scale + ", " + _scale + ")"
         //    })
         //}else
             self.resetAllElem(newTranslate_x,newTranslate_y,newscale);
+    },
+    transformStateReset: function() {
+        var self = this;
+        self.transformState.translate.x = 0;
+        self.transformState.translate.y = 0;
+        self.transformState.scale = 1;
+        var $overlays = $(".overlays");
+        $overlays.css({
+            left: "0px",
+            top: "0px"
+        })
     },
     //设置合适的屏幕视图大小
     setFitview: function (obj) {

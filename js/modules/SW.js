@@ -103,6 +103,7 @@ var SW = {
             self.loadData(adcode, function (drwData) {
                 //这里的drwData是loadData方法中callback的参数。这个参数在loadData中被定义。
                 tip.loadingOver();
+                tip.transformStateReset();
                 //绘制对应城市的地铁
                 drwSw.draw(drwData, param);
             });

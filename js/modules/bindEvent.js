@@ -8,7 +8,6 @@ var tip=require("./tip");
 var $=require("./zepto");
 var DrwTraf=require("./drwtraffic");
 var drwSw=require("./drwMain");
-var pinch=require("./scales");
 
 var bindEvent={
     enableGesture :tip.enableGesture,
