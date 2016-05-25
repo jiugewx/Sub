@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "6442fd64b4dd8f8ca715"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "6ecd61620fafc2182c55"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3278,7 +3278,7 @@
 	                    subway_station.setAttribute("r", 5);
 	                    subway_station.setAttribute("fill", "#FFF");
 	                    subway_station.setAttribute("stroke-width", 2);
-	                    subway_station.setAttribute("stroke", "#"+item.cl);/*画对应地铁线的颜色*/
+	                    subway_station.setAttribute("stroke", "#"+"7D7E7E");/*画对应地铁线的颜色 item.cl , #7D7E7E是换乘站的外圈颜色*/
 	                    subway_circle_g.appendChild(subway_station);
 	                }
 	                //如果是换乘车站
@@ -4183,27 +4183,22 @@
 	        if (ev.type == 'pinchstart') {
 	            initScale = self.transform.scale || 1;
 	        }
-	        // $('#transform').html(self.svgOffset.left + ',' + self.svgOffset.top);
 	        self.realCenter = {
 	            'x': Number(center.x) - Number(self.svgOffset.left),
 	            'y': Number(center.y) - Number(self.svgOffset.top)
 	        };
 
-	        // self.realCenter = {
-	        //     'x': Number(center.x),
-	        //     'y': Number(center.y)
-	        // }
 
 	        var tmpscale = ev.scale;
 	        tip.curScale = tmpscale;
 
 	        //以下：超出缩放极限会有弹回效果
-	        tmpscale = tmpscale > MaxTempScale ? MaxTempScale : tmpscale;
+	        //tmpscale = tmpscale > MaxTempScale ? MaxTempScale : tmpscale;
 	        //tmpscale = tmpscale < MinTempScale ? MinTempScale : tmpscale;
 
 
 	        //以下：超出缩放极限会禁止缩放
-	        //tmpscale=self.transformState.scale*tmpscale>MaxTempScale?MaxTempScale/self.transformState.scale:tmpscale;
+	        tmpscale = self.transformState.scale * tmpscale > MaxTempScale ? MaxTempScale / self.transformState.scale : tmpscale;
 	        tmpscale = self.transformState.scale * tmpscale < MinTempScale ? MinTempScale / self.transformState.scale : tmpscale;
 
 
@@ -4245,7 +4240,6 @@
 
 	        self.handleUpdate();
 	    },
-
 
 	    svgUpdate1: function(a) {
 	        var b = this
@@ -4333,7 +4327,6 @@
 	        }, 100);
 	        setTimeout(function () {
 	            self.enableGesture = null;
-	            console.log("resetAllElem-enableGesture",self.enableGesture);
 	        }, 100);
 	    },
 	    //svg更新

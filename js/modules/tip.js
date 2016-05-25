@@ -172,12 +172,12 @@ var tip = {
         tip.curScale = tmpscale;
 
         //以下：超出缩放极限会有弹回效果
-        tmpscale = tmpscale > MaxTempScale ? MaxTempScale : tmpscale;
+        //tmpscale = tmpscale > MaxTempScale ? MaxTempScale : tmpscale;
         //tmpscale = tmpscale < MinTempScale ? MinTempScale : tmpscale;
 
 
         //以下：超出缩放极限会禁止缩放
-        //tmpscale=self.transformState.scale*tmpscale>MaxTempScale?MaxTempScale/self.transformState.scale:tmpscale;
+        tmpscale = self.transformState.scale * tmpscale > MaxTempScale ? MaxTempScale / self.transformState.scale : tmpscale;
         tmpscale = self.transformState.scale * tmpscale < MinTempScale ? MinTempScale / self.transformState.scale : tmpscale;
 
 

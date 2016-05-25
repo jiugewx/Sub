@@ -329,7 +329,7 @@ var drwSw = {
                     subway_station.setAttribute("r", 5);
                     subway_station.setAttribute("fill", "#FFF");
                     subway_station.setAttribute("stroke-width", 2);
-                    subway_station.setAttribute("stroke", "#"+item.cl);/*画对应地铁线的颜色*/
+                    subway_station.setAttribute("stroke", "#"+"7D7E7E");/*画对应地铁线的颜色 item.cl , #7D7E7E是换乘站的外圈颜色*/
                     subway_circle_g.appendChild(subway_station);
                 }
                 //如果是换乘车站
