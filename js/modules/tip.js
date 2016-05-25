@@ -33,6 +33,10 @@ var tip = {
         left: 0,
         top: 0
     },
+    startOffset:{
+        left: 0,
+        top: 0
+    },
     realCenter: {
         x: $(window).width() / 2,
         y: $(window).height() / 2
@@ -158,27 +162,22 @@ var tip = {
         if (ev.type == 'pinchstart') {
             initScale = self.transform.scale || 1;
         }
-        // $('#transform').html(self.svgOffset.left + ',' + self.svgOffset.top);
         self.realCenter = {
             'x': Number(center.x) - Number(self.svgOffset.left),
             'y': Number(center.y) - Number(self.svgOffset.top)
         };
 
-        // self.realCenter = {
-        //     'x': Number(center.x),
-        //     'y': Number(center.y)
-        // }
 
         var tmpscale = ev.scale;
         tip.curScale = tmpscale;
 
         //以下：超出缩放极限会有弹回效果
-        //tmpscale = tmpscale > MaxTempScale ? MaxTempScale : tmpscale;
+        tmpscale = tmpscale > MaxTempScale ? MaxTempScale : tmpscale;
         //tmpscale = tmpscale < MinTempScale ? MinTempScale : tmpscale;
 
 
         //以下：超出缩放极限会禁止缩放
-        tmpscale=self.transformState.scale*tmpscale>MaxTempScale?MaxTempScale/self.transformState.scale:tmpscale;
+        //tmpscale=self.transformState.scale*tmpscale>MaxTempScale?MaxTempScale/self.transformState.scale:tmpscale;
         tmpscale = self.transformState.scale * tmpscale < MinTempScale ? MinTempScale / self.transformState.scale : tmpscale;
 
 
@@ -220,7 +219,6 @@ var tip = {
 
         self.handleUpdate();
     },
-
 
     svgUpdate1: function(a) {
         var b = this
@@ -266,7 +264,7 @@ var tip = {
             g = d.transformState.scale;
         tip.allScale = c = tip.allScale * a;
         var h = a * g;
-        h > tip.max_scale && (h = tip.max_scale, tip.allScale = tip.max_scale), tip.min_scale > h && (h = tip.min_scale, tip.allScale = tip.min_scale),
+        h > MaxScale && (h = MaxScale, tip.allScale =MaxScale), MinScale> h && (h = MinScale, tip.allScale = MinScale),
             a = h / g;
         var i = tip.realCenter.x
             , j = tip.realCenter.y;
@@ -282,8 +280,8 @@ var tip = {
                 translateY: n,
                 scale: h
             },
-            c > tip.max_scale ||  tip.min_scale > c) {
-            var o = c > tip.max_scale ? tip.max_scale / g :  tip.min_scale / g;
+            c >MaxScale ||  MinScale > c) {
+            var o = c > MaxScale? MaxScale / g :  MinScale/ g;
             $("#drag_handle").addClass(d.debounceTransLabel).css({
                 "-webkit-transform": "translate3d(0px, 0px, 0) scale(" + o + ", " + o + ")"
             })
@@ -310,7 +308,6 @@ var tip = {
             self.enableGesture = null;
         }, 100);
     },
-
     //svg更新
     svgUpdate: function (ev) {
         var svg_g = $("#svg-g"),
@@ -369,7 +366,6 @@ var tip = {
     //svg缩放更新
     scaleSvgUpdate: function (scale, nav) {
         var self = this;
-        self.enableGesture = true;
         var c;
         var translate_x = ($("#svg-g"), $("#subwaySvgBody"),self.transformState.translate.x),
             translate_y = self.transformState.translate.y,
@@ -395,12 +391,17 @@ var tip = {
             moveY = (Number(scale) - 1) * (Number(origin_y) - Number(translate_y));
         var newTranslate_x = translate_x - moveX,
             newTranslate_y = translate_y - moveY;
+
+
+
         self.newtransformState = {translateX: newTranslate_x, translateY: newTranslate_y, scale: newscale};
         //if (c > MaxScale || MinScale > c) {
         //    var _scale = c > MaxScale ? MaxScale / curscale : MinScale / curscale;
         //    $("#drag_handle").addClass(self.debounceTransLabel).css({
         //        "-webkit-transform": "translate3d(0px, 0px, 0) scale(" + _scale + ", " + _scale + ")"
-        //    })
+        //    });
+        //    console.log("all",tip.allScale,"new!",newscale,"cur",curscale);
+        //    console.log("addClass");
         //}else
             self.resetAllElem(newTranslate_x,newTranslate_y,newscale);
     },
@@ -432,6 +433,7 @@ var tip = {
             scale = 1;
         if (w_rate < 1 || h_rate < 1) {
             scale = w_rate < h_rate ? (w_rate - 0.05) : (h_rate - 0.06);
+            MinScale > scale && (scale = MinScale + .01),
             self.scaleSvgUpdate(scale, true);
         }
     },

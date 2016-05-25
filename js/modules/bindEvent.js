@@ -19,7 +19,6 @@ var bindEvent={
     bindEvent: function() {
         document.addEventListener('touchstart', function() {});
         var self = this;
-        self.enableGesture=null;
         var $refresh=$(".refresh_btn");
         var $subway = $('#subway');
         var $citypage = $('#citypage');
@@ -33,11 +32,17 @@ var bindEvent={
         mc.add(new Hammer.Pan());
         mc.add(new Hammer.Pinch());
 
-
+        self.enableGesture=true;
         var lastAction = "";
         var hasPenchend = false;
 
-        mc.on("panmove", function(ev) {
+        mc.on("panstart panmove", function(ev) {
+            if ("panstart" == ev.type) {
+                var $svg_g = $("#svg-g")
+                    , $svg_g_offset = $svg_g.offset();
+                tip.startOffset.left = $svg_g_offset && $svg_g_offset.left;
+                tip.startOffset.top = $svg_g_offset && $svg_g_offset.top - 50;
+            }
             "pinch" != self.enableGesture && (self.enableGesture = "pan",
                 tip.touchStatus = "pan",
                 lastAction = "pan",
@@ -60,6 +65,7 @@ var bindEvent={
                 }
             }, 0)
         });
+        //在每一次有用户交互的时候都会被触发，可以得到非常有用的数据
         mc.on("hammer.input", function(ev) {
             if (ev.isFinal) {
                 if (lastAction == "pinch") {
@@ -78,7 +84,7 @@ var bindEvent={
 
         $(document).on("webkitTransitionEnd", "." + self.debounceTransLabel, function() {
             $(document.getElementById("drag_handle")).removeClass(self.debounceTransLabel);
-            "pinch" == self.enableGesture && tip.resetAllElem();
+            "pinch"==self.enableGesture  && tip.resetAllElem();
         });
 
         $subway.on('touchend', 'g', function() {
@@ -118,7 +124,6 @@ var bindEvent={
                 }
             }
         });
-
 
 
         //$("#srhlist").on("touchmove", function(e) {
