@@ -17,7 +17,7 @@ var debounceTransLabel = "debounce-transition",
 //缩放极限
     MinScale = 0.35, MaxScale = 1.9,
 //单次缩放比例,单次的缩放比率范围超出缩放极限范围时，就会发生回弹！
-    MinTempScale = 0.25, MaxTempScale =2.2;
+    MinTempScale = 0.35, MaxTempScale =2.2;
 
 
 
