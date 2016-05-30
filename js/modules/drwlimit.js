@@ -140,6 +140,21 @@ var DrwLimit = {
                     limit_station_icon.setAttribute("height", 16);
                     limit_station_icon.setAttributeNS('http://www.w3.org/1999/xlink', "xlink:href", "./img/subway/limit.png");
                     subway_circle_g.appendChild(limit_station_icon);
+
+                    var subway_station_out = document.createElementNS(self.ns_svg, 'circle');
+                    subway_station_out.setAttribute("id", 'st-' + item.si);
+                    subway_station_out.setAttribute("class", 'station_obj');
+                    subway_station_out.setAttribute("cx", parseInt(item.p.split(" ")[0]));
+                    subway_station_out.setAttribute("cy", parseInt(item.p.split(" ")[1]));
+                    subway_station_out.setAttribute("station_id", item.si);
+                    subway_station_out.setAttribute("station_name", item.n);
+                    subway_station_out.setAttribute("station_poiid", item.poiid);
+                    subway_station_out.setAttribute("station_lon", item.sl.split(',')[0]);
+                    subway_station_out.setAttribute("station_lat", item.sl.split(',')[1]);
+                    subway_station_out.setAttribute("r", 13);
+                    subway_station_out.setAttribute("fill", "#FFF");
+                    subway_station_out.setAttribute("fill-opacity", "0");
+                    subway_circle_g.appendChild(subway_station_out);
                 }
             }
         });
