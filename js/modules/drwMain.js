@@ -7,6 +7,7 @@ var AllData=require("./AllData");
 var SW=require("./SW");
 var Drwlines=require("./drwLines");
 var DrwTraf=require("./drwtraffic");
+var DrwLimit=require("./drwlimit");
 
 
 var drwSw = {
@@ -190,7 +191,6 @@ var drwSw = {
         var status = 'normal';
         self.lineSort();
         self.drwSwLines(self.currLines, status);
-        DrwTraf.drwTrafficLinesDefer(self.currLines, status);
         self.drwSwStations(drwData, status, station);
         self.drwSwStationsName(drwData, status, 10, 20); //缩小为0.5，第二个参数为24
         self.drwSwLinesName(drwData, status);
@@ -202,6 +202,8 @@ var drwSw = {
             var center = tip.getStCenter(nearObj);
             tip.setCenter(center);
         }
+        DrwTraf.drwTrafficLinesDefer(self.currLines, status);
+        DrwLimit.drwlimitStDefer(drwData, status);
     },
     //绘制背景
     drawBg: function() {

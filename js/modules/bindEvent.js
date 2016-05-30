@@ -80,7 +80,7 @@ var bindEvent={
                     self.enableGesture= true;
                 }, 50);
             }
-            console.log(self.enableGesture);
+            //console.log(self.enableGesture);
         });
 
         $(document).on("webkitTransitionEnd", "." + self.debounceTransLabel, function() {

@@ -8,6 +8,7 @@ var DrwTraf = require("./drwtraffic");
 var drwSw = require("./drwMain");
 var SW = require("./SW");
 var AllData = require("./AllData");
+var DrwLimit = require('./drwlimit');
 
 var getstureState = 0;
 var el = document.getElementById('drag_handle');
@@ -17,8 +18,7 @@ var debounceTransLabel = "debounce-transition",
 //缩放极限
     MinScale = 0.35, MaxScale = 2,
 //单次缩放比例,单次的缩放比率范围超出缩放极限范围时，就会发生回弹！
-    MinTempScale = 0.35, MaxTempScale =2;
-
+    MinTempScale = 0.35, MaxTempScale = 2;
 
 
 var tip = {
@@ -33,7 +33,7 @@ var tip = {
         left: 0,
         top: 0
     },
-    startOffset:{
+    startOffset: {
         left: 0,
         top: 0
     },
@@ -58,8 +58,8 @@ var tip = {
         scale: 1
     },
 
-    debounceTransLabel:debounceTransLabel,
-    enableGesture : null,
+    debounceTransLabel: debounceTransLabel,
+    enableGesture: null,
     //
     transformOrigin: null,
     routeState: false,
@@ -172,12 +172,12 @@ var tip = {
         tip.curScale = tmpscale;
 
         //以下：超出缩放极限会有弹回效果
-        tmpscale = tmpscale > MaxTempScale ? MaxTempScale : tmpscale;
+        //tmpscale = tmpscale > MaxTempScale ? MaxTempScale : tmpscale;
         //tmpscale = tmpscale < MinTempScale ? MinTempScale : tmpscale;
 
 
         //以下：超出缩放极限会禁止缩放
-        //tmpscale = self.transformState.scale * tmpscale > MaxTempScale ? MaxTempScale / self.transformState.scale : tmpscale;
+        tmpscale = self.transformState.scale * tmpscale > MaxTempScale ? MaxTempScale / self.transformState.scale : tmpscale;
         tmpscale = self.transformState.scale * tmpscale < MinTempScale ? MinTempScale / self.transformState.scale : tmpscale;
 
 
@@ -220,7 +220,7 @@ var tip = {
         self.handleUpdate();
     },
 
-    svgUpdate1: function(a) {
+    svgUpdate1: function (a) {
         var b = this
             , c = $("#svg-g")
             , d = c.offset()
@@ -259,12 +259,12 @@ var tip = {
         } else
             $("#drag_handle").addClass(b.debounceTransLabel);
         tip.handleReset(),
-            setTimeout(function() {
+            setTimeout(function () {
                 tip.touchStatus = null ,
                     b.enableGesture = null
             }, 100)
     },
-    scaleSvgUpdate1: function(a, b) {
+    scaleSvgUpdate1: function (a, b) {
         console.log("scaleSvgUpdate");
         var c,
             d = this,
@@ -273,7 +273,7 @@ var tip = {
             g = d.transformState.scale;
         tip.allScale = c = tip.allScale * a;
         var h = a * g;
-        h > MaxScale && (h = MaxScale, tip.allScale =MaxScale), MinScale> h && (h = MinScale, tip.allScale = MinScale),
+        h > MaxScale && (h = MaxScale, tip.allScale = MaxScale), MinScale > h && (h = MinScale, tip.allScale = MinScale),
             a = h / g;
         var i = tip.realCenter.x
             , j = tip.realCenter.y;
@@ -289,15 +289,15 @@ var tip = {
                 translateY: n,
                 scale: h
             },
-            c >MaxScale ||  MinScale > c) {
-            var o = c > MaxScale? MaxScale / g :  MinScale/ g;
+            c > MaxScale || MinScale > c) {
+            var o = c > MaxScale ? MaxScale / g : MinScale / g;
             $("#drag_handle").addClass(d.debounceTransLabel).css({
                 "-webkit-transform": "translate3d(0px, 0px, 0) scale(" + o + ", " + o + ")"
             })
         } else
             d.resetAllElem(m, n, h)
     },
-    resetAllElem: function() {
+    resetAllElem: function () {
         console.log("resetAllElem")
         var self = this
             , newTranslate_x = self.newtransformState.translateX
@@ -320,7 +320,7 @@ var tip = {
     },
     //svg更新
     svgUpdate: function (ev) {
-        console.log("svgUpdate");
+        //console.log("svgUpdate");
         var svg_g = $("#svg-g"),
             $svg_body = $('#subwaySvgBody'),
             svg_g_offset = svg_g.offset(),
@@ -377,7 +377,7 @@ var tip = {
     scaleSvgUpdate: function (scale, nav) {
         var self = this;
         var c;
-        var translate_x = ($("#svg-g"), $("#subwaySvgBody"),self.transformState.translate.x),
+        var translate_x = ($("#svg-g"), $("#subwaySvgBody"), self.transformState.translate.x),
             translate_y = self.transformState.translate.y,
             curscale = self.transformState.scale;
         tip.allScale = c = tip.allScale * scale;
@@ -403,18 +403,17 @@ var tip = {
             newTranslate_y = translate_y - moveY;
 
 
-
         self.newtransformState = {translateX: newTranslate_x, translateY: newTranslate_y, scale: newscale};
-        if (c > MaxScale || MinScale > c) {
-            var _scale = c > MaxScale ? MaxScale / curscale : MinScale / curscale;
-            $("#drag_handle").addClass(self.debounceTransLabel).css({
-                "-webkit-transform": "translate3d(0px, 0px, 0) scale(" + _scale + ", " + _scale + ")"
-            });
-            console.log("addClass");
-        }else
-            self.resetAllElem(newTranslate_x,newTranslate_y,newscale);
+        //if (c > MaxScale || MinScale > c) {
+        //    var _scale = c > MaxScale ? MaxScale / curscale : MinScale / curscale;
+        //    $("#drag_handle").addClass(self.debounceTransLabel).css({
+        //        "-webkit-transform": "translate3d(0px, 0px, 0) scale(" + _scale + ", " + _scale + ")"
+        //    });
+        //    console.log("addClass");
+        //} else
+            self.resetAllElem(newTranslate_x, newTranslate_y, newscale);
     },
-    transformStateReset: function() {
+    transformStateReset: function () {
         var self = this;
         self.transformState.translate.x = 0;
         self.transformState.translate.y = 0;
@@ -443,7 +442,7 @@ var tip = {
         if (w_rate < 1 || h_rate < 1) {
             scale = w_rate < h_rate ? (w_rate - 0.05) : (h_rate - 0.06);
             MinScale > scale && (scale = MinScale + .01),
-            self.scaleSvgUpdate(scale, true);
+                self.scaleSvgUpdate(scale, true);
         }
     },
     //获取缩放中心
@@ -540,6 +539,7 @@ var tip = {
             var select_station_id = obj.attr("station_id");
 
             //运行loadinfo(),写首发时间数据
+            DrwLimit.showlimit_info(select_ref_line_id, select_station_id);
             self.loadinfo(select_ref_line_id, select_station_id);
 
             //设置站点的id和名称及关联线路id
@@ -819,25 +819,7 @@ var tip = {
         }
     },
     //格式化时间
-    formatTime: function (le) {
-        if (!le || le == '0') {
-            return '';
-        }
-        le = le / 60;
-        if (le <= 60) {
-            return parseInt(Math.ceil(le)) + '分钟';
-        } else {
-            var o = Math.floor(le / 60) + '小时';
-            if (le % 60 !== 0) {
-                if (Math.floor(le % 60) === 0) {
 
-                } else {
-                    o += Math.floor(le % 60) + '分钟';
-                }
-            }
-            return o;
-        }
-    },
     unableFlite: function () {
         $('.filter_btn').css({
             'z-index': '10'

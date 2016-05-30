@@ -695,6 +695,11 @@ body.disable-default-action {
     font-size: 9px;
 }
 
+.limit_info{
+    margin-bottom: 5px;
+}
+
+
 .tip_detail_error, .tip_detail_success {
     padding-bottom: 4px;
 }

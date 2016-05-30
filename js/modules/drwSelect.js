@@ -5,6 +5,7 @@
 var AllData = require("./AllData");
 var DrwTraf = require("./drwtraffic");
 var drwSw = require("./drwMain");
+var DrwLimit=require("./drwlimit");
 
 var drwSelect = {
     ns_svg: AllData.ns_svg,
@@ -20,6 +21,7 @@ var drwSelect = {
         drwSw.drwSwStationsName(drwData, status, 10, 20); //缩小为0.5，第二个参数为24
         drwSw.drwSwLinesName(drwData, status);
         DrwTraf.drwTrafficLinesDefer(drwData, status);
+        DrwLimit.drwlimitStDefer(drwData, status);
     }
 };
 

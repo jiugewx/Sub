@@ -8,6 +8,7 @@ var AllData=require("./AllData");
 var drwSw=require("./drwMain");
 var tip=require("./tip");
 var DrwTraf=require("./drwtraffic");
+var Drwlimit=require("./drwlimit");
 var bindEvent=require("./bindEvent");
 var FastClick = require('./fastclick');
 
@@ -49,27 +50,21 @@ var SW = {
     //显示城市：获取hash值，依据hash值匹配对应城市信息，
     showCity: function() {
         var self = this;
-        //var cache = AllData.cache;
-
         var param = {"city":"1100"};
-        //self.param2json(hash)就是将hash转为json对象，"city=1100"字符串转换为了object的格式，｛"city":"1100"｝
-        //if (!param || !param.src || param.src && param.src != 'alipay') {
-        //    $('#subway, #citypage').addClass('msubway');
-        //}
-        ////如果param不存在，那就打开城市选择列表。
-        //if (!param) {
-        //    AllData.subwayFlag = 0;
-        //    return tip.cityChange();
-        //}
-
         AllData.param = param;
-
         //取adcode为param中city的值。
         var adcode = param.city;
-        //var adcode = "1100";
-
-        //如果城市代码存在，那就判断文件中是否存有对应的地铁图
-        //if (adcode != '') {
+        AllData.svgReady = false;
+        //开启加载对应城市的数据
+        tip.loading();
+        $(".filter_btn").hide();
+        self.loadData(adcode, function (drwData) {
+            //这里的drwData是loadData方法中callback的参数。这个参数在loadData中被定义。
+            tip.loadingOver();
+            tip.transformStateReset();
+            //绘制对应城市的地铁
+            drwSw.draw(drwData, param);
+        });
 
         if (!AllData.fileNameData[adcode]) {
             // 该城市没有对应地铁图,那就打开cityChange的列表
@@ -80,38 +75,9 @@ var SW = {
             AllData.subwayFlag = 1;
             $('#subway').show()
         }
-        //}
-        ////如果城市代码不存在
-        //else {
-        //    AllData.subwayFlag = 0;
-        //    return tip.cityChange();
-        //}
 
-
-
-        $('.city_name').html(AllData.cityname[adcode]);
         //改变网页的标题
         document.title = AllData.cityname[adcode] + '地铁图';
-
-        // 此城市代码与当前城市的代码不一致，即发生了变化，tip.hideCitylist();
-        //if (adcode != cache.curCity.adcode) {
-        //    $("#subway-svg,#infowindow-content,#tip-content,.line-caption").remove();
-            AllData.svgReady = false;
-            //开启加载对应城市的数据
-            tip.loading();
-            $(".filter_btn").hide();
-            self.loadData(adcode, function (drwData) {
-                //这里的drwData是loadData方法中callback的参数。这个参数在loadData中被定义。
-                tip.loadingOver();
-                tip.transformStateReset();
-                //绘制对应城市的地铁
-                drwSw.draw(drwData, param);
-            });
-        //} else {
-        //    //显示车站
-        //    SW.showStation(param);
-        //    console.log(param);
-        //}
     },
     //显示城市的地铁站
     showStation: function (param) {
@@ -146,9 +112,9 @@ var SW = {
         else {
             //从服务器请求数据
             self.loadMainData(city_code,city_name,callback);
-            //self.loadTempTraffic();
-            self.loadStInfo(city_code,city_name);
             DrwTraf.loadTraffic(city_code,city_name);
+            self.loadStInfo(city_code,city_name);
+            Drwlimit.loadlimit(city_code,city_name);
         }
     },
     //请求站点首末班车信息
@@ -198,7 +164,6 @@ var SW = {
                 AllData.loadStatus.currLinesInfo=2;
                 alert('城市地铁数据加载失败！');
                 AllData.subwayFlag = 0;
-                //tip.cityChange();
             });
     },
     //初步编译地铁的基础信息

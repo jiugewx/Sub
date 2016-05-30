@@ -14,6 +14,7 @@ git rm -r --cached .
 git add .
 git commit -m "new!"
 
+手机端的console.log
 
 安装weinre
 sudo npm install -g weinre

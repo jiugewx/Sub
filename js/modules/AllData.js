@@ -30,6 +30,7 @@ var AllData={
         }
     ],
     refreshStatus:{},
+    limitRefreshTime:{},
     cache: {
         currLines:{},
         citylist: [],
@@ -46,6 +47,7 @@ var AllData={
         stationsInfo: {},
         trafficNew:[],
         trafficInfo:[],
+        limitTraffic:[],
         convertData:{},
         tempTrafficinfo:[],
         stationspoi: {},

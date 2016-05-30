@@ -92,7 +92,7 @@ var DrwTraf = {
                 }
             }
         }
-        console.log("路况信息编译成功！");
+        console.log("路况信息压入成功！");
         //console.log("addTrafficInfo",drwData);
         //console.log("新的drwData",drwData);
     },

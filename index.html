@@ -33,15 +33,20 @@
                             <!-- 弹出框的标题信息 -->
                             <div class="tip_title">
                                 <span class="tip_name" id="tip_name"></span>
-                                <!--<span class="tip_detail_time">（30分钟前发布）</span>-->
+                                <span class="tip_detail_time"></span>
                                 <span class="tip_close"></span>
                                 <span style="clear: both"></span>
                                 <div class="tip_detail">
-                                    <!--<div class="tip_detail_error">抱歉，暂无数据</div>-->
-                                    <!--<div class="tip_detail_success">-->
-                                    <!--<span class="tip_detail_out">出：37人</span>-->
-                                    <!--<span class="tip_detail_in">进：79人</span>-->
+                                    <!--<div class="limit_info">-->
+                                        <!--由于5号线的客流量较多，本站点的限流时间为：-->
+                                        <!--<span class="limit_info_item" style="display:block">07:30:00&#45;&#45;09:00:00</span>-->
+                                        <!--<span class="limit_info_item" style="display:block">07:30:00&#45;&#45;09:00:00</span>-->
                                     <!--</div>-->
+                                    <div class="tip_detail_error">抱歉，暂无数据</div>
+                                    <div class="tip_detail_success">
+                                        <span class="tip_detail_out">出：37人</span>
+                                        <span class="tip_detail_in">进：79人</span>
+                                    </div>
                                 </div>
                             </div>
                             <!-- 弹出框的主体信息-->
@@ -58,7 +63,9 @@
                     <!-- 地铁的划线部分-->
                 </div>
             </div>
+            <!-- 提前加载的图片-->
             <img id="transfer-img" src="img/subway/transfer-station.png" style="display:none"/>
+            <img id="limit-img" src="img/subway/limit.png" style="display:none"/>
             <!-- 地铁画布Canvas-->
             <canvas id="subwayCanvas" width="2000" height="2000" style="display:none;"></canvas>
             <!-- 地铁的内容部分-->
@@ -76,6 +83,7 @@
                 <span class="refresh_error_text">数据更新失败，请稍后再试</span>
             </div>
         </div>
+        <img id="refresh-img" src="img/subway/refresh.png" style="display:none"/>
         <!-- 加载loading -->
         <div class="loading-bg" id="loading">
             <div class="loading-outer">
@@ -86,7 +94,6 @@
             </div>
         </div>
     </div>
-    <!--<script src="http://192.168.2.78:8080/target/target-script-min.js#anonymous"></script>-->
     <script type="text/javascript" src="dist/main.js"></script>
 </body>
 </html>
