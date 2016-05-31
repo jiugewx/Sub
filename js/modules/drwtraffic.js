@@ -115,7 +115,7 @@ var DrwTraf = {
                     svg_g.insertBefore(traffic_line, st_normal);
                     for (var line_id in drwData) {
                         var current_drwData = drwData[line_id];
-                        //self.drwTrafficFromSever(traffic_line, current_drwData);
+                        self.drwTrafficFromSever(traffic_line, current_drwData);
                     }
                     console.log("路况信息已展示！");
                     tip.refreshSuccess();
@@ -145,11 +145,10 @@ var DrwTraf = {
             if (LineId_Data.st2st[k].rd == "right") {
                 //console.log(LineId_Data.st2st[k],LineId_Data.st2st[k].dN,k);
                 var rightmain = LineId_Data.st2st[k].path;
-                var rightpath = Drwlines.doublePathInfo(rightmain, 26).RightPath;
-                var rightcolor = LineId_Data.st2st[k].rateColor;
-                Right.path = rightpath;
+                Right.path = Drwlines.doublePathInfo(rightmain, 26).RightPath;
+                Right.pathStrings=Drwlines.doublePathInfo(rightmain, 26).RightPathStrings;
                 Right.color = "AF272B";
-                //Right.color = rightcolor;/*注意停运时的颜色使用,停运时没有颜色值,没有颜色值就会在drwlines()中,使用line本身的颜色*/
+                Right.color = LineId_Data.st2st[k].rateColor;/*注意停运时的颜色使用,停运时没有颜色值,没有颜色值就会在drwlines()中,使用line本身的颜色*/
                 Right.direction = LineId_Data.st2st[k].dN;
                 Right.loadRate = LineId_Data.st2st[k].loadRate;
                 Right.reflineName = LineId_Data.st2st[k].rln;
@@ -158,11 +157,10 @@ var DrwTraf = {
             if (LineId_Data.st2st[k].rd == "left") {
                 //console.log(LineId_Data.st2st[k],LineId_Data.st2st[k].dN,k);
                 var leftmain = LineId_Data.st2st[k].path;
-                var leftpath = Drwlines.doublePathInfo(leftmain, 26).LeftPath;
-                var leftcolor = LineId_Data.st2st[k].rateColor;
-                Left.path = leftpath;
+                Left.path = Drwlines.doublePathInfo(leftmain, 26).LeftPath;
+                Left.pathStrings=Drwlines.doublePathInfo(leftmain, 26).LeftPathStrings;
                 Left.color = "C99616";
-                //Left.color = leftcolor;/*注意停运时的颜色使用,停运时没有颜色值,没有颜色值就会在drwlines()中,使用line本身的颜色*/
+                Left.color =  LineId_Data.st2st[k].rateColor;/*注意停运时的颜色使用,停运时没有颜色值,没有颜色值就会在drwlines()中,使用line本身的颜色*/
                 Left.direction = LineId_Data.st2st[k].dN;
                 Left.loadRate = LineId_Data.st2st[k].loadRate;
                 Left.reflineName = LineId_Data.st2st[k].rln;

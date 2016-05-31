@@ -63,12 +63,12 @@ var Drwlines={
             var Xoffset="", Yoffset="";
             if(_p_a==0 || _p_a==314159265 || _p_a==-157079632 || _p_a==157079632){
                 //直角或者平角的情况
-                Xoffset=offset*Math.cos(Math.PI/2-p_a[Path_id]).toFixed(2)/10;
-                Yoffset=offset*Math.sin(Math.PI/2+p_a[Path_id]).toFixed(2)/10;
+                Xoffset=parseInt(offset*Math.cos(Math.PI/2-p_a[Path_id]))/10;
+                Yoffset=parseInt(offset*Math.sin(Math.PI/2+p_a[Path_id]))/10;
             }else{
                 //其他角度的情况
-                Xoffset=(offset+2)*Math.cos(Math.PI/2-p_a[Path_id]).toFixed(2)/10;
-                Yoffset=(offset+2)*Math.sin(Math.PI/2+p_a[Path_id]).toFixed(2)/10;
+                Xoffset=parseInt((offset+2)*Math.cos(Math.PI/2-p_a[Path_id]))/10;
+                Yoffset=parseInt((offset+2)*Math.sin(Math.PI/2+p_a[Path_id]))/10;
             }
             //左偏移
             var LeftX=p.x+Xoffset;
@@ -85,85 +85,12 @@ var Drwlines={
         info.Angles=p_a;
         info.LeftAngles=self.Path2Angles(info.LeftPath);
         info.RightAngles=self.Path2Angles(info.RightPath);
-        //console.log(info.LeftAngles,info.Angles);
-
         info.LeftPathCtrls=self.findControlPoints(info.LeftPath,info.LeftAngles);
         info.RightPathCtrls=self.findControlPoints(info.RightPath,info.RightAngles);
+        //赋值pathStrings
+        info.LeftPathStrings=self.Path2Strings(info.LeftPath,info.LeftPathCtrls,info.LeftAngles);
+        info.RightPathStrings=self.Path2Strings(info.RightPath,info.RightPathCtrls,info.RightAngles);
         return info;
-    },
-    //划双线
-    drwDouble: function (parentNode,drwData) {
-        //画双线
-        var self=this;
-        var dataset_line_arr=drwData.c;
-        var station = drwData.st;
-        var start = station[0].n,
-            end = station[station.length - 1].n;
-        var Left = {}, Right = {};
-        //console.log(dataset_line_arr);
-        //获取到两条路径信息，分路径信息
-        Left.path = self.doublePathInfo(dataset_line_arr, 26).LeftPath;
-        Right.path = self.doublePathInfo(dataset_line_arr, 26).RightPath;
-
-        //获取控制点
-        Left.pathCtrls=self.doublePathInfo(dataset_line_arr, 26).LeftPathCtrls;
-        Right.pathCtrls=self.doublePathInfo(dataset_line_arr, 26).RightPathCtrls;
-
-        //获取角度
-        Left.Angles=self.doublePathInfo(dataset_line_arr, 26).Angles;
-        Right.Angles=self.doublePathInfo(dataset_line_arr, 26).Angles;
-
-        //获取左右两条线的颜色,若是地铁线颜色:current_drwData.cl;
-        Left.color = self.defaultColor;
-        Right.color = self.defaultColor;
-
-        //确定两条线的终点信息
-        Left.direction = end+"-to-"+start;
-        Right.direction = start+"-to-"+end;
-
-        //确定所属线段的line_id
-        Left.reflineName = drwData.ln;
-        Right.reflineName = drwData.ln;
-
-        var lineId=drwData.ls;
-        //区分机场线
-        if(lineId=="110005"){
-            self.drwSingleLine(parentNode, Right, drwData);
-        }else{
-            self.drwSingleLine(parentNode, Left, drwData);
-            self.drwSingleLine(parentNode, Right, drwData);
-            self.Path2Strings(Left.path,Left.pathCtrls,Left.Angles);
-            self.Path2Strings(Right.path,Right.pathCtrls,Right.Angles);
-        }
-    },
-    //画单线:输入:挂载节点,路径的名称,地铁线的id/name数据,输出:单条地铁线
-    drwSingleLine: function (parentNode,pathName,LineId_Data) {
-        var self=this;
-        var onepath=pathName.path;
-        var	direction=pathName.direction;
-        var node_first = 'M' + onepath[0].split(' ').join(',');
-        var path = node_first + 'L' + onepath.join('L');
-        var line_path = document.createElementNS(this.ns_svg, 'path');
-        //line_path.setAttribute("id", "line-"+ LineId_Data.ls+"-"+ direction);
-        line_path.setAttribute("name", "line-"+ pathName.reflineName +"-"+ direction);
-        var color={};
-        //如果提供了强制的数据颜色,那就使用提供的颜色,否则就画定义好的颜色
-        if(pathName.color){
-            color=pathName.color;
-        }else{
-            color=Drwlines.defaultColor;/*如果感应器没有数据,就画默认颜色*/
-            //color=LineId_Data.cl;
-        }
-        var loadRate="";
-        if(pathName.loadRate){
-            loadRate=pathName.loadRate
-        }else{
-            loadRate="No Data!"
-        }
-        line_path.setAttribute("stroke", "#" + color);
-        line_path.setAttribute("d", path);
-        line_path.setAttribute("loadRate", loadRate);
-        parentNode.appendChild(line_path);
     },
     findControlPoints:function (mainPathData,Angles){
         //增加一个控制点,化圆弧
@@ -203,8 +130,80 @@ var Drwlines={
         }
         Otherpaths.unshift(first_LeftPoint);
         var newpathString=Otherpaths.join(' ').toString();
-        //console.log(newpath);
         return newpathString;
+    },
+    //划双线
+    drwDouble: function (parentNode,drwData) {
+        //画双线
+        var self=this;
+        var dataset_line_arr=drwData.c;
+        var station = drwData.st;
+        var start = station[0].n,
+            end = station[station.length - 1].n;
+        var Left = {}, Right = {};
+        //console.log(dataset_line_arr);
+        //获取到两条路径信息，分路径信息
+        Left.path = self.doublePathInfo(dataset_line_arr, 26).LeftPath;
+        Right.path = self.doublePathInfo(dataset_line_arr, 26).RightPath;
+
+        //获取pathStrings
+        Left.pathStrings=self.doublePathInfo(dataset_line_arr, 26).LeftPathStrings;
+        Right.pathStrings=self.doublePathInfo(dataset_line_arr, 26).RightPathStrings;
+
+        console.log("======##################=======" + drwData.ln + "=========############=====");
+        console.log(Left.pathStrings);
+        console.log(Right.pathStrings);
+
+        //获取左右两条线的颜色,若是地铁线颜色:current_drwData.cl;
+        Left.color = self.defaultColor;
+        Right.color = self.defaultColor;
+
+        //确定两条线的终点信息
+        Left.direction = end+"-to-"+start;
+        Right.direction = start+"-to-"+end;
+
+        //确定所属线段的line_id
+        Left.reflineName = drwData.ln;
+        Right.reflineName = drwData.ln;
+
+        var lineId=drwData.ls;
+        //区分机场线
+        if(lineId=="110005"){
+            self.drwSingleLine(parentNode, Right, drwData);
+        }else{
+            self.drwSingleLine(parentNode, Left, drwData);
+            self.drwSingleLine(parentNode, Right, drwData);
+        }
+    },
+    //画单线:输入:挂载节点,路径的名称,地铁线的id/name数据,输出:单条地铁线
+    drwSingleLine: function (parentNode,pathName,LineId_Data) {
+        var self=this;
+        var onepath=pathName.path;
+        var	direction=pathName.direction;
+        var node_first = 'M' + onepath[0].split(' ').join(',');
+        var path = node_first + 'L' + onepath.join('L');
+        //var path = pathName.pathStrings;
+        var line_path = document.createElementNS(this.ns_svg, 'path');
+        //line_path.setAttribute("id", "line-"+ LineId_Data.ls+"-"+ direction);
+        line_path.setAttribute("name", "line-"+ pathName.reflineName +"-"+ direction);
+        var color={};
+        //如果提供了强制的数据颜色,那就使用提供的颜色,否则就画定义好的颜色
+        if(pathName.color){
+            color=pathName.color;
+        }else{
+            color=Drwlines.defaultColor;/*如果感应器没有数据,就画默认颜色*/
+            //color=LineId_Data.cl;
+        }
+        var loadRate="";
+        if(pathName.loadRate){
+            loadRate=pathName.loadRate
+        }else{
+            loadRate="No Data!"
+        }
+        line_path.setAttribute("stroke", "#" + color);
+        line_path.setAttribute("d", path);
+        line_path.setAttribute("loadRate", loadRate);
+        parentNode.appendChild(line_path);
     }
 };
 
