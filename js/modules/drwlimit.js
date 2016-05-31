@@ -78,7 +78,7 @@ var DrwLimit = {
         var limitInfo = self.stations[StationId].limit;
         var infowHtml = [];
         if (limitInfo.length>0) {
-            $(".tip_detail_time").html(AllData.limitRefreshTime ? "(" + AllData.limitRefreshTime + ")" : null);
+            //$(".tip_detail_time").html(AllData.limitRefreshTime ? "(" + AllData.limitRefreshTime + ")" : null);
             infowHtml.push("<div class='limit_info'> <p>由于本站在客流高峰时段进站客流较大，为了保障轨道交通运营安全，本站在以下时段采取限制进站措施。</p>");
             for (var i in limitInfo) {
                 infowHtml.push(" <span class='limit_info_item'>" + limitInfo[i].startTime + "--" + limitInfo[i].endTime + "</span>");
