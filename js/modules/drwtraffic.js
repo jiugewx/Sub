@@ -153,7 +153,7 @@ var DrwTraf = {
                 Right.direction = LineId_Data.st2st[k].dN;
                 Right.loadRate = LineId_Data.st2st[k].loadRate;
                 Right.reflineName = LineId_Data.st2st[k].rln;
-                Drwlines.drwlines(parentNode, Right, LineId_Data);
+                Drwlines.drwSingleLine(parentNode, Right, LineId_Data);
             }
             if (LineId_Data.st2st[k].rd == "left") {
                 //console.log(LineId_Data.st2st[k],LineId_Data.st2st[k].dN,k);
@@ -166,7 +166,7 @@ var DrwTraf = {
                 Left.direction = LineId_Data.st2st[k].dN;
                 Left.loadRate = LineId_Data.st2st[k].loadRate;
                 Left.reflineName = LineId_Data.st2st[k].rln;
-                Drwlines.drwlines(parentNode, Left, LineId_Data);
+                Drwlines.drwSingleLine(parentNode, Left, LineId_Data);
             }
         }
 

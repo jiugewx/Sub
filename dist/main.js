@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c96fd759534c1a00e6f4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "eabe9739081ede766d43"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3600,10 +3600,10 @@
 	            p.x = parseInt(point.split(",")[0]);
 	            p.y = parseInt(point.split(",")[1]);
 
-
 	            //计算偏移量
 	            var _p_a=parseInt(p_a[Path_id]*100000000);
 	            var Xoffset="", Yoffset="";
+	            console.log(p_a[Path_id].toFixed(5));
 	            if(_p_a==0 || _p_a==314159265 || _p_a==-157079632 || _p_a==157079632){
 	                //直角或者平角的情况
 	                Xoffset=offset*Math.cos(Math.PI/2-p_a[Path_id]).toFixed(2)/10;

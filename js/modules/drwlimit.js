@@ -168,8 +168,8 @@ var DrwLimit = {
         var newData = newtime.getDate();
         var today = newYear + "/" + newMonth + "/" + newData;
         /*模拟时间*/
-        //startTime="10:00:00";
-        //endTime="17:00:00";
+        startTime="10:00:00";
+        endTime="23:00:00";
 
         var limitStart = today+" "+startTime;
         var limitend = today+" "+endTime;

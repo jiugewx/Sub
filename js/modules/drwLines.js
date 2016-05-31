@@ -8,9 +8,8 @@ var drwSw=require("./drwMain");
 var Drwlines={
     defaultColor:AllData.statusColor[0].color,
     ns_svg: AllData.ns_svg,
-    //输入主路的路径点,以及偏移量——输出两条路径的路径点信息
-    doublePathInfo: function (mainPathData,offset) {
-
+    //输出角度
+    Path2Angles:function(mainPathData){
         /*计算主路径的偏离角度*/
         var p_a = [];
         var p0 = {}, p1 = {};
@@ -43,20 +42,22 @@ var Drwlines={
         }
         //p1.angle = Math.atan2(p1.y - p0.y, p1.x - p0.x) - Math.PI / 2;
         p_a[0] = p_a[1];
-
+        return p_a;
+    },
+    //输入主路的路径点,以及偏移量——输出两条路径的路径点信息
+    doublePathInfo: function (mainPathData,offset) {
+        var self=this;
+        /*计算主路径的偏离角度*/
+        var p_a=self.Path2Angles(mainPathData);
         //编译Right,Left数组
         var info={};
         var LeftPath = [], RightPath=[];
-        info.LeftPath=LeftPath;
-        info.RightPath=RightPath;
-        //遍历mainPathData上所有的路径点
+        //计算偏移量
         for(var Path_id in mainPathData){
             var point = mainPathData[Path_id].split(' ').join(',');
             var p = {};
             p.x = parseInt(point.split(",")[0]);
             p.y = parseInt(point.split(",")[1]);
-
-
             //计算偏移量
             var _p_a=parseInt(p_a[Path_id]*100000000);
             var Xoffset="", Yoffset="";
@@ -69,7 +70,6 @@ var Drwlines={
                 Xoffset=(offset+2)*Math.cos(Math.PI/2-p_a[Path_id]).toFixed(2)/10;
                 Yoffset=(offset+2)*Math.sin(Math.PI/2+p_a[Path_id]).toFixed(2)/10;
             }
-
             //左偏移
             var LeftX=p.x+Xoffset;
             var LeftY=p.y-Yoffset;
@@ -79,8 +79,19 @@ var Drwlines={
             var RightY=p.y+Yoffset;
             RightPath.push(RightX+" "+RightY);
         }
+
+        info.LeftPath=LeftPath;
+        info.RightPath=RightPath;
+        info.Angles=p_a;
+        info.LeftAngles=self.Path2Angles(info.LeftPath);
+        info.RightAngles=self.Path2Angles(info.RightPath);
+        //console.log(info.LeftAngles,info.Angles);
+
+        info.LeftPathCtrls=self.findControlPoints(info.LeftPath,info.LeftAngles);
+        info.RightPathCtrls=self.findControlPoints(info.RightPath,info.RightAngles);
         return info;
     },
+    //划双线
     drwDouble: function (parentNode,drwData) {
         //画双线
         var self=this;
@@ -93,6 +104,14 @@ var Drwlines={
         //获取到两条路径信息，分路径信息
         Left.path = self.doublePathInfo(dataset_line_arr, 26).LeftPath;
         Right.path = self.doublePathInfo(dataset_line_arr, 26).RightPath;
+
+        //获取控制点
+        Left.pathCtrls=self.doublePathInfo(dataset_line_arr, 26).LeftPathCtrls;
+        Right.pathCtrls=self.doublePathInfo(dataset_line_arr, 26).RightPathCtrls;
+
+        //获取角度
+        Left.Angles=self.doublePathInfo(dataset_line_arr, 26).Angles;
+        Right.Angles=self.doublePathInfo(dataset_line_arr, 26).Angles;
 
         //获取左右两条线的颜色,若是地铁线颜色:current_drwData.cl;
         Left.color = self.defaultColor;
@@ -109,14 +128,16 @@ var Drwlines={
         var lineId=drwData.ls;
         //区分机场线
         if(lineId=="110005"){
-            self.drwlines(parentNode, Right, drwData);
+            self.drwSingleLine(parentNode, Right, drwData);
         }else{
-            self.drwlines(parentNode, Left, drwData);
-            self.drwlines(parentNode, Right, drwData);
+            self.drwSingleLine(parentNode, Left, drwData);
+            self.drwSingleLine(parentNode, Right, drwData);
+            self.Path2Strings(Left.path,Left.pathCtrls,Left.Angles);
+            self.Path2Strings(Right.path,Right.pathCtrls,Right.Angles);
         }
     },
     //画单线:输入:挂载节点,路径的名称,地铁线的id/name数据,输出:单条地铁线
-    drwlines: function (parentNode,pathName,LineId_Data) {
+    drwSingleLine: function (parentNode,pathName,LineId_Data) {
         var self=this;
         var onepath=pathName.path;
         var	direction=pathName.direction;
@@ -143,6 +164,47 @@ var Drwlines={
         line_path.setAttribute("d", path);
         line_path.setAttribute("loadRate", loadRate);
         parentNode.appendChild(line_path);
+    },
+    findControlPoints:function (mainPathData,Angles){
+        //增加一个控制点,化圆弧
+        var p_ctrs=[];
+        for(var Path_id2=1;Path_id2<mainPathData.length;Path_id2++){
+            var point0 = mainPathData[Path_id2-1].split(' ').join(',');
+            var point1 = mainPathData[Path_id2].split(' ').join(',');
+            var p0 = {},p1={},p_ctr={};
+            p0.x = parseInt(point0.split(",")[0]);
+            p0.y = parseInt(point0.split(",")[1]);
+            p1.x = parseInt(point1.split(",")[0]);
+            p1.y = parseInt(point1.split(",")[1]);
+            var a0=Angles[Path_id2-1],a1=Angles[Path_id2];
+            if (a0 == a1) {
+                p_ctr.x = (p0.x + p1.x) / 2;
+                p_ctr.y = (p0.y + p1.y) / 2;
+            } else {
+                p_ctr.x = ((Math.tan(a0) * p0.x - Math.tan(a1) * p1.x + p1.y - p0.y) / (Math.tan(a0) - Math.tan(a1))).toFixed(3);
+                p_ctr.y = (Math.tan(a0)*(p_ctr.x-p0.x)+p0.y).toFixed(3);
+            }
+            p_ctrs.push(p_ctr.x+" "+p_ctr.y);
+        }
+        return p_ctrs
+    },
+    Path2Strings:function(Path,PathCtrls,Angles){
+        var Otherpaths=[];
+        var first_LeftPoint= 'M' + Path[0].split(' ').join(',');
+        for(var Path_id3 =1 ; Path_id3<Path.length;Path_id3++){
+            var Otherpath="";
+            if(Angles[Path_id3]!=Angles[Path_id3-1]){
+                Otherpath ='Q' + PathCtrls[Path_id3-1].toString()+" "+Path[Path_id3].toString();
+            }
+            else{
+                Otherpath ='L' +Path[Path_id3].toString();
+            }
+            Otherpaths.push(Otherpath);
+        }
+        Otherpaths.unshift(first_LeftPoint);
+        var newpathString=Otherpaths.join(' ').toString();
+        //console.log(newpath);
+        return newpathString;
     }
 };
 
