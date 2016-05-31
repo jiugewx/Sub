@@ -8,6 +8,7 @@ var tip=require("./tip");
 var $=require("./zepto");
 var DrwTraf=require("./drwtraffic");
 var drwSw=require("./drwMain");
+var DrwLimit=require("./drwlimit");
 
 var bindEvent={
     enableGesture :tip.enableGesture,
@@ -191,6 +192,8 @@ var bindEvent={
                 var city_name = AllData.fileNameData[AllData.cache.curCity.adcode];
                 var status = 'normal';
                 DrwTraf.loadTraffic(city_code, city_name);
+                DrwLimit.loadlimit(city_code, city_name);
+                DrwLimit.drwlimitStDefer(drwSw.currLines, status);
                 //console.log("add前",drwSw.currLines);
                 DrwTraf.drwTrafficLinesDefer(drwSw.currLines, status);
             }else {

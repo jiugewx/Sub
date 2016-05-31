@@ -62,12 +62,12 @@ var Drwlines={
             var Xoffset="", Yoffset="";
             if(_p_a==0 || _p_a==314159265 || _p_a==-157079632 || _p_a==157079632){
                 //直角或者平角的情况
-                Xoffset=parseInt(offset*Math.cos(Math.PI/2-p_a[Path_id]))/10;
-                Yoffset=parseInt(offset*Math.sin(Math.PI/2+p_a[Path_id]))/10;
+                Xoffset=offset*Math.cos(Math.PI/2-p_a[Path_id]).toFixed(2)/10;
+                Yoffset=offset*Math.sin(Math.PI/2+p_a[Path_id]).toFixed(2)/10;
             }else{
                 //其他角度的情况
-                Xoffset=parseInt((offset+2)*Math.cos(Math.PI/2-p_a[Path_id]))/10;
-                Yoffset=parseInt((offset+2)*Math.sin(Math.PI/2+p_a[Path_id]))/10;
+                Xoffset=(offset+2)*Math.cos(Math.PI/2-p_a[Path_id]).toFixed(2)/10;
+                Yoffset=(offset+2)*Math.sin(Math.PI/2+p_a[Path_id]).toFixed(2)/10;
             }
 
             //左偏移

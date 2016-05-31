@@ -450,9 +450,9 @@ body.disable-default-action {
     height: 20px;
     width: 30px;
     margin: 0 3px  0 40px;
-    background:url(../img/subway/limit.png) no-repeat;
-    background-position: 3px 0;
-    background-size: 23px 20px;
+    background:url(../img/subway/traffic_limit.png) no-repeat;
+    background-position: 5px 0;
+    background-size: 20px 20px;
 }
 .help_text{
     float: right;
@@ -698,7 +698,12 @@ body.disable-default-action {
 .limit_info{
     margin-bottom: 5px;
 }
-
+.limit_info_item{
+    display: inline-block;
+    width: 130px ;
+    height: auto;
+    text-align: left;
+}
 
 .tip_detail_error, .tip_detail_success {
     padding-bottom: 4px;

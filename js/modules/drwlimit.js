@@ -79,10 +79,11 @@ var DrwLimit = {
         var infowHtml = [];
         if (limitInfo.length>0) {
             $(".tip_detail_time").html(AllData.limitRefreshTime ? "(" + AllData.limitRefreshTime + ")" : null);
-            infowHtml.push("<div class='limit_info'>由于客流量较多，本站点将于以下时间段限流：");
+            infowHtml.push("<div class='limit_info'> <p>由于本站在客流高峰时段进站客流较大，为了保障轨道交通运营安全，本站在以下时段采取限制进站措施。</p>");
             for (var i in limitInfo) {
-                infowHtml.push(" <span class='limit_info_item' style='display:block'>" + limitInfo[i].startTime + "--" + limitInfo[i].endTime + "</span>");
+                infowHtml.push(" <span class='limit_info_item'>" + limitInfo[i].startTime + "--" + limitInfo[i].endTime + "</span>");
             }
+            infowHtml.push("</div>");
         }
         $(".tip_detail").html(infowHtml.join(""));
     },
@@ -138,7 +139,7 @@ var DrwLimit = {
                     limit_station_icon.setAttribute("y", parseInt(item.p.split(" ")[1]) - 8);
                     limit_station_icon.setAttribute("width", 16);
                     limit_station_icon.setAttribute("height", 16);
-                    limit_station_icon.setAttributeNS('http://www.w3.org/1999/xlink', "xlink:href", "./img/subway/limit.png");
+                    limit_station_icon.setAttributeNS('http://www.w3.org/1999/xlink', "xlink:href", "./img/subway/traffic_limit.png");
                     subway_circle_g.appendChild(limit_station_icon);
 
                     var subway_station_out = document.createElementNS(self.ns_svg, 'circle');
@@ -167,7 +168,7 @@ var DrwLimit = {
         var newData = newtime.getDate();
         var today = newYear + "/" + newMonth + "/" + newData;
         /*模拟时间*/
-        //startTime="15:00:00";
+        //startTime="10:00:00";
         //endTime="17:00:00";
 
         var limitStart = today+" "+startTime;
