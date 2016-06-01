@@ -61,40 +61,57 @@
         "1190 767"
     ];
     $(function(){
-        var pathinfo=createPathInfo(path);
+        var pathinfo=modifyPathInfo(path);
         var hasQ=renewPath(pathinfo);
-//        var line13=pathmove(pathinfo.pathArray,10,10);
-//        var Angles=Path2Angles(line13);
         var main=document.getElementById("main");
-        var mainpathstrings=Path2Strings(hasQ);
+        var mainpathstrings=Path2Strings(path);
         console.log(mainpathstrings);
         main.setAttribute("d",mainpathstrings);
 
         var LeftpathStrings=doublePathInfo(pathinfo, 30).LeftPathStrings;
         var RightpathStrings=doublePathInfo(pathinfo, 30).RightPathStrings;
 
-        console.log(doublePathInfo(pathinfo, 25));
         var left = document.getElementById("left");
         var right=document.getElementById("right");
         left.setAttribute("d",LeftpathStrings);
         right.setAttribute("d",RightpathStrings);
     });
-//    创建一个含有patharray和控制点Q的index信息的对象pathInfo
-    var createPathInfo= function (path) {
+    /*修改了原有的path,使之成为了一个含有pathArray和控制点Q的index信息的对象:pathInfo*/
+    var modifyPathInfo= function (path) {
+        /*这里不会改变path的原有值*/
         var info={};
         var pathArray=path,indexQ=[];
-        if (pathArray) {
-            for (var s = 0; s < pathArray.length; s++) {
-                var _lp = pathArray[s].split(' ');
-                /*判断是否含有控制点Q*/
-                if (_lp[0].toString().indexOf("Q") > -1) {
-                    _lp[0] = _lp[0].slice(1);
-                    indexQ[s]=s;
-                    pathArray[s] = Number(_lp[0]) + ' ' + Number(_lp[1]);
-                } else {
-                    indexQ[s]="";
-                    pathArray[s] = Number(_lp[0]) + ' ' + Number(_lp[1]);
-                }
+        for (var s = 0; s < pathArray.length; s++) {
+            var _lp = pathArray[s].split(' ');
+            /*判断是否含有控制点Q*/
+            if (_lp[0].toString().indexOf("Q") > -1) {
+                _lp[0] = _lp[0].slice(1);
+                indexQ[s] = s;
+                pathArray[s] = Number(_lp[0]) + ' ' + Number(_lp[1]);
+            } else {
+                indexQ[s] = "";
+                pathArray[s] = Number(_lp[0]) + ' ' + Number(_lp[1]);
+            }
+        }
+        info.pathArray=pathArray;
+        info.Qindex=indexQ;
+        return info;
+    };
+    /*创建一个含有patharray和控制点Q的index信息的对象:pathInfo*/
+    var createPathInfo= function (path) {
+        /*这里不会改变path的原有值*/
+        var info={};
+        var pathArray=[],indexQ=[];
+        for (var s = 0; s < path.length; s++) {
+            var _lp = path[s].split(' ');
+            /*判断是否含有控制点Q*/
+            if (_lp[0].toString().indexOf("Q") > -1) {
+                _lp[0] = _lp[0].slice(1);
+                indexQ[s] = s;
+                pathArray[s] = Number(_lp[0]) + ' ' + Number(_lp[1]);
+            } else {
+                indexQ[s] = "";
+                pathArray[s] = Number(_lp[0]) + ' ' + Number(_lp[1]);
             }
         }
         info.pathArray=pathArray;
@@ -213,7 +230,6 @@
                 offsets[i-1]=_x1+","+_y1;
             }
         }
-        console.log(offsets);
         /*编译左右路径*/
         for(var index in pathArray){
             var point = pathArray[index].split(' ').join(',');
