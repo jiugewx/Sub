@@ -44,6 +44,93 @@ var Drwlines={
         p_a[0] = p_a[1];
         return p_a;
     },
+    findControlPoints:function (mainPathData,Angles){
+        var fa=0.3,rate=20;
+        var p_ctrs=[];
+        for(var Path_id2=2;Path_id2<mainPathData.length;Path_id2++){
+            var point0 = mainPathData[Path_id2-2].split(' ').join(',');
+            var point1 = mainPathData[Path_id2-1].split(' ').join(',');
+//            var point_cur = mainPathData[Path_id2].split(' ').join(',');
+            var point_last= mainPathData[mainPathData.length-1].split(' ').join(',');
+            var point_last2= mainPathData[mainPathData.length-2].split(' ').join(',');
+            var p0 = {},p1={},p_cur={},p_ctr={},p_last={},p_last2={};
+            p0.x = parseInt(point0.split(",")[0]);
+            p0.y = parseInt(point0.split(",")[1]);
+            p1.x = parseInt(point1.split(",")[0]);
+            p1.y = parseInt(point1.split(",")[1]);
+//            p_cur.x = parseInt(point_cur.split(",")[0]);
+//            p_cur.y = parseInt(point_cur.split(",")[1]);
+            p_last.x=parseInt(point_last.split(",")[0]);
+            p_last.y=parseInt(point_last.split(",")[1]);
+            p_last2.x=parseInt(point_last2.split(",")[0]);
+            p_last2.y=parseInt(point_last2.split(",")[1]);
+            var a0=Angles[Path_id2-2], a1=Angles[Path_id2-1],a2=Angles[Path_id2];
+            if (a0 == a1 || (a1<=a0*(1+fa) && a1>a0*(1-fa))) {
+                p_ctr.x = (p0.x + p1.x) / 2;
+                p_ctr.y = (p0.y + p1.y) / 2;
+            }
+            else if( a1>a0*(1+fa) || (a1<a0 && a1<-0.5&& a0>0.5)){
+                /*顺时针方向，控制点要偏向轨迹的左边*/
+                if (p1.x < p0.x && p0.y > p1.y) {
+                    /* 往左上方向*/
+                    p_ctr.x = p1.x - (p1.x - p0.x) / rate;
+                    p_ctr.y = (p1.y - p0.y) / rate + p0.y;
+                }
+                else if (p1.x > p0.x && p0.y < p1.y) {
+                    /* 往右下方向*/
+                    p_ctr.x = p1.x - (p1.x - p0.x) / rate;
+                    p_ctr.y = p0.y + (p1.y - p0.y) / rate;
+                }
+                else  {
+                    p_ctr.x = (p1.x - p0.x) / rate + p0.x;
+                    p_ctr.y = (p0.y - p1.y) / rate + p1.y;
+//                    p_ctr.x = ((Math.tan(-a0) * p0.x - Math.tan(-a2) * p1.x + p1.y - p0.y) / (Math.tan(-a0) - Math.tan(-a2))).toFixed(2);
+//                    p_ctr.y = (Math.tan(-a0) * (p_ctr.x - p0.x) + p0.y).toFixed(2);
+                }
+            }
+            else if(a1<a0*(1-fa) || (a1>a0 && a1>0&& a0<=0)){
+                /*逆时针方向，控制点要偏向轨迹的右边*/
+                /* p_ctr.x = ((Math.tan(-a0) * p0.x - Math.tan(-a2) * p1.x + p1.y - p0.y) / (Math.tan(-a0) - Math.tan(-a2))).toFixed(2);
+                 p_ctr.y = (Math.tan(-a0) * (p_ctr.x - p0.x) + p0.y).toFixed(2);*/
+                if( p1.x>p0.x && p0.y<p1.y){
+                    /*右下方向*/
+                    p_ctr.x = p0.x + (p1.x - p0.x) / rate;
+                    p_ctr.y = p1.y - (p1.y - p0.y) / rate;
+                }
+                else if(p1.x<p0.x && p0.y<p1.y){
+                    /*左下方向*/
+                    p_ctr.x = p1.x + (p0.x - p1.x) / rate;
+                    p_ctr.y = p0.y + (p1.y - p0.y) / rate;
+                }
+                else {
+                    p_ctr.x =p1.x- (p1.x - p0.x) / rate;
+                    p_ctr.y =p0.y- (p0.y - p1.y) / rate;
+                }
+            }
+
+            p_ctrs.push(p_ctr.x+" "+p_ctr.y);
+        }
+        p_ctrs.push((p_last2.x + p_last.x) / 2 + " " + (p_last2.y + p_last.y) / 2);
+        return p_ctrs
+    },
+    Path2Strings:function(Path,PathCtrls,Angles){
+        var Otherpaths=[];
+        var first_LeftPoint= 'M' + Path[0].split(' ').join(',');
+        for(var Path_id3 =1 ; Path_id3<Path.length;Path_id3++){
+            var Otherpath="";
+            if (Angles[Path_id3] != Angles[Path_id3 - 1]) {
+                Otherpath = 'Q' + PathCtrls[Path_id3 - 1].split(' ').join(',').toString() + "," + Path[Path_id3].split(' ').join(',').toString();
+            }
+            else {
+                Otherpath = 'L' + Path[Path_id3].split(' ').join(',').toString();
+            }
+            Otherpaths.push(Otherpath);
+        }
+        Otherpaths.unshift(first_LeftPoint);
+        var newpathString=Otherpaths.join(' ').toString();
+        console.log(newpathString);
+        return newpathString;
+    },
     //输入主路的路径点,以及偏移量——输出两条路径的路径点信息
     doublePathInfo: function (mainPathData,offset) {
         var self=this;
@@ -67,8 +154,8 @@ var Drwlines={
                 Yoffset=parseInt(offset*Math.sin(Math.PI/2+p_a[Path_id]))/10;
             }else{
                 //其他角度的情况
-                Xoffset=parseInt((offset+2)*Math.cos(Math.PI/2-p_a[Path_id]))/10;
-                Yoffset=parseInt((offset+2)*Math.sin(Math.PI/2+p_a[Path_id]))/10;
+                Xoffset=parseInt((offset+5)*Math.cos(Math.PI/2-p_a[Path_id]))/10;
+                Yoffset=parseInt((offset+5)*Math.sin(Math.PI/2+p_a[Path_id]))/10;
             }
             //左偏移
             var LeftX=p.x+Xoffset;
@@ -91,46 +178,6 @@ var Drwlines={
         info.LeftPathStrings=self.Path2Strings(info.LeftPath,info.LeftPathCtrls,info.LeftAngles);
         info.RightPathStrings=self.Path2Strings(info.RightPath,info.RightPathCtrls,info.RightAngles);
         return info;
-    },
-    findControlPoints:function (mainPathData,Angles){
-        //增加一个控制点,化圆弧
-        var p_ctrs=[];
-        for(var Path_id2=1;Path_id2<mainPathData.length;Path_id2++){
-            var point0 = mainPathData[Path_id2-1].split(' ').join(',');
-            var point1 = mainPathData[Path_id2].split(' ').join(',');
-            var p0 = {},p1={},p_ctr={};
-            p0.x = parseInt(point0.split(",")[0]);
-            p0.y = parseInt(point0.split(",")[1]);
-            p1.x = parseInt(point1.split(",")[0]);
-            p1.y = parseInt(point1.split(",")[1]);
-            var a0=Angles[Path_id2-1],a1=Angles[Path_id2];
-            if (a0 == a1) {
-                p_ctr.x = (p0.x + p1.x) / 2;
-                p_ctr.y = (p0.y + p1.y) / 2;
-            } else {
-                p_ctr.x = ((Math.tan(a0) * p0.x - Math.tan(a1) * p1.x + p1.y - p0.y) / (Math.tan(a0) - Math.tan(a1))).toFixed(3);
-                p_ctr.y = (Math.tan(a0)*(p_ctr.x-p0.x)+p0.y).toFixed(3);
-            }
-            p_ctrs.push(p_ctr.x+" "+p_ctr.y);
-        }
-        return p_ctrs
-    },
-    Path2Strings:function(Path,PathCtrls,Angles){
-        var Otherpaths=[];
-        var first_LeftPoint= 'M' + Path[0].split(' ').join(',');
-        for(var Path_id3 =1 ; Path_id3<Path.length;Path_id3++){
-            var Otherpath="";
-            if(Angles[Path_id3]!=Angles[Path_id3-1]){
-                Otherpath ='Q' + PathCtrls[Path_id3-1].toString()+" "+Path[Path_id3].toString();
-            }
-            else{
-                Otherpath ='L' +Path[Path_id3].toString();
-            }
-            Otherpaths.push(Otherpath);
-        }
-        Otherpaths.unshift(first_LeftPoint);
-        var newpathString=Otherpaths.join(' ').toString();
-        return newpathString;
     },
     //划双线
     drwDouble: function (parentNode,drwData) {

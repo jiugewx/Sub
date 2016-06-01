@@ -4,6 +4,7 @@
   "description": "这是一个subway的页面",
   "main": "main.js",
   "scripts": {
+    "bs": "browser-sync start --server --files='**'",
     "build": "webpack --progress --profile --colors",
     "dev": "webpack-dev-server --profile --colors --progress",
     "start": "node server.js"

@@ -3,15 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <script src="js/lib/zepto.min.js"></script>
 </head>
 <body>
 <svg id="svg" width="2000" height="2000" style="background-color: cadetblue">
     <desc>二次贝塞尔平滑曲线</desc><defs></defs>
-    <path d="M711.9,1075.1 L712.9 1076.1 Q712.000 1076.000 755.8 1115 Q755.000 1115.000 757.8 1115.4 L758.1 1115.4 L821.1 1115.4 L868.1 1115.4 L914.1 1115.4 L959.1 1115.4 L1007.1 1115.4 L1056.1 1115.4 L1091.1 1115.4 L1156.1 1115.4 L1200.1 1115.4 L1244.1 1115.4 L1298.1 1115.4 L1340.1 1115.4 L1360.1 1115.4 L1365.1 1115.4 Q1365.000 1115.000 1367.6 1119.7 Q1367.000 1119.000 1367.6 1137.7 L1367.6 1171.7 L1367.6 1189.7 L1367.6 1201.7 Q1367.000 1201.000 1368.1 1199.4 Q1368.000 1199.000 1371.1 1199.4 L1373.1 1199.4 L1386.1 1199.4 L1419.1 1199.4 L1447.1 1199.4
+    <path  d="M799.61,784.55Q777.1199999999999,791.7650000000001,782.19,710.32L782.19,710.32L782.19,618.80L782.19,569.01L782.19,510.38L782.19,436.80Q775.43,394.68,830.03,398.32L830.03,398.32L889.31,398.32L990.32,398.32L1114.60,398.32L1168.16,398.32Q1219.7700000000002,395.07000000000005,1218.86,441.21999999999997L1218.86,441.22L1218.86,485.42L1218.86,535.21L1218.86,618.80L1218.86,685.10L1218.86,735.54Q1224.58,787.4749999999999,1191.3,786.63L1191.30,786.63
     "stroke="#ffffff" fill="none" style="stroke-width: 3;"></path>
-    <path
-            d="M708.1,1078.9 L709.1 1079.9 Q709.000 1079.000 752.2 1119 Q752.000 1119.000 756.2 1120.6 Q756.000 1120.000 757.9 1120.6 L820.9 1120.6 L867.9 1120.6 L913.9 1120.6 L958.9 1120.6 L1006.9 1120.6 L1055.9 1120.6 L1090.9 1120.6 L1155.9 1120.6 L1199.9 1120.6 L1243.9 1120.6 L1297.9 1120.6 L1339.9 1120.6 L1359.9 1120.6 L1364.9 1120.6 Q1856.647 1120.000 1362.4 1120.3 Q1362.000 1120.000 1362.4 1138.3 L1362.4 1172.3 L1362.4 1190.3 L1362.4 1202.3 Q1362.000 1202.000 1367.9 1204.6 Q1367.000 1204.000 1370.9 1204.6 L1372.9 1204.6 L1385.9 1204.6 L1418.9 1204.6 L1446.9 1204.6
-            "stroke="#443212" fill="none" style="stroke-width: 3;"></path>
+    <path id="left" stroke="#AF272B" fill="none" style="stroke-width: 3;"></path>
+    <path id="right" stroke="#EFEA3A" fill="none" style="stroke-width: 3;"></path>
+    <path id="main" stroke="#EFcc3A" fill="none" style="stroke-width: 3;"></path>
 </svg>
+<script>
+    var path=[
+        "889 766",
+        "889 756",
+        "933 738",
+        "1036 738",
+        "1094 738",
+        "1131 738",
+        "1150 738",
+        "1160 739",
+        "1165 740",
+        "1169 741",
+        "1176 744",
+        "1179 746",
+        "1184 751",
+        "1187 755",
+        "1188 757",
+        "1190 767",
+        "1190 807",
+        "1190 836",
+        "1190 893",
+        "1190 910",
+        "1189 919",
+        "1188 922",
+        "1187 924",
+        "1184 928",
+        "1180 931",
+        "1178 932",
+        "1175 933",
+        "1166 934",
+        "1131 934",
+        "1076 934",
+        "1017 934",
+        "954 934",
+        "927 934",
+        "913 934",
+        "904 933",
+        "901 932",
+        "899 931",
+        "895 928",
+        "892 924",
+        "891 922",
+        "890 919",
+        "889 910",
+        "889 896",
+        "889 893",
+        "889 892",
+        "889 843",
+        "889 804",
+        "889 766"
+    ];
+    var path2=[
+        "889 766",
+        "885 761",
+        "881 754",
+        "879 749",
+        "876 741",
+        "875 735",
+        "875 708",
+        "875 638",
+        "875 599",
+        "875 540",
+        "875 498",
+        "910 468",
+        "912 468",
+        "957 468",
+        "1000 468",
+        "1131 468",
+        "1211 468",
+        "1211 500",
+        "1211 536",
+        "1211 573",
+        "1211 574",
+        "1211 638",
+        "1211 688",
+        "1190 767"
+    ];
+    $(function(){
+        var line13=path;
+        var Angles=Path2Angles(line13);
+        var ctrls=findControlPoints(line13,Angles);
+        var main=document.getElementById("main");
+        var mainpathstrings=Path2Strings(line13,ctrls,Angles);
+        console.log(line13.length,ctrls.length,Angles.length);
+        console.log(line13,ctrls,Angles);
+        console.log(mainpathstrings);
+//        main.setAttribute("d",mainpathstrings);
+
+        var LeftpathStrings=doublePathInfo(line13, 25).LeftPathStrings;
+        var RightpathStrings=doublePathInfo(line13, 25).RightPathStrings;
+        var left = document.getElementById("left");
+        var right=document.getElementById("right");
+        left.setAttribute("d",LeftpathStrings);
+        right.setAttribute("d",RightpathStrings);
+
+    });
+    var Path2Angles=function(mainPathData){
+        /*计算主路径的偏离角度*/
+        var p_a = [];
+        var p0 = {}, p1 = {};
+        //遍历mainPathData上所有的路径点
+        for (var Path_id in mainPathData) {
+            var point = mainPathData[Path_id].split(' ').join(',');
+            var p = {};
+            p.x = parseInt(point.split(",")[0]);
+            p.y = parseInt(point.split(",")[1]);
+            /*如果p1不存在,那就定义p为p1*/
+            if (!p1) {
+                p1 = p;
+                return;
+            }
+            p1._a = Math.atan2(p.y - p1.y, p.x - p1.x);
+            if (p0) {
+                p1.angle = Math.atan2(Math.sin(p0._a) + Math.sin(p1._a), Math.cos(p0._a) + Math.cos(p1._a));
+                p1.angle -= Math.PI / 2;
+                var theta = Math.abs(p1._a - p0._a);
+                if (theta > Math.PI) {
+                    theta = 2 * Math.PI - theta;
+                }
+                p1.inclinedAngle = Math.PI - theta;
+            } else {
+                p1.angle = p1._a - Math.PI / 2;
+            }
+            p0 = p1;
+            p1 = p;
+            p_a.push(p0._a);
+        }
+        //p1.angle = Math.atan2(p1.y - p0.y, p1.x - p0.x) - Math.PI / 2;
+        p_a[0] = p_a[1];
+        return p_a;
+    };
+    var findControlPoints=function (mainPathData,Angles){
+        //增加一个控制点,化圆弧
+        var fa=0.3,rate=20;
+        var p_ctrs=[];
+        for(var Path_id2=2;Path_id2<mainPathData.length;Path_id2++){
+            var point0 = mainPathData[Path_id2-2].split(' ').join(',');
+            var point1 = mainPathData[Path_id2-1].split(' ').join(',');
+//            var point_cur = mainPathData[Path_id2].split(' ').join(',');
+//            var point_last= mainPathData[mainPathData.length-1].split(' ').join(',');
+//            var point_last2= mainPathData[mainPathData.length-2].split(' ').join(',');
+            var p0 = {},p1={},p_cur={},p_ctr={},p_last={},p_last2={};
+            p0.x = parseInt(point0.split(",")[0]);
+            p0.y = parseInt(point0.split(",")[1]);
+            p1.x = parseInt(point1.split(",")[0]);
+            p1.y = parseInt(point1.split(",")[1]);
+//            p_cur.x = parseInt(point_cur.split(",")[0]);
+//            p_cur.y = parseInt(point_cur.split(",")[1]);
+//            p_last.x=parseInt(point_last.split(",")[0]);
+//            p_last.y=parseInt(point_last.split(",")[1]);
+//            p_last2.x=parseInt(point_last2.split(",")[0]);
+//            p_last2.y=parseInt(point_last2.split(",")[1]);
+            var a0=Angles[Path_id2-2], a1=Angles[Path_id2-1],a2=Angles[Path_id2];
+            if (a0 == a1 || (a1<=a0*(1+fa) && a1>a0*(1-fa))) {
+                p_ctr.x = (p0.x + p1.x) / 2;
+                p_ctr.y = (p0.y + p1.y) / 2;
+            }
+            else if( a1>a0*(1+fa) || (a1<a0 && a1<-0.5&& a0>0.5)){
+                /*顺时针方向，控制点要偏向轨迹的左边*/
+                if (p1.x < p0.x && p0.y > p1.y) {
+                    /* 往左上方向*/
+                    p_ctr.x = p1.x - (p1.x - p0.x) / rate;
+                    p_ctr.y = (p1.y - p0.y) / rate + p0.y;
+                }
+                else if (p1.x > p0.x && p0.y < p1.y) {
+                    /* 往右下方向*/
+                    p_ctr.x = p1.x - (p1.x - p0.x) / rate;
+                    p_ctr.y = p0.y + (p1.y - p0.y) / rate;
+                }
+                else  {
+                    p_ctr.x = (p1.x - p0.x) / rate + p0.x;
+                    p_ctr.y = (p0.y - p1.y) / rate + p1.y;
+//                    p_ctr.x = ((Math.tan(-a0) * p0.x - Math.tan(-a2) * p1.x + p1.y - p0.y) / (Math.tan(-a0) - Math.tan(-a2))).toFixed(2);
+//                    p_ctr.y = (Math.tan(-a0) * (p_ctr.x - p0.x) + p0.y).toFixed(2);
+                }
+            }
+            else if(a1<a0*(1-fa) || (a1>a0 && a1>0&& a0<=0)){
+                /*逆时针方向，控制点要偏向轨迹的右边*/
+               /* p_ctr.x = ((Math.tan(-a0) * p0.x - Math.tan(-a2) * p1.x + p1.y - p0.y) / (Math.tan(-a0) - Math.tan(-a2))).toFixed(2);
+                p_ctr.y = (Math.tan(-a0) * (p_ctr.x - p0.x) + p0.y).toFixed(2);*/
+               if( p1.x>p0.x && p0.y<p1.y){
+                    /*右下方向*/
+                    p_ctr.x = p0.x + (p1.x - p0.x) / rate;
+                    p_ctr.y = p1.y - (p1.y - p0.y) / rate;
+                }
+                else if(p1.x<p0.x && p0.y<p1.y){
+                    /*左下方向*/
+                    p_ctr.x = p1.x + (p0.x - p1.x) / rate;
+                    p_ctr.y = p0.y + (p1.y - p0.y) / rate;
+                }
+                else {
+                   p_ctr.x =p1.x- (p1.x - p0.x) / rate;
+                   p_ctr.y =p0.y- (p0.y - p1.y) / rate;
+               }
+            }
+
+            p_ctrs.push(p_ctr.x+" "+p_ctr.y);
+        }
+        p_ctrs.push((p_last2.x + p_last.x) / 2 + " " + (p_last2.y + p_last.y) / 2);
+        return p_ctrs
+    };
+    var Path2Strings=function(Path,PathCtrls,Angles){
+        var Otherpaths=[];
+        var first_LeftPoint= 'M' + Path[0].split(' ').join(',');
+        for(var Path_id3 =1 ; Path_id3<Path.length;Path_id3++){
+            var Otherpath="";
+            if (Angles[Path_id3] != Angles[Path_id3 - 1]) {
+                Otherpath = 'Q' + PathCtrls[Path_id3 - 1].split(' ').join(',').toString() + "," + Path[Path_id3].split(' ').join(',').toString();
+            }
+            else {
+                Otherpath = 'L' + Path[Path_id3].split(' ').join(',').toString();
+            }
+            Otherpaths.push(Otherpath);
+        }
+        Otherpaths.unshift(first_LeftPoint);
+        var newpathString=Otherpaths.join(' ').toString();
+        console.log(newpathString);
+        return newpathString;
+    };
+    var doublePathInfo=function (mainPathData,offset) {
+        /*计算主路径的偏离角度*/
+        var p_a=Path2Angles(mainPathData);
+        //编译Right,Left数组
+        var info={};
+        var LeftPath = [], RightPath=[];
+        //计算偏移量
+        for(var Path_id in mainPathData){
+            var point = mainPathData[Path_id].split(' ').join(',');
+            var p = {};
+            p.x = parseInt(point.split(",")[0]);
+            p.y = parseInt(point.split(",")[1]);
+            //计算偏移量
+            var _p_a=parseInt(p_a[Path_id]*100000000);
+            var Xoffset="", Yoffset="";
+            if(_p_a==0 || _p_a==314159265 || _p_a==-157079632 || _p_a==157079632){
+                //直角或者平角的情况
+                Xoffset=parseInt(offset*Math.cos(Math.PI/2-p_a[Path_id]))/10;
+                Yoffset=parseInt(offset*Math.sin(Math.PI/2+p_a[Path_id]))/10;
+            }else{
+                //其他角度的情况
+                Xoffset=parseInt((offset+5)*Math.cos(Math.PI/2-p_a[Path_id]))/10;
+                Yoffset=parseInt((offset+5)*Math.sin(Math.PI/2+p_a[Path_id]))/10;
+            }
+            //左偏移
+            var LeftX=p.x+Xoffset;
+            var LeftY=p.y-Yoffset;
+            LeftPath.push(LeftX+" "+LeftY);
+            //右偏移
+            var RightX= p.x-Xoffset;
+            var RightY=p.y+Yoffset;
+            RightPath.push(RightX+" "+RightY);
+        }
+
+        info.LeftPath=LeftPath;
+        info.RightPath=RightPath;
+        info.Angles=p_a;
+        info.LeftAngles=Path2Angles(info.LeftPath);
+        info.RightAngles=Path2Angles(info.RightPath);
+        info.LeftPathCtrls=findControlPoints(info.LeftPath,info.LeftAngles);
+        info.RightPathCtrls=findControlPoints(info.RightPath,info.RightAngles);
+        //赋值pathStrings
+        info.LeftPathStrings=Path2Strings(info.LeftPath,info.LeftPathCtrls,info.LeftAngles);
+        info.RightPathStrings=Path2Strings(info.RightPath,info.RightPathCtrls,info.RightAngles);
+        return info;
+    };
+</script>
 </body>
 </html>
