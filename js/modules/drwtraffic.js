@@ -145,8 +145,11 @@ var DrwTraf = {
             if (LineId_Data.st2st[k].rd == "right") {
                 //console.log(LineId_Data.st2st[k],LineId_Data.st2st[k].dN,k);
                 var rightmain = LineId_Data.st2st[k].path;
-                Right.path = Drwlines.doublePathInfo(rightmain, 26).RightPath;
-                Right.pathStrings=Drwlines.doublePathInfo(rightmain, 26).RightPathStrings;
+                var rightmain_Info=Drwlines.createPathInfo(rightmain);
+                Right.path = Drwlines.doublePathInfo(rightmain_Info, 26).RightPath;
+                Right.pathStrings = Drwlines.doublePathInfo(rightmain_Info, 26).RightPathStrings;
+                //Right.path = Drwlines.doublePathInfo(rightmain, 26).RightPath;
+                //Right.pathStrings=Drwlines.doublePathInfo(rightmain, 26).RightPathStrings;
                 Right.color = "AF272B";
                 Right.color = LineId_Data.st2st[k].rateColor;/*注意停运时的颜色使用,停运时没有颜色值,没有颜色值就会在drwlines()中,使用line本身的颜色*/
                 Right.direction = LineId_Data.st2st[k].dN;
@@ -157,8 +160,11 @@ var DrwTraf = {
             if (LineId_Data.st2st[k].rd == "left") {
                 //console.log(LineId_Data.st2st[k],LineId_Data.st2st[k].dN,k);
                 var leftmain = LineId_Data.st2st[k].path;
-                Left.path = Drwlines.doublePathInfo(leftmain, 26).LeftPath;
-                Left.pathStrings=Drwlines.doublePathInfo(leftmain, 26).LeftPathStrings;
+                var leftmain_Info=Drwlines.createPathInfo(leftmain);
+                Left.path = Drwlines.doublePathInfo(leftmain_Info, 26).LeftPath;
+                Left.pathStrings = Drwlines.doublePathInfo(leftmain_Info, 26).LeftPathStrings;
+                //Left.path = Drwlines.doublePathInfo(leftmain, 26).LeftPath;
+                //Left.pathStrings=Drwlines.doublePathInfo(leftmain, 26).LeftPathStrings;
                 Left.color = "C99616";
                 Left.color =  LineId_Data.st2st[k].rateColor;/*注意停运时的颜色使用,停运时没有颜色值,没有颜色值就会在drwlines()中,使用line本身的颜色*/
                 Left.direction = LineId_Data.st2st[k].dN;

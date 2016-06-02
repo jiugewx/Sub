@@ -141,7 +141,7 @@ var SW = {
     loadMainData: function (city_code,city_name,callback) {
         var self = this;
         AllData.loadStatus.currLinesInfo=0;
-        var drwData_Url = "data/" + city_code + "_drw_" + city_name + ".json";
+        var drwData_Url = "data/" + city_code + "_drw2_" + city_name + ".json";
         amapCache.loadData(drwData_Url, function(loaddata) {
                 //------------获取的数据转成压缩的json--------
                 ////转json!
@@ -198,22 +198,23 @@ var SW = {
             if (data.l[i].su == '1') {
                 //使path数据按照x,y数据偏移
                 var _coords = data.l[i].c;
-                for (var q = 0; q < _coords.length; q++) {
-                    var _c = _coords[q].split(' ');
-                    _coords[q] = (Number(_c[0]) + _x) + ' ' + (Number(_c[1]) + _y);
-                }
+                _coords=self.pathmove(_coords,_x,_y);
+                //for (var q = 0; q < _coords.length; q++) {
+                //    var _c = _coords[q].split(' ');
+                //    _coords[q] = (Number(_c[0]) + _x) + ' ' + (Number(_c[1]) + _y);
+                //}
                 data.l[i].c = _coords;
                 data.l[i].linesNamePos = {};
                 data.l[i].linesNamePos[data.l[i].ls] = data.l[i].lp;
                 data.l[i].stname = [];
                 //遍历每天地铁线里的地铁站
                 for (var j = 0; j < data.l[i].st.length; j++) {
-
                     data.l[i].stname.push(data.l[i].st[j].n);
 
                     //使站点中(data.l[i].st)的信息按照x,y数据偏移
                     var _p = data.l[i].st[j].p.split(' ');
                     data.l[i].st[j].p = (Number(_p[0]) + _x) + ' ' + (Number(_p[1]) + _y);
+                    //换乘站点信息偏移,这肯定不带Q的
                     var rsArr = data.l[i].st[j].rs.split('|');
                     var newRsArr = [];
                     for (var h = 0; h < rsArr.length; h++) {
@@ -249,11 +250,13 @@ var SW = {
                 var _st2st = data.l[i].st2st;
                 for (var k in _st2st) {
                     //_st2st的path偏移;
-                    var _st2stpath = _st2st[k].path;
-                    for (var m in _st2stpath) {
-                        var _st2stpathPos = _st2stpath[m].split(' ');
-                        _st2stpath[m] = (Number(_st2stpathPos[0]) + _x) + ' ' + (Number(_st2stpathPos[1]) + _y)
-                    }
+                    _st2st[k].path=self.pathmove(_st2st[k].path,_x,_y);
+                    //console.log(_st2st[k]);
+                    //var _st2stpath = _st2st[k].path;
+                    //for (var m in _st2stpath) {
+                    //    var _st2stpathPos = _st2stpath[m].split(' ');
+                    //    _st2stpath[m] = (Number(_st2stpathPos[0]) + _x) + ' ' + (Number(_st2stpathPos[1]) + _y)
+                    //}
                     //_st2st的startPos偏移;
                     var _startPos = _st2st[k].sP.split(" ");
                     _st2st[k].sP = (Number(_startPos[0]) + _x) + ' ' + (Number(_startPos[1]) + _y);
@@ -268,7 +271,6 @@ var SW = {
                 // 增加lines信息
                 cache.cities[data.i].lines.push(data.l[i]);
                 cache.lines[data.l[i].ls] = data.l[i]; //写入line
-
                 var busid = data.l[i].li && data.l[i].li.split('|');
                 if (busid) {
                     for (var n = 0; n < busid.length; n++) {
@@ -440,6 +442,22 @@ var SW = {
         //转json!
         console.log("正在转译成Json...");
         console.log(JSON.stringify(self.cache.trafficNew));
+    },
+    //路径偏移(原有的path也会改变)
+    pathmove:function (pathArrayhasQ,_x,_y) {
+        var _pathArray = pathArrayhasQ;
+        if (_pathArray) {
+            for (var s = 0; s < _pathArray.length; s++) {
+                var _lp = _pathArray[s].split(' ');
+                if (_lp[0].toString().indexOf("Q") > -1) {
+                    _lp[0] = _lp[0].slice(1);
+                    _pathArray[s]="Q"+(Number(_lp[0]) + _x) + ' ' + (Number(_lp[1]) + _y);
+                } else {
+                    _pathArray[s]=(Number(_lp[0]) + _x) + ' ' + (Number(_lp[1]) + _y);
+                }
+            }
+        }
+        return  _pathArray;
     }
 };
 

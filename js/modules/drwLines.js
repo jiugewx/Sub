@@ -8,14 +8,35 @@ var drwSw=require("./drwMain");
 var Drwlines={
     defaultColor:AllData.statusColor[0].color,
     ns_svg: AllData.ns_svg,
+    /*创建一个含有patharray和控制点Q的index信息的对象:pathInfo*/
+    createPathInfo:function (path) {
+        /*这里不会改变path的原有值*/
+        var info={};
+        var pathArray=[],indexQ=[];
+        for (var s = 0; s < path.length; s++) {
+            var _lp = path[s].split(' ');
+            /*判断是否含有控制点Q*/
+            if (_lp[0].toString().indexOf("Q") > -1) {
+                _lp[0] = _lp[0].slice(1);
+                indexQ[s] = s;
+                pathArray[s] = Number(_lp[0]) + ' ' + Number(_lp[1]);
+            } else {
+                indexQ[s] = "";
+                pathArray[s] = Number(_lp[0]) + ' ' + Number(_lp[1]);
+            }
+        }
+        info.pathArray=pathArray;
+        info.Qindex=indexQ;
+        return info;
+    },
     //输出角度
-    Path2Angles:function(mainPathData){
+    Path2Angles:function(pathArray){
         /*计算主路径的偏离角度*/
         var p_a = [];
         var p0 = {}, p1 = {};
         //遍历mainPathData上所有的路径点
-        for (var Path_id in mainPathData) {
-            var point = mainPathData[Path_id].split(' ').join(',');
+        for (var Path_id in pathArray) {
+            var point = pathArray[Path_id].split(' ').join(',');
             var p = {};
             p.x = parseInt(point.split(",")[0]);
             p.y = parseInt(point.split(",")[1]);
@@ -44,95 +65,109 @@ var Drwlines={
         p_a[0] = p_a[1];
         return p_a;
     },
-    findControlPoints:function (mainPathData,Angles){
-        var fa=0.3,rate=20;
-        var p_ctrs=[];
-        for(var Path_id2=2;Path_id2<mainPathData.length;Path_id2++){
-            var point0 = mainPathData[Path_id2-2].split(' ').join(',');
-            var point1 = mainPathData[Path_id2-1].split(' ').join(',');
-//            var point_cur = mainPathData[Path_id2].split(' ').join(',');
-            var point_last= mainPathData[mainPathData.length-1].split(' ').join(',');
-            var point_last2= mainPathData[mainPathData.length-2].split(' ').join(',');
-            var p0 = {},p1={},p_cur={},p_ctr={},p_last={},p_last2={};
-            p0.x = parseInt(point0.split(",")[0]);
-            p0.y = parseInt(point0.split(",")[1]);
-            p1.x = parseInt(point1.split(",")[0]);
-            p1.y = parseInt(point1.split(",")[1]);
-//            p_cur.x = parseInt(point_cur.split(",")[0]);
-//            p_cur.y = parseInt(point_cur.split(",")[1]);
-            p_last.x=parseInt(point_last.split(",")[0]);
-            p_last.y=parseInt(point_last.split(",")[1]);
-            p_last2.x=parseInt(point_last2.split(",")[0]);
-            p_last2.y=parseInt(point_last2.split(",")[1]);
-            var a0=Angles[Path_id2-2], a1=Angles[Path_id2-1],a2=Angles[Path_id2];
-            if (a0 == a1 || (a1<=a0*(1+fa) && a1>a0*(1-fa))) {
-                p_ctr.x = (p0.x + p1.x) / 2;
-                p_ctr.y = (p0.y + p1.y) / 2;
-            }
-            else if( a1>a0*(1+fa) || (a1<a0 && a1<-0.5&& a0>0.5)){
-                /*顺时针方向，控制点要偏向轨迹的左边*/
-                if (p1.x < p0.x && p0.y > p1.y) {
-                    /* 往左上方向*/
-                    p_ctr.x = p1.x - (p1.x - p0.x) / rate;
-                    p_ctr.y = (p1.y - p0.y) / rate + p0.y;
-                }
-                else if (p1.x > p0.x && p0.y < p1.y) {
-                    /* 往右下方向*/
-                    p_ctr.x = p1.x - (p1.x - p0.x) / rate;
-                    p_ctr.y = p0.y + (p1.y - p0.y) / rate;
-                }
-                else  {
-                    p_ctr.x = (p1.x - p0.x) / rate + p0.x;
-                    p_ctr.y = (p0.y - p1.y) / rate + p1.y;
-//                    p_ctr.x = ((Math.tan(-a0) * p0.x - Math.tan(-a2) * p1.x + p1.y - p0.y) / (Math.tan(-a0) - Math.tan(-a2))).toFixed(2);
-//                    p_ctr.y = (Math.tan(-a0) * (p_ctr.x - p0.x) + p0.y).toFixed(2);
-                }
-            }
-            else if(a1<a0*(1-fa) || (a1>a0 && a1>0&& a0<=0)){
-                /*逆时针方向，控制点要偏向轨迹的右边*/
-                /* p_ctr.x = ((Math.tan(-a0) * p0.x - Math.tan(-a2) * p1.x + p1.y - p0.y) / (Math.tan(-a0) - Math.tan(-a2))).toFixed(2);
-                 p_ctr.y = (Math.tan(-a0) * (p_ctr.x - p0.x) + p0.y).toFixed(2);*/
-                if( p1.x>p0.x && p0.y<p1.y){
-                    /*右下方向*/
-                    p_ctr.x = p0.x + (p1.x - p0.x) / rate;
-                    p_ctr.y = p1.y - (p1.y - p0.y) / rate;
-                }
-                else if(p1.x<p0.x && p0.y<p1.y){
-                    /*左下方向*/
-                    p_ctr.x = p1.x + (p0.x - p1.x) / rate;
-                    p_ctr.y = p0.y + (p1.y - p0.y) / rate;
-                }
-                else {
-                    p_ctr.x =p1.x- (p1.x - p0.x) / rate;
-                    p_ctr.y =p0.y- (p0.y - p1.y) / rate;
-                }
+    Path2Strings:function(PathArrayhasQ){
+        var newpathString=[];
+        //console.log(PathArrayhasQ);
+        var first_LeftPoint= 'M' + PathArrayhasQ[0].split(' ').join(',');
+        for(var Path_id3 =1 ; Path_id3<PathArrayhasQ.length;Path_id3++){
+            var pathhasQ=[];
+            if(PathArrayhasQ[Path_id3-1].indexOf("Q")>-1 || PathArrayhasQ[Path_id3].indexOf("Q")>-1){
+                pathhasQ=PathArrayhasQ[Path_id3];
+            }else{
+                pathhasQ="L"+PathArrayhasQ[Path_id3];
             }
 
-            p_ctrs.push(p_ctr.x+" "+p_ctr.y);
+            newpathString.push(pathhasQ);
         }
-        p_ctrs.push((p_last2.x + p_last.x) / 2 + " " + (p_last2.y + p_last.y) / 2);
-        return p_ctrs
+        newpathString.unshift(first_LeftPoint);
+        var pathStrings=newpathString.toString();
+        return pathStrings;
     },
-    Path2Strings:function(Path,PathCtrls,Angles){
-        var Otherpaths=[];
-        var first_LeftPoint= 'M' + Path[0].split(' ').join(',');
-        for(var Path_id3 =1 ; Path_id3<Path.length;Path_id3++){
-            var Otherpath="";
-            if (Angles[Path_id3] != Angles[Path_id3 - 1]) {
-                Otherpath = 'Q' + PathCtrls[Path_id3 - 1].split(' ').join(',').toString() + "," + Path[Path_id3].split(' ').join(',').toString();
-            }
-            else {
-                Otherpath = 'L' + Path[Path_id3].split(' ').join(',').toString();
-            }
-            Otherpaths.push(Otherpath);
+    renewPath:function (pathInfo) {
+    var pathArray=[];
+    for(var i in pathInfo.pathArray){
+        if(pathInfo.Qindex[i]!=""){
+            pathArray[i]="Q"+pathInfo.pathArray[i];
+        }else{
+            pathArray[i]=pathInfo.pathArray[i];
         }
-        Otherpaths.unshift(first_LeftPoint);
-        var newpathString=Otherpaths.join(' ').toString();
-        console.log(newpathString);
-        return newpathString;
+    }
+//        console.log(pathArray);
+    return pathArray;
+},
+    //
+    doublePathInfo:function(pathInfo,offset){
+        var self=this;
+        /*计算主路径的偏离角度*/
+        var pathArray=pathInfo.pathArray;
+        var p_a=self.Path2Angles(pathArray);
+        //编译Right,Left数组
+        var info={};
+        var LeftPath = [], RightPath=[];
+        var offsets=[];
+        //计算偏移量
+        for(var Path_id in pathArray){
+            //计算偏移量
+            var _p_a=parseInt(p_a[Path_id]*100000000);
+            var Xoffset="", Yoffset="";
+            if(_p_a==0 || _p_a==314159265 || _p_a==-157079632 || _p_a==157079632){
+                //直角或者平角的情况
+                Xoffset=parseInt(offset*Math.cos(Math.PI/2-p_a[Path_id]))/10;
+                Yoffset=parseInt(offset*Math.sin(Math.PI/2+p_a[Path_id]))/10;
+            }else{
+                //其他角度的情况
+                Xoffset=parseInt((offset+5)*Math.cos(Math.PI/2-p_a[Path_id]))/10;
+                Yoffset=parseInt((offset+5)*Math.sin(Math.PI/2+p_a[Path_id]))/10;
+            }
+            offsets.push(Xoffset+","+Yoffset);
+        }
+        /*重新编译offsets*/
+        for(var i= 2;i<offsets.length;i++){
+            var _x2=Number(offsets[i].split(",")[0]),_y2=Number(offsets[i].split(",")[1]);
+            var _x0=Number(offsets[i-2].split(",")[0]),_y0=Number(offsets[i-2].split(",")[1]);
+            var _x1=Number,_y1=Number;
+            _x1=Math.abs(_x2)>Math.abs(_x0)?_x2:_x0;
+            _y1=Math.abs(_y2)>Math.abs(_y0)?_y2:_y0;
+            if(pathInfo.Qindex[i-1]!=""){
+                offsets[i-1]=_x1+","+_y1;
+            }
+        }
+        /*编译左右路径*/
+        for(var index in pathArray){
+            var point = pathArray[index].split(' ').join(',');
+            var p = {};
+            p.x = parseInt(point.split(",")[0]);
+            p.y = parseInt(point.split(",")[1]);
+            var Xoffset=Number(offsets[index].split(",")[0]);
+            var Yoffset=Number(offsets[index].split(",")[1]);
+            var LeftX="",LeftY="",RightX="",RightY="";
+            //左偏移
+            LeftX = p.x + Xoffset;
+            LeftY = p.y - Yoffset;
+            LeftPath.push(LeftX + " " + LeftY);
+            //右偏移
+            RightX = p.x - Xoffset;
+            RightY = p.y + Yoffset;
+            RightPath.push(RightX + " " + RightY);
+        }
+        /*编译左右两条路劲的info*/
+        var Left={},Right={};
+        Left.pathArray=LeftPath;
+        Right.pathArray=RightPath;
+        Left.Qindex=pathInfo.Qindex;
+        Right.Qindex=pathInfo.Qindex;
+        /*编译输出的info*/
+        info.LeftPathhasQ=self.renewPath(Left);
+        info.RigthPathhaQ=self.renewPath(Right);
+        info.LeftPath=LeftPath;
+        info.RightPath=RightPath;
+        //赋值pathStrings
+        info.LeftPathStrings=self.Path2Strings(info.LeftPathhasQ);
+        info.RightPathStrings=self.Path2Strings(info.RigthPathhaQ);
+        return info;
     },
     //输入主路的路径点,以及偏移量——输出两条路径的路径点信息
-    doublePathInfo: function (mainPathData,offset) {
+    doublePathInfo0: function (mainPathData,offset) {
         var self=this;
         /*计算主路径的偏离角度*/
         var p_a=self.Path2Angles(mainPathData);
@@ -170,13 +205,6 @@ var Drwlines={
         info.LeftPath=LeftPath;
         info.RightPath=RightPath;
         info.Angles=p_a;
-        info.LeftAngles=self.Path2Angles(info.LeftPath);
-        info.RightAngles=self.Path2Angles(info.RightPath);
-        info.LeftPathCtrls=self.findControlPoints(info.LeftPath,info.LeftAngles);
-        info.RightPathCtrls=self.findControlPoints(info.RightPath,info.RightAngles);
-        //赋值pathStrings
-        info.LeftPathStrings=self.Path2Strings(info.LeftPath,info.LeftPathCtrls,info.LeftAngles);
-        info.RightPathStrings=self.Path2Strings(info.RightPath,info.RightPathCtrls,info.RightAngles);
         return info;
     },
     //划双线
@@ -189,17 +217,17 @@ var Drwlines={
             end = station[station.length - 1].n;
         var Left = {}, Right = {};
         //console.log(dataset_line_arr);
-        //获取到两条路径信息，分路径信息
-        Left.path = self.doublePathInfo(dataset_line_arr, 26).LeftPath;
-        Right.path = self.doublePathInfo(dataset_line_arr, 26).RightPath;
+        var dataset_line_arr_Info=self.createPathInfo(dataset_line_arr);
+        Left.path = self.doublePathInfo(dataset_line_arr_Info, 26).LeftPath;
+        Right.path = self.doublePathInfo(dataset_line_arr_Info, 26).RightPath;
+        Left.pathStrings = self.doublePathInfo(dataset_line_arr_Info, 26).LeftPathStrings;
+        Right.pathStrings = self.doublePathInfo(dataset_line_arr_Info, 26).RightPathStrings;
 
-        //获取pathStrings
-        Left.pathStrings=self.doublePathInfo(dataset_line_arr, 26).LeftPathStrings;
-        Right.pathStrings=self.doublePathInfo(dataset_line_arr, 26).RightPathStrings;
+        //获取到两条路径信息，分路径信息
+        //Left.path = self.doublePathInfo(dataset_line_arr, 26).LeftPath;
+        //Right.path = self.doublePathInfo(dataset_line_arr, 26).RightPath;
 
         console.log("======##################=======" + drwData.ln + "=========############=====");
-        console.log(Left.pathStrings);
-        console.log(Right.pathStrings);
 
         //获取左右两条线的颜色,若是地铁线颜色:current_drwData.cl;
         Left.color = self.defaultColor;
@@ -228,8 +256,10 @@ var Drwlines={
         var onepath=pathName.path;
         var	direction=pathName.direction;
         var node_first = 'M' + onepath[0].split(' ').join(',');
-        var path = node_first + 'L' + onepath.join('L');
-        //var path = pathName.pathStrings;
+        //var path = node_first + 'L' + onepath.join('L');
+        //console.log("path0",path);
+        var path = pathName.pathStrings;
+        //console.log("path2",path2);
         var line_path = document.createElementNS(this.ns_svg, 'path');
         //line_path.setAttribute("id", "line-"+ LineId_Data.ls+"-"+ direction);
         line_path.setAttribute("name", "line-"+ pathName.reflineName +"-"+ direction);

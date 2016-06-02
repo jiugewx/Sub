@@ -61,20 +61,23 @@
         "1190 767"
     ];
     $(function(){
-        var pathinfo=modifyPathInfo(path);
-        var hasQ=renewPath(pathinfo);
         var main=document.getElementById("main");
-        var mainpathstrings=Path2Strings(path);
+        var newpathhasQ=pathmove(path,10,10);
+        var mainpathstrings=Path2Strings(newpathhasQ);
         console.log(mainpathstrings);
         main.setAttribute("d",mainpathstrings);
 
-        var LeftpathStrings=doublePathInfo(pathinfo, 30).LeftPathStrings;
-        var RightpathStrings=doublePathInfo(pathinfo, 30).RightPathStrings;
 
+        var pathInfo=createPathInfo(path);
+        var LeftpathStrings=doublePathInfo(pathInfo, 30).LeftPathStrings;
+        var RightpathStrings=doublePathInfo(pathInfo, 30).RightPathStrings;
         var left = document.getElementById("left");
         var right=document.getElementById("right");
         left.setAttribute("d",LeftpathStrings);
         right.setAttribute("d",RightpathStrings);
+
+
+
     });
     /*修改了原有的path,使之成为了一个含有pathArray和控制点Q的index信息的对象:pathInfo*/
     var modifyPathInfo= function (path) {
@@ -131,13 +134,18 @@
 //        console.log(pathArray);
         return pathArray;
     };
-//    路径偏移
-    var pathmove= function (pathArray,_x,_y) {
-        var _pathArray = pathArray;
+//    路径偏移(会改变原有的)
+    var pathmove= function (pathArrayhasQ,_x,_y) {
+        var _pathArray = pathArrayhasQ;
         if (_pathArray) {
             for (var s = 0; s < _pathArray.length; s++) {
                 var _lp = _pathArray[s].split(' ');
-                _pathArray[s]=(Number(_lp[0]) + _x) + ' ' + (Number(_lp[1]) + _y);
+                if (_lp[0].toString().indexOf("Q") > -1) {
+                    _lp[0] = _lp[0].slice(1);
+                    _pathArray[s]="Q"+(Number(_lp[0]) + _x) + ' ' + (Number(_lp[1]) + _y);
+                } else {
+                    _pathArray[s]=(Number(_lp[0]) + _x) + ' ' + (Number(_lp[1]) + _y);
+                }
             }
         }
         return  _pathArray;
@@ -196,6 +204,7 @@
         return pathStrings;
     };
     var doublePathInfo=function (pathInfo,offset) {
+        var pathQ=pathInfo.Qindex;
         /*计算主路径的偏离角度*/
         var pathArray=pathInfo.pathArray;
         var p_a=Path2Angles(pathArray);
@@ -226,7 +235,7 @@
             var _x1=Number,_y1=Number;
                 _x1=Math.abs(_x2)>Math.abs(_x0)?_x2:_x0;
                 _y1=Math.abs(_y2)>Math.abs(_y0)?_y2:_y0;
-            if(pathInfo.Qindex[i-1]!=""){
+            if(pathQ[i-1]!=""){
                 offsets[i-1]=_x1+","+_y1;
             }
         }
@@ -252,8 +261,8 @@
         var Left={},Right={};
         Left.pathArray=LeftPath;
         Right.pathArray=RightPath;
-        Left.Qindex=pathInfo.Qindex;
-        Right.Qindex=pathInfo.Qindex;
+        Left.Qindex=pathQ;
+        Right.Qindex=pathQ;
         /*编译输出的info*/
         info.LeftPathhasQ=renewPath(Left);
         info.RigthPathhaQ=renewPath(Right);
