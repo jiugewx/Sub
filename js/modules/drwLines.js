@@ -110,15 +110,15 @@ var Drwlines={
             //计算偏移量
             var _p_a=parseInt(p_a[Path_id]*100000000);
             var Xoffset="", Yoffset="";
-            if(_p_a==0 || _p_a==314159265 || _p_a==-157079632 || _p_a==157079632){
+            //if(_p_a==0 || _p_a==314159265 || _p_a==-157079632 || _p_a==157079632){
                 //直角或者平角的情况
                 Xoffset=parseInt(offset*Math.cos(Math.PI/2-p_a[Path_id]))/10;
                 Yoffset=parseInt(offset*Math.sin(Math.PI/2+p_a[Path_id]))/10;
-            }else{
-                //其他角度的情况
-                Xoffset=parseInt((offset+5)*Math.cos(Math.PI/2-p_a[Path_id]))/10;
-                Yoffset=parseInt((offset+5)*Math.sin(Math.PI/2+p_a[Path_id]))/10;
-            }
+            //}else{
+            //    //其他角度的情况
+            //    Xoffset=parseInt((offset+0)*Math.cos(Math.PI/2-p_a[Path_id]))/10;
+            //    Yoffset=parseInt((offset+0)*Math.sin(Math.PI/2+p_a[Path_id]))/10;
+            //}
             offsets.push(Xoffset+","+Yoffset);
         }
         /*重新编译offsets*/
