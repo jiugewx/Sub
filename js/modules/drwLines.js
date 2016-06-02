@@ -167,46 +167,46 @@ var Drwlines={
         return info;
     },
     //输入主路的路径点,以及偏移量——输出两条路径的路径点信息
-    doublePathInfo0: function (mainPathData,offset) {
-        var self=this;
-        /*计算主路径的偏离角度*/
-        var p_a=self.Path2Angles(mainPathData);
-        //编译Right,Left数组
-        var info={};
-        var LeftPath = [], RightPath=[];
-        //计算偏移量
-        for(var Path_id in mainPathData){
-            var point = mainPathData[Path_id].split(' ').join(',');
-            var p = {};
-            p.x = parseInt(point.split(",")[0]);
-            p.y = parseInt(point.split(",")[1]);
-            //计算偏移量
-            var _p_a=parseInt(p_a[Path_id]*100000000);
-            var Xoffset="", Yoffset="";
-            if(_p_a==0 || _p_a==314159265 || _p_a==-157079632 || _p_a==157079632){
-                //直角或者平角的情况
-                Xoffset=parseInt(offset*Math.cos(Math.PI/2-p_a[Path_id]))/10;
-                Yoffset=parseInt(offset*Math.sin(Math.PI/2+p_a[Path_id]))/10;
-            }else{
-                //其他角度的情况
-                Xoffset=parseInt((offset+5)*Math.cos(Math.PI/2-p_a[Path_id]))/10;
-                Yoffset=parseInt((offset+5)*Math.sin(Math.PI/2+p_a[Path_id]))/10;
-            }
-            //左偏移
-            var LeftX=p.x+Xoffset;
-            var LeftY=p.y-Yoffset;
-            LeftPath.push(LeftX+" "+LeftY);
-            //右偏移
-            var RightX= p.x-Xoffset;
-            var RightY=p.y+Yoffset;
-            RightPath.push(RightX+" "+RightY);
-        }
-
-        info.LeftPath=LeftPath;
-        info.RightPath=RightPath;
-        info.Angles=p_a;
-        return info;
-    },
+    //doublePathInfo0: function (mainPathData,offset) {
+    //    var self=this;
+    //    /*计算主路径的偏离角度*/
+    //    var p_a=self.Path2Angles(mainPathData);
+    //    //编译Right,Left数组
+    //    var info={};
+    //    var LeftPath = [], RightPath=[];
+    //    //计算偏移量
+    //    for(var Path_id in mainPathData){
+    //        var point = mainPathData[Path_id].split(' ').join(',');
+    //        var p = {};
+    //        p.x = parseInt(point.split(",")[0]);
+    //        p.y = parseInt(point.split(",")[1]);
+    //        //计算偏移量
+    //        var _p_a=parseInt(p_a[Path_id]*100000000);
+    //        var Xoffset="", Yoffset="";
+    //        if(_p_a==0 || _p_a==314159265 || _p_a==-157079632 || _p_a==157079632){
+    //            //直角或者平角的情况
+    //            Xoffset=parseInt(offset*Math.cos(Math.PI/2-p_a[Path_id]))/10;
+    //            Yoffset=parseInt(offset*Math.sin(Math.PI/2+p_a[Path_id]))/10;
+    //        }else{
+    //            //其他角度的情况
+    //            Xoffset=parseInt((offset+5)*Math.cos(Math.PI/2-p_a[Path_id]))/10;
+    //            Yoffset=parseInt((offset+5)*Math.sin(Math.PI/2+p_a[Path_id]))/10;
+    //        }
+    //        //左偏移
+    //        var LeftX=p.x+Xoffset;
+    //        var LeftY=p.y-Yoffset;
+    //        LeftPath.push(LeftX+" "+LeftY);
+    //        //右偏移
+    //        var RightX= p.x-Xoffset;
+    //        var RightY=p.y+Yoffset;
+    //        RightPath.push(RightX+" "+RightY);
+    //    }
+    //
+    //    info.LeftPath=LeftPath;
+    //    info.RightPath=RightPath;
+    //    info.Angles=p_a;
+    //    return info;
+    //},
     //划双线
     drwDouble: function (parentNode,drwData) {
         //画双线
@@ -226,8 +226,6 @@ var Drwlines={
         //获取到两条路径信息，分路径信息
         //Left.path = self.doublePathInfo(dataset_line_arr, 26).LeftPath;
         //Right.path = self.doublePathInfo(dataset_line_arr, 26).RightPath;
-
-        console.log("======##################=======" + drwData.ln + "=========############=====");
 
         //获取左右两条线的颜色,若是地铁线颜色:current_drwData.cl;
         Left.color = self.defaultColor;
