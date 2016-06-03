@@ -141,7 +141,7 @@ var SW = {
     loadMainData: function (city_code,city_name,callback) {
         var self = this;
         AllData.loadStatus.currLinesInfo=0;
-        var drwData_Url = "data/" + city_code + "_drw2_" + city_name + ".json";
+        var drwData_Url = "data/" + city_code + "_drw_" + city_name + ".json";
         amapCache.loadData(drwData_Url, function(loaddata) {
                 //------------获取的数据转成压缩的json--------
                 ////转json!
