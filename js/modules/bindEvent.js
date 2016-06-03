@@ -193,7 +193,7 @@ var bindEvent={
                 var status = 'normal';
                 DrwTraf.loadTraffic(city_code, city_name);
                 DrwLimit.loadlimit(city_code, city_name);
-                DrwLimit.drwlimitStDefer(drwSw.currLines, status);
+                DrwLimit.drwlimitStDefer(AllData.cache.stations, status);
                 //console.log("add前",drwSw.currLines);
                 DrwTraf.drwTrafficLinesDefer(drwSw.currLines, status);
             }else {

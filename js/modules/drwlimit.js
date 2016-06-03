@@ -96,7 +96,8 @@ var DrwLimit = {
             self.timer = setTimeout(function () {
                 if (AllData.loadStatus.limitTraffic == 1 && AllData.loadStatus.currLinesInfo == 1) {
                     //把限流信息压入drwData
-                    self.addLimit_Info();
+                    //console.log(AllData.cache.stations);
+                    //self.addLimit_Info();
                     //开始画限流点
                     var svg_g = document.getElementById("svg-g");
                     var st_station_normal = document.getElementById("g-station-name-"+status);
@@ -104,7 +105,7 @@ var DrwLimit = {
                     limit_station_g.setAttribute("id", "g-limit-" + status);
                     svg_g.insertBefore(limit_station_g, st_station_normal);
                     self.drwlimitSt(drwData,limit_station_g);
-                    console.log("限流信息已展示！");
+
                 } else if (AllData.loadStatus.limitTraffic == 2 || AllData.loadStatus.currLinesInfo == 2) {
                     clearTimeout(self.timer);
                 } else {
@@ -124,7 +125,9 @@ var DrwLimit = {
     },
     drwlimitSt:function(drwData,ParentNode){
         var self=this;
-        var station = drwData.stations || drwData.st;
+        var station = drwData.stations || drwData;
+        //for(var idx=0;idx<station.length;idx++){
+        //var item=station[idx];
         $.each(station, function (idx, item) {
             //如果是可以显示的车站
             if (item.su == "1") {
@@ -159,6 +162,7 @@ var DrwLimit = {
                 }
             }
         });
+        console.log("限流信息已展示！");
     },
     inTime:function(startTime,endTime){
         // 获取当前日期的 秒数
