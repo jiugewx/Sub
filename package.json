@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "bs": "browser-sync start --server --files='**'",
-    "build": "webpack --progress --profile --colors",
+    "dist": "webpack -p --progress --profile --colors",
     "dev": "webpack-dev-server --profile --colors --progress",
     "start": "node server.js"
   },
