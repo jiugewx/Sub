@@ -119,7 +119,6 @@ var DrwLimit = {
             var limit_station_g = document.createElementNS(self.ns_svg, 'g');
             limit_station_g.setAttribute("id", "g-limit-" + status);
             svg_select.insertBefore(limit_station_g, st_select);
-            console.log(drwData);
             self.drwlimitSt(drwData,limit_station_g);
         }
     },

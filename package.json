@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "bs": "browser-sync start --server --files='**'",
-    "dist": "webpack -p --progress --profile --colors",
+    "dist": "webpack --config webpack.dist.config.js -p",
     "dev": "webpack-dev-server --profile --colors --progress",
     "start": "node server.js"
   },
@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "extract-text-webpack-plugin": "^1.0.1",
     "path": "^0.12.7",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"

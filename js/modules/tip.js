@@ -298,7 +298,6 @@ var tip = {
             d.resetAllElem(m, n, h)
     },
     resetAllElem: function () {
-        console.log("resetAllElem")
         var self = this
             , newTranslate_x = self.newtransformState.translateX
             , newTranslate_y = self.newtransformState.translateY
