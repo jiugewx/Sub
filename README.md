@@ -32,3 +32,8 @@ weinre --boundHost 10.13.55.9
 
 手机端打开需要调试的页面,即可以在PC调试
 
+
+
+npm run build 打包了所有的，并生成了HTML，资源按需求分配到HTML中，js含有了hot组件
+npm run dist 按需生成了压缩版的js/css，无hot组件，没有生成HTML。
+
