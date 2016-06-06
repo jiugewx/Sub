@@ -112,9 +112,6 @@ var SW = {
         else {
             //从服务器请求数据
             self.loadMainData(city_code,city_name,callback);
-            DrwTraf.loadTraffic(city_code,city_name);
-            self.loadStInfo(city_code,city_name);
-            Drwlimit.loadlimit(city_code,city_name);
         }
     },
     //请求站点首末班车信息
@@ -159,6 +156,9 @@ var SW = {
                 self.buildCurLinesData(city_code,loaddata);
                 AllData.loadStatus.currLinesInfo=1;
                 callback(AllData.cache.cities[city_code]);
+                DrwTraf.loadTraffic(city_code,city_name);
+                self.loadStInfo(city_code,city_name);
+                Drwlimit.loadlimit(city_code,city_name);
             },
             function() {
                 AllData.loadStatus.currLinesInfo=2;

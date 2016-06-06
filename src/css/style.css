@@ -108,7 +108,7 @@ body.disable-default-action { -webkit-touch-callout: none; -webkit-user-select: 
 .time-item-detail .train-time .time-box .time-label-end { display: inline-block; width: 14px; height: 14px; line-height: 16px; font-size: 11px; margin: 4px 0 4px 2px; border-radius: 50%; text-align: center; color: #ff0033; border: solid 1px #ff0033; }
 .time-item-detail .train-time .time { font-size: 14px; display: inline-block; line-height: 14px; margin: 5px 2px 5px 1px; width: 40px; float: right; text-align: center; }
 .tip_footer { width: 0; height: 0; border: 10px solid transparent; border-top: 10px solid rgba(255, 255, 255, 1); margin-left: 140px; }
-.tip_footer .arrow { display: inline-block; width: 0; height: 0; margin: 0 auto; margin-left: -10px; border: 10px solid rgba(0, 0, 0, 0); border-top: 10px solid rgba(51, 51, 51, 0.8); } /*.subway-box*/
+/*.tip_footer .arrow { display: inline-block; width: 0; height: 0; margin: 0 auto; margin-left: -10px; border: 10px solid rgba(0, 0, 0, 0); border-top: 10px solid rgba(51, 51, 51, 0.8); } /!*.subway-box*!/*/
 .subway-box { position: relative; }
 .loading-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #FFF; opacity: 0.8; filter: alpha(opacity=80); z-index: 100; }
 .loading-bg .loading-outer { width: 0px; height: 0px; position: absolute; top: 50%; left: 50%; }

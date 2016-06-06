@@ -81,7 +81,7 @@ var DrwLimit = {
             //$(".tip_detail_time").html(AllData.limitRefreshTime ? "(" + AllData.limitRefreshTime + ")" : null);
             infowHtml.push("<div class='limit_info'> <p>由于本站在客流高峰时段进站客流较大，为了保障轨道交通运营安全，本站在以下时段采取限制进站措施。</p>");
             for (var i in limitInfo) {
-                infowHtml.push(" <span class='limit_info_item'>" + limitInfo[i].startTime + "--" + limitInfo[i].endTime + "</span>");
+                infowHtml.push(" <span class='limit_info_item'>" + limitInfo[i].startTime.slice(0,5) + "--" + limitInfo[i].endTime.slice(0,5) + "</span>");
             }
             infowHtml.push("</div>");
         }
@@ -119,7 +119,7 @@ var DrwLimit = {
             var limit_station_g = document.createElementNS(self.ns_svg, 'g');
             limit_station_g.setAttribute("id", "g-limit-" + status);
             svg_select.insertBefore(limit_station_g, st_select);
-            self.drwlimitSt(drwData,limit_station_g);
+            self.drwlimitSt(drwData.st,limit_station_g);
         }
     },
     drwlimitSt:function(drwData,ParentNode){
@@ -137,10 +137,20 @@ var DrwLimit = {
                     subway_circle_g.setAttribute("class", "g-station");
                     ParentNode.appendChild(subway_circle_g);
                     var limit_station_icon = document.createElementNS(self.ns_svg, 'image');
-                    limit_station_icon.setAttribute("x", parseInt(item.p.split(" ")[0]) - 8);
-                    limit_station_icon.setAttribute("y", parseInt(item.p.split(" ")[1]) - 8);
-                    limit_station_icon.setAttribute("width", 16);
-                    limit_station_icon.setAttribute("height", 16);
+                    var radius;
+                    if(item.t=='1'){
+
+                        if(item.si=="11000150" || item.si=="11000149"){
+                            radius=18.5;
+                        }else{
+                        radius=15.5;}
+                    }else{
+                        radius=13.5;
+                    }
+                    limit_station_icon.setAttribute("x", parseInt(item.p.split(" ")[0]) - radius/2);
+                    limit_station_icon.setAttribute("y", parseInt(item.p.split(" ")[1]) - radius/2);
+                    limit_station_icon.setAttribute("width", radius);
+                    limit_station_icon.setAttribute("height", radius);
                     limit_station_icon.setAttributeNS('http://www.w3.org/1999/xlink', "xlink:href", "./img/subway/traffic_limit.png");
                     subway_circle_g.appendChild(limit_station_icon);
 

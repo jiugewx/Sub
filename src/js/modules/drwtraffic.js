@@ -246,7 +246,7 @@ var DrwTraf = {
         // 计算日期的差值
         var difference = todaySeconds - oldDataSeconds;
         // 获取所给时间的 分时信息如 23:12
-        var TrafficInfoTime = dateTime.split(" ")[1].toString().substr(0, 8);
+        var TrafficInfoTime = dateTime.split(" ")[1].toString().substr(0, 5);
         var TrafficTempTime = dateTime.split(" ")[1].toString().substr(0, 5);
 
         //判断哪一天
