@@ -4,8 +4,8 @@
   "description": "pure front demo",
   "scripts": {
     "dev": "webpack-dev-server -colors --progress",
-    "dist":"webpack --config webpack.dist.config.js -p -colors --progress",
-    "build":"webpack -colors --progress"
+    "dist":" webpack && webpack --config webpack.dist.config.js -p -colors --progress",
+    "build":"webpack && webpack --config webpack.dist.config.js -colors --progress"
   },
   "author": "vhtml",
   "license": "ISC",
