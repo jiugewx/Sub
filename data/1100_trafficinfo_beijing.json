@@ -3,3261 +3,3281 @@
   "jtlList": [
     {
       "flashCode": "ACC150995203_150995204A",
-      "loadData": "0.06",
-      "startTime": "2016-05-08 09:45:00"
+      "loadData": "0.04",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995204_150995203A",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.17",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995204_150995205A",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.07",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150995205_150995204A",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150995205_150995204B",
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995205_150995206",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.09",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995206_150995205",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.34",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995206_150995207",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.13",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995207_150995206",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.44",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995207_150995208",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.17",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995208_150995207",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.54",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995208_150995209",
-      "loadData": "0.20",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.25",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995209_150995208",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.63",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995209_150995210",
-      "loadData": "0.20",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.30",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995210_150995209",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.71",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995210_150995211",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995211_150995210",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.71",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995211_150995212",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.31",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995212_150995211",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.77",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995212_150995213",
-      "loadData": "0.22",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.34",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995213_150995212",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.77",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995213_150995214",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.41",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995214_150995213",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.76",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995214_150995215",
-      "loadData": "0.22",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.46",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995215_150995214",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.56",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995215_150995216",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.49",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995216_150995215",
-      "loadData": "0.20",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.62",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995216_150995217",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.52",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995217_150995216",
-      "loadData": "0.65",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.59",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995217_150995218",
-      "loadData": "0.97",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.56",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995218_150995217",
-      "loadData": "0.29",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.57",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995218_150995219",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.66",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995219_150995218",
-      "loadData": "0.30",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.52",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995219_150995220",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.61",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995220_150995219",
-      "loadData": "0.29",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.50",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995220_150995221",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.78",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995221_150995220",
-      "loadData": "0.24",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.54",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995221_150995222",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.87",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995222_150995221",
-      "loadData": "0.27",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.45",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995222_150995223",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.92",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995223_150995222",
-      "loadData": "0.28",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.37",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995223_150995224",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.83",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995224_150995223",
-      "loadData": "1.23",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.22",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995224_150995225",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.32",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995225_150995224",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.12",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995457_150995458",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.38",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150995457_150995474A",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150995457_150995474B",
+      "loadData": "0.35",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995458_150995457",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.41",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995458_150995459",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.34",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995459_150995458",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.37",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995459_150995460",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.42",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995460_150995459",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150995460_150995461A",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150995460_150995461B",
+      "loadData": "0.29",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150995461_150995460A",
-      "loadData": "1.09",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150995461_150995460B",
+      "loadData": "0.21",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150995461_150995462A",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150995461_150995462B",
+      "loadData": "0.29",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995462_150995461A",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.21",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995462_150995463",
-      "loadData": "1.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.22",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995463_150995462",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.34",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995463_150995464",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995464_150995463",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.35",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995464_150995465",
-      "loadData": "0.99",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.25",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995465_150995464",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.34",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995465_150995466A",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.17",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150995466_150995465A",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150995466_150995465B",
+      "loadData": "0.40",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150995466_150995467A",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150995466_150995467B",
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150995467_150995466A",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150995467_150995466B",
+      "loadData": "0.33",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995467_150995468",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.42",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995468_150995467",
-      "loadData": "1.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.45",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995468_150995469",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.46",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995469_150995468",
-      "loadData": "0.6",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.43",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995469_150995470",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.53",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995470_150995469",
-      "loadData": "0.93",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.30",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150995470_150995471A",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150995470_150995471B",
+      "loadData": "0.42",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150995471_150995470A",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150995471_150995470B",
+      "loadData": "0.24",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995471_150995472",
-      "loadData": "0.78",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.41",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995472_150995471",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.32",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995472_150995473",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.41",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995473_150995472",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.32",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995473_150995474",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.42",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150995474_150995457A",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150995474_150995457B",
+      "loadData": "0.42",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995474_150995473",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.37",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995989_150995991A",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.02",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995991_150995989A",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.12",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995991_150995993A",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.05",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995993_150995991A",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.20",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995993_150995995A",
       "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995995_150995993A",
-      "loadData": "0.90",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.25",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995995_150995997A",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.12",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150995997_150995995A",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150995997_150995995B",
+      "loadData": "0.31",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995997_150995999",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995999_150995997",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.34",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150995999_150996001",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.35",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996001_150995999",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.39",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996001_150996003",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.35",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996003_150996001",
-      "loadData": "0.20",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.51",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996003_150996005",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.39",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996005_150996003",
-      "loadData": "0.24",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.48",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150996005_150996007A",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150996005_150996007B",
+      "loadData": "0.45",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150996007_150996005A",
-      "loadData": "0.23",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150996007_150996005B",
+      "loadData": "0.51",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150996007_150996009A",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150996007_150996009B",
+      "loadData": "0.37",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150996009_150996007A",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150996009_150996007B",
+      "loadData": "0.44",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996009_150996011",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.42",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996011_150996009",
-      "loadData": "0.26",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.44",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996011_150996013",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.44",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996013_150996011",
-      "loadData": "0.22",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.48",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150996013_150996015A",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150996013_150996015B",
+      "loadData": "0.45",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150996015_150996013A",
-      "loadData": "0.25",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150996015_150996013B",
+      "loadData": "0.45",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996015_150996017",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.49",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996017_150996015",
-      "loadData": "0.27",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.52",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996017_150996019",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.50",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996019_150996017",
-      "loadData": "0.24",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.52",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996019_150996021",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.56",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996021_150996019",
-      "loadData": "0.27",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.43",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996021_150996023",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.72",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996023_150996021",
-      "loadData": "0.36",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.39",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996023_150996025",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.96",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996025_150996023",
-      "loadData": "0.35",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.43",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996025_150996027",
-      "loadData": "0.20",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.92",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996027_150996025",
-      "loadData": "0.40",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.31",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996027_150996029",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.86",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996029_150996027",
       "loadData": "0.34",
-      "startTime": "2016-05-09 09:45:00"
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996029_150996031",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.79",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996031_150996029",
-      "loadData": "0.35",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.22",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996031_150996033",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.75",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996033_150996031",
-      "loadData": "0.34",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.21",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996033_150996035",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.74",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996035_150996033",
-      "loadData": "0.23",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.30",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150996035_151018773A",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150996035_151018773C",
+      "loadData": "0.76",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996245_150996247",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.04",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996247_150996245",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996247_150996249",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.06",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996249_150996247",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.48",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996249_150996251",
-      "loadData": "0.20",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.08",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996251_150996249",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.57",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996251_150996253",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.12",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996253_150996251",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.69",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996253_150996255",
-      "loadData": "0.24",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.13",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996255_150996253",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.78",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996255_150996257",
-      "loadData": "0.25",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.19",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996257_150996255",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.86",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996257_150996259",
-      "loadData": "0.31",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996259_150996257",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.95",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996259_150996261",
-      "loadData": "0.32",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.34",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996261_150996259",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.96",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996261_150996263",
-      "loadData": "0.27",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.38",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996263_150996261",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.75",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996263_150996265",
-      "loadData": "0.26",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.44",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996265_150996263",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.76",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996265_150996267",
-      "loadData": "0.25",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.47",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996267_150996265",
-      "loadData": "0.20",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.76",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996267_150996269",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.45",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996269_150996267",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.55",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996269_150996271",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.46",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996271_150996269",
-      "loadData": "0.20",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.55",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996271_150996273",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.48",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996273_150996271",
-      "loadData": "0.23",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.56",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996273_150996275",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.48",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996275_150996273",
-      "loadData": "0.24",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.56",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996275_150996277",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.52",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996277_150996275",
-      "loadData": "0.24",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.50",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996277_150996279",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.61",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996279_150996277",
-      "loadData": "0.23",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.36",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996279_150996281",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.72",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996281_150996279",
-      "loadData": "0.26",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.33",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996281_150996283",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.60",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996283_150996281",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.22",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996283_150996285",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.58",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996285_150996283",
-      "loadData": "0.23",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.20",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996285_150996287",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.46",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996287_150996285",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.17",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996287_150996289",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.35",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996289_150996287",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.15",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996501_150996503",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.10",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996503_150996501",
-      "loadData": "0.02",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.12",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996503_150996505",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.12",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996505_150996503",
-      "loadData": "0.02",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.19",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996505_150996507",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.16",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996507_150996505",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.21",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996507_150996511",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.31",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996511_150996507",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.31",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996511_150996513",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.34",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996513_150996511",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.32",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996513_150996515",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.36",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996515_150996513",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996515_150996517",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.43",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996517_150996515",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.33",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996517_150996519",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.44",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996519_150996517",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.33",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150996519_150996521A",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150996519_150996521B",
+      "loadData": "0.47",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150996521_150996519A",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150996521_150996519B",
+      "loadData": "0.36",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150996521_150996523A",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150996521_150996523B",
+      "loadData": "0.50",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150996523_150996521A",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150996523_150996521B",
+      "loadData": "0.35",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996523_150996525",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.69",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996525_150996523",
-      "loadData": "0.22",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.33",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996525_150996527",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.75",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996527_150996525",
-      "loadData": "0.24",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.28",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996527_150996529",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.92",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996529_150996527",
-      "loadData": "0.32",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996529_150996531",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.87",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996531_150996529",
-      "loadData": "0.34",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.21",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996531_150996533",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.83",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996533_150996531",
-      "loadData": "0.31",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996533_150996535",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.69",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996535_150996533",
-      "loadData": "0.26",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.12",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996535_150996537",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.61",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996537_150996535",
-      "loadData": "0.23",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.12",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996537_150996539",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.47",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996539_150996537",
-      "loadData": "0.20",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.10",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996539_150996541",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.39",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996541_150996539",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.07",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150996541_150996543A",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150996541_150996543B",
+      "loadData": "0.25",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996543_150996541A",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.04",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996543_150996545A",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.16",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996545_150996543A",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.02",
+      "startTime": "2016-06-16 18:00:00"
+    },
+    {
+      "flashCode": "ACC150996545_150996547A",
+      "loadData": "0.13",
+      "startTime": "2016-06-16 18:00:00"
+    },
+    {
+      "flashCode": "ACC150996547_150996545A",
+      "loadData": "0.02",
+      "startTime": "2016-06-16 18:00:00"
+    },
+    {
+      "flashCode": "ACC150996547_150996549A",
+      "loadData": "0.13",
+      "startTime": "2016-06-16 18:00:00"
+    },
+    {
+      "flashCode": "ACC150996549_150996547A",
+      "loadData": "0.02",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996549_150996551A",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.05",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996551_150996549A",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.01",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996551_150996553",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.05",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996553_150996551",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.01",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996553_150996555",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.04",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996555_150996553",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.01",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996555_150996557",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.03",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996557_150996555",
-      "loadData": "0.02",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.01",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996757_150996759A",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.15",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996759_150996757A",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.14",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996759_150996761A",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.17",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996761_150996759A",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.16",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996761_150996763",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996763_150996761",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.25",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996763_150996765",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.25",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996765_150996763",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.29",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996765_150996767",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996767_150996765",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996767_150996769",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996769_150996767",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996769_150996771",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996771_150996769",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996771_150996773",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996773_150996771",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996773_150996775",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.30",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996775_150996773",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996775_150996777",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.29",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996777_150996775",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996777_150996779",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996779_150996777",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.15",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996779_150996781",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996781_150996779",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.15",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996781_150996783",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.28",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996783_150996781",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.16",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996783_150996785",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.29",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996785_150996783",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.11",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996785_150996787A",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996787_150996785A",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.05",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996787_150996789A",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.20",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996789_150996787A",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.05",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996789_150996791",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.16",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996791_150996789",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.03",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996791_150996793A",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.07",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996793_150996791A",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.01",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996793_150996795",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.07",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996795_150996793",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.01",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996795_150996797",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.02",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996797_150996795",
       "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996997_150996999",
       "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996999_150996997",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.21",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150996999_150997001",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.09",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997001_150996999",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.24",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997001_150997003A",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.09",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997003_150997001A",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.31",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997003_150997005",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.10",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997005_150997003",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.50",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997005_150997007",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.08",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997007_150997005",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.47",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997007_150997009",
-      "loadData": "0.22",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.10",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997009_150997007",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.47",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997009_150997011A",
-      "loadData": "0.23",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.13",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150997011_150997009A",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150997011_150997009B",
+      "loadData": "0.48",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997011_150997013A",
-      "loadData": "0.26",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.17",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150997013_150997011A",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150997013_150997011B",
+      "loadData": "0.57",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997013_150997015A",
-      "loadData": "0.27",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.15",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150997015_150997013A",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150997015_150997013B",
+      "loadData": "0.63",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997015_150997017A",
-      "loadData": "0.27",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.16",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150997017_150997015A",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150997017_150997015B",
+      "loadData": "0.65",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997017_150997019",
-      "loadData": "0.23",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.30",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997019_150997017",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.66",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997019_150997021",
-      "loadData": "0.23",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.28",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997021_150997019",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.86",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997021_150997023",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.28",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997023_150997021",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.51",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997023_150997025",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997025_150997023",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.37",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997025_150997027",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.24",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997027_150997025",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.47",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997027_150997029",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.11",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997029_150997027",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.21",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997029_150997031",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.09",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997031_150997029",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997269_150997271",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.31",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997271_150997269",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.21",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997271_150997273",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.62",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997273_150997271",
-      "loadData": "0.30",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.38",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997273_150997275",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.70",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997275_150997273",
+      "loadData": "0.48",
+      "startTime": "2016-06-16 18:00:00"
+    },
+    {
+      "flashCode": "ACC150997275_150997277B",
+      "loadData": "0.86",
+      "startTime": "2016-06-16 18:00:00"
+    },
+    {
+      "flashCode": "ACC150997277_150997275B",
+      "loadData": "0.54",
+      "startTime": "2016-06-16 18:00:00"
+    },
+    {
+      "flashCode": "ACC150997277_150997279C",
+      "loadData": "0.87",
+      "startTime": "2016-06-16 18:00:00"
+    },
+    {
+      "flashCode": "ACC150997279_150997277B",
+      "loadData": "0.36",
+      "startTime": "2016-06-16 18:00:00"
+    },
+    {
+      "flashCode": "ACC150997279_150997281B",
+      "loadData": "0.58",
+      "startTime": "2016-06-16 18:00:00"
+    },
+    {
+      "flashCode": "ACC150997281_150997279B",
       "loadData": "0.29",
-      "startTime": "2016-05-09 09:45:00"
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150997275_150997277A",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150997281_150997283B",
+      "loadData": "0.60",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150997277_150997275A",
-      "loadData": "0.41",
-      "startTime": "2016-05-09 09:45:00"
-    },
-    {
-      "flashCode": "ACC150997277_150997279A",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
-    },
-    {
-      "flashCode": "ACC150997279_150997277A",
-      "loadData": "0.25",
-      "startTime": "2016-05-09 09:45:00"
-    },
-    {
-      "flashCode": "ACC150997279_150997281A",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
-    },
-    {
-      "flashCode": "ACC150997281_150997279A",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
-    },
-    {
-      "flashCode": "ACC150997281_150997283A",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
-    },
-    {
-      "flashCode": "ACC150997283_150997281A",
-      "loadData": "0.20",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150997283_150997281B",
+      "loadData": "0.36",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997283_150997285",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.52",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997285_150997283",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997285_150997287",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.00",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997287_150997285",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.00",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997287_150997289",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.00",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997289_150997287",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.00",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997289_150997291",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.36",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997291_150997289",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.19",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997291_150997293",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.62",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997293_150997291",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.08",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997505_150997507",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150997505_151018051A",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150997505_151018051B",
+      "loadData": "0.43",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997507_150997505",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.45",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997507_150997509",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.41",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997509_150997507",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.43",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997509_150997511",
-      "loadData": "0.26",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.62",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997511_150997509",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.52",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997511_150997513",
-      "loadData": "0.26",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.64",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997513_150997511",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.52",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997513_150997515",
-      "loadData": "0.24",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.54",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997515_150997513",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.53",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997515_150997517",
-      "loadData": "0.26",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.60",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997517_150997515",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.49",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997517_150997519",
-      "loadData": "0.28",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.63",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997519_150997517",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.49",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997519_150997521",
-      "loadData": "0.29",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.69",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997521_150997519",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.47",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997521_150997523",
-      "loadData": "0.25",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.62",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997523_150997521",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.53",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997523_150997525",
-      "loadData": "0.25",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.66",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997525_150997523",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.52",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997525_150997527",
-      "loadData": "0.24",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.51",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997527_150997525",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.58",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150997527_150997529A",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150997527_150997529C",
+      "loadData": "0.48",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150997529_150997527A",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150997529_150997527C",
+      "loadData": "0.74",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150997529_150997531A",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150997529_150997531C",
+      "loadData": "0.47",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150997531_150997529A",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150997531_150997529C",
+      "loadData": "0.72",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997531_150997533",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.54",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997533_150997531",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.65",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997533_150997535",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.64",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997535_150997533",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.57",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997535_150997537",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.66",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997537_150997535",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.56",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997537_150997539",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.72",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997539_150997537",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.55",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997539_150997541",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.67",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997541_150997539",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.55",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997541_150997543",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.75",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997543_150997541",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.46",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997543_150997545",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.70",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997545_150997543",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.35",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997545_150997547",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.65",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997547_150997545",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.28",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150997547_151018007",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.58",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998293_150998295A",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998293_150998295B",
+      "loadData": "0.47",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998295_150998293A",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998295_150998297",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.55",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998297_150998295",
       "loadData": "0.23",
-      "startTime": "2016-05-09 09:45:00"
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998297_150998299A",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998297_150998299C",
+      "loadData": "0.93",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998299_150998297A",
-      "loadData": "0.36",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998299_150998297B",
+      "loadData": "0.37",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998299_150998301",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "1.00",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998299_150998301A",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998299_150998301C",
+      "loadData": "1.00",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998301_150998299",
-      "loadData": "0.37",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.29",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998301_150998299A",
-      "loadData": "0.37",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998301_150998299B",
+      "loadData": "0.29",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998301_150998303",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.96",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998303_150998301",
-      "loadData": "0.35",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998303_150998305A",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998303_150998305C",
+      "loadData": "0.71",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998305_150998303A",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.14",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998305_150998307",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.58",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998307_150998305",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998307_150998309",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.44",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998309_150998307",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998309_150998311A",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998309_150998311B",
+      "loadData": "0.32",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998311_150998309A",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998311_150998309B",
+      "loadData": "0.63",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998311_150998313A",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.16",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998313_150998311A",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998313_150998311B",
+      "loadData": "0.54",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998313_150998315A",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.15",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998315_150998313A",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998315_150998313B",
+      "loadData": "0.69",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998315_150998317",
-      "loadData": "0.20",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.17",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998317_150998315",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.73",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998317_150998319",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.14",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998319_150998317",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.39",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998319_150998321",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.13",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998321_150998319",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.37",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998321_150998323A",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.16",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998323_150998321A",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.29",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998549_150998551",
-      "loadData": "0.02",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.01",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998551_150998549",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.06",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998551_150998553",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.01",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998553_150998551",
-      "loadData": "0.02",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.11",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998553_150998555",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.02",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998555_150998553",
-      "loadData": "0.02",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.15",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998555_150998557",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.03",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998557_150998555",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.21",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998557_150998559",
       "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998559_150998557",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998559_150998561",
       "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998561_150998559",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998573_150998575",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998575_150998573",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.19",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998575_150998577",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998577_150998575",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.19",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998577_150998579",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998579_150998577",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.21",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998579_150998581",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.17",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998581_150998579",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998581_150998583",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.21",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998583_150998581",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.28",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998583_150998585",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.19",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998585_150998583",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.32",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998585_150998589A",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.19",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998589_150998585A",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998589_150998585B",
+      "loadData": "0.37",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998589_150998591A",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.19",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998591_150998589A",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998591_150998589B",
+      "loadData": "0.45",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998591_150998593",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.19",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998593_150998591",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.45",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998593_150998595",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.39",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998595_150998593",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.64",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998595_150998599",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.53",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998599_150998595",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.60",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998599_150998601",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.48",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998601_150998599",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.63",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998601_150998603",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.48",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998603_150998601",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.64",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998603_150998605A",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.52",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998605_150998603A",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998605_150998603B",
+      "loadData": "0.59",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998605_150998607A",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998605_150998607B",
+      "loadData": "0.51",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998607_150998605A",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998607_150998605B",
+      "loadData": "0.58",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998607_150998609A",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998607_150998609B",
+      "loadData": "0.54",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998609_150998607A",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998609_150998607B",
+      "loadData": "0.40",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998609_150998611A",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998609_150998611B",
+      "loadData": "0.51",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998611_150998609A",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998611_150998609B",
+      "loadData": "0.40",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998611_150998613A",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998611_150998613B",
+      "loadData": "0.53",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998613_150998611A",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.30",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998613_150998615A",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.47",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998615_150998613A",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998615_150998617A",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.14",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998617_150998615A",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998617_150998619",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.07",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998619_150998617",
-      "loadData": "0.02",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.08",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998619_150998621",
-      "loadData": "0.00",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.03",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998621_150998619",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.00",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998809_150998811",
-      "loadData": "0.02",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.10",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998811_150998809",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.03",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998811_150998813",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.20",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998813_150998811",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.10",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998813_150998815",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.29",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998815_150998813",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.15",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998815_150998817",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.42",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998817_150998815",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998817_150998819",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.46",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998819_150998817",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998819_150998821",
-      "loadData": "0.24",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.49",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998821_150998819",
-      "loadData": "0.20",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.30",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998821_150998823",
-      "loadData": "0.24",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.49",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998823_150998821",
-      "loadData": "0.23",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.31",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998823_150998825",
-      "loadData": "0.37",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.68",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998825_150998823",
-      "loadData": "0.32",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.51",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998825_150998827B",
-      "loadData": "0.51",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.76",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998827_150998825A",
-      "loadData": "0.37",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998827_150998829",
-      "loadData": "0.51",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.79",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998829_150998827",
-      "loadData": "0.37",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998829_150998831B",
-      "loadData": "0.50",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.73",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998831_150998829A",
-      "loadData": "0.34",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998831_150998833B",
-      "loadData": "0.49",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.68",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998833_150998831A",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998833_150998835B",
-      "loadData": "0.46",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.62",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998835_150998833A",
-      "loadData": "0.20",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.22",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC150998835_150998837A",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC150998835_150998837B",
+      "loadData": "0.52",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998837_150998835A",
-      "loadData": "0.36",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998837_150998839",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.48",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998839_150998837",
-      "loadData": "0.33",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.14",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998839_150998841",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.38",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998841_150998839",
-      "loadData": "0.26",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.09",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998841_150998843",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.34",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998843_150998841",
-      "loadData": "0.23",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.08",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998843_150998845",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998845_150998843",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.05",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998845_150998847",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.10",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC150998847_150998845",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.02",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018007_150997547",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018007_151018009",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.53",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018009_151018007",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.20",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151018009_151018011A",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151018009_151018011B",
+      "loadData": "0.45",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018011_151018009A",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.19",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151018011_151018013A",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151018011_151018013B",
+      "loadData": "0.45",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018013_151018011A",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.19",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018013_151018015",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.42",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018015_151018013",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.21",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018015_151018017",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.41",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018017_151018015",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.25",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018017_151018019",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.38",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018019_151018017",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018019_151018021",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.34",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018021_151018019",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.28",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018021_151018023",
-      "loadData": "0.22",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.31",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018023_151018021",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.32",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018023_151018025",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018025_151018023",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018025_151018027",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.19",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018027_151018025",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.28",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018027_151018029",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018029_151018027",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.30",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018029_151018031",
       "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018031_151018029",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.33",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018031_151018033A",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.14",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151018033_151018031A",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151018033_151018031B",
+      "loadData": "0.36",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018033_151018035",
       "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018035_151018033",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.37",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018035_151018037",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.12",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018037_151018035",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.47",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018037_151018039",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.15",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018039_151018037",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.48",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018039_151018041",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.16",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018041_151018039",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.50",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151018041_151018043A",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151018041_151018043B",
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151018043_151018041A",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151018043_151018041B",
+      "loadData": "0.50",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151018043_151018045A",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151018043_151018045B",
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151018045_151018043A",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151018045_151018043B",
+      "loadData": "0.49",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018045_151018047",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.25",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018047_151018045",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.47",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018047_151018049",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.25",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018049_151018047",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.46",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018049_151018051",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151018051_150997505A",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151018051_150997505B",
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018051_151018049",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.43",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151018773_150996035B",
-      "loadData": "0.31",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151018773_150996035A",
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151018773_151018775A",
-      "loadData": "0.25",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151018773_151018775B",
+      "loadData": "1.14",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018775_151018773A",
-      "loadData": "0.45",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.40",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151018775_151018777A",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151018775_151018777B",
+      "loadData": "0.97",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018777_151018775A",
-      "loadData": "0.42",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.36",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018777_151018779",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.86",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018779_151018777",
-      "loadData": "0.39",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.35",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018779_151018781",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.78",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018781_151018779",
-      "loadData": "0.37",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.28",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018781_151018783",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.57",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018783_151018781",
-      "loadData": "0.34",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018783_151018785",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.47",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018785_151018783",
-      "loadData": "0.28",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.20",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018785_151018787",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.33",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018787_151018785",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.15",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018787_151018789",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.25",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018789_151018787",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.11",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018789_151018791",
-      "loadData": "0.05",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.22",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018791_151018789",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.09",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018791_151018793",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.13",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151018793_151018791",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.05",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019027_151019029",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.00",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019029_151019027",
       "loadData": "0.00",
-      "startTime": "2016-05-09 09:45:00"
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019029_151019031",
       "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019031_151019029",
-      "loadData": "0.02",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.01",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019031_151019033",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.03",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019033_151019031",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.08",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019033_151019035",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.05",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019035_151019033",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.12",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019035_151019037",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.06",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019037_151019035",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.14",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019037_151019039",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.07",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019039_151019037",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.20",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019039_151019041A",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.09",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019041_151019039A",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.28",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019041_151019043A",
-      "loadData": "0.29",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.12",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151019043_151019041A",
-      "loadData": "0.24",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151019043_151019041B",
+      "loadData": "0.52",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019043_151019045A",
-      "loadData": "0.23",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.12",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151019045_151019043A",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151019045_151019043B",
+      "loadData": "0.59",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019045_151019047A",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.11",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151019047_151019045A",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151019047_151019045B",
+      "loadData": "0.57",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019047_151019049A",
-      "loadData": "0.24",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.14",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151019049_151019047A",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151019049_151019047B",
+      "loadData": "0.71",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019285_151019287",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.78",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019287_151019285",
-      "loadData": "0.22",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.09",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151019287_151019289A",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151019287_151019289B",
+      "loadData": "0.79",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019289_151019287A",
-      "loadData": "0.22",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.08",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019289_151019291",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.73",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019291_151019289",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.08",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019291_151019293",
-      "loadData": "0.08",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.45",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019293_151019291",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.07",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019293_151019295A",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.36",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019295_151019293A",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.06",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019295_151019297",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.26",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019297_151019295",
-      "loadData": "0.16",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.04",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019297_151019299A",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.23",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019299_151019297A",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.03",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019299_151019301",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.19",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019301_151019299",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.03",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019301_151019303",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.14",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019303_151019301",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.03",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019303_151019305",
-      "loadData": "0.02",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.09",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019305_151019303",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.03",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019541_151019543",
-      "loadData": "0.24",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.63",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019543_151019541",
-      "loadData": "0.40",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.57",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019543_151019545",
-      "loadData": "0.22",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.63",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019545_151019543",
-      "loadData": "0.38",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.55",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151019545_151019547A",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151019545_151019547B",
+      "loadData": "0.54",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151019547_151019545A",
-      "loadData": "0.37",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151019547_151019545B",
+      "loadData": "0.51",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019547_151019549A",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.41",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151019549_151019547A",
-      "loadData": "0.32",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151019549_151019547B",
+      "loadData": "0.53",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019549_151019551A",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.35",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019551_151019549A",
-      "loadData": "0.28",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.44",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019551_151019553A",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.31",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019553_151019551A",
-      "loadData": "0.26",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.43",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019553_151019555A",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019555_151019553A",
-      "loadData": "0.23",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.33",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019555_151019557A",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.24",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019557_151019555A",
-      "loadData": "0.22",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.25",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019557_151019559A",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.18",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019559_151019557A",
-      "loadData": "0.18",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.16",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019559_151019561A",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.09",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019561_151019559A",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.11",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019561_151019563A",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.04",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019563_151019561A",
-      "loadData": "0.03",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.01",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019563_151019565A",
-      "loadData": "0.01",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.03",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019565_151019563A",
-      "loadData": "0.02",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.01",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019777_151019778",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.57",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019778_151019777",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.08",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019778_151019779",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.96",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019779_151019778",
-      "loadData": "0.33",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.16",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019779_151019780",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.94",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019780_151019779",
-      "loadData": "0.35",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.13",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019780_151019781",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.82",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019781_151019780",
-      "loadData": "0.34",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.12",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019781_151019782",
-      "loadData": "0.14",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.76",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019782_151019781",
-      "loadData": "0.29",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.10",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019782_151019783",
-      "loadData": "0.13",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.59",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019783_151019782",
-      "loadData": "0.27",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.09",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151019783_151019784A",
-      "loadData": "0.11",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151019783_151019784B",
+      "loadData": "0.56",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019784_151019783A",
-      "loadData": "0.25",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.09",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151019784_151019785A",
-      "loadData": "0.09",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151019784_151019785B",
+      "loadData": "0.43",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019785_151019784A",
-      "loadData": "0.21",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.07",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
-      "flashCode": "ACC151019785_151019786A",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "flashCode": "ACC151019785_151019786B",
+      "loadData": "0.32",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019786_151019785A",
-      "loadData": "0.17",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.06",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019786_151019787A",
-      "loadData": "0.06",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.28",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019787_151019786A",
-      "loadData": "0.15",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.04",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019787_151019788A",
-      "loadData": "0.04",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.13",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019788_151019787A",
-      "loadData": "0.10",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.03",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019788_151019789A",
-      "loadData": "0.02",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.07",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151019789_151019788A",
-      "loadData": "0.07",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.02",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151020053_151020055A",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.16",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151020055_151020053A",
-      "loadData": "0.12",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.14",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151020055_151020059A",
-      "loadData": "0.36",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.31",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151020057_151020055A",
-      "loadData": "0.37",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.22",
+      "startTime": "2016-06-16 18:00:00"
     },
     {
       "flashCode": "ACC151020059_151020057A",
-      "loadData": "0.19",
-      "startTime": "2016-05-09 09:45:00"
+      "loadData": "0.27",
+      "startTime": "2016-06-16 18:00:00"
     }
   ],
   "msKey": "",
   "msg": "SUCCESS",
-  "publishTime": "20160509095406"
+  "publishTime": "20160616180053"
 }
