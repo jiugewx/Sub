@@ -240,7 +240,7 @@ var drwSw = {
             $("#refresh_content").show();
             $(".filter_btn").show();
             $(".help_btn").show();
-            console.log("主路画完！");
+            //console.log("主路画完！");
         } else if (status == 'select') {
             var svg_select = document.getElementById("g-select");
             svg_select.appendChild(subway_line);

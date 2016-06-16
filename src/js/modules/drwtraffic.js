@@ -62,7 +62,7 @@ var DrwTraf = {
             //publishTime[5]=trafficData.publishTime.slice(12,14);
             //var pubTime=publishTime[0]+"-"+publishTime[1]+"-"+publishTime[2]+' '+publishTime[3]+":"+publishTime[4]+":"+publishTime[5];
             AllData.loadStatus.trafficInfo=1;
-            console.log("路况信息请求完成!");
+            //console.log("路况信息请求完成!");
             AllData.refreshStatus=self.formatTime(AllData.cache.trafficInfo[0].refreshTime).trafficLoad;
             //callback();
             //console.log(AllData.refreshStatus);
@@ -92,7 +92,7 @@ var DrwTraf = {
                 }
             }
         }
-        console.log("路况信息压入成功！");
+        //console.log("路况信息压入成功！");
         //console.log("addTrafficInfo",drwData);
         //console.log("新的drwData",drwData);
     },
@@ -117,12 +117,12 @@ var DrwTraf = {
                         var current_drwData = drwData[line_id];
                         self.drwTrafficFromSever(traffic_line, current_drwData);
                     }
-                    console.log("路况信息已展示！");
+                    //console.log("路况信息已展示！");
                     tip.refreshSuccess();
                 } else if (AllData.loadStatus.trafficInfo == 2 || AllData.loadStatus.currLinesInfo == 2) {
                     clearTimeout(DrwTraf.timer);
                 } else {
-                    console.log("路况信息错误!", "traffic", AllData.loadStatus.trafficInfo, "currLines", AllData.loadStatus.currLinesInfo);
+                    //console.log("路况信息错误!", "traffic", AllData.loadStatus.trafficInfo, "currLines", AllData.loadStatus.currLinesInfo);
                     DrwTraf.drwTrafficLinesDefer(drwData, status);
                 }
             }, 10)

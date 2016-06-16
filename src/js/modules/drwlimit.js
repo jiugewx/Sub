@@ -47,7 +47,7 @@ var DrwLimit = {
             publishTime[5]=limitTraffic.publishTime.slice(12,14);
             var pubTime=publishTime[0]+"-"+publishTime[1]+"-"+publishTime[2]+' '+publishTime[3]+":"+publishTime[4]+":"+publishTime[5];
             AllData.loadStatus.limitTraffic=1;
-            console.log("限流信息请求成功!");
+            //console.log("限流信息请求成功!");
             AllData.limitRefreshTime = self.formatlimitTime(pubTime);
             //console.log(AllData.limitRefreshTime);
             //console.log(AllData.cache.stations);
@@ -71,7 +71,7 @@ var DrwLimit = {
                 }
             }
         }
-        console.log("限流信息压入成功！");
+        //console.log("限流信息压入成功！");
     },
     showlimit_info: function (lineId, StationId) {
         var self = this;
@@ -109,7 +109,7 @@ var DrwLimit = {
                 } else if (AllData.loadStatus.limitTraffic == 2 || AllData.loadStatus.currLinesInfo == 2) {
                     clearTimeout(self.timer);
                 } else {
-                    console.log("限流信息错误!", "limitTraffic", AllData.loadStatus.limitTraffic, "currLines", AllData.loadStatus.currLinesInfo);
+                    //console.log("限流信息错误!", "limitTraffic", AllData.loadStatus.limitTraffic, "currLines", AllData.loadStatus.currLinesInfo);
                     self.drwlimitStDefer(drwData, status);
                 }
             }, 10)
@@ -171,7 +171,7 @@ var DrwLimit = {
                 }
             }
         });
-        console.log("限流信息已展示！");
+        //console.log("限流信息已展示！");
     },
     inTime:function(startTime,endTime){
         // 获取当前日期的 秒数

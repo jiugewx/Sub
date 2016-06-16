@@ -129,7 +129,7 @@ var SW = {
                     AllData.cache.stationsInfo[info_data.l[k].st[l].si] = info_data.l[k].st[l];
                 }
             }
-            console.log("站点首末车时间请求完成!");
+            //console.log("站点首末车时间请求完成!");
         },function() {
             alert('地铁站点数据加载失败！');
         });
@@ -287,7 +287,7 @@ var SW = {
         cache.curCity.name = cache.cities[city_code].name;
         cache.curCity.offset = cache.offset[city_code];
         var drwData = cache.cities[city_code];
-        console.log("纯地铁信息编译完成!");
+        //console.log("纯地铁信息编译完成!");
         tip.loadingOver();
         //console.log(drwData);
     },
