@@ -1,28 +1,18 @@
 var webpack = require('webpack');
-var distConfigs = require("./configs/webpack.dist.config.js");
+var distConfigs = require("./webpack.dist.config.js");
 /**
  html-webpack-plugin插件，重中之重，webpack中生成HTML的插件，
  具体可以去这里查看https://www.npmjs.com/package/html-webpack-plugin
  */
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 /*设置环境变量--开发环境(这个定义位置只能放在这里)*/
-process.env.NODE_ENV = 'development';
-var development= definePlugin = new webpack.DefinePlugin({
-    'process.env.NODE_ENV': "'development'"
-});
-
 var defaultPre;
 defaultPre = {
     htmlSrc: distConfigs.BaseConfigOptions.htmlSrc,
     htmlPub: distConfigs.BaseConfigOptions.htmlPub,
     all_in_one: distConfigs.BaseConfigOptions.all_in_one,
     chunks: distConfigs.BaseConfigOptions.chunks,
-    plugins: [
-        development,
-        /*加上热替换的插件和防止报错的插件以下都会写进js */
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
-    ].concat(distConfigs.BaseConfigOptions.plugins),
+    plugins: distConfigs.BaseConfigOptions.plugins,
     init: function () {
         var self = this;
         for (var i in self.chunks) {
@@ -59,31 +49,18 @@ defaultPre = {
 };
 defaultPre.init();
 var defaultConfig = {};
-if (process.env.NODE_ENV !== 'production') {
-    console.log("Current NODE_ENV is development");
+if (process.env.NODE_ENV === 'production') {
+    console.log("Current NODE_ENV is production");
     defaultConfig = {
         entry: distConfigs.entry,
         plugins: defaultPre.plugins,
-        devtool: "cheap-source-map",
+        devtool: distConfigs.devtool,
         output: distConfigs.output,
         module: distConfigs.module,
         resolve: distConfigs.resolve,
-        vue:[],
-        babel: distConfigs.babel,
-        //使用webpack-dev-server，提高开发效率
-        devServer: {
-            historyApiFallback: true,
-            contentBase: './dist/', /*所有的文件都要放在dist下面*/
-            host: 'localhost',
-            port: 8080,
-            inline: true,
-            devtool: eval,
-            progress: true,
-            colors: true,
-            hot: true,
-            profile: true
-        },
-        externals: distConfigs.externals
-    }
+        externals: distConfigs.externals,
+        vue:distConfigs.vue,
+        babel: distConfigs.babel
+    };
 }
 module.exports=defaultConfig;
