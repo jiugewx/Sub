@@ -76,8 +76,6 @@ var SW = {
             $('#subway').show()
         }
 
-        //改变网页的标题
-        document.title = "实时轨道";
     },
     //显示城市的地铁站
     showStation: function (param) {
