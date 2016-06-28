@@ -1,5 +1,5 @@
 /**
- * Created by Wangxin on 2016/5/30.
+ * Created by Wangxin on 2016/5/30. 这里是预留功能
  */
 
 require("./amapCache");
